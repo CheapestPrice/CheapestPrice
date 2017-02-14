@@ -5,7 +5,6 @@ angular.module('myApp', [
   'ngRoute',
   'ngMaterial',
   'services.listFactory',
-  'myApp.view1',
   'myApp.viewProducts',
   'myApp.viewPlaces',
   'myApp.shopList',
