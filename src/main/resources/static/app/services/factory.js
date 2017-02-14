@@ -4,7 +4,7 @@ angular.module('services.listFactory', ['ngRoute'])
     .factory('placesStubFactory', function () {
             var list = {
                 listado : [{
-                            nombre:'Leche',
+                            nombre:'Surtir',
                             sedes:[{
                                  nombre:'San Cipriano',
                                  direccion: 'Cll 167 # 40B 20',
@@ -41,10 +41,22 @@ angular.module('services.listFactory', ['ngRoute'])
                     list.listado.push(tienda);
                 },
                 getSedes : function(name){
-                    return list.listado[name].sedes
+                    var a;
+                    list.listado.forEach(function(item,index){
+                        if(item.nombre==name){
+                            a=item;
+                        }
+                    })
+                    return a.sedes;
                 },
                 getSede : function(tienda,sede){
-                    return list.listado[tienda].sedes[sede]
+                    var a;
+                    this.getSedes(tienda).forEach(function(item,index){
+                        if(item.nombre==sede){
+                            a=item;
+                        }
+                    })
+                    return a;
                 }
             }
         });

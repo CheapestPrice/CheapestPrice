@@ -3,9 +3,11 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
+  'ngMaterial',
   'services.listFactory',
   'myApp.view1',
   'myApp.viewProducts',
+  'myApp.viewPlaces',
   'myApp.shopList',
   'myApp.version'
 ]).

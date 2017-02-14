@@ -11,7 +11,8 @@ angular.module('myApp.viewProducts', ['ngRoute'])
 
 .controller('ViewProductsCtrl', ['$scope','placesStubFactory','$rootScope', function($scope,productsStubFactory,$rootScope) {
     //Listado quemado en memoria con el stub
-    $scope.listado=productsStubFactory.getListado().productos;
+    console.log($rootScope.sede);
+    $scope.listado=productsStubFactory.getSede($rootScope.tienda,$rootScope.sede).productos;
     $scope.propertyName = 'nombre';
     $scope.reverse = false;
 
