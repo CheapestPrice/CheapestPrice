@@ -9,6 +9,7 @@ angular.module('myApp', [
   'myApp.viewProducts',
   'myApp.viewPlaces',
   'myApp.shopList',
+  'myApp.viewItem',
   'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
