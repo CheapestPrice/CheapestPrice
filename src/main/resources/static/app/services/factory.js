@@ -1,5 +1,14 @@
 'use strict';
 angular.module('services.listFactory', ['ngRoute'])
+    .factory('itemsStubFactory', function () {
+        var items = {
+            articulos:[
+               {nombre: 'Leche Alpina',
+                precio: '$2.300'
+               }
+            ]
+        }
+    })
 
     .factory('placesStubFactory', function () {
             var list = {
