@@ -19,7 +19,32 @@ angular.module('services.listFactory', ['ngRoute'])
         }
        }
     })
-
+    .factory('items2StubFactory', function () {
+        var items = {
+            lista:[
+               {producto:{
+                    nombre:'Leche',
+                    categoria:'Leche',
+                    precio:'3500',
+                    marca:'Alqueria',
+                    id:'01'
+                },
+                tienda:{
+                    direccion:'Cll 167 #58a-20',
+                    x:4.7498466,
+                    y:-74.0623005,
+                    nombre:'Surtir',
+                    nit:'123456456'
+                }
+               }
+            ]
+        }
+        return{
+        getItems : function(){
+            return items.articulos;
+        }
+       }
+    })
     .factory('placesStubFactory', function () {
             var list = {
                 listado : [{
