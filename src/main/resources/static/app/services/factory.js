@@ -3,11 +3,21 @@ angular.module('services.listFactory', ['ngRoute'])
     .factory('itemsStubFactory', function () {
         var items = {
             articulos:[
-               {nombre: 'Leche Alpina',
-                precio: '$2.300'
+               {producto: 'Leche Alpina',
+                precio: '2300',
+                tienda: 'Don Pepe',
+                direccion: 'Cr 67 #147-59',
+                detalles: '',
+                comprado: false,
+                favorito: false
                }
             ]
         }
+        return{
+        getItems : function(){
+            return items.articulos;
+        }
+       }
     })
 
     .factory('placesStubFactory', function () {

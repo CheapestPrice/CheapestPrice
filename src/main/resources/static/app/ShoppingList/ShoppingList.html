@@ -3,19 +3,25 @@
         <theader>
             <tr>
                 <th>
-                    <md-button ng-click="sortBy('categoria')">Categoría</md-button>
-                </th>
-                <th>
-                    <md-button ng-click="sortBy('nombre')">Nombre</md-button>
-                </th>
-                <th>
-                    <md-button ng-click="sortBy('marca')">Marca</md-button>
+                    <md-button ng-click="sortBy('producto')">Producto</md-button>
                 </th>
                 <th>
                     <md-button ng-click="sortBy('precio')">Precio</md-button>
                 </th>
                 <th>
-                    <p>Foto</p>
+                    <md-button ng-click="sortBy('tienda')">Tienda</md-button>
+                </th>
+                <th>
+                    <md-button ng-click="sortBy('direccion')">Dirección</md-button>
+                </th>
+                <th>
+                   <p>Detalles</p>
+                </th>
+                <th>
+                    <p>Comprado</p>
+                </th>
+                <th>
+                    <p>Favoritos</p>
                 </th>
                 <th>
                 </th>
@@ -23,11 +29,13 @@
         </theader>
         <tbody>
         <tr ng-repeat="todo in listado  | orderBy:propertyName:reverse">
-            <td>{{todo.categoria}}</td>
-            <td>{{todo.nombre}}</td>
-            <td>{{todo.marca}}</td>
-            <td>${{todo.precio}}</td>
-            <td class="danger">PROXIMAMENTE</td>
+            <td>{{todo.producto}}</td>
+            <td>{{todo.precio}}</td>
+            <td>{{todo.tienda}}</td>
+            <td>{{todo.direccion}}</td>
+            <td><button ng-click="detalles()">Detalles</button></td>
+            <td><button ng-click="comprado()">Comprado</button></td>
+            <td><button ng-click="favoritos()">Fav</button></td>
             <td><button ng-click="eliminar()">Eliminar</button></td>
         </tr>
         </tbody>

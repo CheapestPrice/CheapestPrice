@@ -9,9 +9,9 @@ angular.module('myApp.shopList', ['ngRoute'])
   });
 }])
 
-.controller('shopListCtrl', ['$scope','placesStubFactory','$rootScope', function($scope,productsStubFactory,$rootScope) {
+.controller('shopListCtrl', ['$scope','itemsStubFactory','$rootScope', function($scope, itemsStubFactory, $rootScope) {
     //Listado quemado en memoria con el stub
-    $scope.listado=productsStubFactory.getListado().productos;
+    $scope.listado=itemsStubFactory.getItems();
     $scope.propertyName = 'nombre';
     $scope.reverse = false;
 
