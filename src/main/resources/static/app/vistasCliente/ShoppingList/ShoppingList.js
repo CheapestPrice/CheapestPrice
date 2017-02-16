@@ -4,7 +4,7 @@ angular.module('myApp.shopList', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/ShoppingList', {
-    templateUrl: 'ShoppingList/ShoppingList.html',
+    templateUrl: 'vistasCliente/ShoppingList/ShoppingList.html',
     controller: 'shopListCtrl'
   });
 }])
