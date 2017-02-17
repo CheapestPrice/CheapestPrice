@@ -7,7 +7,7 @@ import edu.eci.cosw.cheapestPrice.persistence.ProductPersistence;
 import java.util.Set;
 
 /**
- * Created by root on 2/16/17.
+ * Created by masterhugo on 2/16/17.
  */
 public class ProductPersistenceStub implements ProductPersistence {
 
