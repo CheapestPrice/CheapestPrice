@@ -35,12 +35,10 @@
             <td>{{todo.tienda}}</td>
             <td>{{todo.direccion}}</td>
             <td>
-                <md-button class="md-icon-button" aria-label="More">
-                    <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-                </md-button>
+                 <button ng-click="detalles()">+</button>
             </td>
             <td>
-                <md-checkbox ng-model="data.cb1" aria-label="Checkbox" ng-click="favorito()">
+                <md-checkbox ng-model="data.cb1" aria-label="Checkbox" ng-click="comprado(todo.id, data.cb1)">
                 </md-checkbox>
             </td>
             <td>
@@ -48,7 +46,7 @@
                     <button-favorite></button-favorite>
                 </div>
             </td>
-            <td><button ng-click="eliminar()">Eliminar</button></td>
+            <td><button ng-click="eliminar(todo.id)">Eliminar</button></td>
         </tr>
         </tbody>
     </table>

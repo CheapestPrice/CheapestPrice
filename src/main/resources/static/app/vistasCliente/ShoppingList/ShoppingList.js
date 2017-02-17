@@ -10,8 +10,8 @@ angular.module('myApp.shopList', ['ngRoute'])
 }])
 
 .controller('shopListCtrl', ['$scope','itemsStubFactory','$rootScope', function($scope, itemsStubFactory, $rootScope) {
-    $scope.item = {
-        favorite: false
+    $scope.data = {
+        cb1: false
       };
     //Listado quemado en memoria con el stub
     $scope.listado=itemsStubFactory.getItems();
@@ -22,11 +22,11 @@ angular.module('myApp.shopList', ['ngRoute'])
         $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
         $scope.propertyName = propertyName;
     };
-    $scope.eliminar = function(){
-        //itemsStubFactory.eliminate();
+    $scope.eliminar = function(iden){
+        itemsStubFactory.eliminate(iden);
     };
-    $scope.favorito = function(){
-        //itemsStubFactory.favorite();
+    $scope.comprado = function(iden, fav){
+        itemsStubFactory.sale(iden, fav);
     };
 }])
  .directive('buttonFavorite', function() {

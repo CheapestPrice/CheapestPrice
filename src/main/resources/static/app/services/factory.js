@@ -9,7 +9,8 @@ angular.module('services.listFactory', ['ngRoute'])
                 direccion: 'Cr 67 #147-59',
                 detalles: '',
                 comprado: false,
-                favorito: false
+                favorito: false,
+                id: 3
                }
             ]
         }
@@ -18,10 +19,20 @@ angular.module('services.listFactory', ['ngRoute'])
             return items.articulos;
         },
         eliminate : function(pro){
-            items.articulos.remove(pro)
+            for(var i=0;i<items.articulos.length;i++){
+                if(items.articulos[i].id == pro){
+                        items.articulos.splice(i,1);
+                        break
+                    }
+             }
          },
-         favorite : function(pro){
-                      //items.articulos.getItem().setComprado();
+         sale : function(pro, fav){
+            for(var j=0;j<items.articulos.length;i++){
+                if(items.articulos[i].id == pro){
+                   //items.articulos.splice(i,1);
+                   break
+                }
+             }
          }
        }
     })
