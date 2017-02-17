@@ -9,9 +9,10 @@ angular.module('myApp', [
   'myApp.viewPlaces',
   'myApp.shopList',
   'myApp.viewItem',
-  'myApp.version'
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+  'myApp.version',
+  'myApp.viewAddProducts'
+])
+.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
   $routeProvider.otherwise({redirectTo: '/view1'});

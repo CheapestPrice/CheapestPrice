@@ -1,0 +1,39 @@
+<!--div  ng-show="authenticated"-->
+    <div id="agregarProducto">
+        <h1>Agregar Productos</h1>
+
+    </div>
+    <div id="mostrarProductos">
+        <table class="table table-condensed table-hover">
+            <theader>
+                <tr>
+                    <th><!-- ng-click="sortBy('producto')" -->
+                        <md-button> Nombre </md-button>
+                    </th>
+                    <th>
+                        <md-button>Precio</md-button>
+                    </th>
+                    <th>
+                        <md-button>Marca</md-button>
+                    </th>
+                    <th>
+                        <md-button>Categoria</md-button>
+                    </th>
+                    <th>
+                        <p>Fotografia</p>
+                    </th>
+                </tr>
+            </theader>
+            <tbody>
+            <tr ng-repeat="todo in listado  | orderBy:propertyName:reverse">
+                <td>{{todo.nombre}}</td>
+                <td>{{todo.precio}}</td>
+                <td>{{todo.marca}}</td>
+                <td>{{todo.categoria}}</td>
+                <td>{{todo.foto}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+<!--/div-->
