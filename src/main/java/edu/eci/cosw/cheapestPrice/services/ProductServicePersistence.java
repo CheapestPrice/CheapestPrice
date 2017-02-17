@@ -59,7 +59,7 @@ public class ProductServicePersistence implements ProductService {
     }
 
     @Override
-    public void deleteProduct(long id) throws CheapestPriceException {
-        productoPersistence.deleteProduct(id);
+    public void deleteProduct(Producto producto) throws CheapestPriceException {
+        productoPersistence.deleteProduct(producto);
     }
 }

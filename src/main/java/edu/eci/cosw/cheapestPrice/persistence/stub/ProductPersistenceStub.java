@@ -52,7 +52,7 @@ public class ProductPersistenceStub implements ProductPersistence {
     }
 
     @Override
-    public void deleteProduct(long id) throws CheapestPriceException {
+    public void deleteProduct(Producto producto) throws CheapestPriceException {
 
     }
 }
