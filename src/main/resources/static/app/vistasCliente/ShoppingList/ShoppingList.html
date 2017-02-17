@@ -1,4 +1,5 @@
 <div ng-controller="shopListCtrl">
+    <h1>Mi lista de mercado</h1>
     <table class="table table-condensed table-hover">
         <theader>
             <tr>
@@ -33,9 +34,20 @@
             <td>{{todo.precio}}</td>
             <td>{{todo.tienda}}</td>
             <td>{{todo.direccion}}</td>
-            <td><button ng-click="detalles()">Detalles</button></td>
-            <td><button ng-click="comprado()">Comprado</button></td>
-            <td><button ng-click="favoritos()">Fav</button></td>
+            <td>
+                <md-button class="md-icon-button" aria-label="More">
+                    <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+                </md-button>
+            </td>
+            <td>
+                <md-checkbox ng-model="data.cb1" aria-label="Checkbox" ng-click="favorito()">
+                </md-checkbox>
+            </td>
+            <td>
+                <div class="presentation">
+                    <button-favorite></button-favorite>
+                </div>
+            </td>
             <td><button ng-click="eliminar()">Eliminar</button></td>
         </tr>
         </tbody>

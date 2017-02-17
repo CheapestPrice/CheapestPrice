@@ -16,7 +16,13 @@ angular.module('services.listFactory', ['ngRoute'])
         return{
         getItems : function(){
             return items.articulos;
-        }
+        },
+        eliminate : function(pro){
+            items.articulos.remove(pro)
+         },
+         favorite : function(pro){
+                      //items.articulos.getItem().setComprado();
+         }
        }
     })
     .factory('items2StubFactory', function () {
