@@ -4,7 +4,7 @@ angular.module('myApp.viewProducts', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/viewProducts', {
-    templateUrl: 'viewProducts/viewProducts.html',
+    templateUrl: 'vistasTendero/viewProducts/viewProducts.html',
     controller: 'ViewProductsCtrl'
   });
 }])

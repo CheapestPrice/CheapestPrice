@@ -4,7 +4,7 @@ angular.module('myApp.viewPlaces', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/viewPlaces', {
-    templateUrl: 'viewPlace/viewPlaces.html',
+    templateUrl: 'vistasTendero/viewPlace/viewPlaces.html',
     controller: 'ViewPlacesCtrl'
   });
 }])
