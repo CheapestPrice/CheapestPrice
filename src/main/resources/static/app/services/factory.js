@@ -27,12 +27,14 @@ angular.module('services.listFactory', ['ngRoute'])
              }
          },
          sale : function(pro, fav){
-            for(var j=0;j<items.articulos.length;i++){
+            for(var i=0;i<items.articulos.length;i++){
                 if(items.articulos[i].id == pro){
-                   //items.articulos.splice(i,1);
+                   items.articulos[i].comprado=fav;
                    break
                 }
              }
+             console.log(fav);
+            console.log(items.articulos);
          }
        }
     })

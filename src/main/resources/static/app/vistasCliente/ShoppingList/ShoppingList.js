@@ -11,7 +11,7 @@ angular.module('myApp.shopList', ['ngRoute'])
 
 .controller('shopListCtrl', ['$scope','itemsStubFactory','$rootScope', function($scope, itemsStubFactory, $rootScope) {
     $scope.data = {
-        cb1: false
+        cb1: true
       };
     //Listado quemado en memoria con el stub
     $scope.listado=itemsStubFactory.getItems();
