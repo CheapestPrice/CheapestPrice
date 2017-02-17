@@ -76,9 +76,10 @@ public interface ProductPersistence {
 
     /**
      * deleteProduct nos elimina un producto existente
-     * @param id - el identificador del producto
-     * @throws CheapestPriceException si el id no existe
-     * @throws CheapestPriceException si el id es negativo
+     * @param producto - el prodcuto a eliminar
+     * @throws CheapestPriceException si el producto no existe
+     * @throws CheapestPriceException si el producto es incompleto(falta alguna caracteristica)
+     * @throws CheapestPriceException si el producto es nulo
      */
-    public abstract void deleteProduct(long id)throws CheapestPriceException;
+    public abstract void deleteProduct(Producto producto)throws CheapestPriceException;
 }
