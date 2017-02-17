@@ -3,20 +3,20 @@ package edu.eci.cosw.cheapestPrice.exception;
 /**
  * Created by Daniela Sepulveda.
  */
-public class CheapestPriceExcepciton extends Exception{
+public class CheapestPriceException extends Exception{
 
     /**
      * @param message
      * @param cause
      */
-    public CheapestPriceExcepciton(String message, Throwable cause) {
+    public CheapestPriceException(String message, Throwable cause) {
         super(message, cause);
     }
 
     /**
      * @param cause
      */
-    public CheapestPriceExcepciton(String cause) {
+    public CheapestPriceException(String cause) {
         super(cause);
     }
 }
