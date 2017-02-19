@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Producto</title>
+    <link rel="stylesheet" type="text/css" href="viewSearch.css">
+</head>
+<body>
+<div class="well" style="margin-top: 30px; width: 200px; overflow: hidden;">
+    <form class="form-search">
+        <div class="input-append">
+            <input type="text" ng-model="search" class="search-query" style="width: 80px">
+            <button type="submit" class="btn">Search</button>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li ng-animate="'animate'" ng-repeat="pro in products | filter:search">
+                <a href="#"> {{pro.nombre}} </a>
+            </li>
+        </ul>
+    </form>
+</div>
+</body>
+</html>
