@@ -1,5 +1,7 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+import java.util.List;
+
 /**
  * Created by masterhugo on 2/19/17.
  */
@@ -11,7 +13,7 @@ public class Tienda {
     private String nit;
     private String telefono;
     private boolean disponible;
-
+    private List<Horario> horarios;
     public Tienda(){
 
     }
