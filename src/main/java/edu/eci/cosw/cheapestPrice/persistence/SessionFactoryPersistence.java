@@ -1,6 +1,5 @@
 package edu.eci.cosw.cheapestPrice.persistence;
 
-import edu.eci.cosw.cheapestPrice.persistence.hibernate.SessionFactoryPersistenceHibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,54 +11,59 @@ import org.hibernate.service.ServiceRegistry;
  * Created by masterhugo on 2/16/17.
  */
 public abstract class SessionFactoryPersistence {
-    private static SessionFactoryPersistence instance = null;
+    private static SessionFactory sf = null;
+    private Session s;
+    private Transaction tx;
 
     /**
-     * Obtiene una instancia del SessionFactoryPersistence
+     * Declara la sesion para ser utilizada
      *
      * @param xml la configuracion de la instancia
-     * @return La SessionFactoryPersistence concerniente a la configuracion
      */
-    public static SessionFactoryPersistence getInstance(String xml) {
-        if (instance == null) {
+    public static void declareSessionFactory(String xml) {
+        if (sf == null) {
             synchronized (SessionFactoryPersistence.class) {
-                if (instance == null) {
-                    if (xml!=null) {
-                        instance = new SessionFactoryPersistenceHibernate(xml);
-                    } else {
-                        throw new RuntimeException("Wrong configuration: Unsupported xml");
-                    }
+                if (sf == null) {
+                    Configuration configuration = new Configuration().configure(xml);
+                    ServiceRegistry serviceRegistry
+                            = new StandardServiceRegistryBuilder()
+                            .applySettings(configuration.getProperties()).build();
+
+                    // builds a session factory from the service registry
+                    SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+                    sf = sessionFactory;
                 }
             }
         }
-        return instance;
     }
 
     /**
      * Inicia una nueva sesion y una nueva transaction
      */
-    public abstract void beginSessionAndBeginTransaction();
+    public void beginSessionAndBeginTransaction(){
+        s = sf.openSession();
+        tx = s.beginTransaction();
+    }
 
     /**
      * Hace commit a los cambios hechos
      */
-    public abstract void commitTransaction();
+    public void commitTransaction() {
+        tx.commit();
+    }
 
     /**
      * Hace rollback de los cambios hechos
      */
-    public abstract void rollbackTransaction();
+    public void rollbackTransaction()  {
+        tx.rollback();
+    }
 
     /**
      * Cierra la sesion actual
      */
-    public abstract void endSession();
+    public void endSession()  {
+        s.close();
+    }
 
-    /**
-     * Obtiene un ProductPersistence
-     *
-     * @return el ProductPersistence correspondiente a las propiedades del
-     * SessionFactoryPersistence
-     */
-    public abstract ProductPersistence getProductPersistence();
 }
