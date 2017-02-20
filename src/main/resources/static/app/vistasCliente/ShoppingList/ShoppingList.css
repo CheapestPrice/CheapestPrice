@@ -1,5 +1,3 @@
-@import "lesshat";
-
 // For Presentation Only
 body {
   padding: 3rem 1rem 0;
@@ -8,7 +6,6 @@ body {
 }
 
 .presentation {
-  text-align: center;
   .btn-icon {
     font-size: 5em;
     margin: 0 0.5em;
@@ -16,26 +13,13 @@ body {
 }
 
 // Optimize for icon based button
-.btn-icon {
+.glyphicon-heart {
   padding: 0;
   background: transparent;
   border-color: transparent;
   box-shadow: none;
   cursor: pointer;
   border-radius: 0;
-  &:active, &:focus {
-    .box-shadow(none);
-    border-color: transparent;
-  }
-  &:active {
-    .scale(0.9);
-  }
-  &:focus {
-    outline: 0 none !important;
-  }
-  .glyphicon {
-    .transition(color 0.1s ease);
-  }
 }
 
 // Define color for each button type
@@ -43,17 +27,15 @@ body {
 @icon-heart-color: #FE4365;
 
 
-.btn-icon {
-  .glyphicon-heart {
-    color: @icon-default-color;
-    &:hover {
-      color: fadeout(@icon-default-color, 15%);
-    }
-    &.active {
-      color: @icon-heart-color;
-      &:hover {
-        color: fadeout(@icon-heart-color, 15%);
-      }
-    }
-  }
+.glyphicon-heart {
+    color: #666;
 }
+.glyphicon-heart:hover{
+    color: fadeout(#666, 15%);
+}
+.glyphicon-heart.active {
+     color: #FE4365;
+}
+.glyphicon-heart.active:hover {
+     color: fadeout(#FE4365, 15%);
+ }
