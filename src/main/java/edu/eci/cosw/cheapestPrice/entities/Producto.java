@@ -59,4 +59,14 @@ public class Producto {
     public void setId(long id) {
         this.id = id;
     }
+
+    @Override
+    public boolean equals(Object o){
+        Producto op=(Producto) o;
+        return op.getNombre().equals(nombre) && op.getCategoria().equals(categoria) && op.getId()==id && op.getMarca().equals(marca) && op.getPrecio()==precio;
+    }
+    @Override
+    public String toString(){
+        return "id: "+id+" categoria: "+categoria+" nombre: "+nombre+" marca: "+marca+" precio: "+precio;
+    }
 }

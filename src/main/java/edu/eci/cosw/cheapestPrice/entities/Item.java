@@ -29,4 +29,15 @@ public class Item {
     public void setProducto(Producto producto) {
         this.producto = producto;
     }
+
+    @Override
+    public boolean equals(Object o){
+        Item oi=(Item) o;
+        return tienda.equals(oi.getTienda()) && producto.equals(oi.getProducto());
+    }
+
+    @Override
+    public String toString(){
+        return "->Tienda: "+tienda+"\nProducto: "+producto+"\n";
+    }
 }

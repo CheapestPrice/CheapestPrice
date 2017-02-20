@@ -6,7 +6,7 @@ import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import java.util.Set;
 
 /**
- * Created by
+ * Created by Hugo Alvarez
  */
 public interface ProductService {
     /**

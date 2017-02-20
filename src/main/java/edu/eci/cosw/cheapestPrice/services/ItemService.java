@@ -1,0 +1,49 @@
+package edu.eci.cosw.cheapestPrice.services;
+
+import edu.eci.cosw.cheapestPrice.entities.Item;
+import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
+
+import java.util.List;
+
+/**
+ * Created by Julian David Devia Serna on 2/20/17.
+ */
+public interface ItemService {
+
+    /**
+     * Carga todos los items registrados
+     * @return todos los items registrados
+     */
+    public List<Item> loadItems();
+
+    /**
+     * Carga todos los items registrados a nombre de una tienda dada
+     * @param shopName el nombre de la tienda deseada
+     * @return todos los items registrados a nombre de la tienda solicitada
+     * @throws CheapestPriceException si shopName es vacío o de longitud 0
+     */
+    public List<Item> loadItemByShop(String shopName) throws CheapestPriceException;
+
+    /**
+     * Carga todos los items con una categoría dada
+     * @param category la categoria con la cual se quieren buscar los items
+     * @return todos los items con una categoría dada
+     * @throws CheapestPriceException si  category es vacío o de longitud 0
+     */
+    public List<Item> loadItemByCategory(String category) throws CheapestPriceException;
+
+    /**
+     * Carga el item con el id especificado
+     * @param id el id del item solicitado
+     * @return todas las apariciones del item deseado
+     * @throws CheapestPriceException si el id es menor a 0
+     */
+    public List<Item> loadItemById(long id) throws CheapestPriceException;
+
+    /**
+     * Registra un item
+     * @param item el item a registrar
+     * @throws CheapestPriceException si el item es nulo
+     */
+    public void addItem(Item item) throws CheapestPriceException;
+}

@@ -16,7 +16,7 @@ angular.module('myApp.shopList', ['ngRoute'])
     //Listado quemado en memoria con el stub
     $scope.listado=itemsStubFactory.getItems();
     $scope.propertyName = 'nombre';
-    $scope.reverse = false;
+    $scope.reverse = true;
 
     $scope.sortBy = function(propertyName) {
         $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
@@ -33,11 +33,13 @@ angular.module('myApp.shopList', ['ngRoute'])
        return {
          scope: true,
          restrict: 'E',
-         template: '<button class="btn btn-icon"><span class="glyphicon glyphicon-heart" ng-class="{active: item.favorite}"></span></button>',
+         template: '<button class="btn btn-icon"><span class="glyphicon glyphicon-heart" ng-class="{active: todo.favorito}"></span></button>',
          link: function(scope, elem) {
            elem.bind('click', function() {
+           console.log("holi")
              scope.$apply(function(){
-               scope.item.favorite = !scope.item.favorite;
+               scope.todo.favorito = !scope.todo.favorito;
+               console.log(scope.todo);
              });
            });
          }

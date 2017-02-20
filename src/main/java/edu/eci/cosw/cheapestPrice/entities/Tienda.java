@@ -4,13 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Julian David Devia Serna on 2/19/17.
-=======
-import java.util.List;
-
-/**
  * Created by masterhugo on 2/19/17.
->>>>>>> c9f2d971d73dba05b0974cf9e7274ae5cc456d8d
  */
 public class Tienda {
     private String direccion;
@@ -30,6 +24,9 @@ public class Tienda {
         this.x = x;
         this.y = y;
         this.nombre = nombre;
+        this.nit = nit;
+        this.telefono = telefono;
+        this.disponible = disponible;
     }
 
 
@@ -110,5 +107,16 @@ public class Tienda {
 
     public void setLogo(byte[] logo) {
         this.logo = logo;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        Tienda ot=(Tienda) o;
+        return direccion.equals(ot.getDireccion()) && nombre.equals(ot.getNombre()) && nit.equals(ot.getNit()) && telefono.equals(ot.getTelefono()) && x==ot.getX() && y==ot.getY();
+    }
+
+    @Override
+    public String toString(){
+        return "nombre: "+nombre+" direccion: "+direccion+" telefono: "+telefono+" NIT: "+nit;
     }
 }

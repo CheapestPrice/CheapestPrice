@@ -53,7 +53,8 @@ angular.module('services.listFactory', ['ngRoute'])
                     x:4.7498466,
                     y:-74.0623005,
                     nombre:'Surtir',
-                    nit:'123456456'
+                    nit:'123456456',
+                    telefono:'65498765'
                 }},
                 {producto:{
                     nombre:'Coca-Cola',
@@ -67,7 +68,8 @@ angular.module('services.listFactory', ['ngRoute'])
                     x:4.7498466,
                     y:-74.0623005,
                     nombre:'Surtir',
-                    nit:'123456456'
+                    nit:'123456456',
+                    telefono:'65498765'
                 }},{producto:{
                       nombre:'Papas BBQ',
                       categoria:'Papas',
@@ -80,7 +82,8 @@ angular.module('services.listFactory', ['ngRoute'])
                       x:4.7498466,
                       y:-74.0623005,
                       nombre:'Surtir',
-                      nit:'123456456'
+                      nit:'123456456',
+                      telefono:'65498765'
                   }}
             ]
         }
