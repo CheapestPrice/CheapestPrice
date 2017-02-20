@@ -1,7 +1,16 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by Julian David Devia Serna on 2/19/17.
+=======
+import java.util.List;
+
+/**
+ * Created by masterhugo on 2/19/17.
+>>>>>>> c9f2d971d73dba05b0974cf9e7274ae5cc456d8d
  */
 public class Tienda {
     private String direccion;
@@ -12,28 +21,31 @@ public class Tienda {
     private String telefono;
     private boolean disponible;
     private byte[] logo;
+    private Map<String,Horario> horarios;
 
     public Tienda(){};
 
-    public Tienda(String direccion,double x,double y,String nombre,String nit,String telefono, boolean disponible){
-        this.direccion=direccion;
-        this.x=x;
-        this.y=y;
-        this.nombre=nombre;
-        this.nit=nit;
-        this.telefono=telefono;
-        this.disponible=disponible;
+    public Tienda(String direccion,double x,double y,String nombre,String nit,String telefono, boolean disponible) {
+        this.direccion = direccion;
+        this.x = x;
+        this.y = y;
+        this.nombre = nombre;
     }
 
-    public Tienda(String direccion,double x,double y,String nombre,String nit,String telefono, boolean disponible,byte[] logo){
-        this.direccion=direccion;
-        this.x=x;
-        this.y=y;
-        this.nombre=nombre;
-        this.nit=nit;
-        this.telefono=telefono;
-        this.disponible=disponible;
-        this.logo=logo;
+
+    public Tienda(String direccion,double x,double y,String nombre,String nit,String telefono, boolean disponible,byte[] logo) {
+        this.direccion = direccion;
+        this.x = x;
+        this.y = y;
+        this.nombre = nombre;
+        this.nit = nit;
+        this.telefono = telefono;
+        this.disponible = disponible;
+        this.logo = logo;
+    }
+
+    public void mnodificarHorario(String dia, Horario horario){
+        horarios.put(dia,horario);
     }
 
     public String getDireccion() {

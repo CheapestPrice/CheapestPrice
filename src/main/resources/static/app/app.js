@@ -9,7 +9,8 @@ angular.module('myApp', [
   'myApp.shopList',
   'myApp.viewItem',
   'myApp.version',
-  'myApp.viewAddProducts'
+  'myApp.viewAddProducts',
+  'myApp.viewSearch'
 ])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
