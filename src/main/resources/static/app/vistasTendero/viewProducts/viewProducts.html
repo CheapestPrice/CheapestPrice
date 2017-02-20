@@ -1,21 +1,21 @@
 <!--div  ng-show="authenticated"-->
-    <h1>Productos de la tienda {{tienda}} sede {{sede}}</h1>
+    <h1>Productos de la tienda {{tienda}}</h1>
     <p>LOGO DE LA TIENDA (PROXIMAMENTE)</p>
     <div class="table-responsive ">
         <table class="table table-condensed table-hover">
             <theader>
                 <tr>
                     <th>
-                        <a ng-click="sortBy('categoria')">Categoría</a>
+                        <a ng-click="sortBy('producto.categoria')">Categoría</a>
                     </th>
                     <th>
-                        <a ng-click="sortBy('nombre')">Nombre</a>
+                        <a ng-click="sortBy('producto.nombre')">Nombre</a>
                     </th>
                     <th>
-                        <a ng-click="sortBy('marca')">Marca</a>
+                        <a ng-click="sortBy('producto.marca')">Marca</a>
                     </th>
                     <th>
-                        <a ng-click="sortBy('precio')">Precio</a>
+                        <a ng-click="sortBy('producto.precio')">Precio</a>
                     </th>
                     <th>
                         <p>Foto</p>
@@ -23,11 +23,11 @@
                 </tr>
             </theader>
             <tbody>
-                <tr ng-repeat="todo in listado  | orderBy:propertyName:reverse">
-                    <td>{{todo.categoria}}</td>
-                    <td>{{todo.nombre}}</td>
-                    <td>{{todo.marca}}</td>
-                    <td>${{todo.precio}}</td>
+                <tr ng-repeat="item in listado  | orderBy:propertyName:reverse">
+                    <td>{{item.producto.categoria}}</td>
+                    <td>{{item.producto.nombre}}</td>
+                    <td>{{item.producto.marca}}</td>
+                    <td>${{item.producto.precio}}</td>
                     <td class="danger">PROXIMAMENTE</td>
                 </tr>
             </tbody>

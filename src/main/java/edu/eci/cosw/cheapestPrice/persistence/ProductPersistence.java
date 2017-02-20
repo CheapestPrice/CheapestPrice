@@ -10,7 +10,7 @@ import java.util.Set;
  */
 public interface ProductPersistence {
     /**
-     * loadAllProducts nos devuelve todos los productos almacenados
+     * loadProducts nos devuelve todos los productos almacenados
      * @return un conjunto de los productos almacenas
      */
     public abstract Set<Producto> loadProducts();

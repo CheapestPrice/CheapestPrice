@@ -6,7 +6,6 @@ angular.module('myApp', [
   'ngMaterial',
   'services.listFactory',
   'myApp.viewProducts',
-  'myApp.viewPlaces',
   'myApp.shopList',
   'myApp.viewItem',
   'myApp.version',

@@ -54,14 +54,49 @@ angular.module('services.listFactory', ['ngRoute'])
                     y:-74.0623005,
                     nombre:'Surtir',
                     nit:'123456456'
-                }
-               }
+                }},
+                {producto:{
+                    nombre:'Coca-Cola',
+                     categoria:'Gaseosa',
+                     precio:'4500',
+                     marca:'Coca-Cola',
+                    id:'01'
+                },
+                tienda:{
+                    direccion:'Cll 167 #58a-20',
+                    x:4.7498466,
+                    y:-74.0623005,
+                    nombre:'Surtir',
+                    nit:'123456456'
+                }},{producto:{
+                      nombre:'Papas BBQ',
+                      categoria:'Papas',
+                      precio:'4500',
+                      marca:'Margarita',
+                      id:'01'
+                  },
+                  tienda:{
+                      direccion:'Cll 167 #58a-20',
+                      x:4.7498466,
+                      y:-74.0623005,
+                      nombre:'Surtir',
+                      nit:'123456456'
+                  }}
             ]
         }
         return{
-        getItems : function(){
-            return items.articulos;
-        }
+            getItems : function(){
+                return items.lista;
+            },
+            getItemsTienda:function(tienda){
+                var res=[]
+                items.lista.forEach(function(item,index){
+                    if(item.tienda.nombre==tienda){
+                        res.push(item);
+                    }
+                })
+                return res;
+            }
        }
     })
     .factory('placesStubFactory', function () {

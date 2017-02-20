@@ -9,11 +9,11 @@ angular.module('myApp.viewProducts', ['ngRoute'])
   });
 }])
 
-.controller('ViewProductsCtrl', ['$scope','placesStubFactory','$rootScope', function($scope,productsStubFactory,$rootScope) {
+.controller('ViewProductsCtrl', ['$scope','items2StubFactory','$rootScope', function($scope,items2StubFactory,$rootScope) {
     //Listado quemado en memoria con el stub
-    console.log($rootScope.sede);
-    $scope.listado=productsStubFactory.getSede($rootScope.tienda,$rootScope.sede).productos;
-    $scope.propertyName = 'nombre';
+    $rootScope.tienda="Surtir";
+    $scope.listado=items2StubFactory.getItemsTienda($rootScope.tienda);
+    $scope.propertyName = 'producto.nombre';
     $scope.reverse = false;
 
     $scope.sortBy = function(propertyName) {
