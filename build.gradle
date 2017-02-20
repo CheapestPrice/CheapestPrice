@@ -38,6 +38,6 @@ dependencies {
 	compile('org.hibernate:hibernate-entitymanager:4.3.5.Final')
 	compile('org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final')
 	compile('mysql:mysql-connector-java:5.1.36')
-	//compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-security')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
