@@ -41,8 +41,9 @@ public interface ItemPersistence {
     public List<Item> loadItemById(long id) throws CheapestPriceException;
 
     /**
-     *
-     * @param item
+     * Registra un item
+     * @param item el item a registrar
+     * @throws CheapestPriceException si el item es nulo
      */
-    public void addItem(Item item);
+    public void addItem(Item item) throws CheapestPriceException;
 }
