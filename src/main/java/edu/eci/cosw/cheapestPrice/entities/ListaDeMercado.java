@@ -23,10 +23,18 @@ public class ListaDeMercado {
         setItems(new ArrayList<>());
     }
 
+    /**
+     * Agrega items a la lista de mercado
+     * @param ite
+     */
     public void agregarProducto(ItemLista ite){
         items.add(ite);
     }
 
+    /**
+     * Marca items como comprados
+     * @param id
+     */
     public void marcarProductoComprado(long id){
         for(ItemLista i: items){
             if(i.getProducto().getId()==id){
@@ -35,6 +43,10 @@ public class ListaDeMercado {
         }
     }
 
+    /**
+     * Marca items como favoritos
+     * @param id
+     */
     public void marcarProductoFavorito(long id){
         for(ItemLista i: items){
             if(i.getProducto().getId()==id){

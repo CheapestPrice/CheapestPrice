@@ -30,15 +30,15 @@
         </theader>
         <tbody>
         <tr ng-repeat="todo in listado  | orderBy:propertyName:reverse">
-            <td>{{todo.producto}}</td>
-            <td>{{todo.precio}}</td>
-            <td>{{todo.tienda}}</td>
-            <td>{{todo.direccion}}</td>
+            <td>{{todo.producto.nombre}}</td>
+            <td>{{todo.producto.precio}}</td>
+            <td>{{todo.tienda.nombre}}</td>
+            <td>{{todo.tienda.direccion}}</td>
             <td>
                  <button ng-click="detalles()">+</button>
             </td>
             <td>
-                <md-checkbox ng-model="data.cb1" aria-label="Checkbox" ng-click="comprado(todo.id, !data.cb1)">
+                <md-checkbox ng-model="data.cb1" aria-label="Checkbox" ng-click="comprado(todo.producto.id, todo.tienda.nombre, data.cb1)">
                 </md-checkbox>
             </td>
             <td>
@@ -46,7 +46,7 @@
                     <button-favorite></button-favorite>
                 </div>
             </td>
-            <td><button ng-click="eliminar(todo.id)">Eliminar</button></td>
+            <td><button ng-click="eliminar(todo.producto.id, todo.tienda.nombre)">Eliminar</button></td>
         </tr>
         </tbody>
     </table>

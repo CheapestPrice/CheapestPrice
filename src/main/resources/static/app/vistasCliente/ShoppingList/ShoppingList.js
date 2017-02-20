@@ -22,11 +22,11 @@ angular.module('myApp.shopList', ['ngRoute'])
         $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
         $scope.propertyName = propertyName;
     };
-    $scope.eliminar = function(iden){
-        itemsStubFactory.eliminate(iden);
+    $scope.eliminar = function(iden, tien){
+        itemsStubFactory.eliminate(iden, tien);
     };
-    $scope.comprado = function(iden, fav){
-        itemsStubFactory.sale(iden, fav);
+    $scope.comprado = function(iden, tien, fav){
+        itemsStubFactory.sale(iden, tien, fav);
     };
 }])
  .directive('buttonFavorite', function() {
