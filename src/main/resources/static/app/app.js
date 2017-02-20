@@ -5,15 +5,28 @@ angular.module('myApp', [
   'ngRoute',
   'ngMaterial',
   'services.listFactory',
+  'myApp.vistaPrincipal',
+  'myApp.login',
   'myApp.viewProducts',
   'myApp.shopList',
   'myApp.viewItem',
   'myApp.version',
   'myApp.viewAddProducts',
   'myApp.viewSearch'
-])
-.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
-
-  $routeProvider.otherwise({redirectTo: '/view1'});
+]).
+config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
+    $routeProvider.otherwise({redirectTo: '/vistaPrincipal'});
+    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+}])
+.controller('logout',['$rootScope','$scope', '$http','$location', function($rootScope,$scope,$http,$location)  {
+  $scope.logout = function () {
+                          $http.post('/logout', {}).then(successCallback, errorCallback);
+                          function successCallback(){
+                            $rootScope.authenticated = false;
+                            $location.path("/vistaPrincipal");
+                          }
+                          function errorCallback(data){
+                            $rootScope.authenticated = false;
+                          }
+                };
 }]);
