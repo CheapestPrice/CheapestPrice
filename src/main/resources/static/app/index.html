@@ -18,17 +18,24 @@
   <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="viewSearchItem/viewSearch.css">
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <link rel="stylesheet" href="vistasCliente/ShoppingList/ShoppingList.css">
 </head>
 <body>
   <!--ul class="menu"-->
   <ul class="topnav">
-    <li><a href="#!/viewProducts">productos tendero</a></li>
-    <li><a href="#!/ShoppingList">Lista de mercado</a></li>
-    <li><a href="#!/viewItem">Lista de items</a></li>
+    <li><a href="#!/vistaPrincipal">Cheapest Price</a></li>
+    <li ng-show="authenticated"><a href="#!/viewProducts">productos tendero</a></li>
+    <li ng-show="authenticated"><a href="#!/ShoppingList">Lista de mercado</a></li>
+    <li ng-show="authenticated"><a href="#!/viewItem">Lista de items</a></li>
     <li><a href="#!/viewSearch">Buscar productos</a></li>
+
     <li><a href="#!/viewAddProducts">Agregar Productos</a></li>
+
+    <li ng-show="authenticated"><a ng-controller="logout" ng-click="logout()">Log Out</a></li>
+
   </ul>
 
   <!--[if lt IE 7]>
@@ -48,14 +55,19 @@
   <script src="bower_components/angular-aria/angular-aria.js"></script>
   <script src="bower_components/angular-material/angular-material.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="app.js"></script>
+
+  <script src="vistaPrincipal/vistaPrincipal.js"></script>
+  <script src="login/login.js"></script>
   <script src="vistasCliente/ShoppingList/ShoppingList.js"></script>
   <script src='vistasTendero/viewProducts/viewProducts.js'></script>
   <script src="viewItem/viewItem.js"></script>
   <script src='viewSearchItem/viewSearch.js'></script>
   <script src='vistasTendero/viewAddProducts/viewAddProducts.js'></script>
   <script src="services/factory.js"></script>
+
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
