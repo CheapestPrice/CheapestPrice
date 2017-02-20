@@ -1,23 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Buscar Producto</title>
-    <link rel="stylesheet" type="text/css" href="viewSearch.css">
-</head>
-<body>
-<div class="well" style="margin-top: 30px; width: 200px; overflow: hidden;">
+
+<div class="well" style="margin-top: 30px; width: 500px; overflow: hidden; margin-left: 30%;">
     <form class="form-search">
         <div class="input-append">
-            <input type="text" ng-model="search" class="search-query" style="width: 80px">
+            <input type="text" ng-model="search" class="search-query" style="width: 150px">
             <button type="submit" class="btn">Search</button>
         </div>
         <ul class="nav nav-pills nav-stacked">
-            <li ng-animate="'animate'" ng-repeat="pro in products | filter:search">
-                <a href="#"> {{pro.nombre}} </a>
-            </li>
+
+            <div ng-animate="'animate'" ng-repeat="pro in products | filter:search" class="container">
+                <div style="float:left; width: 30%;">
+                    <img src="http://www.elfaradio.com/wp-content/uploads/2016/06/leche.jpg" style="width: 120px; height: 120px; float:left;" alt=""/>
+                    <p>{{pro.nombre}}</p>
+                    <a href="">nombre de la tienda</a>
+                    <p>precio</p>
+                    <star-rating ng-model="rating2" readonly="isReadonly"></star-rating>
+                    <label>60 reviews</label>
+                </div>
+                <div>
+                    <input type="radio">Aqui va algo
+                </div>
+
+            </div>
         </ul>
     </form>
 </div>
-</body>
-</html>
