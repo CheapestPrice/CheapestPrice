@@ -1,23 +1,44 @@
-<!--div  ng-show="authenticated"-->
-    <div id="agregarProducto">
+<div class="container">
+    <form id="product">
         <h1>Agregar Productos</h1>
+        <br>
+                <label >Nombre:</label>
+                <input ng-model="nombre" type="text"  placeholder="Nombre del producto" />
+                <label >Precio:</label>
+                <input ng-model="precio" type="number"  min="50"/>
+                <br>
+                <label>Marca:</label>
+                <input ng-model="marca" type="text" />
+                <label>Categoria:</label>
+                <select ng-options="c for c in categorias" ng-model="selectedCategoria" >
+                </select>
+        <br>
+        <form id="ImagenProducto" runat="server">
+            <label>Fotografia:</label>
+            <input type='file' id="imgInp" accept="image/gif, image/jpeg, image/png"/>
+            <img height="200" width="200" id="blah" src="#" alt="Your Image" />
+        </form>
 
-    </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="registrarProducto()"> Registrar
+            <i class="material-icons right">send</i>
+        </button>
+
+
     <div id="mostrarProductos">
         <table class="table table-condensed table-hover">
             <theader>
                 <tr>
-                    <th><!-- ng-click="sortBy('producto')" -->
-                        <md-button> Nombre </md-button>
+                    <th>
+                        <md-button ng-click="sortBy('producto.nombre')"> Nombre </md-button>
                     </th>
                     <th>
-                        <md-button>Precio</md-button>
+                        <md-button ng-click="sortBy('producto.precio')" >Precio</md-button>
                     </th>
                     <th>
-                        <md-button>Marca</md-button>
+                        <md-button ng-click="sortBy('producto.marca')">Marca</md-button>
                     </th>
                     <th>
-                        <md-button>Categoria</md-button>
+                        <md-button ng-click="sortBy('producto.categoria')">Categoria</md-button>
                     </th>
                     <th>
                         <p>Fotografia</p>
@@ -26,14 +47,15 @@
             </theader>
             <tbody>
             <tr ng-repeat="todo in listado  | orderBy:propertyName:reverse">
-                <td>{{todo.nombre}}</td>
-                <td>{{todo.precio}}</td>
-                <td>{{todo.marca}}</td>
-                <td>{{todo.categoria}}</td>
-                <td>{{todo.foto}}</td>
+                <td>{{todo.producto.nombre}}</td>
+                <td>{{todo.producto.precio}}</td>
+                <td>{{todo.producto.marca}}</td>
+                <td>{{todo.producto.categoria}}</td>
+                <td>  <img src="http://camaleon.tuzitio.com/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png" height="60" width="80" alt="temporal"/></td>
             </tr>
             </tbody>
         </table>
 
     </div>
-<!--/div-->
+    </form>
+</div>

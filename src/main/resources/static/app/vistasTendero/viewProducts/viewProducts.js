@@ -16,6 +16,7 @@ angular.module('myApp.viewProducts', ['ngRoute'])
     $scope.propertyName = 'producto.nombre';
     $scope.reverse = false;
 
+
     $scope.sortBy = function(propertyName) {
         $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
         $scope.propertyName = propertyName;

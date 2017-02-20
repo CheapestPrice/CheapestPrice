@@ -134,7 +134,23 @@ angular.module('services.listFactory', ['ngRoute'])
                     }
                 })
                 return res;
+            },
+            getCategorias: function(){
+               var cate=new Set();
+               var catego=[]
+               items.lista.forEach(function(item,index){
+                    if(!cate.has(item.producto.categoria)){
+                        cate.add(item.producto.categoria);
+                        catego.push(item.producto.categoria);
+                        }
+                })
+               return catego;
+            },
+            registrarProducto: function(item){
+                items.lista.push(item);
+                console.log(items.lista);
             }
+
        }
     })
     .factory('placesStubFactory', function () {
