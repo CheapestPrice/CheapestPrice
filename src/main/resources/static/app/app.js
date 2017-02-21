@@ -13,7 +13,8 @@ angular.module('myApp', [
   'myApp.viewItem',
   'myApp.version',
   'myApp.viewAddProducts',
-  'myApp.viewSearch'
+  'myApp.viewSearch',
+  'services.listFactoryApi'
 ]).
 config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
     $routeProvider.otherwise({redirectTo: '/vistaPrincipal'});
