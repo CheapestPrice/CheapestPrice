@@ -9,7 +9,7 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
     });
 }])
 
-.controller('ViewAddProductsCtrl', ['$scope', 'items2StubFactory', '$rootScope','$location', function($scope,items2StubFactory,$rootScope,$location) {
+.controller('ViewAddProductsCtrl', ['$scope', 'items2StubFactory', '$rootScope','$location','itemsByShop', function($scope,items2StubFactory,$rootScope,$location,itemsByShop) {
     //AGREGAR
     $scope.agregar=true;
     $rootScope.tienda="Surtir";
@@ -24,6 +24,7 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
     $scope.nombre="";
     $scope.precio=50;
     $scope.marca="";
+    console.log(itemsByShop.query({shopName:$rootScope.shop.nombre}));
     $scope.listado=items2StubFactory.getItemsTienda($rootScope.tienda);
     $scope.propertyName = 'producto.nombre';
     $scope.reverse = false;
@@ -41,7 +42,7 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
             $scope.mensaje="El producto fue registrado sactisfactoriamente...";
             $scope.success=true;
             $scope.fail=false;
-            var num=items2StubFactory.getItems();
+            var num=items2StubFactory.getItems().length;
             var itemm={
                 producto:{
                     nombre: $scope.nombre,

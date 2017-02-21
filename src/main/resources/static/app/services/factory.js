@@ -1,5 +1,5 @@
 'use strict';
-angular.module('services.listFactory', ['ngRoute'])
+angular.module('services.listFactory', ['ngRoute', 'ngResource'])
     .factory('itemsStubFactory', function () {
         var items = {
                     lista:[
@@ -348,4 +348,19 @@ angular.module('services.listFactory', ['ngRoute'])
                     return a;
                 }
             }
+        })
+        .factory('allItems',function($resource) {
+            return $resource('/items');
+        })
+        .factory('itemByShopAndId',function($resource) {
+            return $resource('/items/shop/:shopName/id/:idNum');
+        })
+        .factory('itemsByShop',function($resource) {
+            return $resource('/items/shop/:shopName');
+        })
+        .factory('itemsByCategory',function($resource) {
+            return $resource('/items/category/:categoryName');
+        })
+        .factory('itemsById',function($resource) {
+            return $resource('/items/:idNum');
         });
