@@ -18,9 +18,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class ItemPersistenceStub implements ItemPersistence{
 
     private List<Item> items;
+    private long id;
 
     public ItemPersistenceStub(){
         items= new CopyOnWriteArrayList<>();
+        id=0;
         ItemPersistenceStub.poblarStub(this);
     }
 
@@ -101,6 +103,8 @@ public class ItemPersistenceStub implements ItemPersistence{
                 throw new CheapestPriceException("El item ya se encuentra registrado");
             }
         }
+        id++;
+        item.getProducto().setId(id);
         items.add(item);
     }
 

@@ -10,9 +10,9 @@ angular.module('myApp.viewSearch', ['ngRoute'])
 });
 }])
 
-.controller('ViewSearchCtrl', ['$scope','placesStubFactory','$rootScope','ItemsApi', function($scope,placesStubFactory,$rootScope,ItemsApi) {
+.controller('ViewSearchCtrl', ['$scope','placesStubFactory','$rootScope','allItems', function($scope,placesStubFactory,$rootScope,allItems) {
     //$scope.items= placesStubFactory.getListado()[0].sedes[0].productos;
-    $scope.items= ItemsApi.query();
+    $scope.items= allItems.query();
     console.log($scope.items);
     console.log(placesStubFactory.getListado()[0].sedes[0].productos);
         $scope.rating2 = 3;
