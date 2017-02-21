@@ -21,13 +21,13 @@ config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider
 }])
 .controller('logout',['$rootScope','$scope', '$http','$location', function($rootScope,$scope,$http,$location)  {
   $scope.logout = function () {
-                          $http.post('/logout', {}).then(successCallback, errorCallback);
-                          function successCallback(){
-                            $rootScope.authenticated = false;
-                            $location.path("/vistaPrincipal");
-                          }
-                          function errorCallback(data){
-                            $rootScope.authenticated = false;
-                          }
-                };
+	      $http.post('/logout', {}).then(successCallback, errorCallback);
+	      function successCallback(){
+	        $rootScope.authenticated = false;
+	        $location.path("/vistaPrincipal");
+	      }
+	      function errorCallback(data){
+	        $rootScope.authenticated = false;
+	      }
+    };
 }]);

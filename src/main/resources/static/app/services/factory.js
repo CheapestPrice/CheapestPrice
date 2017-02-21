@@ -259,8 +259,17 @@ angular.module('services.listFactory', ['ngRoute'])
                return catego;
             },
             registrarProducto: function(item){
-                items.lista.push(item);
+                var unique=true;
+                items.lista.forEach(function (itemm,index) {
+                    if(item.producto.nombre==itemm.producto.nombre && item.producto.marca==itemm.producto.marca){
+                        unique=false;
+                    }
+                })
+                if(unique){
+                    items.lista.push(item);
+                }
                 console.log(items.lista);
+                return unique;
             },
             modificarProducto:function(item){
                 items.lista.forEach(function (itemm,index) {
@@ -268,7 +277,75 @@ angular.module('services.listFactory', ['ngRoute'])
                         itemm.producto=item.producto;
                     }
                 })
+            },
+            eliminarProducto:function(item){
+                for (var index=0;index<items.lista.length;index++) {
+                	var itemm=items.lista[index];
+                    if(item.producto.nombre==itemm.producto.nombre && item.producto.marca==itemm.producto.marca){
+                        items.lista.splice(index,1);
+                        break;
+                    }
+                }
             }
 
        }
-    });
+    })
+    .factory('placesStubFactory', function () {
+            var list = {
+                listado : [{
+                            nombre:'Surtir',
+                            sedes:[{
+                                 nombre:'San Cipriano',
+                                 direccion: 'Cll 167 # 40B 20',
+                                 productos:[{
+                                                nombre:'Leche',
+                                                categoria:'Leche',
+                                                precio:'3500',
+                                                marca:'Alqueria',
+                                                tienda:'Surtir'
+                                           },
+                                           {
+                                                 nombre:'Coca-Cola',
+                                                 categoria:'Gaseosa',
+                                                 precio:'4500',
+                                                 marca:'Coca-Cola',
+                                                 tienda:'Surtir'
+                                           },
+                                           {
+                                                nombre:'Papas BBQ',
+                                                categoria:'Papas',
+                                                precio:'4500',
+                                                marca:'Margarita',
+                                                tienda:'Surtir'
+                                           }]
+                            }
+                            ]
+                       }]
+            }
+            return {
+                getListado : function(){
+                    return list.listado;
+                },
+                addProduct : function(tienda){
+                    list.listado.push(tienda);
+                },
+                getSedes : function(name){
+                    var a;
+                    list.listado.forEach(function(item,index){
+                        if(item.nombre==name){
+                            a=item;
+                        }
+                    })
+                    return a.sedes;
+                },
+                getSede : function(tienda,sede){
+                    var a;
+                    this.getSedes(tienda).forEach(function(item,index){
+                        if(item.nombre==sede){
+                            a=item;
+                        }
+                    })
+                    return a;
+                }
+            }
+        });
