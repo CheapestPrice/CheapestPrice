@@ -90,7 +90,7 @@ angular.module('services.listFactory', ['ngRoute'])
                                 id:'01'
                             },
                             favorito: false,
-                            comprado: false,
+                            comprado: true,
                             tienda:{
                                 direccion:'Cll 167 #58a-20',
                                 x:4.7498466,
@@ -107,7 +107,7 @@ angular.module('services.listFactory', ['ngRoute'])
                                 id:'02'
                             },
                             favorito: false,
-                            comprado: false,
+                            comprado: true,
                             tienda:{
                                 direccion:'Cll 167 #58a-20',
                                 x:4.7498466,
@@ -123,7 +123,7 @@ angular.module('services.listFactory', ['ngRoute'])
                                   id:'03'
                               },
                               favorito: false,
-                              comprado: false,
+                              comprado: true,
                               tienda:{
                                   direccion:'Cll 167 #58a-20',
                                   x:4.7498466,
@@ -181,7 +181,23 @@ angular.module('services.listFactory', ['ngRoute'])
                       }
                    }
                 }
-                console.log(listaMercado.lista);
+            },
+            listaCompleta : function(){
+                for(var i=0;i<listaMercado.lista.length;i++){
+                    var completa=false
+                    var con=0
+                    for(var j=0;j<listaMercado.lista[i].items.length;j++){
+                         if(listaMercado.lista[i].items[j].comprado){
+                            console.log(listaMercado.lista[i].items[j])
+                            con+=1
+                         }
+                     }
+                    if(con==listaMercado.lista[i].items.length){
+                        completa = true
+                    }
+                    listaMercado.lista[i].revisado = completa
+                }
+                console.log(listaMercado.lista)
             }
            }
           })
