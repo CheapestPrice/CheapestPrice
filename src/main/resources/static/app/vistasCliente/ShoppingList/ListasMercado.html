@@ -1,0 +1,33 @@
+<div ng-controller="listasMercadoCtrl">
+    <h1>Listas de mercado</h1>
+    <table class="table table-condensed table-hover">
+        <theader>
+            <tr>
+                <th>
+                    <center><md-button ng-click="sortBy('nombre')">Nombre</md-button></center>
+                </th>
+                <th><center>
+                    <md-button ng-click="sortBy('fecha')">Fecha de creacion</md-button>
+                    </center>
+                </th>
+                <th><center>
+                    <md-button ng-click="sortBy('completada')">Completada</md-button>
+                    </center>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+            </tr>
+        </theader>
+        <tbody>
+        <tr ng-repeat="todo in listMerc  | orderBy:propertyName:reverse">
+            <td><center>{{todo.nombre}}</center></td>
+            <td><center>{{todo.fechaCreacion.toLocaleString()}}</center></td>
+            <td><center>{{todo.revisado}}</center></td>
+            <td><center><button ng-click="ver(todo)">Ver</button></center></td>
+            <td><center><button ng-click="eliminar(todo.nombre)">Eliminar</button></center></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

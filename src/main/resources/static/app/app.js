@@ -9,6 +9,7 @@ angular.module('myApp', [
   'myApp.login',
   'myApp.viewProducts',
   'myApp.shopList',
+  'myApp.listasMercado',
   'myApp.viewItem',
   'myApp.version',
   'myApp.viewAddProducts',
