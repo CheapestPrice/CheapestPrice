@@ -19,11 +19,11 @@
             <img height="200" width="200" id="blah" src="#" alt="Your Image" />
         </form>
 
-        <div ng-show="!visible" class="alert alert-warning" alert-dismissable>
+        <div ng-show="fail" class="alert alert-danger" alert-dismissable>
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <a href="#" class="alert-link">{{mensaje}}</a>
         </div>
-        <div ng-show="visible" class="alert alert-success" alert-dismissable>
+        <div ng-show="success" class="alert alert-success" alert-dismissable>
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <a href="#" class="alert-link">{{mensaje}}</a>
         </div>

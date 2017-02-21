@@ -35,9 +35,12 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
      $scope.registrarProducto= function(){
      console.log("entro");
          $scope.mensaje="Por favor, revise la información suministrada...";
+         $scope.fail=false;
+         $scope.success=false;
          if($scope.nombre.length>0 && $scope.marca.length>0 && $scope.selectedCategoria.length>0 && $scope.precio>0){
             $scope.mensaje="El producto fue registrado sactisfactoriamente...";
-            $scope.visible=true;
+            $scope.success=true;
+            $scope.fail=false;
             var num=$scope.listado.length;
             var itemm={
             producto:{
@@ -53,8 +56,10 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
             $scope.listado=items2StubFactory.getItemsTienda($rootScope.shop.nombre);
             $scope.listado=items2StubFactory.getItemsTienda($rootScope.tienda);
             $scope.categorias=items2StubFactory.getCategorias();
+         }else{
+             $scope.fail=true;
+             $scope.success=false;
          }
-         window.alert($scope.mensaje);
      };
 
         function readURL(input) {
