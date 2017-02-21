@@ -43,7 +43,7 @@ public interface ItemPersistence {
     /**
      * Registra un item
      * @param item el item a registrar
-     * @throws CheapestPriceException si el item es nulo
+     * @throws CheapestPriceException si el item es nulo o ya se encuentra registrado
      */
     public void addItem(Item item) throws CheapestPriceException;
 }

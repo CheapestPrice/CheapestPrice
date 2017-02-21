@@ -63,7 +63,7 @@ public class Producto {
     @Override
     public boolean equals(Object o){
         Producto op=(Producto) o;
-        return op.getNombre().equals(nombre) && op.getCategoria().equals(categoria) && op.getId()==id && op.getMarca().equals(marca) && op.getPrecio()==precio;
+        return op.getNombre().equals(nombre) && op.getCategoria().equals(categoria) && op.getMarca().equals(marca) && op.getPrecio()==precio;
     }
     @Override
     public String toString(){

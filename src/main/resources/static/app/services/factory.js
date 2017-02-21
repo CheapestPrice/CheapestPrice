@@ -8,7 +8,7 @@ angular.module('services.listFactory', ['ngRoute'])
                        producto:{
                             nombre:'Leche',
                             categoria:'Leche',
-                            precio:'3500',
+                            precio:3500,
                             marca:'Alqueria',
                             id:'01'
                         },
@@ -24,7 +24,7 @@ angular.module('services.listFactory', ['ngRoute'])
                         producto:{
                             nombre:'Coca-Cola',
                              categoria:'Gaseosa',
-                             precio:'4500',
+                             precio:4500,
                              marca:'Coca-Cola',
                             id:'02'
                         },
@@ -39,7 +39,7 @@ angular.module('services.listFactory', ['ngRoute'])
                         producto:{
                               nombre:'Papas BBQ',
                               categoria:'Papas',
-                              precio:'4500',
+                              precio:4500,
                               marca:'Margarita',
                               id:'03'
                           },
@@ -82,7 +82,7 @@ angular.module('services.listFactory', ['ngRoute'])
                {producto:{
                     nombre:'Leche',
                     categoria:'Leche',
-                    precio:'3500',
+                    precio:3500,
                     marca:'Alqueria',
                     id:'01'
                 },
@@ -97,9 +97,9 @@ angular.module('services.listFactory', ['ngRoute'])
                 {producto:{
                     nombre:'Coca-Cola',
                      categoria:'Gaseosa',
-                     precio:'4500',
+                     precio:4500,
                      marca:'Coca-Cola',
-                    id:'01'
+                    id:'02'
                 },
                 tienda:{
                     direccion:'Cll 167 #58a-20',
@@ -111,9 +111,9 @@ angular.module('services.listFactory', ['ngRoute'])
                 }},{producto:{
                       nombre:'Papas BBQ',
                       categoria:'Papas',
-                      precio:'4500',
+                      precio:4500,
                       marca:'Margarita',
-                      id:'01'
+                      id:'03'
                   },
                   tienda:{
                       direccion:'Cll 167 #58a-20',
@@ -152,66 +152,14 @@ angular.module('services.listFactory', ['ngRoute'])
             registrarProducto: function(item){
                 items.lista.push(item);
                 console.log(items.lista);
+            },
+            modificarProducto:function(item){
+                items.lista.forEach(function (itemm,index) {
+                    if(item.producto.id==itemm.producto.id && item.tienda.nombre==itemm.tienda.nombre){
+                        itemm.producto=item.producto;
+                    }
+                })
             }
 
        }
-    })
-    .factory('placesStubFactory', function () {
-            var list = {
-                listado : [{
-                            nombre:'Surtir',
-                            sedes:[{
-                                 nombre:'San Cipriano',
-                                 direccion: 'Cll 167 # 40B 20',
-                                 productos:[{
-                                                nombre:'Leche',
-                                                categoria:'Leche',
-                                                precio:'3500',
-                                                marca:'Alqueria',
-                                                tienda:'Surtir'
-                                           },
-                                           {
-                                                 nombre:'Coca-Cola',
-                                                 categoria:'Gaseosa',
-                                                 precio:'4500',
-                                                 marca:'Coca-Cola',
-                                                 tienda:'Surtir'
-                                           },
-                                           {
-                                                nombre:'Papas BBQ',
-                                                categoria:'Papas',
-                                                precio:'4500',
-                                                marca:'Margarita',
-                                                tienda:'Surtir'
-                                           }]
-                            }
-                            ]
-                       }]
-            }
-            return {
-                getListado : function(){
-                    return list.listado;
-                },
-                addProduct : function(tienda){
-                    list.listado.push(tienda);
-                },
-                getSedes : function(name){
-                    var a;
-                    list.listado.forEach(function(item,index){
-                        if(item.nombre==name){
-                            a=item;
-                        }
-                    })
-                    return a.sedes;
-                },
-                getSede : function(tienda,sede){
-                    var a;
-                    this.getSedes(tienda).forEach(function(item,index){
-                        if(item.nombre==sede){
-                            a=item;
-                        }
-                    })
-                    return a;
-                }
-            }
-        });
+    });

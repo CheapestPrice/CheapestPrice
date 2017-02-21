@@ -21,6 +21,7 @@ public class ItemPersistenceStub implements ItemPersistence{
 
     public ItemPersistenceStub(){
         items= new CopyOnWriteArrayList<>();
+        ItemPersistenceStub.poblarStub(this);
     }
 
     @Override
@@ -74,6 +75,11 @@ public class ItemPersistenceStub implements ItemPersistence{
     public void addItem(Item item) throws CheapestPriceException {
         if(item==null){
             throw new CheapestPriceException("El item no puede ser nulo");
+        }
+        for (Item i:items){
+            if(item.equals(i)){
+                throw new CheapestPriceException("El item ya se encuentra registrado");
+            }
         }
         items.add(item);
     }

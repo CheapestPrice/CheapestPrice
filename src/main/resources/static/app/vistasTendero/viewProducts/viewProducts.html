@@ -20,6 +20,12 @@
                     <th>
                         <p>Foto</p>
                     </th>
+                    <th>
+                        <p>Modificar</p>
+                    </th>
+                    <th>
+                        <p>Eliminar</p>
+                    </th>
                 </tr>
             </theader>
             <tbody>
@@ -29,6 +35,8 @@
                     <td>{{item.producto.marca}}</td>
                     <td>${{item.producto.precio}}</td>
                     <td class="danger">PROXIMAMENTE</td>
+                    <td><md-button><i class="fa fa-pencil-square-o" aria-hidden="true"></i></md-button></td>
+                    <td><md-button><i class="fa fa-eraser" aria-hidden="true"></i></md-button></td>
                 </tr>
             </tbody>
         </table>
