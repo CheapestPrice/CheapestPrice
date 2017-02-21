@@ -1,19 +1,35 @@
-
-
-<md-dialog aria-label="">
+<md-dialog aria-label="Detalles del producto ">
     <form ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Detalles del producto {{nombre}}</h2>
+                <h2>Detalles del producto {{producto.producto.nombre}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
-                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                    <md-icon md-svg-src="images/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
                 </md-button>
             </div>
         </md-toolbar>
 
         <md-dialog-content>
             <div class="md-dialog-content">
+                <br>
+                <label>Nombre:</label>
+                <label>{{producto.producto.nombre}}</label>
+                <label>Precio:</label>
+                <label>{{producto.producto.precio}}</label>
+                <br>
+                <label>Marca:</label>
+                <label>{{producto.producto.marca}}</label>
+                <label>Categoria:</label>
+                <label>{{producto.producto.categoria}}</label>
+                <br>
+                <label>Nombre:</label>
+                <label>Direccion:</label>
+                <label>Telefono:</label>
+                
+
+                <label>{{producto.producto.nombre}}</label>
+                <img height="200" width="200"  src="" alt="Fotografia producto"/>
 
             </div>
         </md-dialog-content>
@@ -21,13 +37,9 @@
         <md-dialog-actions layout="row">
 
             <span flex></span>
-            <md-button ng-click="answer('useful')">
-                Aceptar
+            <md-button ng-click="hide()">
+                OK
             </md-button>
         </md-dialog-actions>
     </form>
 </md-dialog>
-
-<md-button class="md-primary md-raised" ng-click="showAdvanced($event)">
-    Custom Dialog
-</md-button>

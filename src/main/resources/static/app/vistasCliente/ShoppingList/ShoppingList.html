@@ -37,7 +37,9 @@
             <td><center>{{todo.producto.precio}}</center></td>
             <td><center>{{todo.tienda.nombre}}</center></td>
             <td>
-                 <center><button ng-click="detalles()">+</button></center>
+                <md-button class="md-primary md-raised" ng-click="showAdvanced($event,todo)">
+                    Detalles
+                </md-button>
             </td>
             <td>
                 <center>

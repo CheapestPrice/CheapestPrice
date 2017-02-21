@@ -9,11 +9,12 @@ angular.module('myApp.shopList', ['ngRoute'])
   });
 }])
 
-.controller('shopListCtrl', ['$scope','listasMercadoStubFactory','$rootScope', function($scope, listasMercadoStubFactory, $rootScope) {
+.controller('shopListCtrl', ['$scope','listasMercadoStubFactory','$rootScope','$mdDialog', function($scope, listasMercadoStubFactory, $rootScope,$mdDialog) {
     $scope.listado = $rootScope.listaMercado;
     $scope.propertyName = 'producto.nombre';
+    $scope.customFullscreen = false;
     $scope.reverse = true;
-
+    $scope.producto=null;
     $scope.sortBy = function(propertyName) {
         $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
         $scope.propertyName = propertyName;
@@ -24,6 +25,31 @@ angular.module('myApp.shopList', ['ngRoute'])
     $scope.comprado = function(iden, tien){
         listasMercadoStubFactory.comprarItem(iden, tien, $rootScope.listaMercado.nombre);
     };
+     $scope.showAdvanced = function(ev,produc) {
+            $scope.producto=produc;
+            console.log( $scope.producto);
+            $mdDialog.show({
+              controller: DialogController,
+              templateUrl: 'viewItem/viewItem.html',
+              parent: angular.element(document.body),
+              targetEvent: ev,
+              clickOutsideToClose:true,
+              scope:$scope,
+              preserveScope: true,
+              fullscreen: $scope.customFullscreen
+            });
+      };
+          function DialogController($scope, $mdDialog,$rootScope) {
+              $scope.hide = function() {
+                $mdDialog.hide();
+              };
+
+              $scope.cancel = function() {
+                $mdDialog.cancel();
+              };
+
+          }
+
 }])
  .directive('buttonFavorite', function() {
        return {
