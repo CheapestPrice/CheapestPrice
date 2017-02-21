@@ -108,5 +108,6 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
     $scope.eliminar=function(item){
 		items2StubFactory.eliminarProducto(item);
 		$scope.listado=items2StubFactory.getItemsTienda($rootScope.shop.nombre);
+		$scope.volver();
     }
 }]);
