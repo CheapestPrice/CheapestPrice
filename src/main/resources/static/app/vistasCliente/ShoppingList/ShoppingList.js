@@ -24,6 +24,10 @@ angular.module('myApp.shopList', ['ngRoute'])
     $scope.comprado = function(iden, tien){
         listasMercadoStubFactory.comprarItem(iden, tien, $rootScope.listaMercado.nombre);
     };
+
+    $scope.agregarItem = function(){
+                 listasMercadoStubFactory.agregarProducto($rootScope.itemSeleccionado, $rootScope.listaSeleccionada);
+     };
 }])
  .directive('buttonFavorite', function() {
        return {

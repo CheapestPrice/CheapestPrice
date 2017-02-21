@@ -3,6 +3,7 @@ package edu.eci.cosw.cheapestPrice.persistence;
 import edu.eci.cosw.cheapestPrice.entities.ItemLista;
 import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
+import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import org.eclipse.jetty.server.Authentication;
 
 import java.util.List;
@@ -23,25 +24,25 @@ public interface UserPersistence {
      * @param nickname
      * @return
      */
-    public List<ListaDeMercado> loadShopListByNickname(String nickname);
+    public List<ListaDeMercado> loadShopListByNickname(String nickname) throws CheapestPriceException;
 
     /**
      * Retorna las listas de mercado de un usuario dado su email
      * @param email
      * @return
      */
-    public List<ListaDeMercado> loadShopListByEmail(String email);
+    public List<ListaDeMercado> loadShopListByEmail(String email) throws CheapestPriceException;
 
     /**
      * Retorna las listas de mercado de un usuario dado su nombre
      * @param name
      * @return
      */
-    public List<ListaDeMercado> loadShopListByName(String name);
+    public List<ListaDeMercado> loadShopListByName(String name) throws CheapestPriceException;
 
     /**
      * Agregar un nuevo usuario
      * @param usuario
      */
-    public void saveUser(Usuario usuario);
+    public void updateUser(Usuario usuario)throws CheapestPriceException;
 }

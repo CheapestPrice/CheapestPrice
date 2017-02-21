@@ -20,6 +20,15 @@ angular.module('myApp.viewSearch', ['ngRoute'])
         $scope.rateFunction = function(rating) {
           console.log('Rating selected: ' + rating);
         };
+     $scope.item = function(ite){
+        $rootScope.itemSeleccionado = ite;
+     }
+
+     /*$scope.lista = function(lista){
+        $rootScope.listaSeleccionada = lista;
+     }*/
+
+
 }]).directive('starRating', [function(){
     return {
           restrict: 'EA',

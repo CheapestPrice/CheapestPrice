@@ -198,6 +198,13 @@ angular.module('services.listFactory', ['ngRoute', 'ngResource'])
                     listaMercado.lista[i].revisado = completa
                 }
                 console.log(listaMercado.lista)
+            },
+            agregarProducto : function(pro, lis){
+                for(var i=0;i<listasMercado.lista.length;i++){
+                    if(listaMercado.lista[i].nombre == lis){
+                        listaMercado.lista.item.push(pro);
+                    }
+                }
             }
            }
           })
