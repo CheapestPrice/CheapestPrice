@@ -10,6 +10,7 @@ angular.module('myApp.listasMercado', ['ngRoute'])
 }])
 
 .controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', function($scope, listasMercadoStubFactory, $rootScope, $location) {
+    listasMercadoStubFactory.listaCompleta();
     $scope.listMerc = listasMercadoStubFactory.getListaMercado();
     $rootScope.listaMercado = ""
 
@@ -25,8 +26,18 @@ angular.module('myApp.listasMercado', ['ngRoute'])
         $scope.propertyName = propertyName;
     };
 
+    $scope.completo = function(ban){
+        var com='No'
+        if(ban){
+            com='Si'
+        }
+       return com
+    }
+
     $scope.ver=function(items){
            $rootScope.listaMercado=items;
            $location.path("/ShoppingList");
        }
+
+
 }]);

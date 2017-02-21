@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+
+<md-dialog aria-label="">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Detalles del producto {{nombre}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+
+            <span flex></span>
+            <md-button ng-click="answer('useful')">
+                Aceptar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+
+<md-button class="md-primary md-raised" ng-click="showAdvanced($event)">
+    Custom Dialog
+</md-button>

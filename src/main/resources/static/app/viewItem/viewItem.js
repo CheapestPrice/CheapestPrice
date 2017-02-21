@@ -9,6 +9,7 @@ angular.module('myApp.viewItem', ['ngRoute'])
   });
 }])
 
-.controller('ViewItemCtrl', [function() {
+.controller('ViewItemCtrl', ['$scope','itemsStubFactory','$rootScope', function($scope, itemsStubFactory, $rootScope) {
+
 
 }]);

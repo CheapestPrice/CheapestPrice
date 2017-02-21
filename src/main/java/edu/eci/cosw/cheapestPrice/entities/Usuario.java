@@ -1,5 +1,7 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+import java.util.List;
+
 /**
  * Created by 2105403 on 2/20/17.
  */
@@ -8,13 +10,28 @@ public class Usuario {
     private String correo;
     private String email;
     private String nickname;
+    private List<ListaDeMercado> listas;
 
     public Usuario(){}
 
-    public Usuario(String correo, String email, String nickname){
+    public Usuario(String correo, String email, String nickname, List<ListaDeMercado> listas){
         this.setCorreo(correo);
         this.setEmail(email);
         this.setNickname(nickname);
+        this.setListas(listas);
+    }
+
+    /**
+     * Agregar productos a la lista de mercado seleccionada por el usuario
+     * @param iT
+     * @param nombreLista
+     */
+    public void agregarProducto(ItemLista iT, String nombreLista){
+        for(ListaDeMercado lM: listas){
+            if(lM.getNombre().equals(nombreLista)){
+                lM.agregarProducto(iT);
+            }
+        }
     }
 
     public String getCorreo() {
@@ -39,5 +56,13 @@ public class Usuario {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public List<ListaDeMercado> getListas() {
+        return listas;
+    }
+
+    public void setListas(List<ListaDeMercado> listas) {
+        this.listas = listas;
     }
 }
