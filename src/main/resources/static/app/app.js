@@ -9,10 +9,12 @@ angular.module('myApp', [
   'myApp.login',
   'myApp.viewProducts',
   'myApp.shopList',
+  'myApp.listasMercado',
   'myApp.viewItem',
   'myApp.version',
   'myApp.viewAddProducts',
-  'myApp.viewSearch'
+  'myApp.viewSearch',
+  'services.listFactoryApi'
 ]).
 config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
     $routeProvider.otherwise({redirectTo: '/vistaPrincipal'});

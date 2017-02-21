@@ -1,5 +1,5 @@
 'use strict';
-angular.module('services.listFactory', ['ngRoute'])
+angular.module('services.listFactory', ['ngRoute', 'ngResource'])
     .factory('itemsStubFactory', function () {
         var items = {
                     lista:[
@@ -76,6 +76,131 @@ angular.module('services.listFactory', ['ngRoute'])
          }
        }
     })
+    .factory('listasMercadoStubFactory', function () {
+            var listaMercado = {
+                        lista:[{
+                            nombre: "Lista 1",
+                            fechaCreacion: new Date(1487653200000),
+                            revisado: false,
+                            items:[{producto:{
+                                nombre:'Leche',
+                                categoria:'Leche',
+                                precio:3500,
+                                marca:'Alqueria',
+                                id:'01'
+                            },
+                            favorito: false,
+                            comprado: true,
+                            tienda:{
+                                direccion:'Cll 167 #58a-20',
+                                x:4.7498466,
+                                y:-74.0623005,
+                                nombre:'Surtir',
+                                nit:'123456456',
+                                telefono:'65498765'
+                            }},
+                            {producto:{
+                                nombre:'Coca-Cola',
+                                 categoria:'Gaseosa',
+                                 precio:4500,
+                                 marca:'Coca-Cola',
+                                id:'02'
+                            },
+                            favorito: false,
+                            comprado: true,
+                            tienda:{
+                                direccion:'Cll 167 #58a-20',
+                                x:4.7498466,
+                                y:-74.0623005,
+                                nombre:'Surtir',
+                                nit:'123456456',
+                                telefono:'65498765'
+                            }},{producto:{
+                                  nombre:'Papas BBQ',
+                                  categoria:'Papas',
+                                  precio:4500,
+                                  marca:'Margarita',
+                                  id:'03'
+                              },
+                              favorito: false,
+                              comprado: true,
+                              tienda:{
+                                  direccion:'Cll 167 #58a-20',
+                                  x:4.7498466,
+                                  y:-74.0623005,
+                                  nombre:'Surtir',
+                                  nit:'123456456',
+                                  telefono:'65498765'
+                              }}
+                        ]
+                        }]
+                }
+
+            return{
+            getListaMercado : function(){
+                return listaMercado.lista;
+            },
+            eliminate : function(nom){
+                for(var i=0;i<listaMercado.lista.length;i++){
+                    if(listaMercado.lista[i].nombre == nom){
+                            listaMercado.lista.splice(i,1);
+                            break
+                        }
+                 }
+             },
+            eliminarItem : function(pro, tien, nom){
+                var ban = false
+                for(var i=0;i<listaMercado.lista.length;i++){
+                   if(listaMercado.lista[i].nombre == nom){
+                      for(var j=0; j<listaMercado.lista[i].items.length;j++){
+                            if(listaMercado.lista[i].items[j].producto.id == pro && listaMercado.lista[i].items[j].tienda.nombre == tien){
+                                  listaMercado.lista[i].items.splice(j,1);
+                                    ban = true
+                                    break
+                            }
+                      }
+                      if(ban){
+                        break
+                      }
+                   }
+                }
+            },
+            comprarItem : function(pro, tien, nom){
+                var ban = false
+                for(var i=0;i<listaMercado.lista.length;i++){
+                   if(listaMercado.lista[i].nombre == nom){
+                      for(var j=0; j<listaMercado.lista[i].items.length;j++){
+                            if(listaMercado.lista[i].items[j].producto.id == pro && listaMercado.lista[i].items[j].tienda.nombre == tien){
+                                  listaMercado.lista[i].items[j].comprado=!listaMercado.lista[i].items[j].comprado;
+                                    ban = true
+                                    break
+                            }
+                      }
+                      if(ban){
+                        break
+                      }
+                   }
+                }
+            },
+            listaCompleta : function(){
+                for(var i=0;i<listaMercado.lista.length;i++){
+                    var completa=false
+                    var con=0
+                    for(var j=0;j<listaMercado.lista[i].items.length;j++){
+                         if(listaMercado.lista[i].items[j].comprado){
+                            console.log(listaMercado.lista[i].items[j])
+                            con+=1
+                         }
+                     }
+                    if(con==listaMercado.lista[i].items.length){
+                        completa = true
+                    }
+                    listaMercado.lista[i].revisado = completa
+                }
+                console.log(listaMercado.lista)
+            }
+           }
+          })
     .factory('items2StubFactory', function () {
         var items = {
             lista:[
@@ -239,4 +364,21 @@ angular.module('services.listFactory', ['ngRoute'])
                     return a;
                 }
             }
-        });
+        })
+
+angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
+    .factory('allItems',function($resource) {
+        return $resource('/items');
+    })
+    .factory('itemByShopAndId',function($resource) {
+        return $resource('/items/shop/:shopName/id/:idNum');
+    })
+    .factory('itemsByShop',function($resource) {
+        return $resource('/items/shop/:shopName');
+    })
+    .factory('itemsByCategory',function($resource) {
+        return $resource('/items/category/:categoryName');
+    })
+    .factory('itemsById',function($resource) {
+        return $resource('/items/:idNum');
+    });

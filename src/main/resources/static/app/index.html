@@ -27,8 +27,8 @@
   <!--ul class="menu"-->
   <ul class="topnav">
     <li><a href="#!/vistaPrincipal">Cheapest Price</a></li>
+    <li ng-show="authenticated"><a href="#!/ListasMercado">Listas de mercado</a></li>
     <li ng-show="authenticated"><a href="#!/viewItem">Lista de items</a></li>
-    <li ng-show="authenticated"><a href="#!/ShoppingList">Lista de mercado</a></li>
     <li><a href="#!/viewSearch">Buscar productos</a></li>
     <li ng-show="authenticated"><a href="#!/viewAddProducts">Agregar Productos</a></li>
     <li ng-show="authenticated"><a ng-controller="logout" ng-click="logout()">Log Out</a></li>
@@ -47,6 +47,7 @@
   -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-aria/angular-aria.js"></script>
   <script src="bower_components/angular-material/angular-material.js"></script>
@@ -58,6 +59,7 @@
   <script src="vistaPrincipal/vistaPrincipal.js"></script>
   <script src="login/login.js"></script>
   <script src="vistasCliente/ShoppingList/ShoppingList.js"></script>
+  <script src="vistasCliente/ShoppingList/ListasMercado.js"></script>
   <script src='vistasTendero/viewProducts/viewProducts.js'></script>
   <script src="viewItem/viewItem.js"></script>
   <script src='viewSearchItem/viewSearch.js'></script>

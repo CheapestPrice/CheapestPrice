@@ -25,6 +25,11 @@ public class ItemServicePersistence implements ItemService{
     }
 
     @Override
+    public Item loadItem(String shopName, long id) throws CheapestPriceException {
+        return ip.loadItem(shopName,id);
+    }
+
+    @Override
     public List<Item> loadItemByShop(String shopName) throws CheapestPriceException {
         return ip.loadItemByShop(shopName);
     }
@@ -42,5 +47,15 @@ public class ItemServicePersistence implements ItemService{
     @Override
     public void addItem(Item item) throws CheapestPriceException {
         ip.addItem(item);
+    }
+
+    @Override
+    public void deleteItem(String shopName, long id) throws CheapestPriceException {
+        ip.deleteItem(shopName,id);
+    }
+
+    @Override
+    public void updateItem(long oldId, String oldShop, Item item) throws CheapestPriceException {
+        ip.updateItem(oldId,oldShop,item);
     }
 }

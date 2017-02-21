@@ -10,8 +10,10 @@ angular.module('myApp.viewSearch', ['ngRoute'])
 });
 }])
 
-.controller('ViewSearchCtrl', ['$scope','placesStubFactory','$rootScope', function($scope,placesStubFactory,$rootScope) {
-    $scope.products= placesStubFactory.getListado()[0].sedes[0].productos;
+.controller('ViewSearchCtrl', ['$scope','placesStubFactory','$rootScope','allItems', function($scope,placesStubFactory,$rootScope,allItems) {
+    //$scope.items= placesStubFactory.getListado()[0].sedes[0].productos;
+    $scope.items= allItems.query();
+    console.log($scope.items);
     console.log(placesStubFactory.getListado()[0].sedes[0].productos);
         $scope.rating2 = 3;
         $scope.isReadonly = true;

@@ -1,52 +1,57 @@
 <div ng-controller="shopListCtrl">
-    <h1>Mi lista de mercado</h1>
+    <h1>{{listado.nombre}}</h1>
     <table class="table table-condensed table-hover">
         <theader>
             <tr>
-                <th>
-                    <md-button ng-click="sortBy('producto')">Producto</md-button>
+                <th><center>
+                    <md-button ng-click="sortBy('producto.nombre')">Producto</md-button>
+                    </center>
                 </th>
-                <th>
-                    <md-button ng-click="sortBy('precio')">Precio</md-button>
+                <th><center>
+                    <md-button ng-click="sortBy('producto.precio')">Precio</md-button>
+                    </center>
                 </th>
-                <th>
-                    <md-button ng-click="sortBy('tienda')">Tienda</md-button>
+                <th><center>
+                    <md-button ng-click="sortBy('producto.tienda')">Tienda</md-button>
+                    </center>
                 </th>
-                <th>
-                    <md-button ng-click="sortBy('direccion')">Dirección</md-button>
-                </th>
-                <th>
+                <th><center>
                    <p>Detalles</p>
+                    </center>
                 </th>
-                <th>
+                <th><center>
                     <p>Comprado</p>
+                    </center>
                 </th>
-                <th>
+                <th><center>
                     <p>Favoritos</p>
+                    </center>
                 </th>
                 <th>
                 </th>
             </tr>
         </theader>
         <tbody>
-        <tr ng-repeat="todo in listado  | orderBy:propertyName:reverse">
-            <td>{{todo.producto.nombre}}</td>
-            <td>{{todo.producto.precio}}</td>
-            <td>{{todo.tienda.nombre}}</td>
-            <td>{{todo.tienda.direccion}}</td>
+        <tr ng-repeat="todo in listado.items  | orderBy:propertyName:reverse">
+            <td><center>{{todo.producto.nombre}}</center></td>
+            <td><center>{{todo.producto.precio}}</center></td>
+            <td><center>{{todo.tienda.nombre}}</center></td>
             <td>
-                 <button ng-click="detalles()">+</button>
+                 <center><button ng-click="detalles()">+</button></center>
             </td>
             <td>
-                <md-checkbox ng-model="data.cb1" aria-label="Checkbox" ng-click="comprado(todo.producto.id, todo.tienda.nombre, data.cb1)">
+                <center>
+                <md-checkbox ng-model="todo.producto.comprado" aria-label="Checkbox" ng-click="comprado(todo.producto.id, todo.tienda.nombre)">
                 </md-checkbox>
+                </center>
             </td>
-            <td>
+            <td><center>
                 <div class="presentation">
                     <button-favorite></button-favorite>
                 </div>
+                </center>
             </td>
-            <td><button ng-click="eliminar(todo.producto.id, todo.tienda.nombre)">Eliminar</button></td>
+            <td><center><button ng-click="eliminar(todo.producto.id, todo.tienda.nombre)">Eliminar</button></center></td>
         </tr>
         </tbody>
     </table>
