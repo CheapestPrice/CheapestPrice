@@ -365,4 +365,10 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
     })
     .factory('itemsById',function($resource) {
         return $resource('/items/:idNum');
-    });
+    })
+    .factory('updateItem',function($resource) {
+            return $resource('/items/shop/:oldShop/id/:oldId', null,
+                   {
+                       'update': { method:'PUT' }
+                   });
+        });

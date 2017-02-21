@@ -9,7 +9,7 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
     });
 }])
 
-.controller('ViewAddProductsCtrl', ['$scope', 'items2StubFactory', '$rootScope','$location','itemsByShop', function($scope,items2StubFactory,$rootScope,$location,itemsByShop) {
+.controller('ViewAddProductsCtrl', ['$scope', 'items2StubFactory', '$rootScope','$location','itemsByShop','updateItem', function($scope,items2StubFactory,$rootScope,$location,itemsByShop,updateItem) {
     //AGREGAR
     $scope.agregar=true;
     $rootScope.tienda="Surtir";
@@ -24,8 +24,9 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
     $scope.nombre="";
     $scope.precio=50;
     $scope.marca="";
+    //$scope.listaProductos=itemsByShop.query({shopName:$rootScope.shop.nombre});
     console.log(itemsByShop.query({shopName:$rootScope.shop.nombre}));
-    $scope.listado=items2StubFactory.getItemsTienda($rootScope.tienda);
+    $scope.listado=itemsByShop.query($rootScope.tienda);
     $scope.propertyName = 'producto.nombre';
     $scope.reverse = false;
     $scope.sortBy = function(propertyName) {
@@ -92,12 +93,18 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
         $scope.mensaje="Por favor, revise la información suministrada...";
         $scope.fail=true;
         $scope.success=false;
-        console.log($scope.producto.producto.nombre+" "+$scope.producto.producto.categoria+" "+$scope.producto.producto.precio+" "+$scope.producto.producto.marca);
+        $scope.listado.forEach(function (item,index) {
+            if(item.producto.id==itemm.producto.id && item.tienda.nombre==itemm.tienda.nombre){
+                itemm.producto=item.producto;
+            }
+        })
+        //console.log($scope.producto.producto.nombre+" "+$scope.producto.producto.categoria+" "+$scope.producto.producto.precio+" "+$scope.producto.producto.marca);
         if($scope.producto.producto.nombre.length>0 && $scope.producto.producto.marca.length>0 && $scope.producto.producto.categoria.length>0 && $scope.producto.producto.precio>=0){
             $scope.mensaje="El producto fue modificado sactisfactoriamente...";
             $scope.success=true;
             $scope.fail=false;
-            items2StubFactory.modificarProducto($scope.producto);
+            //items2StubFactory.modificarProducto($scope.producto);
+            updateItem.update({oldShop:$scope.producto.tienda.nombre,oldId:$scope.producto.producto.id},$scope.producto);
         }
     };
     $scope.volver=function () {
