@@ -9,13 +9,9 @@ angular.module('myApp.shopList', ['ngRoute'])
   });
 }])
 
-.controller('shopListCtrl', ['$scope','itemsStubFactory','$rootScope', function($scope, itemsStubFactory, $rootScope) {
-    $scope.data = {
-        cb1: true
-      };
-    //Listado quemado en memoria con el stub
-    $scope.listado=itemsStubFactory.getItems();
-    $scope.propertyName = 'nombre';
+.controller('shopListCtrl', ['$scope','listasMercadoStubFactory','$rootScope', function($scope, listasMercadoStubFactory, $rootScope) {
+    $scope.listado = $rootScope.listaMercado;
+    $scope.propertyName = 'producto.nombre';
     $scope.reverse = true;
 
     $scope.sortBy = function(propertyName) {
@@ -23,10 +19,10 @@ angular.module('myApp.shopList', ['ngRoute'])
         $scope.propertyName = propertyName;
     };
     $scope.eliminar = function(iden, tien){
-        itemsStubFactory.eliminate(iden, tien);
+        listasMercadoStubFactory.eliminarItem(iden, tien, $rootScope.listaMercado.nombre);
     };
-    $scope.comprado = function(iden, tien, fav){
-        itemsStubFactory.sale(iden, tien, fav);
+    $scope.comprado = function(iden, tien){
+        listasMercadoStubFactory.comprarItem(iden, tien, $rootScope.listaMercado.nombre);
     };
 }])
  .directive('buttonFavorite', function() {
@@ -36,7 +32,6 @@ angular.module('myApp.shopList', ['ngRoute'])
          template: '<button class="btn btn-icon"><span class="glyphicon glyphicon-heart" ng-class="{active: todo.favorito}"></span></button>',
          link: function(scope, elem) {
            elem.bind('click', function() {
-           console.log("holi")
              scope.$apply(function(){
                scope.todo.favorito = !scope.todo.favorito;
              });
