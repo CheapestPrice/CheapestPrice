@@ -150,8 +150,17 @@ angular.module('services.listFactory', ['ngRoute'])
                return catego;
             },
             registrarProducto: function(item){
-                items.lista.push(item);
+                var unique=true;
+                items.lista.forEach(function (itemm,index) {
+                    if(item.producto.nombre==itemm.producto.nombre && item.producto.marca==itemm.producto.marca){
+                        unique=false;
+                    }
+                })
+                if(unique){
+                    items.lista.push(item);
+                }
                 console.log(items.lista);
+                return unique;
             },
             modificarProducto:function(item){
                 items.lista.forEach(function (itemm,index) {
@@ -159,6 +168,15 @@ angular.module('services.listFactory', ['ngRoute'])
                         itemm.producto=item.producto;
                     }
                 })
+            },
+            eliminarProducto:function(item){
+                for (var index=0;index<items.lista.length;index++) {
+                	var itemm=items.lista[index];
+                    if(item.producto.nombre==itemm.producto.nombre && item.producto.marca==itemm.producto.marca){
+                        items.lista.splice(index,1);
+                        break;
+                    }
+                }
             }
 
        }

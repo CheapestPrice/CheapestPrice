@@ -46,4 +46,20 @@ public interface ItemPersistence {
      * @throws CheapestPriceException si el item es nulo o ya se encuentra registrado
      */
     public void addItem(Item item) throws CheapestPriceException;
+
+    /**
+     * Elimina un item registrado
+     * @param item el item a eliminar
+     * @throws CheapestPriceException si el item es nulo o no se encuentra registrado
+     */
+    public void deleteItem(Item item) throws CheapestPriceException;
+
+    /**
+     * Actualiza un item dado el id con el que se encuentra registrado
+     * @param oldId el id con el que el item se encuentra registrado
+     * @param item el item con los datos actuales
+     * @param oldShop el nombre de la tienda donde se encuentra registrado el item
+     * @throws CheapestPriceException si alguno de los parametros es nulo o no hay ningun item registrado con oldId
+     */
+    public void updateItem(long oldId,String oldShop,Item item) throws CheapestPriceException;
 }

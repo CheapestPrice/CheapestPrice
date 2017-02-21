@@ -84,6 +84,33 @@ public class ItemPersistenceStub implements ItemPersistence{
         items.add(item);
     }
 
+    @Override
+    public void deleteItem(Item item) throws CheapestPriceException {
+        if(item==null){
+            throw new CheapestPriceException("El item no puede ser vacio");
+        }
+        boolean removed=items.remove(item);
+        if(!removed){
+            throw new CheapestPriceException("El item no se encuentra registrado");
+        }
+    }
+
+    @Override
+    public void updateItem(long oldId,String oldshop, Item item) throws CheapestPriceException {
+        //if(oldId==null || oldshop==null || oldshop.length()==0 ||)
+        Item old=null;
+        for (Item i:items){
+            if(i.getProducto().getId()==oldId && i.getTienda().getNombre().equals(oldshop)){
+                old=i;
+                break;
+            }
+        }
+        if(old!=null){
+            items.remove(old);
+            items.add(item);
+        }
+    }
+
     public static void poblarStub(ItemPersistenceStub ips){
         Producto p1=new Producto(1,"Queso crema",3000,"Alqueria","Queso");
         Tienda t1= new Tienda("calle 184 #52 A13", 4.7649271,-74.0476042,"Donde pepe","1234567-2","6699132",true);

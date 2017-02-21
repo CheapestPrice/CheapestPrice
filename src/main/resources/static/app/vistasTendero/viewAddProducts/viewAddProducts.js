@@ -41,7 +41,7 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
             $scope.mensaje="El producto fue registrado sactisfactoriamente...";
             $scope.success=true;
             $scope.fail=false;
-            var num=$scope.listado.length;
+            var num=items2StubFactory.getItems();
             var itemm={
                 producto:{
                     nombre: $scope.nombre,
@@ -52,9 +52,14 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
                 },
                 tienda:$rootScope.shop
             }
-            items2StubFactory.registrarProducto(itemm);
+            var sePudo=items2StubFactory.registrarProducto(itemm);
+            if(!sePudo){
+                $scope.fail=true;
+                $scope.success=false;
+                $scope.mensaje="Por favor, revise la información suministrada...";
+            }
             $scope.listado=items2StubFactory.getItemsTienda($rootScope.shop.nombre);
-            $scope.listado=items2StubFactory.getItemsTienda($rootScope.tienda);
+            //$scope.listado=items2StubFactory.getItemsTienda($rootScope.tienda);
             $scope.categorias=items2StubFactory.getCategorias();
         }else{
             $scope.fail=true;
@@ -98,5 +103,10 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
         $scope.agregar = true;
         $scope.modificar = false;
 
+    }
+    //Eliminar
+    $scope.eliminar=function(item){
+		items2StubFactory.eliminarProducto(item);
+		$scope.listado=items2StubFactory.getItemsTienda($rootScope.shop.nombre);
     }
 }]);
