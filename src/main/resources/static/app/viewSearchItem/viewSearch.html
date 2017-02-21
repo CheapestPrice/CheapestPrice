@@ -7,12 +7,12 @@
         </div>
         <ul class="nav nav-pills nav-stacked">
 
-            <div ng-animate="'animate'" ng-repeat="pro in products | filter:search" class="container">
+            <div ng-animate="'animate'" ng-repeat="pro in items | filter:search" class="container">
                 <div style="float:left; width: 30%;">
                     <img src="http://www.elfaradio.com/wp-content/uploads/2016/06/leche.jpg" style="width: 120px; height: 120px; float:left;" alt=""/>
-                    <p>{{pro.nombre}}</p>
-                    <a href="">nombre de la tienda</a>
-                    <p>precio</p>
+                    <p>{{pro.producto.nombre}}</p>
+                    <p>{{pro.tienda.nombre}}</p>
+                    <p>{{pro.producto.precio}}</p>
                     <star-rating ng-model="rating2" readonly="isReadonly"></star-rating>
                     <label>60 reviews</label>
                 </div>

@@ -22,13 +22,23 @@ public class ItemController {
         return new ResponseEntity<>(is.loadItems(), HttpStatus.ACCEPTED);
     }
 
+    @RequestMapping(method = RequestMethod.GET,value="/shop/{shop}/id/{id}")
+    public ResponseEntity<?> getItem(@PathVariable String shop,@PathVariable long id){
+        try {
+            return new ResponseEntity<>(is.loadItem(shop,id),HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(method = RequestMethod.GET,value="/shop/{shopName}")
     public ResponseEntity<?> getItemsShop(@PathVariable String shopName){
         try {
             return new ResponseEntity<>(is.loadItemByShop(shopName), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
     }
 
@@ -38,7 +48,7 @@ public class ItemController {
             return new ResponseEntity<>(is.loadItemByCategory(category), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
     }
 
@@ -48,7 +58,7 @@ public class ItemController {
             return new ResponseEntity<>(is.loadItemById(id), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
     }
 
@@ -59,7 +69,29 @@ public class ItemController {
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.PUT,value="/shop/{oldShop}/id/{oldId}")
+    public ResponseEntity<?> putItem(@RequestBody Item item,@PathVariable long oldId,@PathVariable String oldShop){
+        try {
+            is.updateItem(oldId,oldShop,item);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE,value="/shop/{shop}/id/{id}")
+    public ResponseEntity<?> deleteItem(@PathVariable String shop,@PathVariable long id){
+        try {
+            is.deleteItem(shop,id);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
     }
 }

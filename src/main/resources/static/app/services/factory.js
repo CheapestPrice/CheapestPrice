@@ -365,3 +365,7 @@ angular.module('services.listFactory', ['ngRoute'])
                 }
             }
         });
+angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
+    .factory('ItemsApi', function($resource) {
+        return $resource('/items');
+    });

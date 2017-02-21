@@ -53,7 +53,7 @@ public class ItemsPersistenceStubTest {
         }
     }
     @Test
-    public void CE2DeberiaCargarItemPorCategoria(){
+    public void CE3DeberiaCargarItemPorCategoria(){
         ItemPersistenceStub ips= new ItemPersistenceStub();
         Producto p1=new Producto(7,"Lecherita",2000,"Nestle","Leche condensada");
         Producto p2=new Producto(8,"Pan arabe",2000,"Bimbo","Pan");
@@ -78,6 +78,44 @@ public class ItemsPersistenceStubTest {
             Assert.assertEquals("No consulta correctamente por categoria",lista,items);
         } catch (CheapestPriceException e) {
             Assert.fail("arroja excepcion inesperada al consultar item por categoria");
+        }
+    }
+
+    @Test
+    public void CE4DeberiaEliminarItem(){
+        ItemPersistenceStub ips= new ItemPersistenceStub();
+        Producto p1=new Producto(7,"Lecherita",2000,"Nestle","Leche condensada");
+        Tienda t1= new Tienda("calle 184 #52 A13", 4.7649271,-74.0476042,"Donde Juancho","1234567-2","6699132",true);
+        Item i1= new Item(t1,p1);
+        try {
+            ips.addItem(i1);
+            List<Item> items=ips.loadItemById(p1.getId());
+            ips.deleteItem(t1.getNombre(),p1.getId());
+            List<Item> items2=ips.loadItemById(p1.getId());
+            Assert.assertTrue("No elimina correctamente",items.size()==1 && items2.size()==0);
+        } catch (CheapestPriceException e) {
+            Assert.fail("arroja excepcion inesperada al eliminar un item");
+        }
+    }
+
+    @Test
+    public void CE5DeberiaCActualizarItem(){
+        ItemPersistenceStub ips= new ItemPersistenceStub();
+        Producto p1=new Producto(7,"Lecherita",2000,"Nestle","Leche condensada");
+        Tienda t1= new Tienda("calle 184 #52 A13", 4.7649271,-74.0476042,"Donde Juancho","1234567-2","6699132",true);
+        Item i1= new Item(t1,p1);
+        try {
+            ips.addItem(i1);
+            List<Item> items=ips.loadItemById(p1.getId());
+            Item i2= new Item(t1,new Producto(8,"a",12,"b","c"));
+
+            ips.updateItem(p1.getId(),t1.getNombre(),i2);
+            List<Item> items2=ips.loadItemById(i2.getProducto().getId());
+            List<Item> old=new ArrayList<>();old.add(i1);
+            List<Item> newl=new ArrayList<>();newl.add(i2);
+            Assert.assertTrue("No actualiza correctamente",items.equals(old) && items2.equals(newl));
+        } catch (CheapestPriceException e) {
+            Assert.fail("arroja excepcion inesperada al actualiza un item");
         }
     }
 }

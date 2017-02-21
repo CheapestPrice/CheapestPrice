@@ -30,6 +30,26 @@ public class ItemPersistenceStub implements ItemPersistence{
     }
 
     @Override
+    public Item loadItem(String shopName, long id) throws CheapestPriceException {
+        if(shopName==null || shopName.length()==0){
+            throw new CheapestPriceException("El nombre de la tienda no puede ser vacio");
+        }
+        if(id<0){
+            throw new CheapestPriceException("El id no puede ser menor a 0");
+        }
+        Item item=null;
+        for (Item i : items){
+            if(i.getTienda().getNombre().equals(shopName) && i.getProducto().getId()==id){
+                item=i;
+            }
+        }
+        if(item==null){
+            throw new CheapestPriceException("El item solicitado no se encuentra registrado");
+        }
+        return item;
+    }
+
+    @Override
     public List<Item> loadItemByShop(String shopName) throws CheapestPriceException {
         if(shopName==null || shopName.length()==0){
             throw new CheapestPriceException("El nombre de la tienda no puede ser vacio");
@@ -85,10 +105,14 @@ public class ItemPersistenceStub implements ItemPersistence{
     }
 
     @Override
-    public void deleteItem(Item item) throws CheapestPriceException {
-        if(item==null){
-            throw new CheapestPriceException("El item no puede ser vacio");
+    public void deleteItem(String shopName,long id) throws CheapestPriceException {
+        if(shopName==null || shopName.length()==0){
+            throw new CheapestPriceException("El nombre de la tienda no puede ser vacio");
         }
+        if(id<0){
+            throw new CheapestPriceException("El id no puede ser menor a 0");
+        }
+        Item item=loadItem(shopName,id);
         boolean removed=items.remove(item);
         if(!removed){
             throw new CheapestPriceException("El item no se encuentra registrado");
@@ -97,7 +121,15 @@ public class ItemPersistenceStub implements ItemPersistence{
 
     @Override
     public void updateItem(long oldId,String oldshop, Item item) throws CheapestPriceException {
-        //if(oldId==null || oldshop==null || oldshop.length()==0 ||)
+        if(oldId<0 ){
+            throw new CheapestPriceException("El id con el que esta registrado el producto no puede ser negativo");
+        }
+        if(oldshop==null || oldshop.length()==0 ){
+            throw new CheapestPriceException("El nombre de la tienda no puede ser vacio");
+        }
+        if(item==null){
+            throw new CheapestPriceException("el item no puede ser vacio");
+        }
         Item old=null;
         for (Item i:items){
             if(i.getProducto().getId()==oldId && i.getTienda().getNombre().equals(oldshop)){
@@ -106,8 +138,10 @@ public class ItemPersistenceStub implements ItemPersistence{
             }
         }
         if(old!=null){
+            addItem(item);
             items.remove(old);
-            items.add(item);
+        }else{
+            throw new CheapestPriceException("No hay ningun item registrado con el id suministrado");
         }
     }
 

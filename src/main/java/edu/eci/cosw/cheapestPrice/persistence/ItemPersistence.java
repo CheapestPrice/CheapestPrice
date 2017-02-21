@@ -17,6 +17,15 @@ public interface ItemPersistence {
     public List<Item> loadItems();
 
     /**
+     * Retorna el item deseado
+     * @param shopName el nombre de la tienda relacionada con el item
+     * @param id el id del producto relacionado con el item
+     * @return el item deseado
+     * @throws CheapestPriceException si el item solicitado no existe o los parametros son nulos
+     */
+    public Item loadItem(String shopName,long id) throws CheapestPriceException;
+
+    /**
      * Carga todos los items registrados a nombre de una tienda dada
      * @param shopName el nombre de la tienda deseada
      * @return todos los items registrados a nombre de la tienda solicitada
@@ -49,17 +58,18 @@ public interface ItemPersistence {
 
     /**
      * Elimina un item registrado
-     * @param item el item a eliminar
-     * @throws CheapestPriceException si el item es nulo o no se encuentra registrado
+     * @param id el id con el que el item se encuentra registrado
+     * @param shopName el nombre de la tienda donde se encuentra registrado el item
+     * @throws CheapestPriceException si el item es nulo o los parametros son nulos
      */
-    public void deleteItem(Item item) throws CheapestPriceException;
+    public void deleteItem(String shopName,long id) throws CheapestPriceException;
 
     /**
      * Actualiza un item dado el id con el que se encuentra registrado
      * @param oldId el id con el que el item se encuentra registrado
      * @param item el item con los datos actuales
      * @param oldShop el nombre de la tienda donde se encuentra registrado el item
-     * @throws CheapestPriceException si alguno de los parametros es nulo o no hay ningun item registrado con oldId
+     * @throws CheapestPriceException si alguno de los parametros es nulo o no hay ningun item registrado con oldId o los nuevos datos de item no son validos
      */
     public void updateItem(long oldId,String oldShop,Item item) throws CheapestPriceException;
 }
