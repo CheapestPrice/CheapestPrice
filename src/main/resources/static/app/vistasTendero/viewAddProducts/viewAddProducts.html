@@ -1,11 +1,11 @@
 <div class="container">
     <form id="product">
-        <h1>Agregar Productos</h1>
+        <h1>Productos</h1>
         <br>
                 <label >Nombre:</label>
                 <input ng-model="nombre" type="text"  placeholder="Nombre del producto" />
                 <label >Precio:</label>
-                <input ng-model="precio" type="number"  min="50"/>
+                <input ng-model="precio" type="number"  min="50" step="50"/>
                 <br>
                 <label>Marca:</label>
                 <input ng-model="marca" type="text" />
@@ -18,6 +18,15 @@
             <input type='file' id="imgInp" accept="image/gif, image/jpeg, image/png"/>
             <img height="200" width="200" id="blah" src="#" alt="Your Image" />
         </form>
+
+        <div ng-show="!visible" class="alert alert-warning" alert-dismissable>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <a href="#" class="alert-link">{{mensaje}}</a>
+        </div>
+        <div ng-show="visible" class="alert alert-success" alert-dismissable>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <a href="#" class="alert-link">{{mensaje}}</a>
+        </div>
 
         <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="registrarProducto()"> Registrar
             <i class="material-icons right">send</i>

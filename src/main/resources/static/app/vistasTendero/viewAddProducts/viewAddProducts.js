@@ -22,7 +22,6 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
     $scope.nombre="";
     $scope.precio=50;
     $scope.marca="";
-    var all=items2StubFactory.getItems();
     $scope.listado=items2StubFactory.getItemsTienda($rootScope.tienda);
     $scope.propertyName = 'producto.nombre';
     $scope.reverse = false;
@@ -31,24 +30,29 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
             $scope.propertyName = propertyName;
      };
     $scope.categorias=items2StubFactory.getCategorias();
+    $scope.visible=false;
     console.log($scope.categorias);
      $scope.registrarProducto= function(){
      console.log("entro");
          $scope.mensaje="Por favor, revise la información suministrada...";
          if($scope.nombre.length>0 && $scope.marca.length>0 && $scope.selectedCategoria.length>0 && $scope.precio>0){
             $scope.mensaje="El producto fue registrado sactisfactoriamente...";
+            $scope.visible=true;
+            var num=$scope.listado.length;
             var itemm={
             producto:{
                                       nombre: $scope.nombre,
                                       categoria: $scope.selectedCategoria,
                                       precio: $scope.precio,
                                       marca:$scope.marca,
-                                      id:(all.length+1).toString()
+                                      id:(num+1).toString()
                                   },
                                   tienda:$rootScope.shop
                 }
             items2StubFactory.registrarProducto(itemm);
             $scope.listado=items2StubFactory.getItemsTienda($rootScope.shop.nombre);
+            $scope.listado=items2StubFactory.getItemsTienda($rootScope.tienda);
+            $scope.categorias=items2StubFactory.getCategorias();
          }
          window.alert($scope.mensaje);
      };
