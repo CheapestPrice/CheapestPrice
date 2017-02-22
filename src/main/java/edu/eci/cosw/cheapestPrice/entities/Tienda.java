@@ -45,6 +45,14 @@ public class Tienda {
         horarios.put(dia,horario);
     }
 
+    public void setHorario(Map<String,Horario> hor){
+        this.horarios=hor;
+    }
+
+    public Map<String,Horario> getHorario(){
+        return this.horarios;
+    }
+
     public String getDireccion() {
         return direccion;
     }

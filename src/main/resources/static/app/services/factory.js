@@ -1,5 +1,11 @@
 'use strict';
 angular.module('services.listFactory', ['ngRoute', 'ngResource'])
+
+    .factory('registroU', function($resource) {
+                    return $resource('/usuarios');
+                })
+
+
     .factory('itemsStubFactory', function () {
         var items = {
                     lista:[
@@ -397,11 +403,12 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
      })
      .factory('updateUser',function($resource){
             return $resource('/usuarios/:nickname', null,
+
             {
-                        'update' : {method:'PUT'}
+                'update' : {method:'PUT'}
             });
-     })
-     .factory('getUserNickname',function($resource){
-            return $resource('/usuarios/:nickname');
-      });
+    })
+    .factory('getUserNickname',function($resource) {
+        return $resource('/usuarios/:nickname');
+    });
 

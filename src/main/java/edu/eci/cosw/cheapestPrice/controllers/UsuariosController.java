@@ -6,10 +6,7 @@ import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by ger9410 on 21/02/17.
@@ -35,7 +32,7 @@ public class UsuariosController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> agregarUsuario(Usuario usuario){
+    public ResponseEntity<?> agregarUsuario(@RequestBody Usuario usuario){
         try{
             uP.addUser(usuario);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
@@ -55,4 +52,6 @@ public class UsuariosController {
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
     }
+
+
 }

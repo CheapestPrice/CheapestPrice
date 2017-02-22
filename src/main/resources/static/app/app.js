@@ -7,6 +7,7 @@ angular.module('myApp', [
   'services.listFactory',
   'myApp.vistaPrincipal',
   'myApp.login',
+  'myApp.registro',
   'myApp.viewProducts',
   'myApp.shopList',
   'myApp.listasMercado',

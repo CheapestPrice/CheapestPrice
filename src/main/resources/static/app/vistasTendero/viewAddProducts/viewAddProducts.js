@@ -112,8 +112,8 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
             $scope.fail=false;
             //items2StubFactory.modificarProducto($scope.producto);
             updateItem.update({oldShop:$scope.producto.tienda.nombre,oldId:$scope.producto.producto.id},$scope.producto,
-            function(){
-                $scope.listado=itemsByShop.query({shopName:$rootScope.shop.nombre});
+                function(){
+                    $scope.listado=itemsByShop.query({shopName:$rootScope.shop.nombre});
             });
         }
     };

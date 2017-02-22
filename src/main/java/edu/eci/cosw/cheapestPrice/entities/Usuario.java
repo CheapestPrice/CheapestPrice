@@ -21,6 +21,13 @@ public class Usuario {
         this.setListas(listas);
     }
 
+    public Usuario(String nombre,String email, String nickname){
+        this.setNombre(nombre);
+        this.setEmail(email);
+        this.setNickname(nickname);
+
+    }
+
     /**
      * Agregar productos a la lista de mercado seleccionada por el usuario
      * @param iT
