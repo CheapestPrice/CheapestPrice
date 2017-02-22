@@ -201,8 +201,8 @@ angular.module('services.listFactory', ['ngRoute', 'ngResource'])
             },
             agregarProducto : function(pro, lis){
                 for(var i=0;i<listaMercado.lista.length;i++){
-                    if(listaMercado.lista[i].nombre == lis){
-                        listaMercado.lista[i].item.push(pro);
+                    if(listaMercado.lista[i].nombre == lis.nombre){
+                        listaMercado.lista[i].items.push(pro);
                     }
                 }
             }

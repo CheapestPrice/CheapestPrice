@@ -35,6 +35,8 @@ angular.module('myApp.viewSearch', ['ngRoute','ngMaterial'])
      }*/
     $scope.showAdvanced = function(ev,item) {
         $scope.chooseItem=item;
+        $scope.chooseItem['favorito'] =false;
+        $scope.chooseItem.comprado = false;
         console.log("Escogio el item ",item);
         $mdDialog.show({
           controller: DialogController,
@@ -74,6 +76,7 @@ angular.module('myApp.viewSearch', ['ngRoute','ngMaterial'])
            };
            $scope.ver=function(items){
                       $scope.listaMercado=items;
+                      $mdDialog.hide($scope.listaMercado);
                   }
         }
 
