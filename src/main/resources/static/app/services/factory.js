@@ -1,6 +1,11 @@
 'use strict';
 angular.module('services.listFactory', ['ngRoute', 'ngResource'])
 
+
+    .factory('registroT', function($resource) {
+                        return $resource('/tiendas');
+    })
+
     .factory('registroU', function($resource) {
                     return $resource('/usuarios');
                 })

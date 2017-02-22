@@ -6,6 +6,8 @@ angular.module('myApp', [
   'ngMaterial',
   'services.listFactory',
   'myApp.vistaPrincipal',
+  'myApp.vistaRegistro',
+  'myApp.registroTienda',
   'myApp.login',
   'myApp.registro',
   'myApp.viewProducts',

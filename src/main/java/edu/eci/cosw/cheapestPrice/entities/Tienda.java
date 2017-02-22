@@ -17,6 +17,8 @@ public class Tienda {
     private byte[] logo;
     private Map<String,Horario> horarios;
 
+    public Tendero tendero;
+
     public Tienda(){};
 
     public Tienda(String direccion,double x,double y,String nombre,String nit,String telefono, boolean disponible) {
@@ -39,6 +41,15 @@ public class Tienda {
         this.telefono = telefono;
         this.disponible = disponible;
         this.logo = logo;
+    }
+
+    public Tienda(String direccion,String nombre,String nit,String telefono, Tendero tendero){
+        this.direccion = direccion;
+        this.nombre = nombre;
+        this.nit = nit;
+        this.telefono = telefono;
+        this.tendero=tendero;
+        this.disponible=true;
     }
 
     public void mnodificarHorario(String dia, Horario horario){
@@ -126,5 +137,13 @@ public class Tienda {
     @Override
     public String toString(){
         return "nombre: "+nombre+" direccion: "+direccion+" telefono: "+telefono+" NIT: "+nit;
+    }
+
+    public Tendero getTendero() {
+        return tendero;
+    }
+
+    public void setTendero(Tendero tendero) {
+        this.tendero = tendero;
     }
 }

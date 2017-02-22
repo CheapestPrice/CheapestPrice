@@ -15,7 +15,7 @@ angular.module('myApp.vistaPrincipal', ['ngRoute'])
     }
 
     $scope.nextRegistro=function(){
-                $location.path("/registro");
+                $location.path("/vistaRegistro");
         }
 
 }]);
