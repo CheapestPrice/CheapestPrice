@@ -1,5 +1,5 @@
-<md-dialog aria-label="Detalles del producto ">
-    <form ng-cloak>
+<md-dialog aria-label="Detalles del producto " style="width:50%">
+    <form ng-cloak >
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Detalles del producto {{producto.producto.nombre}}</h2>
@@ -11,35 +11,55 @@
         </md-toolbar>
 
         <md-dialog-content>
-            <div class="md-dialog-content">
-                <br>
-                <label>Nombre:</label>
-                <label>{{producto.producto.nombre}}</label>
-                <label>Precio:</label>
-                <label>{{producto.producto.precio}}</label>
-                <br>
-                <label>Marca:</label>
-                <label>{{producto.producto.marca}}</label>
-                <label>Categoria:</label>
-                <label>{{producto.producto.categoria}}</label>
-                <br>
-                <label>Nombre:</label>
-                <label>Direccion:</label>
-                <label>Telefono:</label>
+            <div class="md-dialog-content" >
+                <form>
+                    <table style="width:100%">
 
+                        <tr>
+                            <td>
+                                <fieldset>
+                                    <center><legend><h2>Producto:</h2></legend></center>
+                                    <center><label>Nombre:</label></center>
+                                    <center><label>{{producto.producto.nombre}}</label></center>
+                                    <center><label>Precio:</label></center>
+                                    <center><label>{{producto.producto.precio}}</label></center>
+                                    <center><label>Marca:</label></center>
+                                    <center><label>{{producto.producto.marca}}</label></center>
+                                    <center><label>Categoria:</label></center>
+                                    <center><label>{{producto.producto.categoria}}</label></center>
+                                    <center><img height="100" width="100"  src="images/tag_price.jpg" alt="Fotografia producto"/></center>
+                                </fieldset>
 
-                <label>{{producto.producto.nombre}}</label>
-                <img height="200" width="200"  src="" alt="Fotografia producto"/>
+                            </td>
+                            <td>
+                                <fieldset>
+                                    <center><legend><h2>Tienda:</h2></legend></center>
+                                    <center><label>Nombre:</label></center>
+                                    <center><label>{{producto.tienda.nombre}}</label></center>
+                                    <center><label>Direccion:</label></center>
+                                    <center><label>{{producto.tienda.direccion}}</label></center>
+                                    <center><label>Telefono:</label></center>
+                                    <center><label>{{producto.tienda.telefono}}</label></center>
+                                    <center><label>Horario:</label></center>
+                                    <center><label>Lunes a viernes 8 a.m a 9 p.m</label></center>
+                                    <center><img height="100" width="100"  src="images/shop.png" alt="Logo/fotografia tienda"/></center>
+                                </fieldset>
+                            </td>
 
+                        </tr>
+
+                    </table>
+
+                </form>
             </div>
         </md-dialog-content>
 
         <md-dialog-actions layout="row">
-
             <span flex></span>
             <md-button ng-click="hide()">
                 OK
             </md-button>
         </md-dialog-actions>
+
     </form>
 </md-dialog>
