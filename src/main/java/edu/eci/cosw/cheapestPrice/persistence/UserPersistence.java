@@ -5,13 +5,28 @@ import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import org.eclipse.jetty.server.Authentication;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 2105403 on 2/20/17.
  */
+@Service
 public interface UserPersistence {
+
+    /**
+     * Retorna a todos los usuarios
+     * @return
+     */
+    public Map<String,Usuario> loadAllUsuarios();
+
+    /**
+     * Retorna un usuario por su nickname
+     * @return
+     */
+    public Usuario loadUsuarioByNickname(String nickname) throws CheapestPriceException;
 
     /**
      * Retorna todas las listas de mercado
@@ -41,8 +56,15 @@ public interface UserPersistence {
     public List<ListaDeMercado> loadShopListByName(String name) throws CheapestPriceException;
 
     /**
+     *
+     * Agrega usuarios
+     * @param usuario
+     */
+    public void addUser(Usuario usuario) throws CheapestPriceException;
+
+    /**
      * Agregar un nuevo usuario
      * @param usuario
      */
-    public void updateUser(Usuario usuario)throws CheapestPriceException;
+    public void updateUser(String oldNickname, Usuario usuario)throws CheapestPriceException;
 }

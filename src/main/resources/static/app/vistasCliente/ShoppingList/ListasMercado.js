@@ -9,9 +9,10 @@ angular.module('myApp.listasMercado', ['ngRoute'])
   });
 }])
 
-.controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', function($scope, listasMercadoStubFactory, $rootScope, $location) {
+.controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', 'getUserNickname', function($scope, listasMercadoStubFactory, $rootScope, $location,getUserNickname) {
     listasMercadoStubFactory.listaCompleta();
-    $scope.listMerc = listasMercadoStubFactory.getListaMercado();
+    $scope.listMerc = getUserNickname.get({nickname:'nickname1'});
+    //$scope.listMerc = listasMercadoStubFactory.getListaMercado();
     $rootScope.listaMercado = ""
 
     $scope.eliminar = function(nom){

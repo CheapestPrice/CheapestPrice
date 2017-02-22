@@ -51,11 +51,6 @@ angular.module('myApp.shopList', ['ngRoute'])
 
           }
 
-
-    $scope.agregarItem = function(){
-                 listasMercadoStubFactory.agregarProducto($rootScope.itemSeleccionado, $rootScope.listaSeleccionada);
-     };
-
 }])
  .directive('buttonFavorite', function() {
        return {
