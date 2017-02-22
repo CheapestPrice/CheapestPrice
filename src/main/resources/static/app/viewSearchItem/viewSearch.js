@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.viewSearch', ['ngRoute'])
+angular.module('myApp.viewSearch', ['ngRoute','ngMaterial'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/viewSearch', {
@@ -10,9 +10,13 @@ angular.module('myApp.viewSearch', ['ngRoute'])
 });
 }])
 
-.controller('ViewSearchCtrl', ['$scope','placesStubFactory','$rootScope','allItems', function($scope,placesStubFactory,$rootScope,allItems) {
+.controller('ViewSearchCtrl', ['$scope','placesStubFactory','$rootScope','allItems','$mdDialog','listasMercadoStubFactory', function($scope,placesStubFactory,$rootScope,allItems,$mdDialog,listasMercadoStubFactory) {
     //$scope.items= placesStubFactory.getListado()[0].sedes[0].productos;
     $scope.items= allItems.query();
+    $scope.status = '  ';
+    $scope.customFullscreen = false;
+    $scope.chooseItem="";
+    $scope.chooseList="";
     console.log($scope.items);
     console.log(placesStubFactory.getListado()[0].sedes[0].productos);
         $scope.rating2 = 3;
@@ -20,14 +24,61 @@ angular.module('myApp.viewSearch', ['ngRoute'])
         $scope.rateFunction = function(rating) {
           console.log('Rating selected: ' + rating);
         };
-     $scope.item = function(ite){
+    $scope.item = function(ite){
         $rootScope.itemSeleccionado = ite;
      }
+
+
 
      /*$scope.lista = function(lista){
         $rootScope.listaSeleccionada = lista;
      }*/
+    $scope.showAdvanced = function(ev,item) {
+        $scope.chooseItem=item;
+        $scope.chooseItem['favorito'] =false;
+        $scope.chooseItem.comprado = false;
+        console.log("Escogio el item ",item);
+        $mdDialog.show({
+          controller: DialogController,
+          templateUrl: 'viewSearchItem/addToShoppingCart.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true,
+          fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+        .then(function(list) {
+          $scope.chooseList = list;
+          console.log("Llego la lista ",list);
+          listasMercadoStubFactory.agregarProducto($scope.chooseItem, $scope.chooseList);
+        });
+      };
+      function DialogController($scope, $mdDialog,listasMercadoStubFactory,$rootScope, $location) {
+          listasMercadoStubFactory.listaCompleta();
+          $scope.listMerc = listasMercadoStubFactory.getListaMercado();
+          $scope.listaMercado = "";
+          $scope.hide = function() {
+            $mdDialog.hide();
+          };
 
+          $scope.cancel = function() {
+            $mdDialog.cancel();
+          };
+
+          $scope.answer = function() {
+            $mdDialog.hide($scope.listaMercado);
+          };
+          $scope.propertyName = 'nombre';
+           $scope.reverse = true;
+
+           $scope.sortBy = function(propertyName) {
+               $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+               $scope.propertyName = propertyName;
+           };
+           $scope.ver=function(items){
+                      $scope.listaMercado=items;
+                      $mdDialog.hide($scope.listaMercado);
+                  }
+        }
 
 }]).directive('starRating', [function(){
     return {

@@ -65,7 +65,7 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
                 $scope.mensaje="Por favor, revise la información suministrada...";
               })
             $scope.mensaje="Por favor, revise la información suministrada...";
-            
+
             /*var sePudo=items2StubFactory.registrarProducto(itemm);
             if(!sePudo){
                 $scope.fail=true;
