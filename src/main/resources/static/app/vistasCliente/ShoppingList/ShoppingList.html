@@ -43,7 +43,7 @@
             </td>
             <td>
                 <center>
-                <md-checkbox ng-model="todo.producto.comprado" aria-label="Checkbox" ng-click="comprado(todo.producto.id, todo.tienda.nombre, listado.nombre)">
+                <md-checkbox ng-model="todo.producto.comprado" aria-label="Checkbox" ng-click="comprado(todo.producto.id, todo.tienda.nombre)">
                 </md-checkbox>
                 </center>
             </td>
@@ -53,7 +53,7 @@
                 </div>
                 </center>
             </td>
-            <td><center><button ng-click="eliminar(todo.producto.id, todo.tienda.nombre, listado.nombre)">Eliminar</button></center></td>
+            <td><center><button ng-click="eliminar(todo.producto.id, todo.tienda.nombre)">Eliminar</button></center></td>
         </tr>
         </tbody>
     </table>

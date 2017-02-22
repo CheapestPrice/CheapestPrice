@@ -216,7 +216,10 @@ angular.module('services.listFactory', ['ngRoute', 'ngResource'])
                         listaMercado.lista[i].items.push(pro);
                     }
                 }
+                console.log("Lista luego de agregar producto")
+                console.log(listaMercado.lista)
             }
+
            }
           })
     .factory('items2StubFactory', function () {

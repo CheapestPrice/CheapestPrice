@@ -11,7 +11,7 @@ angular.module('myApp.shopList', ['ngRoute'])
 
 .controller('shopListCtrl', ['$scope','listasMercadoStubFactory','$rootScope','$mdDialog', 'updateUser', function($scope, listasMercadoStubFactory, $rootScope,$mdDialog, updateUser) {
     $scope.listado = $rootScope.listaMercado;
-    $scope.usua = $rootScope.usuario;
+    //$scope.usua = $rootScope.usuario;
     $scope.propertyName = 'producto.nombre';
     $scope.customFullscreen = false;
     $scope.reverse = true;
@@ -21,8 +21,8 @@ angular.module('myApp.shopList', ['ngRoute'])
         $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
         $scope.propertyName = propertyName;
     };
-    $scope.eliminar = function(iden, tien, lista){
-        //listasMercadoStubFactory.eliminarItem(iden, tien, $rootScope.listaMercado.nombre);
+    $scope.eliminar = function(iden, tien){
+        listasMercadoStubFactory.eliminarItem(iden, tien, $rootScope.listaMercado.nombre);
         /*var ban = false
         for(var i=0;i<$scope.usua.listas.length;i++){
             if($scope.usua.listas[i].nombre == lista){
@@ -40,8 +40,8 @@ angular.module('myApp.shopList', ['ngRoute'])
         }
         updateUser.update({nickname:'nickname1'},$scope.usua);*/
     };
-    $scope.comprado = function(iden, tien, lista){
-        //listasMercadoStubFactory.comprarItem(iden, tien, $rootScope.listaMercado.nombre);
+    $scope.comprado = function(iden, tien){
+        listasMercadoStubFactory.comprarItem(iden, tien, $rootScope.listaMercado.nombre);
         /*var ban = false
                 for(var i=0;i<$scope.usua.listas.length;i++){
                     if($scope.usua.listas[i].nombre == lista){

@@ -21,7 +21,7 @@
             </tr>
         </theader>
         <tbody>
-        <tr ng-repeat="todo in listMerc.listas  | orderBy:propertyName:reverse">
+        <tr ng-repeat="todo in listMerc  | orderBy:propertyName:reverse">
             <td><center>{{todo.nombre}}</center></td>
             <td><center>{{todo.fechaCreacion.toLocaleString()}}</center></td>
             <td><center>{{completo(todo.revisado)}}</center></td>
