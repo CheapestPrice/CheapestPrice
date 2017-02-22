@@ -10,7 +10,6 @@ angular.module('myApp', [
   'myApp.viewProducts',
   'myApp.shopList',
   'myApp.listasMercado',
-  'myApp.viewItem',
   'myApp.version',
   'myApp.viewAddProducts',
   'myApp.viewSearch',
