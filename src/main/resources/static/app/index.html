@@ -28,7 +28,7 @@
   <ul class="topnav">
     <li><a href="#!/vistaPrincipal">Cheapest Price</a></li>
     <li ng-show="authenticated"><a href="#!/ListasMercado">Listas de mercado</a></li>
-    <li><a href="#!/viewSearch">Buscar productos</a></li>
+    <li ng-show="authenticated"><a href="#!/viewSearch">Buscar productos</a></li>
     <li ng-show="authenticated"><a href="#!/viewAddProducts">Agregar Productos</a></li>
     <li ng-show="authenticated"><a ng-controller="logout" ng-click="logout()">Log Out</a></li>
   </ul>
