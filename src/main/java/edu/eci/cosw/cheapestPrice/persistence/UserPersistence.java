@@ -46,5 +46,5 @@ public interface UserPersistence {
      * Agregar un nuevo usuario
      * @param usuario
      */
-    public void updateUser(Usuario usuario)throws CheapestPriceException;
+    public void updateUser(String oldNickname, Usuario usuario)throws CheapestPriceException;
 }

@@ -59,9 +59,9 @@ public class UserPersistenceStub implements UserPersistence{
     }
 
     @Override
-    public void updateUser(Usuario usuario) throws CheapestPriceException{
-        if(usuario==null) throw new CheapestPriceException("El usuario tiene que existir");
-        usuarios.remove(usuarios.get(usuario.getNickname()));
+    public void updateUser(String oldNickname, Usuario usuario) throws CheapestPriceException{
+        if(usuario==null && usuarios.get(oldNickname)!=null) throw new CheapestPriceException("El usuario tiene que existir");
+        usuarios.remove(usuarios.get(oldNickname));
         usuarios.put(usuario.getNickname(),usuario);
     }
 }

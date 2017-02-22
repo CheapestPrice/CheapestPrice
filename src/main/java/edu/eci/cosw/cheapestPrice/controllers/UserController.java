@@ -16,28 +16,11 @@ import java.security.Principal;
  * Created by Paula on 20/02/2017.
  */
 @RestController
-@RequestMapping("/usuario")
 public class UserController {
     @RequestMapping("/app/user")
     public Principal user(Principal user) {
         return user;
     }
-    @Autowired
-    UserPersistence uP;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getListas(){
-        return new ResponseEntity<>(uP.loadAllShopList(), HttpStatus.ACCEPTED);
-    }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<?> actualizarUsuario(Usuario usuario){
-        try{
-            uP.updateUser(usuario);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        }catch (CheapestPriceException e){
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
 }
