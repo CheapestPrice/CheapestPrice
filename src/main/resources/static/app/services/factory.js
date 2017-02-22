@@ -401,13 +401,14 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
         return $resource('/items/:idNum');
     })
     .factory('updateItem',function($resource) {
-        return $resource('/items/shop/:oldShop/id/:oldId', null,
-           {
-               'update': { method:'PUT' }
-           });
-    })
-    .factory('updateUser',function($resource){
-        return $resource('/usuarios', null,
+            return $resource('/items/shop/:oldShop/id/:oldId', null,
+                   {
+                       'update': { method:'PUT' }
+                   });
+     })
+     .factory('updateUser',function($resource){
+            return $resource('/usuarios/:nickname', null,
+
             {
                 'update' : {method:'PUT'}
             });

@@ -42,10 +42,10 @@ public class UsuariosController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<?> actualizarUsuario(String oldNickname, Usuario usuario){
+    @RequestMapping(value="/{nickname}" ,method = RequestMethod.PUT)
+    public ResponseEntity<?> actualizarUsuario(@PathVariable String nickname, Usuario usuario){
         try{
-            uP.updateUser(oldNickname, usuario);
+            uP.updateUser(nickname, usuario);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             e.printStackTrace();
