@@ -5,12 +5,14 @@ import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import org.eclipse.jetty.server.Authentication;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by 2105403 on 2/20/17.
  */
+@Service
 public interface UserPersistence {
 
     /**
