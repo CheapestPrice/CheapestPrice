@@ -15,6 +15,7 @@ angular.module('myApp.shopList', ['ngRoute'])
     $scope.customFullscreen = false;
     $scope.reverse = true;
     $scope.producto=null;
+
     $scope.sortBy = function(propertyName) {
         $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
         $scope.propertyName = propertyName;
@@ -49,11 +50,6 @@ angular.module('myApp.shopList', ['ngRoute'])
               };
 
           }
-
-
-    $scope.agregarItem = function(){
-                 listasMercadoStubFactory.agregarProducto($rootScope.itemSeleccionado, $rootScope.listaSeleccionada);
-     };
 
 }])
  .directive('buttonFavorite', function() {

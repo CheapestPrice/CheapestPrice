@@ -7,15 +7,15 @@ import java.util.List;
  */
 public class Usuario {
 
-    private String correo;
+    private String nombre;
     private String email;
     private String nickname;
     private List<ListaDeMercado> listas;
 
     public Usuario(){}
 
-    public Usuario(String correo, String email, String nickname, List<ListaDeMercado> listas){
-        this.setCorreo(correo);
+    public Usuario(String nombre, String email, String nickname, List<ListaDeMercado> listas){
+        this.setNombre(nombre);
         this.setEmail(email);
         this.setNickname(nickname);
         this.setListas(listas);
@@ -34,12 +34,12 @@ public class Usuario {
         }
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getEmail() {

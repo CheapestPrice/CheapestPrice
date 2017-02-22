@@ -1,5 +1,6 @@
 package edu.eci.cosw.cheapestPrice.persistence.stub;
 
+import edu.eci.cosw.cheapestPrice.entities.Horario;
 import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
 import edu.eci.cosw.cheapestPrice.entities.Tienda;
@@ -8,7 +9,9 @@ import edu.eci.cosw.cheapestPrice.persistence.ItemPersistence;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -151,9 +154,21 @@ public class ItemPersistenceStub implements ItemPersistence{
 
     public static void poblarStub(ItemPersistenceStub ips){
         Producto p1=new Producto(1,"Queso crema",3000,"Alqueria","Queso");
+        Horario h1=new Horario(8, 15, 9, 0);
+        Map<String,Horario> hor=new HashMap<String,Horario>();
+        Horario h2=new Horario(7, 15, 8, 15);
+        hor.put("Lunes",h1);
+        hor.put("Martes",h2);
+        hor.put("Miercoles",h1);
+        hor.put("Jueves",h2);
+        hor.put("Viernes",h1);
+        hor.put("Sabado",h2);
+        hor.put("Domingo",h1);
         Tienda t1= new Tienda("calle 184 #52 A13", 4.7649271,-74.0476042,"Donde pepe","1234567-2","6699132",true);
+        t1.setHorario(hor);
         Producto p2=new Producto(2,"Leche entera",3500,"Alqueria","Leche");
         Tienda t2= new Tienda("Cll 167 #58a-20", 4.7498466,-74.0623005,"Surtir","123456456","65498765",true);
+        t1.setHorario(hor);
         Producto p3=new Producto(3,"Papas BBQ",4500,"Margarita","Papas");
         Producto p4=new Producto(4,"Coca-Cola",4500,"Coca-Cola","Gaseosa");
         Item i1= new Item(t1,p1);

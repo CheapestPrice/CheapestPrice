@@ -17,6 +17,7 @@ public class CheapestPriceException extends Exception{
      * @param cause
      */
     public CheapestPriceException(String cause) {
+
         super(cause);
     }
 }
