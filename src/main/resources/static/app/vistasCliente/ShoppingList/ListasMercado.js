@@ -9,14 +9,24 @@ angular.module('myApp.listasMercado', ['ngRoute'])
   });
 }])
 
-.controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', 'getUserNickname', function($scope, listasMercadoStubFactory, $rootScope, $location,getUserNickname) {
+.controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', 'getUserNickname', 'updateUser', function($scope, listasMercadoStubFactory, $rootScope, $location,getUserNickname, updateUser) {
     listasMercadoStubFactory.listaCompleta();
     $scope.listMerc = getUserNickname.get({nickname:'nickname1'});
+    console.log($scope.listMerc);
+    $rootScope.usuario = getUserNickname.get({nickname:'nickname1'});
     //$scope.listMerc = listasMercadoStubFactory.getListaMercado();
     $rootScope.listaMercado = ""
 
     $scope.eliminar = function(nom){
-        listasMercadoStubFactory.eliminate(nom);
+        //listasMercadoStubFactory.eliminate(nom);
+        for(var i=0;i<$scope.listMerc.listas.length;i++){
+             if($scope.listMerc.listas[i].nombre == nom){
+                 $scope.listMerc.listas.splice(i,1);
+                    break
+             }
+
+        }
+        updateUser.update({nickname:'nickname1'},$scope.listMerc);
     }
 
     $scope.propertyName = 'nombre';

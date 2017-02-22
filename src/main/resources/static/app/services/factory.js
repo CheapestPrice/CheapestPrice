@@ -396,7 +396,7 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
                    });
      })
      .factory('updateUser',function($resource){
-            return $resource('/usuarios', null,
+            return $resource('/usuarios/:nickname', null,
             {
                         'update' : {method:'PUT'}
             });
