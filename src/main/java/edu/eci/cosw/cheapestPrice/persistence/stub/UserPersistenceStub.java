@@ -13,11 +13,21 @@ import java.util.*;
 @Service
 public class UserPersistenceStub implements UserPersistence{
 
+    public Map<String, Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(Map<String, Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
     private Map<String,Usuario> usuarios;
 
-    public UserPersistenceStub(){
+    public UserPersistenceStub() throws CheapestPriceException {
         usuarios = new HashMap<>();
         UserPersistenceStub.poblarStub(this);
+
+        prueba(this);
     }
 
     @Override
@@ -68,8 +78,10 @@ public class UserPersistenceStub implements UserPersistence{
     }
     @Override
     public void addUser(Usuario usuario)throws CheapestPriceException{
+        System.out.println("Sirvio!: "+ usuario.getNickname());
         if(usuarios.get(usuario.getNickname())!=null) throw new CheapestPriceException("El usuario "+usuario.getNickname()+" ya está registrado");
         usuarios.put(usuario.getNickname(),usuario);
+
     }
 
     @Override
@@ -119,5 +131,12 @@ public class UserPersistenceStub implements UserPersistence{
         }catch (CheapestPriceException e){
             e.printStackTrace();
         }
+    }
+
+    private static void prueba(UserPersistenceStub ups) throws CheapestPriceException {
+
+        Usuario u=new Usuario("nombre","prueba@prueba.com","pruebaa");
+        ups.addUser(u);
+
     }
 }

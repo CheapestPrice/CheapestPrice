@@ -1,5 +1,11 @@
 'use strict';
 angular.module('services.listFactory', ['ngRoute', 'ngResource'])
+
+    .factory('registroU', function($resource) {
+                    return $resource('/usuarios');
+                })
+
+
     .factory('itemsStubFactory', function () {
         var items = {
                     lista:[
