@@ -390,8 +390,8 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
         return $resource('/items/:idNum');
     })
     .factory('updateItem',function($resource) {
-            return $resource('/items/shop/:oldShop/id/:oldId', null,
-                   {
-                       'update': { method:'PUT' }
-                   });
-        });
+        return $resource('/items/shop/:oldShop/id/:oldId', null,
+               {
+                   'update': { method:'PUT' }
+               });
+    });
