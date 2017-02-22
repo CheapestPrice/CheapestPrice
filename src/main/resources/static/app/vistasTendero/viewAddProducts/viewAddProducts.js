@@ -65,7 +65,7 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
                 $scope.mensaje="Por favor, revise la información suministrada...";
               })
             $scope.mensaje="Por favor, revise la información suministrada...";
-            }
+            
             /*var sePudo=items2StubFactory.registrarProducto(itemm);
             if(!sePudo){
                 $scope.fail=true;
@@ -111,9 +111,10 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
             $scope.success=true;
             $scope.fail=false;
             //items2StubFactory.modificarProducto($scope.producto);
-            updateItem.update({oldShop:$scope.producto.tienda.nombre,oldId:$scope.producto.producto.id},$scope.producto,function(){
-                                                                                                                                    $scope.listado=itemsByShop.query({shopName:$rootScope.shop.nombre});
-                                                                                                                                });
+            updateItem.update({oldShop:$scope.producto.tienda.nombre,oldId:$scope.producto.producto.id},$scope.producto,
+            function(){
+                $scope.listado=itemsByShop.query({shopName:$rootScope.shop.nombre});
+            });
         }
     };
     $scope.volver=function () {
