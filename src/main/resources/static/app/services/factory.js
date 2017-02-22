@@ -400,5 +400,8 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
             {
                         'update' : {method:'PUT'}
             });
-     });
+     })
+     .factory('getUserNickname',function($resource){
+            return $resource('/usuarios/:nickname');
+      });
 

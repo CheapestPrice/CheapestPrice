@@ -21,6 +21,18 @@ public class UserPersistenceStub implements UserPersistence{
     }
 
     @Override
+    public Map<String,Usuario> loadAllUsuarios(){
+        return usuarios;
+    }
+
+    @Override
+    public Usuario loadUsuarioByNickname(String nickname) throws CheapestPriceException{
+        if(nickname.length()==0 || nickname==null) throw  new CheapestPriceException("Favor colocar un nickname apropiado");
+        if(usuarios.get(nickname)==null) throw new CheapestPriceException("El usuario con nickname "+nickname+" no esta registrado");
+        return usuarios.get(nickname);
+    }
+
+    @Override
     public List<ListaDeMercado> loadAllShopList() {
         List<ListaDeMercado> listas = new ArrayList<>();
         for(Usuario u: usuarios.values()){

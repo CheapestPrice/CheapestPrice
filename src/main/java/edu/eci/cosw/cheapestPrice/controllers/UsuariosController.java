@@ -6,6 +6,7 @@ import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,12 +21,21 @@ public class UsuariosController {
     UserPersistence uP;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getListas(){
-        return new ResponseEntity<>(uP.loadAllShopList(), HttpStatus.ACCEPTED);
+    public ResponseEntity<?> getUsuarios(){
+        return new ResponseEntity<>(uP.loadAllUsuarios(), HttpStatus.ACCEPTED);
+    }
+
+    @RequestMapping(value="/{nickname}" ,method = RequestMethod.GET)
+    public ResponseEntity<?> getUsuarioPorNickname(@PathVariable String nickname){
+        try{
+            return new ResponseEntity<>(uP.loadUsuarioByNickname(nickname), HttpStatus.ACCEPTED);
+        }catch (CheapestPriceException e){
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> actualizarUsuario(Usuario usuario){
+    public ResponseEntity<?> agregarUsuario(Usuario usuario){
         try{
             uP.addUser(usuario);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);

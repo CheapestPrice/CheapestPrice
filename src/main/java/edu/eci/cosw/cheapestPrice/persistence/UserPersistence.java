@@ -8,12 +8,25 @@ import org.eclipse.jetty.server.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 2105403 on 2/20/17.
  */
 @Service
 public interface UserPersistence {
+
+    /**
+     * Retorna a todos los usuarios
+     * @return
+     */
+    public Map<String,Usuario> loadAllUsuarios();
+
+    /**
+     * Retorna un usuario por su nickname
+     * @return
+     */
+    public Usuario loadUsuarioByNickname(String nickname) throws CheapestPriceException;
 
     /**
      * Retorna todas las listas de mercado
