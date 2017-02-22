@@ -24,6 +24,17 @@ public class UsuariosController {
         return new ResponseEntity<>(uP.loadAllShopList(), HttpStatus.ACCEPTED);
     }
 
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> actualizarUsuario(Usuario usuario){
+        try{
+            uP.addUser(usuario);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }catch (CheapestPriceException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<?> actualizarUsuario(String oldNickname, Usuario usuario){
         try{

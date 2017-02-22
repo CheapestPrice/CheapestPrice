@@ -43,6 +43,13 @@ public interface UserPersistence {
     public List<ListaDeMercado> loadShopListByName(String name) throws CheapestPriceException;
 
     /**
+     *
+     * Agrega usuarios
+     * @param usuario
+     */
+    public void addUser(Usuario usuario) throws CheapestPriceException;
+
+    /**
      * Agregar un nuevo usuario
      * @param usuario
      */

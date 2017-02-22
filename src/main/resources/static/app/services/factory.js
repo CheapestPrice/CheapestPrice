@@ -400,5 +400,5 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
             {
                         'update' : {method:'PUT'}
             });
-     })
+     });
 

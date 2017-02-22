@@ -24,15 +24,7 @@ angular.module('myApp.viewSearch', ['ngRoute','ngMaterial'])
         $scope.rateFunction = function(rating) {
           console.log('Rating selected: ' + rating);
         };
-    $scope.item = function(ite){
-        $rootScope.itemSeleccionado = ite;
-     }
 
-
-
-     /*$scope.lista = function(lista){
-        $rootScope.listaSeleccionada = lista;
-     }*/
     $scope.showAdvanced = function(ev,item) {
         $scope.chooseItem=item;
         $scope.chooseItem['favorito'] =false;
@@ -77,6 +69,7 @@ angular.module('myApp.viewSearch', ['ngRoute','ngMaterial'])
            $scope.ver=function(items){
                       $scope.listaMercado=items;
                       $mdDialog.hide($scope.listaMercado);
+
                   }
         }
 
