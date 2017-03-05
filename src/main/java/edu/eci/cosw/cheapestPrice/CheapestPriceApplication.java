@@ -45,7 +45,7 @@ public class CheapestPriceApplication {
                     .httpBasic()
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/app/**","/logout","/login","/vistaPrincipal", "/usuarios/**","/tiendas/**").permitAll()
+                    .antMatchers("/app/**","/logout","/login","/vistaPrincipal", "/usuarios/**","/tiendas/**", "/assets/**").permitAll()
                     .anyRequest().authenticated().and()
                     .logout().logoutSuccessUrl("/")
                     .and().csrf()

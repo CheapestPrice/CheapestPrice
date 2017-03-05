@@ -1,4 +1,4 @@
-@import url("assets/css/font-awesome.min.css");
+@import url("font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,600");
 
 /*
@@ -2000,17 +2000,17 @@
 			top: 0;
 			z-index: 1;
 			box-shadow: inset 0px 0px 0px 1px #e8e8e8;
-			background: #f6f8fb url("assets/css/images/image-wrapper.svg");
+			background: #f6f8fb url("images/image-wrapper.svg");
 		}
 
 	#header-wrapper {
 		position: relative;
 		padding: 4em 0 2em 0;
-		background-image: url("assets/css/images/header.svg");
-		background-image: url("assets/css/images/overlay.png"), url("assets/css/images/header.svg"), -moz-linear-gradient(75deg, #66b2ff 15%, #2385b7 55%);
-		background-image: url("assets/css/images/overlay.png"), url("assets/css/images/header.svg"), -webkit-linear-gradient(75deg, #66b2ff 15%, #2385b7 55%);
-		background-image: url("assets/css/images/overlay.png"), url("assets/css/images/header.svg"), -ms-linear-gradient(75deg, #66b2ff 15%, #2385b7 55%);
-		background-image: url("assets/css/images/overlay.png"), url("assets/css/images/header.svg"), linear-gradient(75deg, #66b2ff 15%, #2385b7 55%);
+		background-image: url("images/header.svg");
+		background-image: url("images/overlay.png"), url("images/header.svg"), -moz-linear-gradient(75deg, #66b2ff 15%, #2385b7 55%);
+		background-image: url("images/overlay.png"), url("images/header.svg"), -webkit-linear-gradient(75deg, #66b2ff 15%, #2385b7 55%);
+		background-image: url("images/overlay.png"), url("images/header.svg"), -ms-linear-gradient(75deg, #66b2ff 15%, #2385b7 55%);
+		background-image: url("images/overlay.png"), url("images/header.svg"), linear-gradient(75deg, #66b2ff 15%, #2385b7 55%);
 		background-color: #8896ef;
 		background-size: 100% 620%;
 		background-size: 128px 128px, 100% 620%, auto;
@@ -2024,7 +2024,7 @@
 
 	#promo-wrapper {
 		position: relative;
-		background-image: url("assets/css/images/overlay.png"), url("images/promo1.jpg");
+		background-image: url("images/overlay.png"), url("../../images/promo1.jpg");
 		background-size: 192px 192px, cover;
 		background-position: top left, center center;
 		color: #fff;
@@ -2037,7 +2037,7 @@
 		position: relative;
 		border-top: solid 1px #c2c7cc;
 		padding: 6em 0 6em 0;
-		background-image: url("assets/css/images/overlay.png"), url("assets/css/images/footer.svg");
+		background-image: url("images/overlay.png"), url("images/footer.svg");
 		background-size: 128px 128px,				100% 100%;
 	}
 
@@ -2753,10 +2753,10 @@
 				-webkit-transition: -webkit-transform 0.5s ease;
 				-ms-transition: -ms-transform 0.5s ease;
 				transition: transform 0.5s ease;
-				background-image: url("assets/css//overlay.png"), url("assets/css/images/navPanel.svg"), -moz-linear-gradient(top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.25));
-				background-image: url("assets/css/images/overlay.png"), url("assets/css/images/navPanel.svg"), -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.25));
-				background-image: url("assets/css/images/overlay.png"), url("assets/css/images/navPanel.svg"), -ms-linear-gradient(top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.25));
-				background-image: url("assets/css/images/overlay.png"), url("assets/css/images/navPanel.svg"), linear-gradient(top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.25));
+				background-image: url("images/overlay.png"), url("images/navPanel.svg"), -moz-linear-gradient(top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.25));
+				background-image: url("images/overlay.png"), url("images/navPanel.svg"), -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.25));
+				background-image: url("images/overlay.png"), url("images/navPanel.svg"), -ms-linear-gradient(top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.25));
+				background-image: url("images/overlay.png"), url("images/navPanel.svg"), linear-gradient(top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.25));
 				display: block;
 				left: 0;
 				overflow-y: auto;

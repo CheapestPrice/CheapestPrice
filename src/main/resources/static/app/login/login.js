@@ -40,7 +40,7 @@ angular.module('myApp.login', ['ngRoute'])
             $scope.login = function () {
                 authenticate($scope.credentials, function () {
                     if ($rootScope.authenticated) {
-                        $location.path("/vistaPrincipal");
+                        $location.path("/viewSearch");
                         $scope.error = false;
                     } else {
                         $location.path("/login");

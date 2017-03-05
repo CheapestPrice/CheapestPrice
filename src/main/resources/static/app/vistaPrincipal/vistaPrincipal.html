@@ -1,19 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<!--
+	Telephasic by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
 <head>
-    <link rel="stylesheet" href="vistaPrincipal/vistaPrincipal.css">
-    <meta charset="UTF-8">
+    <title>CheapestPrice</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 </head>
-<body>
-<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-    <img src="images/cheapestPrice.jpg">
-    <md-button class="md-raised md-primary" ng-click="nextRegistro()">Registrate!</md-button>
-    <md-button class="md-raised md-primary" ng-click="nextLogin()">Inicia Sesion</md-button>
-</section>
-<section layout="row" layout-sm="column" layout-align="center end" layout-wrap>
+<body >
+<div id="page-wrapper">
 
-    <div class="label">Raised</div>
-</section>
+    <!-- Header -->
+    <div id="header-wrapper">
+        <div id="header" class="container">
+
+            <!-- Logo-->
+            <h1 id="logo"><a href="index.html">CheapestPrice</a></h1>
+
+            <!-- Nav-->
+            <nav id="nav">
+                <ul >
+                    <li ng-show="authenticated"><a href="#!/ListasMercado">Listas de mercado</a></li>
+                    <li ng-show="authenticated"><a href="#!/viewSearch">Buscar productos</a></li>
+                    <li ng-show="authenticated"><a href="#!/viewAddProducts">Agregar Productos</a></li>
+                    <li ng-show="authenticated"><a ng-controller="logout" ng-click="logout()">Log Out</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+        <!-- Hero -->
+        <section id="hero" class="container">
+            <header>
+                <h2>CheapestPrice compara los precios
+                    <br />
+                    de los productos de tus tiendas m&aacute;s cercanas</h2>
+            </header>
+
+            <ul class="actions">
+                <li ng-click="nextLogin()"><a class="button" >¡Log In!</a></li>
+            </ul>
+        </section>
+
+    </div>
+    <!-- Promo -->
+    <div id="promo-wrapper">
+        <section id="promo">
+            <!--<h2>Neque semper magna et lorem ipsum adipiscing</h2>-->
+            <a class="button" ng-click="nextRegistro()">¡Registrate!</a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-wrapper">
+        <div id="footer" class="container">
+            <header class="major">
+                <h2>Proyecto Cheapest Price </h2>
+                <p>Hecho por estudiantes de la Escuela Colombiana de Ingenieria para la materia COSW<br />
+                    </p>
+            </header>
+        </div>
+        <div id="copyright" class="container">
+            <ul class="menu">
+                <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+<!-- Scripts -->
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
 
 </body>
 </html>

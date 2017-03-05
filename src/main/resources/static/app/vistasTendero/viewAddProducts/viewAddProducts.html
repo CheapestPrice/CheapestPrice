@@ -1,121 +1,174 @@
-<div class="container">
-    <form id="product" ng-show="agregar">
-        <h1>Productos</h1>
-        <br>
-        <label>Nombre:</label>
-        <input ng-model="nombre" type="text" placeholder="Nombre del producto"/>
-        <label>Precio:</label>
-        <input ng-model="precio" type="number" min="50" step="50"/>
-        <br>
-        <label>Marca:</label>
-        <input ng-model="marca" type="text"/>
-        <label>Categoria:</label>
-        <select ng-options="c for c in categorias" ng-model="selectedCategoria">
-        </select>
-        <br>
-        <form id="ImagenProducto" runat="server">
-            <label>Fotografia:</label>
-            <input type='file' id="imgInp" accept="image/gif, image/jpeg, image/png"/>
-            <img height="200" width="200" id="blah" src="#" alt="Your Image"/>
+<!DOCTYPE HTML>
+<!--
+	Telephasic by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Telephasic by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <div id="header-wrapper">
+        <div id="header" class="container">
+
+            <!-- Logo -->
+            <h1 id="logo"><a href="index.html">Cheapest Price</a></h1>
+
+            <!-- Nav -->
+            <nav id="nav" ng-show="authenticated">
+                <ul>
+                    <li><a href="#!/ListasMercado">Listas de mercado</a></li>
+                    <li><a href="#!/viewSearch">Buscar productos</a></li>
+                    <li class="break"><a href="#!/viewAddProducts">Agregar Productos</a></li>
+                    <li><a ng-controller="logout" ng-click="logout()">Log Out</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <form id="product" ng-show="agregar">
+            <h1>Productos</h1>
+            <br>
+            <label>Nombre:</label>
+            <input ng-model="nombre" type="text" placeholder="Nombre del producto"/>
+            <label>Precio:</label>
+            <input ng-model="precio" type="number" min="50" step="50"/>
+            <br>
+            <label>Marca:</label>
+            <input ng-model="marca" type="text"/>
+            <label>Categoria:</label>
+            <select ng-options="c for c in categorias" ng-model="selectedCategoria">
+            </select>
+            <br>
+            <form id="ImagenProducto" runat="server">
+                <label>Fotografia:</label>
+                <input type='file' id="imgInp" accept="image/gif, image/jpeg, image/png"/>
+                <img height="200" width="200" id="blah" src="#" alt="Your Image"/>
+            </form>
+
+            <div ng-show="fail && agregar" class="alert alert-danger" alert-dismissable>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <a class="alert-link">{{mensaje}}</a>
+            </div>
+            <div ng-show="success && agregar" class="alert alert-success" alert-dismissable>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <a class="alert-link">{{mensaje}}</a>
+            </div>
+
+            <button ng-show="agregar" class="btn waves-effect waves-light" type="submit" name="action" ng-click="registrarProducto()">
+                Registrar
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+        <form id="product-mod" ng-show="modificar">
+            <button ng-click="volver()">volver a agregar producto<i class="fa fa-reply" aria-hidden="true"></i></button>
+            <br>
+            <md-input-container>
+                <label>Nombre:</label>
+                <input ng-model="producto.producto.nombre" type="text" placeholder="Nombre del producto""/>
+            </md-input-container>
+            <md-input-container>
+                <label>Precio:</label>
+                <input ng-model="producto.producto.precio" type="number" min="50" step="50" ng-value="producto.precio"/>
+            </md-input-container>
+            <md-input-container>
+                <label>Marca:</label>
+                <input ng-model="producto.producto.marca" type="text" ng-value="producto.marca"/>
+            </md-input-container>
+            <br>
+            <md-input-container>
+                <label>Categoria:</label>
+                <md-select ng-model="producto.producto.categoria">
+                    <md-option ng-repeat="cate in categorias" ng-value="cate">{{cate}}</md-option>
+                </md-select>
+            </md-input-container>
+            <br>
+            <div ng-show="fail && modificar" class="alert alert-danger" alert-dismissable>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <a class="alert-link">{{mensaje}}</a>
+            </div>
+            <div ng-show="success && modificar" class="alert alert-success" alert-dismissable>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <a class="alert-link">{{mensaje}}</a>
+            </div>
+
+            <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="update()">
+                <i class="fa fa-refresh" aria-hidden="true"></i>Modficar
+
+            </button>
+
         </form>
 
-        <div ng-show="fail && agregar" class="alert alert-danger" alert-dismissable>
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <a class="alert-link">{{mensaje}}</a>
-        </div>
-        <div ng-show="success && agregar" class="alert alert-success" alert-dismissable>
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <a class="alert-link">{{mensaje}}</a>
-        </div>
-
-        <button ng-show="agregar" class="btn waves-effect waves-light" type="submit" name="action" ng-click="registrarProducto()">
-            Registrar
-            <i class="material-icons right">send</i>
-        </button>
-    </form>
-    <form id="product-mod" ng-show="modificar">
-        <button ng-click="volver()">volver a agregar producto<i class="fa fa-reply" aria-hidden="true"></i></button>
-        <br>
-        <md-input-container>
-            <label>Nombre:</label>
-            <input ng-model="producto.producto.nombre" type="text" placeholder="Nombre del producto""/>
-        </md-input-container>
-        <md-input-container>
-            <label>Precio:</label>
-            <input ng-model="producto.producto.precio" type="number" min="50" step="50" ng-value="producto.precio"/>
-        </md-input-container>
-        <md-input-container>
-            <label>Marca:</label>
-            <input ng-model="producto.producto.marca" type="text" ng-value="producto.marca"/>
-        </md-input-container>
-        <br>
-        <md-input-container>
-            <label>Categoria:</label>
-            <md-select ng-model="producto.producto.categoria">
-                <md-option ng-repeat="cate in categorias" ng-value="cate">{{cate}}</md-option>
-            </md-select>
-        </md-input-container>
-        <br>
-        <div ng-show="fail && modificar" class="alert alert-danger" alert-dismissable>
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <a class="alert-link">{{mensaje}}</a>
-        </div>
-        <div ng-show="success && modificar" class="alert alert-success" alert-dismissable>
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <a class="alert-link">{{mensaje}}</a>
-        </div>
-
-        <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="update()">
-            <i class="fa fa-refresh" aria-hidden="true"></i>Modficar
-
-        </button>
-
-    </form>
-
-    <div id="mostrarProductos" class="table-responsive ">
-        <table class="table table-condensed table-hover">
-            <theader>
-                <tr>
-                    <th>
-                        <a ng-click="sortBy('producto.categoria')">Categoría</a>
-                    </th>
-                    <th>
-                        <a ng-click="sortBy('producto.nombre')">Nombre</a>
-                    </th>
-                    <th>
-                        <a ng-click="sortBy('producto.marca')">Marca</a>
-                    </th>
-                    <th>
-                        <a ng-click="sortBy('producto.precio')">Precio</a>
-                    </th>
-                    <th>
-                        <p>Foto</p>
-                    </th>
-                    <th>
-                        <p>Modificar</p>
-                    </th>
-                    <th>
-                        <p>Eliminar</p>
-                    </th>
+        <div id="mostrarProductos" class="table-responsive ">
+            <table class="table table-condensed table-hover">
+                <theader>
+                    <tr>
+                        <th>
+                            <a ng-click="sortBy('producto.categoria')">Categoría</a>
+                        </th>
+                        <th>
+                            <a ng-click="sortBy('producto.nombre')">Nombre</a>
+                        </th>
+                        <th>
+                            <a ng-click="sortBy('producto.marca')">Marca</a>
+                        </th>
+                        <th>
+                            <a ng-click="sortBy('producto.precio')">Precio</a>
+                        </th>
+                        <th>
+                            <p>Foto</p>
+                        </th>
+                        <th>
+                            <p>Modificar</p>
+                        </th>
+                        <th>
+                            <p>Eliminar</p>
+                        </th>
+                    </tr>
+                </theader>
+                <tbody>
+                <tr ng-repeat="item in listado  | orderBy:propertyName:reverse">
+                    <td>{{item.producto.categoria}}</td>
+                    <td>{{item.producto.nombre}}</td>
+                    <td>{{item.producto.marca}}</td>
+                    <td>${{item.producto.precio}}</td>
+                    <td>  <img src="http://camaleon.tuzitio.com/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png" height="60" width="80" alt="temporal"/></td>
+                    <td>
+                        <md-button ng-click="modoModificar(item)" aria-label="editar"><i class="fa fa-pencil-square-o"
+                                                                                         aria-hidden="true"></i></md-button>
+                    </td>
+                    <td>
+                        <md-button aria-label="eliminar" ng-click="eliminar(item)"><i class="fa fa-eraser" aria-hidden="true"></i></md-button>
+                    </td>
                 </tr>
-            </theader>
-            <tbody>
-            <tr ng-repeat="item in listado  | orderBy:propertyName:reverse">
-                <td>{{item.producto.categoria}}</td>
-                <td>{{item.producto.nombre}}</td>
-                <td>{{item.producto.marca}}</td>
-                <td>${{item.producto.precio}}</td>
-                <td>  <img src="http://camaleon.tuzitio.com/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png" height="60" width="80" alt="temporal"/></td>
-                <td>
-                    <md-button ng-click="modoModificar(item)" aria-label="editar"><i class="fa fa-pencil-square-o"
-                                                                                     aria-hidden="true"></i></md-button>
-                </td>
-                <td>
-                    <md-button aria-label="eliminar" ng-click="eliminar(item)"><i class="fa fa-eraser" aria-hidden="true"></i></md-button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
+        </div>
     </div>
+
 </div>
+
+<!-- Scripts -->
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
