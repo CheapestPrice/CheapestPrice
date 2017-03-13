@@ -27,7 +27,7 @@ import java.io.IOException;
  * Created by Julian David Devia Serna on 2/5/17.
  */
 @SpringBootApplication
-public class CheapestPriceApplication {
+public class    CheapestPriceApplication {
 
     @Configuration
     @EnableGlobalMethodSecurity(prePostEnabled = true)

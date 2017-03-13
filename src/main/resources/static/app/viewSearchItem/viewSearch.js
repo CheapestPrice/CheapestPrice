@@ -34,20 +34,20 @@ angular.module('myApp.viewSearch', ['ngRoute', 'ngMaterial'])
             $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
             $scope.propertyName = propertyName;
         };
-        $scope.test=navigator.geolocation.getCurrentPosition(function (position) {
+        /*$scope.test=navigator.geolocation.getCurrentPosition(function (position) {
             x = position.coords.latitude;
             y = position.coords.longitude;
-        })
+        })*/
         $scope.distanceComparator = function (o1, o2) {
             var ans = 0;
             var t1 = o1.value.tienda;
             var t2 = o2.value.tienda;
             console.log(x+" "+y);
-            if (t1 && t2 && x!=0 && y!=0) {
+            if (t1 && t2 && $rootScope.x!=0 && $rootScope.y!=0) {
                 if (navigator.geolocation) {
                     console.log(position);
-                    var d1 = Math.sqrt((x - t1.x) * (x - t1.x) + (y - t1.y) * (y - t1.y));
-                    var d2 = Math.sqrt((x - t2.x) * (x - t2.x) + (y - t2.y) * (y - t2.y));
+                    var d1 = Math.sqrt(($rootScope.x - t1.x) * ($rootScope.x - t1.x) + ($rootScope.y - t1.y) * ($rootScope.y - t1.y));
+                    var d2 = Math.sqrt(($rootScope.x - t2.x) * ($rootScope.x - t2.x) + ($rootScope.y - t2.y) * ($rootScope.y - t2.y));
                     ans = (d1 < d2) ? -1 : 1;
                     console.log(d1 + " " + d2 + " " + ans);
                 }

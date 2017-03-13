@@ -419,4 +419,3 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
     .factory('getUserNickname',function($resource) {
         return $resource('/usuarios/:nickname');
     });
-

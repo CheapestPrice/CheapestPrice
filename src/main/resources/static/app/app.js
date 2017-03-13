@@ -11,6 +11,7 @@ angular.module('myApp', [
   'myApp.login',
   'myApp.registro',
   'myApp.viewProducts',
+  'myApp.viewMap',
   'myApp.shopList',
   'myApp.listasMercado',
   'myApp.version',
