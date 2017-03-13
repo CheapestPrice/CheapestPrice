@@ -20,8 +20,8 @@ public class TiendaPersistenceStub implements TiendaPersistence {
 
     @Override
     public void addTienda(Tienda tienda) {
-        System.out.println("Si entro!: "+tienda.tendero.getNickname());
-        tiendas.put(tienda.tendero.getNickname(),tienda);
+        System.out.println("Si entro!: "+tienda.tendero.getCorreo());
+        tiendas.put(tienda.tendero.getCorreo(),tienda);
 
 
     }
