@@ -7,8 +7,8 @@ public class Tendero extends Usuario {
 
     private String tienda;
 
-    public Tendero(String nombre,String email, String nickname){
-        super(nombre,email,nickname);
+    public Tendero(String nombre,String correo, String nickname){
+        super(nombre,correo);
     }
 
     public String getTienda() {

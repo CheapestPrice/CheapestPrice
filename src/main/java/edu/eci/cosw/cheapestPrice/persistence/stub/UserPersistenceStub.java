@@ -35,12 +35,6 @@ public class UserPersistenceStub implements UserPersistence{
         return usuarios;
     }
 
-    @Override
-    public Usuario loadUsuarioByNickname(String nickname) throws CheapestPriceException{
-        if(nickname.length()==0 || nickname==null) throw  new CheapestPriceException("Favor colocar un nickname apropiado");
-        if(usuarios.get(nickname)==null) throw new CheapestPriceException("El usuario con nickname "+nickname+" no esta registrado");
-        return usuarios.get(nickname);
-    }
 
     @Override
     public List<ListaDeMercado> loadAllShopList() {
@@ -54,19 +48,18 @@ public class UserPersistenceStub implements UserPersistence{
     }
 
     @Override
-    public List<ListaDeMercado> loadShopListByNickname(String nickname) throws CheapestPriceException{
-        if(nickname.length()==0 || nickname==null) throw new CheapestPriceException("El nickname del usuario no puede ser nulo");
-        List<ListaDeMercado> listas = new ArrayList<>();
-        listas=(usuarios.get(nickname).getListas());
-        return listas;
-    }
-
-    @Override
     public List<ListaDeMercado> loadShopListByEmail(String email) throws CheapestPriceException {
         if(email.length()==0 || email==null) throw new CheapestPriceException("El email del usuario no puede ser nulo");
         List<ListaDeMercado> listas = new ArrayList<>();
         listas=(usuarios.get(email).getListas());
         return listas;
+    }
+
+    @Override
+    public Usuario loadUserByEmail(String correo) throws CheapestPriceException {
+        if(correo.length()==0 || correo==null)  throw new CheapestPriceException("El email del usuario no puede ser nulo");
+        if(!usuarios.containsKey(correo)) throw new CheapestPriceException("El usuario no existe");
+        return usuarios.get(correo);
     }
 
     @Override
@@ -78,17 +71,17 @@ public class UserPersistenceStub implements UserPersistence{
     }
     @Override
     public void addUser(Usuario usuario)throws CheapestPriceException{
-        System.out.println("Sirvio!: "+ usuario.getNickname());
-        if(usuarios.get(usuario.getNickname())!=null) throw new CheapestPriceException("El usuario "+usuario.getNickname()+" ya está registrado");
-        usuarios.put(usuario.getNickname(),usuario);
+        System.out.println("Sirvio!: "+ usuario.getCorreo());
+        if(usuarios.get(usuario.getCorreo())!=null) throw new CheapestPriceException("El usuario con correo"+usuario.getCorreo()+" ya está registrado");
+        usuarios.put(usuario.getCorreo(),usuario);
 
     }
 
     @Override
-    public void updateUser(String oldNickname, Usuario usuario) throws CheapestPriceException{
-        if(usuario==null && usuarios.get(oldNickname)!=null) throw new CheapestPriceException("El usuario tiene que existir");
-        usuarios.remove(usuarios.get(oldNickname));
-        usuarios.put(usuario.getNickname(),usuario);
+    public void updateUser(String oldCorreo, Usuario usuario) throws CheapestPriceException{
+        if(usuario==null && usuarios.get(oldCorreo)!=null) throw new CheapestPriceException("El usuario tiene que existir");
+        usuarios.remove(usuarios.get(oldCorreo));
+        usuarios.put(usuario.getCorreo(),usuario);
     }
 
     public static void poblarStub(UserPersistenceStub ups){
@@ -125,7 +118,7 @@ public class UserPersistenceStub implements UserPersistence{
         lM2.setItems(lIL3);
         List<ListaDeMercado> listas = new ArrayList<>();
         listas.add(lM1); listas.add(lM2);
-        Usuario u1 = new Usuario("name1","email1","nickname1", listas);
+        Usuario u1 = new Usuario("name1","email1", listas);
         try{
             ups.addUser(u1);
         }catch (CheapestPriceException e){
@@ -135,7 +128,7 @@ public class UserPersistenceStub implements UserPersistence{
 
     private static void prueba(UserPersistenceStub ups) throws CheapestPriceException {
 
-        Usuario u=new Usuario("nombre","prueba@prueba.com","pruebaa");
+        Usuario u=new Usuario("nombre","prueba@prueba.com");
         ups.addUser(u);
 
     }

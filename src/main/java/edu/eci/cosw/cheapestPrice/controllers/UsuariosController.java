@@ -22,10 +22,10 @@ public class UsuariosController {
         return new ResponseEntity<>(uP.loadAllUsuarios(), HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(value="/{nickname}" ,method = RequestMethod.GET)
-    public ResponseEntity<?> getUsuarioPorNickname(@PathVariable String nickname){
+    @RequestMapping(value="/{correo}" ,method = RequestMethod.GET)
+    public ResponseEntity<?> getUsuarioPorCorreo(@PathVariable String correo){
         try{
-            return new ResponseEntity<>(uP.loadUsuarioByNickname(nickname), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(uP.loadUserByEmail(correo),HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
         }
@@ -42,10 +42,10 @@ public class UsuariosController {
         }
     }
 
-    @RequestMapping(value="/{nickname}" ,method = RequestMethod.PUT)
-    public ResponseEntity<?> actualizarUsuario(@PathVariable String nickname, Usuario usuario){
+    @RequestMapping(value="/{correo}" ,method = RequestMethod.PUT)
+    public ResponseEntity<?> actualizarUsuario(@PathVariable String correo, Usuario usuario){
         try{
-            uP.updateUser(nickname, usuario);
+            uP.updateUser(correo, usuario);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             e.printStackTrace();

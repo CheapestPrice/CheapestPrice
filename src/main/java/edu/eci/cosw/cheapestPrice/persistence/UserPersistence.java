@@ -23,23 +23,10 @@ public interface UserPersistence {
     public Map<String,Usuario> loadAllUsuarios();
 
     /**
-     * Retorna un usuario por su nickname
-     * @return
-     */
-    public Usuario loadUsuarioByNickname(String nickname) throws CheapestPriceException;
-
-    /**
      * Retorna todas las listas de mercado
      * @return
      */
     public List<ListaDeMercado> loadAllShopList();
-
-    /**
-     * Retorna las listas de mercado de un usuario dado su nickname
-     * @param nickname
-     * @return
-     */
-    public List<ListaDeMercado> loadShopListByNickname(String nickname) throws CheapestPriceException;
 
     /**
      * Retorna las listas de mercado de un usuario dado su email
@@ -47,6 +34,14 @@ public interface UserPersistence {
      * @return
      */
     public List<ListaDeMercado> loadShopListByEmail(String email) throws CheapestPriceException;
+
+    /**
+     * Retorna un usuario especifico por su correo
+     * @param correo
+     * @return
+     * @throws CheapestPriceException
+     */
+    public Usuario loadUserByEmail(String correo) throws CheapestPriceException;
 
     /**
      * Retorna las listas de mercado de un usuario dado su nombre

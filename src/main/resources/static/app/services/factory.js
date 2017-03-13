@@ -9,84 +9,6 @@ angular.module('services.listFactory', ['ngRoute', 'ngResource'])
     .factory('registroU', function($resource) {
                     return $resource('/usuarios');
                 })
-
-
-    .factory('itemsStubFactory', function () {
-        var items = {
-                    lista:[
-                      {favorito:false,
-                       comprado:false,
-                       producto:{
-                            nombre:'Leche',
-                            categoria:'Leche',
-                            precio:3500,
-                            marca:'Alqueria',
-                            id:'01'
-                        },
-                        tienda:{
-                            direccion:'Cll 167 #58a-20',
-                            x:4.7498466,
-                            y:-74.0623005,
-                            nombre:'Surtir',
-                            nit:'123456456'
-                        }},
-                        {favorito:false,
-                        comprado:false,
-                        producto:{
-                            nombre:'Coca-Cola',
-                             categoria:'Gaseosa',
-                             precio:4500,
-                             marca:'Coca-Cola',
-                            id:'02'
-                        },
-                        tienda:{
-                            direccion:'Cll 167 #58a-20',
-                            x:4.7498466,
-                            y:-74.0623005,
-                            nombre:'Surtir',
-                            nit:'123456456'
-                        }},{favorito:false,
-                        comprado:false,
-                        producto:{
-                              nombre:'Papas BBQ',
-                              categoria:'Papas',
-                              precio:4500,
-                              marca:'Margarita',
-                              id:'03'
-                          },
-                          tienda:{
-                              direccion:'Cll 167 #58a-20',
-                              x:4.7498466,
-                              y:-74.0623005,
-                              nombre:'Surtir',
-                              nit:'123456456'
-                          }}
-                    ]
-                }
-        return{
-        getItems : function(){
-            return items.lista;
-        },
-        eliminate : function(pro, tien){
-            for(var i=0;i<items.lista.length;i++){
-                if(items.lista[i].producto.id == pro && items.lista[i].tienda.nombre == tien){
-                        items.lista.splice(i,1);
-                        break
-                    }
-             }
-         },
-         sale : function(pro, tien, fav){
-            for(var i=0;i<items.lista.length;i++){
-                if(items.lista[i].producto.id == pro && items.lista[i].tienda.nombre == tien){
-                   items.lista[i].comprado=fav;
-                   break
-                }
-             }
-             console.log(fav);
-            console.log(items.articulos);
-         }
-       }
-    })
     .factory('listasMercadoStubFactory', function () {
             var listaMercado = {
                         lista:[{
@@ -410,12 +332,12 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
                    });
      })
      .factory('updateUser',function($resource){
-            return $resource('/usuarios/:nickname', null,
+            return $resource('/usuarios/:correo', null,
 
             {
                 'update' : {method:'PUT'}
             });
     })
     .factory('getUserNickname',function($resource) {
-        return $resource('/usuarios/:nickname');
+        return $resource('/usuarios/:correo');
     });
