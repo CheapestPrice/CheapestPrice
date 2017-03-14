@@ -57,12 +57,4 @@ public class TiendaId implements java.io.Serializable  {
         return (this.getNit().equals(castOther.getNit()))
                 && (((this.getX() == castOther.getX()) && (this.getY() == castOther.getY())) || ((this.getY() != 0.0) && (castOther.getY() != 0.0) && (this.getX() != 0.0) && (castOther.getX() != 0.0) && this.getX()==castOther.getX() && this.getY()==castOther.getY()));
     }
-
-    public int hashCode() {
-        int result = 17;
-
-        //result = 37 * result + this.getId();
-        //result = 37 * result + ( getTipoId() == null ? 0 : this.getTipoId().hashCode() );
-        return result;
-    }
 }

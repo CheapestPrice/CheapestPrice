@@ -2,6 +2,7 @@ package edu.eci.cosw.cheapestPrice.test;
 import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
 import edu.eci.cosw.cheapestPrice.entities.Tienda;
+import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.stub.ItemPersistenceStub;
 import org.junit.Assert;
@@ -19,7 +20,8 @@ public class ItemsPersistenceStubTest {
     public void CE1DeberiaAgregarItem(){
         ItemPersistenceStub ips= new ItemPersistenceStub();
         Producto p1=new Producto(7,"Lecherita",2000,"Nestle","Leche condensada");
-        Tienda t1= new Tienda("calle 184 #52 A13", 4.7649271,-74.0476042,"Donde Juancho","1234567-2","6699132",true);
+        TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
+        Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde Juancho","6699132",true);
         Item i1= new Item(t1,p1);
         try {
             ips.addItem(i1);
@@ -35,10 +37,12 @@ public class ItemsPersistenceStubTest {
         ItemPersistenceStub ips= new ItemPersistenceStub();
         Producto p1=new Producto(7,"Lecherita",2000,"Nestle","Leche condensada");
         Producto p2=new Producto(8,"Leche",2000,"Colanta","Leche");
-        Tienda t1= new Tienda("calle 184 #52 A13", 4.7649271,-74.0476042,"Donde Juancho","1234567-2","6699132",true);
+        TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
+        Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde Juancho","6699132",true);
         Item i1= new Item(t1,p1);
         Item i2= new Item(t1,p2);
-        Tienda t2= new Tienda("calle 184 #52 A13", 4.7649271,-74.0476042,"Donde Roberto","1234567-2","6699132",true);
+        TiendaId id2=new TiendaId("1234567-2",4.7649271,-74.0476042);
+        Tienda t2= new Tienda("calle 184 #52 A13",id2,"Donde Roberto","6699132",true);
         Item i3 = new Item(t2,p2);
         List<Item> lista= new ArrayList<>();
         lista.add(i1);lista.add(i2);
@@ -59,11 +63,12 @@ public class ItemsPersistenceStubTest {
         Producto p2=new Producto(8,"Pan arabe",2000,"Bimbo","Pan");
         Producto p3=new Producto(8,"Tortillas",2000,"Bimbo","Pan");
         Producto p4=new Producto(8,"Tostadas",2000,"Bimbo","Pan");
-        Tienda t1= new Tienda("calle 184 #52 A13", 4.7649271,-74.0476042,"Donde Juancho","1234567-2","6699132",true);
+        TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
+        Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde Juancho","6699132",true);
         Item i1= new Item(t1,p1);
         Item i2= new Item(t1,p2);
         Item i3= new Item(t1,p3);
-        Tienda t2= new Tienda("calle 184 #52 A13", 4.7649271,-74.0476042,"Donde Roberto","1234567-2","6699132",true);
+        Tienda t2= new Tienda("calle 184 #52 A13",id,"Donde Roberto","6699132",true);
         Item i4 = new Item(t2,p2);
         Item i5 = new Item(t2,p4);
         List<Item> lista= new ArrayList<>();
@@ -85,7 +90,8 @@ public class ItemsPersistenceStubTest {
     public void CE4DeberiaEliminarItem(){
         ItemPersistenceStub ips= new ItemPersistenceStub();
         Producto p1=new Producto(7,"Lecherita",2000,"Nestle","Leche condensada");
-        Tienda t1= new Tienda("calle 184 #52 A13", 4.7649271,-74.0476042,"Donde Juancho","1234567-2","6699132",true);
+        TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
+        Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde Juancho","6699132",true);
         Item i1= new Item(t1,p1);
         try {
             ips.addItem(i1);
@@ -102,7 +108,8 @@ public class ItemsPersistenceStubTest {
     public void CE5DeberiaCActualizarItem(){
         ItemPersistenceStub ips= new ItemPersistenceStub();
         Producto p1=new Producto(7,"Lecherita",2000,"Nestle","Leche condensada");
-        Tienda t1= new Tienda("calle 184 #52 A13", 4.7649271,-74.0476042,"Donde Juancho","1234567-2","6699132",true);
+        TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
+        Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde Juancho","6699132",true);
         Item i1= new Item(t1,p1);
         try {
             ips.addItem(i1);

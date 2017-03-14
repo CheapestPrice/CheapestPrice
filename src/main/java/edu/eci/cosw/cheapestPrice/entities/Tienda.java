@@ -62,9 +62,11 @@ public class Tienda implements java.io.Serializable {
         this.horarios=hor;
     }
 
+
     public Map<String,Horario> getHorario(){
         return this.horarios;
     }
+    
     @EmbeddedId
     public TiendaId getId() {
         return id;
