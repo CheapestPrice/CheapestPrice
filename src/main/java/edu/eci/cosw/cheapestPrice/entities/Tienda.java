@@ -54,7 +54,6 @@ public class Tienda implements java.io.Serializable {
 
 
     public void mnodificarHorario(String dia, Horario horario){
-
         horarios.put(dia,horario);
     }
 
@@ -66,7 +65,7 @@ public class Tienda implements java.io.Serializable {
     public Map<String,Horario> getHorario(){
         return this.horarios;
     }
-    
+
     @EmbeddedId
     public TiendaId getId() {
         return id;
@@ -137,5 +136,6 @@ public class Tienda implements java.io.Serializable {
     public void setTendero(Tendero tendero) {
         this.tendero = tendero;
     }
+
 
 }

@@ -1,9 +1,6 @@
 package edu.eci.cosw.cheapestPrice.persistence.stub;
 
-import edu.eci.cosw.cheapestPrice.entities.Horario;
-import edu.eci.cosw.cheapestPrice.entities.Item;
-import edu.eci.cosw.cheapestPrice.entities.Producto;
-import edu.eci.cosw.cheapestPrice.entities.Tienda;
+import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ItemPersistence;
 import org.springframework.stereotype.Service;
@@ -164,10 +161,12 @@ public class ItemPersistenceStub implements ItemPersistence{
         hor.put("Viernes",h1);
         hor.put("Sabado",h2);
         hor.put("Domingo",h1);
-        Tienda t1= new Tienda("calle 184 #52 A13", 4.7649271,-74.0476042,"Donde pepe","1234567-2","6699132",true);
+        TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
+        Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde pepe","6699132",true);
         t1.setHorario(hor);
         Producto p2=new Producto(2,"Leche entera",3500,"Alqueria","Leche");
-        Tienda t2= new Tienda("Cll 167 #58a-20", 4.7498466,-74.0623005,"Surtir","123456456","65498765",true);
+        TiendaId id2=new TiendaId("123456456",4.7498466,-74.0623005);
+        Tienda t2= new Tienda("Cll 167 #58a-20",id,"Surtir","6699132",true);
         t1.setHorario(hor);
         Producto p3=new Producto(3,"Papas BBQ",4500,"Margarita","Papas");
         Producto p4=new Producto(4,"Coca-Cola",4500,"Coca-Cola","Gaseosa");
