@@ -2,16 +2,19 @@ package edu.eci.cosw.cheapestPrice.entities;
 
 import java.util.List;
 import java.util.Map;
+import javax.persistence.*;
 
 /**
- * Created by masterhugo on 2/19/17.
+ * Clase tienda
+ *Created by Daniela .
  */
-public class Tienda {
+@Entity
+@Table(name="TIENDAS")
+public class Tienda implements java.io.Serializable {
+
+    private TiendaId id;
     private String direccion;
-    private double x;
-    private double y;
     private String nombre;
-    private String nit;
     private String telefono;
     private boolean disponible;
     private byte[] logo;
@@ -21,38 +24,35 @@ public class Tienda {
 
     public Tienda(){};
 
-    public Tienda(String direccion,double x,double y,String nombre,String nit,String telefono, boolean disponible) {
+    public Tienda(String direccion,TiendaId id,String nombre,String telefono, boolean disponible) {
         this.direccion = direccion;
-        this.x = x;
-        this.y = y;
+        this.setId(id);
         this.nombre = nombre;
-        this.nit = nit;
         this.telefono = telefono;
         this.disponible = disponible;
     }
 
 
-    public Tienda(String direccion,double x,double y,String nombre,String nit,String telefono, boolean disponible,byte[] logo) {
+    public Tienda(String direccion,TiendaId id, String nombre,String telefono, boolean disponible,byte[] logo) {
         this.direccion = direccion;
-        this.x = x;
-        this.y = y;
+        this.setId(id);
         this.nombre = nombre;
-        this.nit = nit;
         this.telefono = telefono;
         this.disponible = disponible;
         this.logo = logo;
     }
 
-    public Tienda(String direccion,String nombre,String nit,String telefono, Tendero tendero){
+    public Tienda(String direccion,TiendaId id,String nombre,String telefono, Tendero tendero){
         this.direccion = direccion;
         this.nombre = nombre;
-        this.nit = nit;
+        this.setId(id);
         this.telefono = telefono;
         this.tendero=tendero;
         this.disponible=true;
     }
 
     public void mnodificarHorario(String dia, Horario horario){
+
         horarios.put(dia,horario);
     }
 
@@ -63,7 +63,15 @@ public class Tienda {
     public Map<String,Horario> getHorario(){
         return this.horarios;
     }
+    @EmbeddedId
+    public TiendaId getId() {
+        return id;
+    }
 
+    public void setId(TiendaId id) {
+        this.id = id;
+    }
+    @Column(name="direccion", nullable=false)
     public String getDireccion() {
         return direccion;
     }
@@ -72,22 +80,7 @@ public class Tienda {
         this.direccion = direccion;
     }
 
-    public double getX() {
-        return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
+    @Column(name="nombre", nullable=false)
     public String getNombre() {
         return nombre;
     }
@@ -96,14 +89,7 @@ public class Tienda {
         this.nombre = nombre;
     }
 
-    public String getNit() {
-        return nit;
-    }
-
-    public void setNit(String nit) {
-        this.nit = nit;
-    }
-
+    @Column(name="telefono", nullable=false)
     public String getTelefono() {
         return telefono;
     }
@@ -112,6 +98,7 @@ public class Tienda {
         this.telefono = telefono;
     }
 
+    @Column(name="disponible", nullable=false)
     public boolean isDisponible() {
         return disponible;
     }
@@ -131,12 +118,12 @@ public class Tienda {
     @Override
     public boolean equals(Object o){
         Tienda ot=(Tienda) o;
-        return direccion.equals(ot.getDireccion()) && nombre.equals(ot.getNombre()) && nit.equals(ot.getNit()) && telefono.equals(ot.getTelefono()) && x==ot.getX() && y==ot.getY();
+        return getId().equals(o.getId()) && direccion.equals(ot.getDireccion()) && nombre.equals(ot.getNombre()) && telefono.equals(ot.getTelefono());
     }
 
     @Override
     public String toString(){
-        return "nombre: "+nombre+" direccion: "+direccion+" telefono: "+telefono+" NIT: "+nit;
+        return "nombre: "+nombre+" direccion: "+direccion+" telefono: "+telefono+" NIT: "+id.getId();
     }
 
     public Tendero getTendero() {
@@ -146,4 +133,5 @@ public class Tienda {
     public void setTendero(Tendero tendero) {
         this.tendero = tendero;
     }
+
 }
