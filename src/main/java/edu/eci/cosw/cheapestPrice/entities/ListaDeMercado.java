@@ -1,5 +1,6 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,12 +8,15 @@ import java.util.List;
 /**
  * Created by 2105403 on 2/20/17.
  */
+@Entity
+@Table(name="LISTAS_MERCADOS")
 public class ListaDeMercado {
 
     private String nombre;
     private Date fechaCreacion;
     private boolean revisado;
     private List<ItemLista> items;
+    private String correo;
 
     public ListaDeMercado(){}
 
@@ -55,7 +59,7 @@ public class ListaDeMercado {
         }
     }
 
-
+    @Column(name="nombre")
     public String getNombre() {
         return nombre;
     }
@@ -64,6 +68,8 @@ public class ListaDeMercado {
         this.nombre = nombre;
     }
 
+    @Temporal(TemporalType.DATE)
+    @Column(name="fechaCreacion")
     public Date getFechaCreacion() {
         return fechaCreacion;
     }
@@ -72,6 +78,7 @@ public class ListaDeMercado {
         this.fechaCreacion = fechaCreacion;
     }
 
+    @Column(name="realizado")
     public boolean isRevisado() {
         return revisado;
     }
@@ -80,11 +87,21 @@ public class ListaDeMercado {
         this.revisado = revisado;
     }
 
+    @OneToMany(cascade = CascadeType.ALL)
     public List<ItemLista> getItems() {
         return items;
     }
 
     public void setItems(List<ItemLista> items) {
         this.items = items;
+    }
+
+    @Column(name="USUARIOS_correo")
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 }

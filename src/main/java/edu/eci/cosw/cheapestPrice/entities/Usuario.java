@@ -13,6 +13,7 @@ public class Usuario {
     private String nombre;
     private String correo;
     private List<ListaDeMercado> listas;
+    private List<Opinion> opiniones;
 
     public Usuario(){}
 
@@ -25,6 +26,13 @@ public class Usuario {
     public Usuario(String nombre,String correo){
         this.setNombre(nombre);
         this.correo=correo;
+    }
+
+    public Usuario(String nombre, String correo, List<ListaDeMercado> listas, List<Opinion> opiniones){
+        this.setNombre(nombre);
+        this.correo=correo;
+        this.setListas(listas);
+        this.setOpiniones(opiniones);
     }
 
     /**
@@ -58,11 +66,26 @@ public class Usuario {
     }
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumns({
+            @JoinColumn(name="USUARIOS_correo",referencedColumnName = "correo", nullable = false)
+    })
     public List<ListaDeMercado> getListas() {
         return listas;
     }
 
     public void setListas(List<ListaDeMercado> listas) {
         this.listas = listas;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumns({
+            @JoinColumn(name="USUARIOS_correo",referencedColumnName = "correo", nullable = false)
+    })
+    public List<Opinion> getOpiniones() {
+        return opiniones;
+    }
+
+    public void setOpiniones(List<Opinion> opiniones) {
+        this.opiniones = opiniones;
     }
 }
