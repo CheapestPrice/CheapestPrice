@@ -1,8 +1,13 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Created by Julian David Devia Serna on 2/19/17.
  */
+@Entity
+@Table(name = "ITEMS")
 public class Item {
     private Tienda tienda;
     private Producto producto;

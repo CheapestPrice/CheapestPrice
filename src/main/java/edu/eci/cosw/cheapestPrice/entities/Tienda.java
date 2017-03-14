@@ -1,5 +1,6 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.*;
@@ -50,6 +51,7 @@ public class Tienda implements java.io.Serializable {
         this.tendero=tendero;
         this.disponible=true;
     }
+
 
     public void mnodificarHorario(String dia, Horario horario){
 
@@ -118,12 +120,12 @@ public class Tienda implements java.io.Serializable {
     @Override
     public boolean equals(Object o){
         Tienda ot=(Tienda) o;
-        return getId().equals(o.getId()) && direccion.equals(ot.getDireccion()) && nombre.equals(ot.getNombre()) && telefono.equals(ot.getTelefono());
+        return getId().equals(ot.getId()) && direccion.equals(ot.getDireccion()) && nombre.equals(ot.getNombre()) && telefono.equals(ot.getTelefono());
     }
 
     @Override
     public String toString(){
-        return "nombre: "+nombre+" direccion: "+direccion+" telefono: "+telefono+" NIT: "+id.getId();
+        return "nombre: "+nombre+" direccion: "+direccion+" telefono: "+telefono+" NIT: "+id.getNit();
     }
 
     public Tendero getTendero() {

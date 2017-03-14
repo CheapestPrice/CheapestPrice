@@ -17,6 +17,7 @@ public class ListaDeMercado {
     private boolean revisado;
     private List<ItemLista> items;
     private String correo;
+    private ListaMercado_Item listaid;
 
     public ListaDeMercado(){}
 
@@ -88,6 +89,13 @@ public class ListaDeMercado {
     }
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumns({
+            @JoinColumn(name="ITEMS_LISTA_ITEMS_PRODUCTOS_id", referencedColumnName="ITEMS_PRODUCTOS_id", nullable=false),
+            @JoinColumn(name="ITEMS_LISTA_ITEMS_TIENDAS_x", referencedColumnName="ITEMS_TIENDAS_x", nullable=false),
+            @JoinColumn(name="ITEMS_LISTA_ITEMS_TIENDAS_y", referencedColumnName="ITEMS_TIENDAS_y", nullable=false),
+            @JoinColumn(name="ITEMS_LISTA_ITEMS_TIENDAS_nit", referencedColumnName="ITEMS_TIENDAS_nit", nullable=false),
+            @JoinColumn(name="ITEMS_LISTA_USUARIOS_correo", referencedColumnName="USUARIOS_correo", nullable=false)
+    })
     public List<ItemLista> getItems() {
         return items;
     }
@@ -103,5 +111,14 @@ public class ListaDeMercado {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    @EmbeddedId
+    public ListaMercado_Item getListaid() {
+        return listaid;
+    }
+
+    public void setListaid(ListaMercado_Item listaid) {
+        this.listaid = listaid;
     }
 }

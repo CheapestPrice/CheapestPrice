@@ -57,6 +57,7 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    @Column(name="correo")
     public String getCorreo() {
         return correo;
     }
@@ -88,4 +89,5 @@ public class Usuario {
     public void setOpiniones(List<Opinion> opiniones) {
         this.opiniones = opiniones;
     }
+
 }

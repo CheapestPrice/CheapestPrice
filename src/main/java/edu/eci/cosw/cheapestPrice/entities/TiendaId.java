@@ -20,7 +20,7 @@ public class TiendaId implements java.io.Serializable  {
     public TiendaId(String nit, double x, double y){
         this.setX(x);
         this.setY(y);
-        this.setNit(nit)
+        this.setNit(nit);
     }
 
     @Column(name="nit", nullable=false)
@@ -55,14 +55,14 @@ public class TiendaId implements java.io.Serializable  {
         TiendaId castOther = ( TiendaId ) other;
 
         return (this.getNit().equals(castOther.getNit()))
-                && ( (this.getX()==castOther.getX() && (this.getY()==castOther.getY()) ) || ( this.getY()!=null && castOther.getY()!=null && this.getX()!=null && castOther.getX()!=null && this.getX().equals(castOther.getX()) && this.getY().equals(castOther.getY())) );
+                && (((this.getX() == castOther.getX()) && (this.getY() == castOther.getY())) || ((this.getY() != 0.0) && (castOther.getY() != 0.0) && (this.getX() != 0.0) && (castOther.getX() != 0.0) && this.getX()==castOther.getX() && this.getY()==castOther.getY()));
     }
 
     public int hashCode() {
         int result = 17;
 
-        result = 37 * result + this.getId();
-        result = 37 * result + ( getTipoId() == null ? 0 : this.getTipoId().hashCode() );
+        //result = 37 * result + this.getId();
+        //result = 37 * result + ( getTipoId() == null ? 0 : this.getTipoId().hashCode() );
         return result;
     }
 }
