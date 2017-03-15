@@ -15,7 +15,9 @@ public class TiendaId implements java.io.Serializable  {
     private double x;
     private double y;
 
-    public TiendaId(){};
+    public TiendaId(){
+
+    };
 
     public TiendaId(String nit, double x, double y){
         this.setX(x);

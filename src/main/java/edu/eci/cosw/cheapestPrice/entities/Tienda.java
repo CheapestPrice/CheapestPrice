@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 /**
  * Clase tienda
- *Created by Daniela .
+ *Created by Daniela.
  */
 @Entity
 @Table(name="TIENDAS")
@@ -136,6 +136,5 @@ public class Tienda implements java.io.Serializable {
     public void setTendero(Tendero tendero) {
         this.tendero = tendero;
     }
-
 
 }
