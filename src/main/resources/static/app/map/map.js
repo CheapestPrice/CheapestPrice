@@ -13,7 +13,16 @@ angular.module('myApp.viewMap', ['ngRoute'])
     console.log($rootScope.x+" "+$rootScope.y);
     var apiKey="AIzaSyBYRVtSxaERYgZoESFx_4pExGXMbHHU8F8";
     var url="https://maps.googleapis.com/maps/api/directions/json?origin=4.7809235999999995,-74.04762629999999&destination=4.7809235999999995,-74.04762629999999&key=AIzaSyBYRVtSxaERYgZoESFx_4pExGXMbHHU8F8";
-    $http.jsonp(url,{jsonpCallbackParam: 'work'})
+    $.ajax({
+        url:url,
+          type: 'GET',
+          dataType: 'jsonp',
+          cache: false
+        })
+        .done(function(data){
+            console.log("it worked");
+            console.log(data);
+        });
     var work=function(data){
       console.log(data);
     }
