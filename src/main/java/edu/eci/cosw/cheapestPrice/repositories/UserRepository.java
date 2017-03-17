@@ -15,4 +15,9 @@ import java.util.Map;
  */
 public interface UserRepository extends JpaRepository<Usuario,Integer> {
 
+    //Cargar usuario por correo
+    //Agregar un usuario
+    //Actualizar usuario
+    //Cargar listas por correo
+
 }
