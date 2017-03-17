@@ -1,14 +1,22 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+import javax.persistence.*;
+
 /**
  * Created by masterhugo on 2/16/17.
  */
+
+@Entity
+@Table(name="PRODUCTOS")
+
 public class Producto {
+
     private String nombre;
     private long precio;
     private String marca;
     private String categoria;
     private long id;
+
     public Producto(long id, String nombre, long precio, String marca, String categoria){
         this.id=id;
         this.nombre=nombre;
@@ -16,10 +24,12 @@ public class Producto {
         this.marca=marca;
         this.categoria=categoria;
     }
+
     public Producto(){
 
     }
 
+    @Column(name="nombre")
     public String getNombre() {
         return nombre;
     }
@@ -28,6 +38,7 @@ public class Producto {
         this.nombre = nombre;
     }
 
+    @Column(name="precio")
     public long getPrecio() {
         return precio;
     }
@@ -36,6 +47,7 @@ public class Producto {
         this.precio = precio;
     }
 
+    @Column(name = "marca")
     public String getMarca() {
         return marca;
     }
@@ -44,6 +56,7 @@ public class Producto {
         this.marca = marca;
     }
 
+    @Column(name="categoria")
     public String getCategoria() {
         return categoria;
     }
@@ -52,6 +65,8 @@ public class Producto {
         this.categoria = categoria;
     }
 
+    @GeneratedValue
+    @Id
     public long getId() {
         return id;
     }
