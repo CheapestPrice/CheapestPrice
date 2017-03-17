@@ -151,17 +151,15 @@ public class ItemPersistenceStub implements ItemPersistence{
 
     public static void poblarStub(ItemPersistenceStub ips){
         Producto p1=new Producto(1,"Queso crema",3000,"Alqueria","Queso");
-        Horario h1=new Horario(8, 15, 9, 0);
-        Map<String,Horario> hor=new HashMap<String,Horario>();
-        Horario h2=new Horario(7, 15, 8, 15);
-        hor.put("Lunes",h1);
-        hor.put("Martes",h2);
-        hor.put("Miercoles",h1);
-        hor.put("Jueves",h2);
-        hor.put("Viernes",h1);
-        hor.put("Sabado",h2);
-        hor.put("Domingo",h1);
         TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
+        List<Horario> hor=new ArrayList<>();
+        hor.add(new Horario(8, 15, 9, 0,"Lunes"));
+        hor.add(new Horario(7, 15, 8, 15,"Martes"));
+        hor.add(new Horario(8, 15, 9, 0,"Miercoles"));
+        hor.add(new Horario(7, 15, 8, 15,"Jueves"));
+        hor.add(new Horario(8, 15, 9, 0,"Viernes"));
+        hor.add(new Horario(7, 15, 8, 15,"Sabado"));
+        hor.add(new Horario(8, 15, 9, 0,"Domingo"));
         Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde pepe","6699132",true);
         t1.setHorario(hor);
         Producto p2=new Producto(2,"Leche entera",3500,"Alqueria","Leche");

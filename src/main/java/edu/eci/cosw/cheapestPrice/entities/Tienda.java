@@ -1,5 +1,6 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+import java.util.ArrayList;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
@@ -19,13 +20,14 @@ public class Tienda implements java.io.Serializable {
     private String telefono;
     private boolean disponible;
     private byte[] logo;
-    private Map<String,Horario> horarios;
+    private List<Horario> horarios;
 
     public Tendero tendero;
 
     public Tienda(){};
 
     public Tienda(String direccion,TiendaId id,String nombre,String telefono, boolean disponible) {
+        horarios= new ArrayList<>();
         this.direccion = direccion;
         this.setId(id);
         this.nombre = nombre;
@@ -35,6 +37,7 @@ public class Tienda implements java.io.Serializable {
 
 
     public Tienda(String direccion,TiendaId id, String nombre,String telefono, boolean disponible,byte[] logo) {
+        horarios= new ArrayList<>();
         this.direccion = direccion;
         this.setId(id);
         this.nombre = nombre;
@@ -44,6 +47,7 @@ public class Tienda implements java.io.Serializable {
     }
 
     public Tienda(String direccion,TiendaId id,String nombre,String telefono, Tendero tendero){
+        horarios= new ArrayList<>();
         this.direccion = direccion;
         this.nombre = nombre;
         this.setId(id);
@@ -53,16 +57,21 @@ public class Tienda implements java.io.Serializable {
     }
 
 
-    public void mnodificarHorario(String dia, Horario horario){
-        horarios.put(dia,horario);
+    public void mnodificarHorario(Horario horario){
+        horarios.add(horario);
     }
 
-    public void setHorario(Map<String,Horario> hor){
+    public void setHorario(List<Horario> hor){
         this.horarios=hor;
     }
 
-
-    public Map<String,Horario> getHorario(){
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumns({
+            @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false),
+            @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false),
+            @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false)
+    })
+    public List<Horario> getHorario(){
         return this.horarios;
     }
 
@@ -129,6 +138,12 @@ public class Tienda implements java.io.Serializable {
         return "nombre: "+nombre+" direccion: "+direccion+" telefono: "+telefono+" NIT: "+id.getNit();
     }
 
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumns({
+            @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false),
+            @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false),
+            @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false)
+    })
     public Tendero getTendero() {
         return tendero;
     }

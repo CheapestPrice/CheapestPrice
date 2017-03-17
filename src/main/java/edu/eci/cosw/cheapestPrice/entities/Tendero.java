@@ -1,21 +1,29 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Created by Paula on 21/02/2017.
  */
+@Entity
+@Table(name="TENDEROS")
 public class Tendero extends Usuario {
 
-    private String tienda;
+    private TenderoId tienda;
 
-    public Tendero(String nombre,String correo, String nickname){
+    public Tendero(String nombre,String correo, TenderoId tienda){
         super(nombre,correo);
+        setTienda(tienda);
     }
 
-    public String getTienda() {
+    @EmbeddedId
+    public TenderoId getTienda() {
         return tienda;
     }
 
-    public void setTienda(String tienda) {
+    public void setTienda(TenderoId tienda) {
         this.tienda = tienda;
     }
 

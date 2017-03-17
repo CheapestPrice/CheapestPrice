@@ -1,6 +1,7 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="USUARIOS")
-public class Usuario {
+public class Usuario implements Serializable {
 
     private String nombre;
     private String correo;
@@ -58,6 +59,7 @@ public class Usuario {
     }
 
     @Column(name="correo")
+    @Id
     public String getCorreo() {
         return correo;
     }

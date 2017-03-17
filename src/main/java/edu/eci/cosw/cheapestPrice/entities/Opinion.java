@@ -1,6 +1,7 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.security.Timestamp;
 
 /**
@@ -8,7 +9,7 @@ import java.security.Timestamp;
  */
 @Entity
 @Table(name="OPINIONES")
-public class Opinion {
+public class Opinion implements Serializable {
     private int id;
     private String comentario;
     private boolean like;
@@ -52,7 +53,7 @@ public class Opinion {
         this.like = like;
     }
 
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.TIMESTAMP)
     @Column(name="fecha")
     public Timestamp getFecha() {
         return fecha;
