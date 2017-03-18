@@ -24,6 +24,12 @@ public class ItemId implements Serializable{
     })
     private Producto producto;
 
+    public ItemId(){}
+
+    public ItemId(Tienda tienda, Producto producto){
+        this.tienda=tienda;
+        this.producto=producto;
+    }
 
     public Tienda getTienda() {
         return tienda;

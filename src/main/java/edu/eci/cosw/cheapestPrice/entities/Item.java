@@ -10,6 +10,7 @@ import java.io.Serializable;
 @Table(name = "ITEMS")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Item implements Serializable {
+
     @EmbeddedId
     private ItemId id;
 
