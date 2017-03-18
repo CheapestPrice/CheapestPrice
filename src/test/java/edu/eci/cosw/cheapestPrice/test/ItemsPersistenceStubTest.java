@@ -32,7 +32,7 @@ public class ItemsPersistenceStubTest {
 
     @Test
     public void CE2DeberiaCargarItemPorTienda(){
-        /*ItemPersistenceStub ips= new ItemPersistenceStub();
+        ItemPersistenceStub ips= new ItemPersistenceStub();
         Producto p1=new Producto(7,"Lecherita",2000,"Nestle","Leche condensada");
         Producto p2=new Producto(8,"Leche",2000,"Colanta","Leche");
         TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
@@ -46,7 +46,7 @@ public class ItemsPersistenceStubTest {
         ItemId idT3=new ItemId(t1,p1);
         Item i3 = new Item(idT3);
         List<Item> lista= new ArrayList<>();
-        lista.add(i1);lista.add(i2);
+        lista.add(i1);lista.add(i2);lista.add(i3);
         try {
             ips.addItem(i1);
             ips.addItem(i2);
@@ -55,7 +55,7 @@ public class ItemsPersistenceStubTest {
             Assert.assertEquals("No consulta correctamente por tienda",lista,items);
         } catch (CheapestPriceException e) {
             Assert.fail("arroja excepcion inesperada al consultar item por tienda");
-        }*/
+        }
     }
     @Test
     public void CE3DeberiaCargarItemPorCategoria(){
