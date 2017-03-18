@@ -10,8 +10,8 @@ angular.module('myApp.shopList', ['ngRoute'])
 }])
 
 .controller('shopListCtrl', ['$scope','listasMercadoStubFactory','$rootScope','$mdDialog', 'updateUser', function($scope, listasMercadoStubFactory, $rootScope,$mdDialog, updateUser) {
-    $scope.listado = $rootScope.listaMercado;
-    //$scope.usua = $rootScope.usuario;
+    //$scope.listado = $rootScope.listaMercado;
+    $scope.usua = $rootScope.usuario;
     $scope.propertyName = 'producto.nombre';
     $scope.customFullscreen = false;
     $scope.reverse = true;
@@ -21,9 +21,11 @@ angular.module('myApp.shopList', ['ngRoute'])
         $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
         $scope.propertyName = propertyName;
     };
-    $scope.eliminar = function(iden, tien){
-        listasMercadoStubFactory.eliminarItem(iden, tien, $rootScope.listaMercado.nombre);
-        /*var ban = false
+    //$scope.eliminar = function(iden, tien){
+        //listasMercadoStubFactory.eliminarItem(iden, tien, $rootScope.listaMercado.nombre);
+    //};
+    $scope.eliminarItem = function(lista){
+        var ban = false
         for(var i=0;i<$scope.usua.listas.length;i++){
             if($scope.usua.listas[i].nombre == lista){
                 for(var j=0; j<$scope.usua.listas[i].length;j++){
@@ -38,11 +40,13 @@ angular.module('myApp.shopList', ['ngRoute'])
                 }
             }
         }
-        updateUser.update({nickname:'nickname1'},$scope.usua);*/
+        updateUser.update({nickname:$scope.usua.nombre},$scope.usua);
     };
-    $scope.comprado = function(iden, tien){
-        listasMercadoStubFactory.comprarItem(iden, tien, $rootScope.listaMercado.nombre);
-        /*var ban = false
+    //$scope.comprado = function(iden, tien){
+        //listasMercadoStubFactory.comprarItem(iden, tien, $rootScope.listaMercado.nombre);
+     //};
+     $scope.comprado = function(lista,iden,tien)
+        var ban = false
                 for(var i=0;i<$scope.usua.listas.length;i++){
                     if($scope.usua.listas[i].nombre == lista){
                         for(var j=0; j<$scope.usua.listas[i].length;j++){
@@ -57,7 +61,7 @@ angular.module('myApp.shopList', ['ngRoute'])
                         }
                     }
                 }
-                updateUser.update({nickname:'nickname1'},$scope.usua);*/
+                updateUser.update({nickname:$scope.usua},$scope.usua);
             };
 
      $scope.showAdvanced = function(ev,produc) {

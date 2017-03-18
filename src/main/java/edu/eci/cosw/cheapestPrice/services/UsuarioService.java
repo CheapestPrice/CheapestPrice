@@ -6,6 +6,7 @@ import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
 import edu.eci.cosw.cheapestPrice.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -13,35 +14,29 @@ import java.util.Map;
 /**
  * Created by 2105403 on 3/17/17.
  */
+@Service
 public class UsuarioService implements UserPersistence{
     @Autowired
     UserRepository us;
 
 
     @Override
-    public Map<String, Usuario> loadAllUsuarios() {
-        return null;
+    public List<Usuario> loadAllUsuarios() {
+
+        return us.loadAllUsers();
     }
 
-    @Override
-    public List<ListaDeMercado> loadAllShopList() {
-        return null;
-    }
 
     @Override
-    public List<ListaDeMercado> loadShopListByEmail(String email) throws CheapestPriceException {
-        return null;
+    public List<ListaDeMercado> loadShopListByEmail(String correo) throws CheapestPriceException {
+        return us.loadShoppingListByUserEmail(correo);
     }
 
     @Override
     public Usuario loadUserByEmail(String correo) throws CheapestPriceException {
-        return null;
+      return  us.loadUserByEmail(correo);
     }
 
-    @Override
-    public List<ListaDeMercado> loadShopListByName(String name) throws CheapestPriceException {
-        return null;
-    }
 
     @Override
     public void addUser(Usuario usuario) throws CheapestPriceException {
@@ -49,7 +44,8 @@ public class UsuarioService implements UserPersistence{
     }
 
     @Override
-    public void updateUser(String oldNickname, Usuario usuario) throws CheapestPriceException {
-
+    public void updateUser(String oldEmail, Usuario usuario) throws CheapestPriceException {
+        us.deleteUser(oldEmail);
+        us.save(usuario);
     }
 }
