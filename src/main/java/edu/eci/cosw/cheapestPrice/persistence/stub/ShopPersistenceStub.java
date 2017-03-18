@@ -1,7 +1,7 @@
 package edu.eci.cosw.cheapestPrice.persistence.stub;
 
 import edu.eci.cosw.cheapestPrice.entities.Tienda;
-import edu.eci.cosw.cheapestPrice.persistence.TiendaPersistence;
+import edu.eci.cosw.cheapestPrice.persistence.ShopPersistence;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -11,11 +11,11 @@ import java.util.Map;
  * Created by Paula on 21/02/2017.
  */
 @Service
-public class TiendaPersistenceStub implements TiendaPersistence {
+public class ShopPersistenceStub implements ShopPersistence {
 
     private Map<String,Tienda> tiendas;
 
-    public TiendaPersistenceStub(){ tiendas=new HashMap<>();}
+    public ShopPersistenceStub(){ tiendas=new HashMap<>();}
 
 
     @Override

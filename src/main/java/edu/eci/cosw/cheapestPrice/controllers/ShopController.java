@@ -1,7 +1,7 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
 import edu.eci.cosw.cheapestPrice.entities.Tienda;
-import edu.eci.cosw.cheapestPrice.persistence.TiendaPersistence;
+import edu.eci.cosw.cheapestPrice.persistence.ShopPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +16,10 @@ import java.util.logging.Logger;
  */
 @RestController
 @RequestMapping("/tiendas")
-public class TiendaController {
+public class ShopController {
 
     @Autowired
-    public TiendaPersistence tp;
+    public ShopPersistence tp;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> newTiendaRecurso(@RequestBody Tienda tienda){
