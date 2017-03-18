@@ -9,6 +9,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="USUARIOS")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Usuario implements Serializable {
 
     private String nombre;
@@ -43,7 +44,7 @@ public class Usuario implements Serializable {
      */
     public void agregarProducto(ItemLista iT, String nombreLista){
         for(ListaDeMercado lM: listas){
-            if(lM.getNombre().equals(nombreLista)){
+            if(lM.getListaid().getNombre().equals(nombreLista)){
                 lM.agregarProducto(iT);
             }
         }
@@ -68,10 +69,10 @@ public class Usuario implements Serializable {
         this.correo = correo;
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumns({
-            @JoinColumn(name="USUARIOS_correo",referencedColumnName = "correo", nullable = false)
-    })
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "listaid.usuario")
+    /*@JoinColumns({
+            @JoinColumn(name="USUARIOS_correo",referencedColumnName = "correo", nullable = false,insertable=false, updatable=false)
+    })*/
     public List<ListaDeMercado> getListas() {
         return listas;
     }
@@ -82,7 +83,7 @@ public class Usuario implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumns({
-            @JoinColumn(name="USUARIOS_correo",referencedColumnName = "correo", nullable = false)
+            @JoinColumn(name="USUARIOS_correo",referencedColumnName = "correo", nullable = false,insertable=false, updatable=false)
     })
     public List<Opinion> getOpiniones() {
         return opiniones;

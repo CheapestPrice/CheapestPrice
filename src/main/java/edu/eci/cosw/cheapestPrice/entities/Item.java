@@ -1,48 +1,29 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Julian David Devia Serna on 2/19/17.
  */
-//@Entity
-//@Table(name = "ITEMS")
-public class Item {
-    private Tienda tienda;
-    private Producto producto;
+@Entity
+@Table(name = "ITEMS")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Item implements Serializable {
+    @EmbeddedId
+    private ItemId id;
 
     public Item(){};
 
-    public Item(Tienda tienda,Producto producto){
-        this.producto=producto;
-        this.tienda=tienda;
+    public Item(ItemId id){
+        this.setId(id);
     }
 
-    public Tienda getTienda() {
-        return tienda;
+    public ItemId getId() {
+        return id;
     }
 
-    public void setTienda(Tienda tienda) {
-        this.tienda = tienda;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-
-    @Override
-    public boolean equals(Object o){
-        Item oi=(Item) o;
-        return tienda.equals(oi.getTienda()) && producto.equals(oi.getProducto());
-    }
-
-    @Override
-    public String toString(){
-        return "->Tienda: "+tienda+"\nProducto: "+producto+"\n";
+    public void setId(ItemId id) {
+        this.id = id;
     }
 }

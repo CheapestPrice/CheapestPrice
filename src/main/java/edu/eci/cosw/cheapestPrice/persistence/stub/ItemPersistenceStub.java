@@ -41,7 +41,7 @@ public class ItemPersistenceStub implements ItemPersistence{
         }
         Item item=null;
         for (Item i : items){
-            if(i.getTienda().getNombre().equals(shopName) && i.getProducto().getId()==id){
+            if(i.getId().getTienda().getNombre().equals(shopName) && i.getId().getProducto().getId()==id){
                 item=i;
             }
         }
@@ -58,7 +58,7 @@ public class ItemPersistenceStub implements ItemPersistence{
         }
         List<Item> shop= new ArrayList<>();
         for (Item i : items){
-            if(i.getTienda().getNombre().equals(shopName)){
+            if(i.getId().getTienda().getNombre().equals(shopName)){
                 shop.add(i);
             }
         }
@@ -72,7 +72,7 @@ public class ItemPersistenceStub implements ItemPersistence{
         }
         List<Item> categoria = new ArrayList<>();
         for (Item i : items){
-            if(i.getProducto().getCategoria().equalsIgnoreCase(category)){
+            if(i.getId().getProducto().getCategoria().equalsIgnoreCase(category)){
                 categoria.add(i);
             }
         }
@@ -86,7 +86,7 @@ public class ItemPersistenceStub implements ItemPersistence{
         }
         List<Item> item = new ArrayList<>();
         for (Item i : items){
-            if(i.getProducto().getId()==id){
+            if(i.getId().getProducto().getId()==id){
                 item.add(i);
             }
         }
@@ -104,7 +104,7 @@ public class ItemPersistenceStub implements ItemPersistence{
             }
         }
         id++;
-        item.getProducto().setId(id);
+        item.getId().getProducto().setId(id);
         items.add(item);
     }
 
@@ -136,7 +136,7 @@ public class ItemPersistenceStub implements ItemPersistence{
         }
         Item old=null;
         for (Item i:items){
-            if(i.getProducto().getId()==oldId && i.getTienda().getNombre().equals(oldshop)){
+            if(i.getId().getProducto().getId()==oldId && i.getId().getTienda().getNombre().equals(oldshop)){
                 old=i;
                 break;
             }
@@ -150,7 +150,7 @@ public class ItemPersistenceStub implements ItemPersistence{
     }
 
     public static void poblarStub(ItemPersistenceStub ips){
-        Producto p1=new Producto(1,"Queso crema",3000,"Alqueria","Queso");
+        /*Producto p1=new Producto(1,"Queso crema",3000,"Alqueria","Queso");
         TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
         List<Horario> hor=new ArrayList<>();
         hor.add(new Horario(8, 15, 9, 0,"Lunes"));
@@ -183,6 +183,6 @@ public class ItemPersistenceStub implements ItemPersistence{
             ips.addItem(i6);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
-        }
+        }    */
     }
 }

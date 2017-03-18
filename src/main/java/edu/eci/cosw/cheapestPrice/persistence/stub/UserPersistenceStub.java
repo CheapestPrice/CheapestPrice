@@ -93,7 +93,7 @@ public class UserPersistenceStub implements UserPersistence{
         Tienda t2= new Tienda("Cll 167 #58a-20",id,"Surtir","6699132",true);
         Producto p3=new Producto(3,"Papas BBQ",4500,"Margarita","Papas");
         Producto p4=new Producto(4,"Coca-Cola",4500,"Coca-Cola","Gaseosa");
-        Item i1= new Item(t1,p1);
+        /*Item i1= new Item(t1,p1);
         Item i2=new Item(t2,p2);
         Item i3=new Item(t2,p1);
         Item i4=new Item(t2,p3);
@@ -125,7 +125,7 @@ public class UserPersistenceStub implements UserPersistence{
             ups.addUser(u1);
         }catch (CheapestPriceException e){
             e.printStackTrace();
-        }
+        }    */
     }
 
     private static void prueba(UserPersistenceStub ups) throws CheapestPriceException {

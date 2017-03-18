@@ -63,7 +63,7 @@ public class Opinion implements Serializable {
         this.fecha = fecha;
     }
 
-    @Column(name="USUARIOS_correo")
+    @Column(name="USUARIOS_correo",nullable = false,insertable=false, updatable=false)
     public String getCorreo() {
         return correo;
     }

@@ -138,11 +138,11 @@ public class Tienda implements java.io.Serializable {
         return "nombre: "+nombre+" direccion: "+direccion+" telefono: "+telefono+" NIT: "+id.getNit();
     }
 
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumns({
-            @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false),
-            @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false),
-            @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false)
+            @JoinColumn(name="x", referencedColumnName="TIENDAS_x", nullable=false),
+            @JoinColumn(name="y", referencedColumnName="TIENDAS_y", nullable=false),
+            @JoinColumn(name="nit", referencedColumnName="TIENDAS_nit", nullable=false)
     })
     public Tendero getTendero() {
         return tendero;

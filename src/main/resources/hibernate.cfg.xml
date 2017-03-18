@@ -8,5 +8,13 @@
         <property name="hibernate.connection.username">bd2107646</property>
         <property name="hibernate.connection.password">2107646</property>
         <mapping class="edu.eci.cosw.cheapestPrice.entities.Item"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.ItemLista"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Usuario"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Tendero"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Tienda"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.ListaDeMercado"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Horario"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Producto"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Opinion"/>
     </session-factory>
 </hibernate-configuration>
