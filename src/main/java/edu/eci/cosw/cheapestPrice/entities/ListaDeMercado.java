@@ -77,11 +77,11 @@ public class ListaDeMercado implements Serializable {
         this.revisado = revisado;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id.lista")
-    /*@JoinColumns({
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumns({
             @JoinColumn(name = "LISTAS_MERCADOS_nombre", referencedColumnName = "nombre", nullable = false),
             @JoinColumn(name = "LISTAS_MERCADOS_USUARIOS_correo", referencedColumnName = "USUARIOS_correo", nullable = false)
-    })*/
+    })
     public List<ItemLista> getItems() {
         return items;
     }

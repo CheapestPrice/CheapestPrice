@@ -140,9 +140,7 @@ public class Tienda implements java.io.Serializable {
 
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumns({
-            @JoinColumn(name="x", referencedColumnName="TIENDAS_x", nullable=false),
-            @JoinColumn(name="y", referencedColumnName="TIENDAS_y", nullable=false),
-            @JoinColumn(name="nit", referencedColumnName="TIENDAS_nit", nullable=false)
+            @JoinColumn(name="TENDEROS_USUARIOS_correo", referencedColumnName="correo", nullable=false)
     })
     public Tendero getTendero() {
         return tendero;

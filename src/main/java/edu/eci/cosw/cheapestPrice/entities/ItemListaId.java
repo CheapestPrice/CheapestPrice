@@ -16,10 +16,11 @@ public class ItemListaId implements Serializable {
             @JoinColumn(name = "ITEMS_PRODUCTOS_id", referencedColumnName = "PRODUCTOS_id", nullable = false)
     })
     private Item item;
+
     @ManyToOne
     @JoinColumns({
-            @JoinColumn(name = "nombre", referencedColumnName = "LISTAS_MERCADOS_nombre", nullable = false),
-            @JoinColumn(name = "USUARIOS_correo", referencedColumnName = "LISTAS_MERCADOS_USUARIOS_correo", nullable = false)
+            @JoinColumn(name = "LISTAS_MERCADOS_nombre", referencedColumnName = "nombre", nullable = false),
+            @JoinColumn(name = "LISTAS_MERCADOS_USUARIOS_correo", referencedColumnName = "USUARIOS_correo", nullable = false)
     })
     private ListaDeMercado lista;
 

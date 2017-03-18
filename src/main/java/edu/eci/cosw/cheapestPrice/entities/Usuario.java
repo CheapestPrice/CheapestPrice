@@ -9,13 +9,13 @@ import java.util.List;
  */
 @Entity
 @Table(name="USUARIOS")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Usuario implements Serializable {
 
-    private String nombre;
-    private String correo;
-    private List<ListaDeMercado> listas;
-    private List<Opinion> opiniones;
+    protected String nombre;
+    protected String correo;
+    protected List<ListaDeMercado> listas;
+    protected List<Opinion> opiniones;
 
     public Usuario(){}
 
@@ -65,7 +65,7 @@ public class Usuario implements Serializable {
         return correo;
     }
 
-    public void setEmail(String correo) {
+    public void setCorreo(String correo) {
         this.correo = correo;
     }
 
