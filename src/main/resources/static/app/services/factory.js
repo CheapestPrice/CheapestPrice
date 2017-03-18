@@ -338,6 +338,6 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
                 'update' : {method:'PUT'}
             });
     })
-    .factory('getUserNickname',function($resource) {
+    .factory('getUserEmail',function($resource) {
         return $resource('/usuarios/:correo');
     });

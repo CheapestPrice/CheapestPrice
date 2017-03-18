@@ -10,7 +10,7 @@ angular.module('myApp.shopList', ['ngRoute'])
 }])
 
 .controller('shopListCtrl', ['$scope','listasMercadoStubFactory','$rootScope','$mdDialog', 'updateUser', function($scope, listasMercadoStubFactory, $rootScope,$mdDialog, updateUser) {
-    //$scope.listado = $rootScope.listaMercado;
+    $scope.listado = $rootScope.listaMercado;
     $scope.usua = $rootScope.usuario;
     $scope.propertyName = 'producto.nombre';
     $scope.customFullscreen = false;
@@ -24,10 +24,10 @@ angular.module('myApp.shopList', ['ngRoute'])
     //$scope.eliminar = function(iden, tien){
         //listasMercadoStubFactory.eliminarItem(iden, tien, $rootScope.listaMercado.nombre);
     //};
-    $scope.eliminarItem = function(lista){
+    $scope.eliminarItem = function(id,tien){
         var ban = false
         for(var i=0;i<$scope.usua.listas.length;i++){
-            if($scope.usua.listas[i].nombre == lista){
+            if($scope.usua.listas[i].nombre == $scope.listado.nombre){
                 for(var j=0; j<$scope.usua.listas[i].length;j++){
                     if($scope.usua.listas[i].items[j].producto.id == iden && $scope.usua.listas[i].items[j].tienda.nombre == tien){
                         $scope.usua.listas[i].items.splice(j,1);
@@ -40,15 +40,15 @@ angular.module('myApp.shopList', ['ngRoute'])
                 }
             }
         }
-        updateUser.update({nickname:$scope.usua.nombre},$scope.usua);
+        updateUser.update({correo:$scope.usua.correo},$scope.usua);
     };
     //$scope.comprado = function(iden, tien){
         //listasMercadoStubFactory.comprarItem(iden, tien, $rootScope.listaMercado.nombre);
      //};
-     $scope.comprado = function(lista,iden,tien)
+     $scope.comprado = function(iden,tien)
         var ban = false
                 for(var i=0;i<$scope.usua.listas.length;i++){
-                    if($scope.usua.listas[i].nombre == lista){
+                    if($scope.usua.listas[i].nombre == $scope.listado.nombre){
                         for(var j=0; j<$scope.usua.listas[i].length;j++){
                             if($scope.usua.listas[i].items[j].producto.id == iden && $scope.usua.listas[i].items[j].tienda.nombre == tien){
                                 $scope.usua.listas[i].items[j].comprado=!$scope.usua.listas[i].items[j].comprado;
@@ -61,7 +61,7 @@ angular.module('myApp.shopList', ['ngRoute'])
                         }
                     }
                 }
-                updateUser.update({nickname:$scope.usua},$scope.usua);
+                updateUser.update({correo:$scope.usua.correo},$scope.usua);
             };
 
      $scope.showAdvanced = function(ev,produc) {

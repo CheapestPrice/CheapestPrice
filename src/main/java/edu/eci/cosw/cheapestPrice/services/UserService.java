@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Created by 2105403 on 3/17/17.
  */
-
+@Service
 public class UserService implements UserPersistence{
     @Autowired
     UserRepository us;

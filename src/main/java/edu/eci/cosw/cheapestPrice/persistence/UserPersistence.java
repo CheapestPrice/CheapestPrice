@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Created by 2105403 on 2/20/17.
  */
-@Service
+//@Service
 public interface UserPersistence {
 
     /**

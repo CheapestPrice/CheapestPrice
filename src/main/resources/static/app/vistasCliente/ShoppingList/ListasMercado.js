@@ -11,9 +11,9 @@ angular.module('myApp.listasMercado', ['ngRoute'])
 }])
 
 .controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', 'getUserNickname', 'updateUser', function($scope, listasMercadoStubFactory, $rootScope, $location,getUserNickname, updateUser) {
-    listasMercadoStubFactory.listaCompleta();
+    //listasMercadoStubFactory.listaCompleta();
     //Falta el usuario global, cambiar nickname1
-    $rootScope.usuario = getUserNickname.get({nickname:'nickname1'});
+    $rootScope.usuario = getUserEmail.get({correo:'nickname1'});
     //$scope.listMerc = listasMercadoStubFactory.getListaMercado();
 
     //$scope.eliminar = function(nom){
@@ -28,7 +28,7 @@ angular.module('myApp.listasMercado', ['ngRoute'])
 
         }
         //Falta el usuario global
-        updateUser.update({nickname:$rootScope.usuario},$rootScope.usuario);
+        updateUser.update({correo:$rootScope.usuario.correo},$rootScope.usuario);
     }
 
     $scope.propertyName = 'nombre';
