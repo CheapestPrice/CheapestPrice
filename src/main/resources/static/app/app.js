@@ -4,6 +4,8 @@
 angular.module('myApp', [
   'ngRoute',
   'ngMaterial',
+  'ngMessages',
+  'dtrw.bcrypt',
   'services.listFactory',
   'myApp.vistaPrincipal',
   'myApp.vistaRegistro',
