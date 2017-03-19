@@ -42,7 +42,6 @@ dependencies {
 	compile('org.hibernate:hibernate-core:4.3.0.Final')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

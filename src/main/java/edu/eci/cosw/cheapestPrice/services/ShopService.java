@@ -1,6 +1,6 @@
 package edu.eci.cosw.cheapestPrice.services;
 
-import com.mysql.jdbc.Blob;
+import java.sql.Blob;
 import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import java.sql.Timestamp;
