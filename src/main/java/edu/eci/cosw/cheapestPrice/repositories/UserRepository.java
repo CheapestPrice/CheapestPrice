@@ -27,6 +27,4 @@ public interface UserRepository extends JpaRepository<Usuario,String> {
 
     @Query("select u from Usuario u")
     public List<Usuario> loadAllUsers();
-
-
 }
