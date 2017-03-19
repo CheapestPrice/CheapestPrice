@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.sql.Blob;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import javax.persistence.*;
 
 /**
@@ -25,8 +24,12 @@ public class Tienda implements java.io.Serializable {
     private List<Horario> horarios;
     private Tendero tendero;
     private List<Opinion> opiniones;
+    private HashMap<Integer, String> diasemana;
+    private java.util.GregorianCalendar cal;
 
-    public Tienda(){};
+    public Tienda(){
+        createHorary();
+    };
 
     public Tienda(String direccion,TiendaId id,String nombre,String telefono, boolean disponible) {
         setHorarios(new ArrayList<>());
@@ -36,6 +39,7 @@ public class Tienda implements java.io.Serializable {
         this.nombre = nombre;
         this.telefono = telefono;
         this.disponible = disponible;
+        createHorary();
     }
 
 
@@ -48,6 +52,7 @@ public class Tienda implements java.io.Serializable {
         this.telefono = telefono;
         this.disponible = disponible;
         this.logo = logo;
+        createHorary();
     }
 
     public Tienda(String direccion,TiendaId id,String nombre,String telefono, Tendero tendero){
@@ -59,6 +64,7 @@ public class Tienda implements java.io.Serializable {
         this.telefono = telefono;
         this.tendero=tendero;
         this.disponible=true;
+        createHorary();
     }
 
     @EmbeddedId
@@ -186,7 +192,73 @@ public class Tienda implements java.io.Serializable {
      *
      */
     public boolean isOpen(Timestamp time){
+        setCal((GregorianCalendar) Calendar.getInstance());
+        getCal().setTime(time);
+        String dia = diasemana.get(getCal().get(Calendar.DAY_OF_WEEK));
+        boolean ans=false;
+        for (int i = 0; i < horarios.size() && !ans; i++) {
+            Horario tmp=horarios.get(i);
+            if(tmp.getDia().equals(dia)){
+                if(tmp.getHoraInicio()<cal.HOUR_OF_DAY && tmp.getHoraFin()>cal.HOUR_OF_DAY && tmp.getMinutosInicio()<cal.MINUTE && tmp.getMinutoFin()>cal.MINUTE){
+                    ans=true;
+                }
+            }
+        }
+        return ans;
+    }
 
-        return false;
+    /**
+     * identificador dias de la semana
+     */
+    public void createHorary(){
+        setDiasemana(new HashMap<Integer,String>());
+        getDiasemana().put(getCal().MONDAY,"Lunes");
+        getDiasemana().put(getCal().TUESDAY,"Martes");
+        getDiasemana().put(getCal().WEDNESDAY,"Miercoles");
+        getDiasemana().put(getCal().THURSDAY,"Jueves");
+        getDiasemana().put(getCal().FRIDAY,"Viernes");
+        getDiasemana().put(getCal().SATURDAY,"Sabado");
+        getDiasemana().put(getCal().SUNDAY,"Domingo");
+    }
+    /**
+     * Dias de la semana
+     * @return diasemana
+     */
+    public HashMap<Integer,String> getDiasemana() {
+        return diasemana;
+    }
+    /**
+     * Dias de la semana
+     * @param diasemana
+     */
+    public void setDiasemana(HashMap<Integer,String> diasemana) {
+        this.diasemana = diasemana;
+    }
+    /**
+     * Calendario
+     * @return cal
+     */
+    public GregorianCalendar getCal() {
+        return cal;
+    }
+    /**
+     * Calendario
+     * @param cal
+     */
+    public void setCal(GregorianCalendar cal) {
+        this.cal = cal;
+    }
+    /**
+     * Modificar horario de un dia de la tienda
+     * @param  dia
+     * @param horario
+     */
+    public void modifyHorary(String dia, Horario horario){
+        for (int j = 0; j < horarios.size(); j++) {
+            if(horarios.get(j).getDia().equals(dia)){
+                horarios.remove(j);
+                horarios.add(j,horario);
+            }
+        }
     }
 }

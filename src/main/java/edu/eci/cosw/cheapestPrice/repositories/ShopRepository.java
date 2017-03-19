@@ -5,8 +5,9 @@ import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Created by daniela on 14/03/17.
+ * Created by Daniela on 14/03/17.
  */
 public interface ShopRepository extends JpaRepository<Tienda,TiendaId>{
 
+    
 }

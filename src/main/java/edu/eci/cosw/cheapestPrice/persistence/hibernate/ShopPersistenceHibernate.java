@@ -11,21 +11,21 @@ import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * Created by daniela on 18/03/17.
+ * Created by Daniela on 18/03/17.
  */
 public class ShopPersistenceHibernate implements ShopPersistence {
 
     private ShopRepository repository;
 
     @Override
-    public void addTienda(Tienda tienda) {
+    public void addTienda(Tienda tienda) throws CheapestPriceException {
         repository.save(tienda);
     }
 
     @Override
+    ///actualizo todo lo referente a llave no primaria ni horario ni opiniones
     public void modifyTienda(TiendaId id, Tienda tienda) throws CheapestPriceException {
-        repository.delete(id);
-        addTienda(tienda);
+
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ShopPersistenceHibernate implements ShopPersistence {
 
     @Override
     public void addProduct(TiendaId id, Producto producto) throws CheapestPriceException {
-        Tienda old=repository.getOne(id);
+
     }
 
     @Override
@@ -56,16 +56,19 @@ public class ShopPersistenceHibernate implements ShopPersistence {
     @Override
     public void modifyHorary(TiendaId id, String dia, Horario horario) throws CheapestPriceException {
 
+
     }
 
     @Override
     public void modifyTelephone(TiendaId id, String telefono) throws CheapestPriceException {
-
+        Tienda tmp=repository.getOne(id);
+        tmp.setTelefono(telefono);
+        modifyTienda(id,tmp);
     }
 
     @Override
     public boolean isOpen(TiendaId id, Timestamp fecha) throws CheapestPriceException {
-        return false;
+        return repository.getOne(id).isOpen(fecha);
     }
 
     @Override
@@ -75,7 +78,9 @@ public class ShopPersistenceHibernate implements ShopPersistence {
 
     @Override
     public void modifyLogo(TiendaId id, Blob logo) throws CheapestPriceException {
-
+        Tienda tmp=repository.getOne(id);
+        tmp.setLogo(logo);
+        modifyTienda(id,tmp);
     }
 
 

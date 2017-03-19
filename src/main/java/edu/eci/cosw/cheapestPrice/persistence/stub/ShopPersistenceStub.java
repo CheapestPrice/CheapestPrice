@@ -134,9 +134,7 @@ public class ShopPersistenceStub implements ShopPersistence {
     public void modifyHorary(TiendaId id, String dia, Horario horario) throws CheapestPriceException {
         for (int i = 0; i < tiendas.size(); i++) {
             if(tiendas.get(i).getId().equals(id)){
-                List<Horario> horar=tiendas.get(i).getHorarios();
-
-
+                tiendas.get(i).modifyHorary(dia,horario);
             }
         }
 
@@ -180,5 +178,27 @@ public class ShopPersistenceStub implements ShopPersistence {
         }
     }
 
+    /**
+     *Poblar stub tiendas
+     * @param shopPersistence
+     */
+    public static void poblarStub(ShopPersistenceStub shopPersistence){
+        TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
+        Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde pepe","6699132",true);
+        TiendaId id2=new TiendaId("123456456",4.7498466,-74.0623005);
+        Tienda t2= new Tienda("Cll 167 #58a-20",id,"Surtir","6699132",true);
+        TiendaId id3=new TiendaId("123456789-2",4.7649271,-74.0476042);
+        Tienda t3= new Tienda("calle 184 #52 A13",id,"Donde aaaa","6699132",true);
+        TiendaId id4=new TiendaId("1234567782-2",4.7649271,-74.0476042);
+        Tienda t4= new Tienda("calle 184 #52 A13",id,"Donde bbbb","6699132",true);
+        try {
+            shopPersistence.addTienda(t1);
+            shopPersistence.addTienda(t2);
+            shopPersistence.addTienda(t3);
+            shopPersistence.addTienda(t4);
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+        }
 
+    }
 }
