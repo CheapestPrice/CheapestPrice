@@ -4,21 +4,26 @@ import com.mysql.jdbc.Blob;
 import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ShopPersistence;
+import edu.eci.cosw.cheapestPrice.repositories.ShopRepository;
+import edu.eci.cosw.cheapestPrice.services.ShopServicePersistence;
 
 import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * Created by daniela on 18/03/17.
+ * Created by Daniela on 18/03/17.
  */
 public class ShopPersistenceHibernate implements ShopPersistence {
 
-    @Override
-    public void addTienda(Tienda tienda) {
+    private ShopRepository repository;
 
+    @Override
+    public void addTienda(Tienda tienda) throws CheapestPriceException {
+        repository.save(tienda);
     }
 
     @Override
+    ///actualizo todo lo referente a llave no primaria ni horario ni opiniones
     public void modifyTienda(TiendaId id, Tienda tienda) throws CheapestPriceException {
 
     }
@@ -51,16 +56,19 @@ public class ShopPersistenceHibernate implements ShopPersistence {
     @Override
     public void modifyHorary(TiendaId id, String dia, Horario horario) throws CheapestPriceException {
 
+
     }
 
     @Override
     public void modifyTelephone(TiendaId id, String telefono) throws CheapestPriceException {
-
+        Tienda tmp=repository.getOne(id);
+        tmp.setTelefono(telefono);
+        modifyTienda(id,tmp);
     }
 
     @Override
     public boolean isOpen(TiendaId id, Timestamp fecha) throws CheapestPriceException {
-        return false;
+        return repository.getOne(id).isOpen(fecha);
     }
 
     @Override
@@ -70,7 +78,9 @@ public class ShopPersistenceHibernate implements ShopPersistence {
 
     @Override
     public void modifyLogo(TiendaId id, Blob logo) throws CheapestPriceException {
-
+        Tienda tmp=repository.getOne(id);
+        tmp.setLogo(logo);
+        modifyTienda(id,tmp);
     }
 
 
