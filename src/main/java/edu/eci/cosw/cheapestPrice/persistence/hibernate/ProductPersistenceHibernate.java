@@ -3,9 +3,8 @@ package edu.eci.cosw.cheapestPrice.persistence.hibernate;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ProductPersistence;
-import edu.eci.cosw.cheapestPrice.persistence.SessionFactoryPersistence;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+
 import java.util.Set;
 
 /**
