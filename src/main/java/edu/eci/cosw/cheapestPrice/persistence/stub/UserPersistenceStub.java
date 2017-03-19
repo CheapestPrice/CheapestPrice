@@ -10,78 +10,78 @@ import java.util.*;
 /**
  * Created by 2105403 on 2/21/17.
  */
-@Service
+//@Service
 public class UserPersistenceStub implements UserPersistence{
 
-    public Map<String, Usuario> getUsuarios() {
+    public List<Usuario> getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(Map<String, Usuario> usuarios) {
+    public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
 
-    private Map<String,Usuario> usuarios;
+    private List<Usuario> usuarios;
 
     public UserPersistenceStub() throws CheapestPriceException {
-        usuarios = new HashMap<>();
+        usuarios = new ArrayList<>();
         UserPersistenceStub.poblarStub(this);
 
         prueba(this);
     }
 
     @Override
-    public Map<String,Usuario> loadAllUsuarios(){
+    public List<Usuario> loadAllUsuarios(){
         return usuarios;
     }
 
 
+
     @Override
-    public List<ListaDeMercado> loadAllShopList() {
+    public List<ListaDeMercado> loadShopListByEmail(String email) throws CheapestPriceException {
+        if(email.length()==0 || email==null) throw new CheapestPriceException("El email del usuario no puede ser nulo");
         List<ListaDeMercado> listas = new ArrayList<>();
-        for(Usuario u: usuarios.values()){
-            for(ListaDeMercado lM : u.getListas()){
-                listas.add(lM);
+        for(Usuario u: usuarios){
+            if(u.getCorreo().equals(email)){
+                listas=u.getListas();
+                break;
             }
         }
         return listas;
     }
 
     @Override
-    public List<ListaDeMercado> loadShopListByEmail(String email) throws CheapestPriceException {
-        if(email.length()==0 || email==null) throw new CheapestPriceException("El email del usuario no puede ser nulo");
-        List<ListaDeMercado> listas = new ArrayList<>();
-        listas=(usuarios.get(email).getListas());
-        return listas;
-    }
-
-    @Override
     public Usuario loadUserByEmail(String correo) throws CheapestPriceException {
         if(correo.length()==0 || correo==null)  throw new CheapestPriceException("El email del usuario no puede ser nulo");
-        if(!usuarios.containsKey(correo)) throw new CheapestPriceException("El usuario no existe");
-        return usuarios.get(correo);
+        Usuario user=new Usuario();
+        for(Usuario u:usuarios){
+            if(u.getCorreo().equals(correo)) {
+                user = u;
+                break;
+            }
+        }
+        return user;
     }
 
-    @Override
-    public List<ListaDeMercado> loadShopListByName(String name)throws  CheapestPriceException {
-        if(name.length()==0 || name==null) throw new CheapestPriceException("El email del usuario no puede ser nulo");
-        List<ListaDeMercado> listas = new ArrayList<>();
-        listas=(usuarios.get(name).getListas());
-        return listas;
-    }
+
     @Override
     public void addUser(Usuario usuario)throws CheapestPriceException{
         System.out.println("Sirvio!: "+ usuario.getCorreo());
-        if(usuarios.get(usuario.getCorreo())!=null) throw new CheapestPriceException("El usuario con correo"+usuario.getCorreo()+" ya está registrado");
-        usuarios.put(usuario.getCorreo(),usuario);
+        if(usuarios.contains(usuario)) throw new CheapestPriceException("El usuario con correo"+usuario.getCorreo()+" ya está registrado");
+        usuarios.add(usuario);
 
     }
 
     @Override
     public void updateUser(String oldCorreo, Usuario usuario) throws CheapestPriceException{
-        if(usuario==null && usuarios.get(oldCorreo)!=null) throw new CheapestPriceException("El usuario tiene que existir");
-        usuarios.remove(usuarios.get(oldCorreo));
-        usuarios.put(usuario.getCorreo(),usuario);
+        if(!usuarios.contains(usuario)) throw new CheapestPriceException("El usuario tiene que existir");
+        for(Usuario u:usuarios){
+            if(u.getCorreo().equals(oldCorreo)){
+                usuarios.remove(u);
+                break;
+            }
+        }
+        usuarios.add(usuario);
     }
 
     public static void poblarStub(UserPersistenceStub ups){

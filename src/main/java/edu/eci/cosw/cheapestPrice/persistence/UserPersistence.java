@@ -13,20 +13,15 @@ import java.util.Map;
 /**
  * Created by 2105403 on 2/20/17.
  */
-@Service
+//@Service
 public interface UserPersistence {
 
     /**
      * Retorna a todos los usuarios
      * @return
      */
-    public Map<String,Usuario> loadAllUsuarios();
+    public List<Usuario> loadAllUsuarios();
 
-    /**
-     * Retorna todas las listas de mercado
-     * @return
-     */
-    public List<ListaDeMercado> loadAllShopList();
 
     /**
      * Retorna las listas de mercado de un usuario dado su email
@@ -44,22 +39,15 @@ public interface UserPersistence {
     public Usuario loadUserByEmail(String correo) throws CheapestPriceException;
 
     /**
-     * Retorna las listas de mercado de un usuario dado su nombre
-     * @param name
-     * @return
-     */
-    public List<ListaDeMercado> loadShopListByName(String name) throws CheapestPriceException;
-
-    /**
      *
-     * Agrega usuarios
+     * Agrega un nuevo usuario
      * @param usuario
      */
     public void addUser(Usuario usuario) throws CheapestPriceException;
 
     /**
-     * Agregar un nuevo usuario
+     * Actualiza a un usuario existente
      * @param usuario
      */
-    public void updateUser(String oldNickname, Usuario usuario)throws CheapestPriceException;
+    public void updateUser(String correo, Usuario usuario)throws CheapestPriceException;
 }
