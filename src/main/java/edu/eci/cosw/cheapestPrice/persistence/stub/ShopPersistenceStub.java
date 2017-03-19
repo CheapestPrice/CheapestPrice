@@ -21,9 +21,17 @@ public class ShopPersistenceStub implements ShopPersistence {
 
     public ShopPersistenceStub(){ tiendas=new HashMap<>();}
 
+    public Map<String, Tienda> getTiendas() {
+        return tiendas;
+    }
+
+    public void setTiendas(Map<String, Tienda> tiendas) {
+        this.tiendas = tiendas;
+    }
+
     @Override
-    public void addTienda(Tienda tienda) {
-        tiendas.put(tienda.tendero.getCorreo(),tienda);
+    public void addTienda(Tienda tienda) throws CheapestPriceException {
+
     }
 
     @Override
@@ -75,13 +83,4 @@ public class ShopPersistenceStub implements ShopPersistence {
     public void modifyLogo(Blob logo) throws CheapestPriceException {
 
     }
-
-    public Map<String, Tienda> getTiendas() {
-        return tiendas;
-    }
-
-    public void setTiendas(Map<String, Tienda> tiendas) {
-        this.tiendas = tiendas;
-    }
-
 }

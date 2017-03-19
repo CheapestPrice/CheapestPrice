@@ -3,49 +3,47 @@ package edu.eci.cosw.cheapestPrice.services;
 import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
-import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
-import edu.eci.cosw.cheapestPrice.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 /**
- * Created by 2105403 on 3/17/17.
+ * Created by masterhugo on 3/18/17.
  */
-@Service
-public class UserService implements UserPersistence{
-    @Autowired
-    UserRepository us;
+public interface UserService {
+
+    /**
+     * Retorna a todos los usuarios
+     * @return
+     */
+    public List<Usuario> loadAllUsuarios();
 
 
-    @Override
-    public List<Usuario> loadAllUsuarios() {
+    /**
+     * Retorna las listas de mercado de un usuario dado su email
+     * @param email
+     * @return
+     */
+    public List<ListaDeMercado> loadShopListByEmail(String email) throws CheapestPriceException;
 
-        return us.loadAllUsers();
-    }
+    /**
+     * Retorna un usuario especifico por su correo
+     * @param correo
+     * @return
+     * @throws CheapestPriceException
+     */
+    public Usuario loadUserByEmail(String correo) throws CheapestPriceException;
 
+    /**
+     *
+     * Agrega un nuevo usuario
+     * @param usuario
+     */
+    public void addUser(Usuario usuario) throws CheapestPriceException;
 
-    @Override
-    public List<ListaDeMercado> loadShopListByEmail(String correo) throws CheapestPriceException {
-        return us.loadShoppingListByUserEmail(correo);
-    }
+    /**
+     * Actualiza a un usuario existente
+     * @param usuario
+     */
+    public void updateUser(String correo, Usuario usuario)throws CheapestPriceException;
 
-    @Override
-    public Usuario loadUserByEmail(String correo) throws CheapestPriceException {
-      return  us.loadUserByEmail(correo);
-    }
-
-
-    @Override
-    public void addUser(Usuario usuario) throws CheapestPriceException {
-        us.save(usuario);
-    }
-
-    @Override
-    public void updateUser(String oldEmail, Usuario usuario) throws CheapestPriceException {
-        us.deleteUser(oldEmail);
-        us.save(usuario);
-    }
 }

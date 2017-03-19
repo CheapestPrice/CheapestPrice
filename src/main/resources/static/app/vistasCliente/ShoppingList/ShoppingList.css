@@ -1,4 +1,4 @@
-// For Presentation Only
+
 body {
   padding: 3rem 1rem 0;
   font-family: 'Lato', sans-serif;
@@ -12,7 +12,7 @@ body {
   }
 }
 
-// Optimize for icon based button
+
 .glyphicon-heart {
   padding: 0;
   background: transparent;
@@ -22,9 +22,8 @@ body {
   border-radius: 0;
 }
 
-// Define color for each button type
-@icon-default-color: #666;
-@icon-heart-color: #FE4365;
+
+
 
 
 .glyphicon-heart {

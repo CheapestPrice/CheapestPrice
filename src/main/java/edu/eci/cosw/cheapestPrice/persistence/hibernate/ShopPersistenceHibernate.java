@@ -12,15 +12,10 @@ import java.util.List;
  * Created by daniela on 18/03/17.
  */
 public class ShopPersistenceHibernate implements ShopPersistence {
-///////////////////////////////////////////////////////
+
     @Override
     public void addTienda(Tienda tienda) {
 
-    }
-
-    @Override
-    public Tienda getTienda(String nickname) {
-        return null;
     }
 
     @Override
@@ -72,5 +67,5 @@ public class ShopPersistenceHibernate implements ShopPersistence {
     public void modifyLogo(Blob logo) throws CheapestPriceException {
 
     }
-    ////////////////////////////////////////////////////////////////////
+
 }

@@ -3,6 +3,7 @@ package edu.eci.cosw.cheapestPrice.controllers;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
+import edu.eci.cosw.cheapestPrice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/usuarios")
 public class UserController {
     @Autowired
-    UserPersistence uP;
+    UserService uP;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getUsuarios(){
