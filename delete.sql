@@ -1,0 +1,11 @@
+delete from ITEMS_LISTA;
+delete from ITEMS;
+delete from LISTAS_MERCADOS;
+delete from PRODUCTOS;
+delete from HORARIOS;
+delete from TENDEROS;
+delete from OPINIONES;
+delete from USUARIOS_AUTENTICACION;
+delete from USUARIOS_ROLES;
+delete from TIENDAS;
+delete from USUARIOS;

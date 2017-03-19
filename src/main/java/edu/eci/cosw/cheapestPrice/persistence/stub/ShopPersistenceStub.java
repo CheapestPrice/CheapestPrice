@@ -134,7 +134,7 @@ public class ShopPersistenceStub implements ShopPersistence {
     public void modifyHorary(TiendaId id, String dia, Horario horario) throws CheapestPriceException {
         for (int i = 0; i < tiendas.size(); i++) {
             if(tiendas.get(i).getId().equals(id)){
-                List<Horario> horar=tiendas.get(i).getHorario();
+                List<Horario> horar=tiendas.get(i).getHorarios();
 
 
             }

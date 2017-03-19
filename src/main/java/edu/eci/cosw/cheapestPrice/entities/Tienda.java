@@ -1,7 +1,7 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mysql.jdbc.Blob;
+import java.sql.Blob;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +23,13 @@ public class Tienda implements java.io.Serializable {
     private Blob logo;
     private List<Horario> horarios;
     private Tendero tendero;
+    private List<Opinion> opiniones;
 
     public Tienda(){};
 
     public Tienda(String direccion,TiendaId id,String nombre,String telefono, boolean disponible) {
         setHorarios(new ArrayList<>());
+        this.setOpiniones(new ArrayList<>());
         this.direccion = direccion;
         this.setId(id);
         this.nombre = nombre;
@@ -38,6 +40,7 @@ public class Tienda implements java.io.Serializable {
 
     public Tienda(String direccion,TiendaId id, String nombre,String telefono, boolean disponible,Blob logo) {
         setHorarios(new ArrayList<>());
+        this.setOpiniones(new ArrayList<>());
         this.direccion = direccion;
         this.setId(id);
         this.nombre = nombre;
@@ -48,25 +51,13 @@ public class Tienda implements java.io.Serializable {
 
     public Tienda(String direccion,TiendaId id,String nombre,String telefono, Tendero tendero){
         setHorarios(new ArrayList<>());
+        this.setOpiniones(new ArrayList<>());
         this.direccion = direccion;
         this.nombre = nombre;
         this.setId(id);
         this.telefono = telefono;
         this.tendero=tendero;
         this.disponible=true;
-    }
-
-
-
-
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumns({
-            @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false),
-            @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false),
-            @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false)
-    })
-    public List<Horario> getHorario(){
-        return this.getHorarios();
     }
 
     @EmbeddedId
@@ -150,6 +141,12 @@ public class Tienda implements java.io.Serializable {
      * Get horarios
      * @return horarios
      */
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumns({
+            @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false),
+            @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false),
+            @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false)
+    })
     public List<Horario> getHorarios() {
         return horarios;
     }
@@ -159,5 +156,19 @@ public class Tienda implements java.io.Serializable {
      */
     public void setHorarios(List<Horario> horarios) {
         this.horarios = horarios;
+    }
+
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumns({
+            @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false),
+            @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false),
+            @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false)
+    })
+    public List<Opinion> getOpiniones() {
+        return opiniones;
+    }
+
+    public void setOpiniones(List<Opinion> opiniones) {
+        this.opiniones = opiniones;
     }
 }
