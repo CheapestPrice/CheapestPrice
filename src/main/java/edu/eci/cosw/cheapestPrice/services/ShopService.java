@@ -96,5 +96,7 @@ public interface ShopService {
      * @throws CheapestPriceException
      */
     public void modifyLogo(Blob logo) throws CheapestPriceException;
+    
+    public Tienda getTienda(String nickname) throws CheapestPriceException;
 
 }
