@@ -13,7 +13,7 @@ angular.module('myApp.listasMercado', ['ngRoute'])
 .controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', 'getUserNickname', 'updateUser', function($scope, listasMercadoStubFactory, $rootScope, $location,getUserNickname, updateUser) {
     //listasMercadoStubFactory.listaCompleta();
     //Falta el usuario global, cambiar nickname1
-    $rootScope.usuario = getUserEmail.get({correo:'prueba@prueba.com'});
+    $rootScope.usuario = getUserEmail.get({correo:'admin@cheapestprice.com'});
     //$scope.listMerc = listasMercadoStubFactory.getListaMercado();
 
     //$scope.eliminar = function(nom){
