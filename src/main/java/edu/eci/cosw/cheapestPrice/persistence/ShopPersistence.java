@@ -11,14 +11,12 @@ import java.util.List;
  * Created by Daniela on 19/02/2017.
  */
 public interface ShopPersistence {
-
-    ////////////////////////////////////////////////preguuntar
-    public void addTienda(Tienda tienda);
-
-    public Tienda getTienda(String nickname);
-
-    /////////////////////////////////////////////////////////////////
-
+    /***
+     * Registrar la tienda
+     * @param tienda
+     * @throws CheapestPriceException
+     */
+    public void addTienda(Tienda tienda) throws CheapestPriceException;
 
     /**
      * Carga un item de la tienda

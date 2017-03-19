@@ -3,15 +3,28 @@ package edu.eci.cosw.cheapestPrice.services;
 import com.mysql.jdbc.Blob;
 import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * Created by daniela on 18/03/17.
+ * Created by Daniela on 18/03/17.
  */
 public interface ShopService {
+
+    /***
+     * Registrar la tienda
+     * @param tienda
+     * @throws CheapestPriceException
+     */
+    public void addTienda(Tienda tienda) throws CheapestPriceException;
+
+    /**
+     * Modificar la tienda
+     * @param id
+     * @param tienda
+     * @throws CheapestPriceException
+     */
+    public void modifyTienda(TiendaId id, Tienda tienda) throws CheapestPriceException;
 
     /**
      * Carga todos los items registrados en la tienda
