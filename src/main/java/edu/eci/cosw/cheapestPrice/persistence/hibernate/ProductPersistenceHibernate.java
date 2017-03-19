@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * Created by masterhugo on 2/16/17.
  */
-public class ProductPersistenceHibernate extends SessionFactoryPersistence implements ProductPersistence {
+public class ProductPersistenceHibernate implements ProductPersistence {
     private Session sesion;
 
     public ProductPersistenceHibernate(Session s) {
