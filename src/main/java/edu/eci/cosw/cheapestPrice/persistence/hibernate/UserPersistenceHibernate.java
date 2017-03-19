@@ -8,6 +8,7 @@ import edu.eci.cosw.cheapestPrice.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by masterhugo on 3/18/17.
