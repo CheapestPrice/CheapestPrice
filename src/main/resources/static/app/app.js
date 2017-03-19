@@ -6,6 +6,7 @@ angular.module('myApp', [
   'ngMaterial',
   'ngMessages',
   'dtrw.bcrypt',
+  'uiGmapgoogle-maps',
   'services.listFactory',
   'myApp.vistaPrincipal',
   'myApp.vistaRegistro',
@@ -21,9 +22,12 @@ angular.module('myApp', [
   'myApp.viewSearch',
   'services.listFactoryApi'
 ]).
-config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
+config(['$routeProvider','$httpProvider','uiGmapGoogleMapApiProvider', function($routeProvider, $httpProvider,uiGmapGoogleMapApiProvider) {
     $routeProvider.otherwise({redirectTo: '/vistaPrincipal'});
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+    uiGmapGoogleMapApiProvider.configure({
+            key : "AIzaSyCxujIqthspGeof_qxgIkis5Z6j0hLjCYs"
+        });
 }])
 .controller('logout',['$rootScope','$scope', '$http','$location', function($rootScope,$scope,$http,$location)  {
   $scope.logout = function () {
