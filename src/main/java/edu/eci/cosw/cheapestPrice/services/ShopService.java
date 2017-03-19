@@ -1,12 +1,11 @@
 package edu.eci.cosw.cheapestPrice.services;
 
-import edu.eci.cosw.cheapestPrice.entities.Horario;
-import edu.eci.cosw.cheapestPrice.entities.Item;
-import edu.eci.cosw.cheapestPrice.entities.Opinion;
-import edu.eci.cosw.cheapestPrice.entities.Producto;
+import com.mysql.jdbc.Blob;
+import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -19,6 +18,13 @@ public interface ShopService {
      * @return todos los items de la tienda
      */
     public List<Item> loadItems();
+
+    /**
+     * Carga un item de la tienda
+     * @param id
+     * @return item
+     */
+    public Item loadItem(long id)throws CheapestPriceException;
 
     /**
      * Registrar un nuevo producto a la tienda
@@ -59,9 +65,10 @@ public interface ShopService {
 
     /**
      *  Verificar si la tienda esta abierta
+     *  @param fecha
      *  @throws CheapestPriceException
      */
-    public boolean isOpen() throws CheapestPriceException;
+    public boolean isOpen(Timestamp fecha) throws CheapestPriceException;
 
     /**
      * Agregar opinion a la tienda
@@ -72,8 +79,9 @@ public interface ShopService {
 
     /***
      * Modificar el logo de la tienda
-     *
+     * @param logo
+     * @throws CheapestPriceException
      */
-    public void modifyLogo() throws CheapestPriceException;
+    public void modifyLogo(Blob logo) throws CheapestPriceException;
 
 }

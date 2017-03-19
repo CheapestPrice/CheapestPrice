@@ -1,11 +1,14 @@
 package edu.eci.cosw.cheapestPrice.services;
 
+import com.mysql.jdbc.Blob;
 import edu.eci.cosw.cheapestPrice.entities.Horario;
 import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.entities.Opinion;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
+import edu.eci.cosw.cheapestPrice.persistence.ShopPersistence;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -13,8 +16,17 @@ import java.util.List;
  */
 public class ShopServicePersistence implements ShopService {
 
+    private ItemService itemService;
+    private ProductService productService;
+    private ShopPersistence persistence;
+
     @Override
     public List<Item> loadItems() {
+        return null;
+    }
+
+    @Override
+    public Item loadItem(long id) throws CheapestPriceException {
         return null;
     }
 
@@ -44,7 +56,7 @@ public class ShopServicePersistence implements ShopService {
     }
 
     @Override
-    public boolean isOpen() throws CheapestPriceException {
+    public boolean isOpen(Timestamp fecha) throws CheapestPriceException {
         return false;
     }
 
@@ -54,7 +66,7 @@ public class ShopServicePersistence implements ShopService {
     }
 
     @Override
-    public void modifyLogo() throws CheapestPriceException {
-        
+    public void modifyLogo(Blob logo) throws CheapestPriceException {
+
     }
 }
