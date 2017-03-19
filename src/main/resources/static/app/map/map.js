@@ -11,7 +11,7 @@ angular.module('myApp.viewMap', ['ngRoute'])
   }])
   .controller('ViewMapCtrl', ['$scope', '$rootScope','$location','$http', function($scope,$rootScope,$location,$http) {
     console.log($rootScope.x+" "+$rootScope.y);
-    var apiKey="AIzaSyBYRVtSxaERYgZoESFx_4pExGXMbHHU8F8";
+    /*var apiKey="AIzaSyBYRVtSxaERYgZoESFx_4pExGXMbHHU8F8";
     var url="https://maps.googleapis.com/maps/api/directions/json?origin=4.7809235999999995,-74.04762629999999&destination=4.7809235999999995,-74.04762629999999&key=AIzaSyBYRVtSxaERYgZoESFx_4pExGXMbHHU8F8";
     $.ajax({
         url:url,
@@ -25,6 +25,6 @@ angular.module('myApp.viewMap', ['ngRoute'])
         });
     var work=function(data){
       console.log(data);
-    }
+    }*/
     //console.log(googleAns);
   }])

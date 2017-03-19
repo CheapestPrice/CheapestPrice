@@ -96,6 +96,8 @@ public interface ShopService {
      * @param logo
      * @throws CheapestPriceException
      */
+
     public void modifyLogo(TiendaId id,Blob logo) throws CheapestPriceException;
+
 
 }

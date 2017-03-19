@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public interface UserRepository extends JpaRepository<Usuario,String> {
 
-    @Query("select u from Usuario u where u.correo=?1")
+    @Query("select u from Usuario u where u.correo = ?1")
     public Usuario loadUserByEmail(String correo);
 
     @Query("delete from Usuario u where u.correo=?1")
@@ -27,6 +27,4 @@ public interface UserRepository extends JpaRepository<Usuario,String> {
 
     @Query("select u from Usuario u")
     public List<Usuario> loadAllUsers();
-
-
 }

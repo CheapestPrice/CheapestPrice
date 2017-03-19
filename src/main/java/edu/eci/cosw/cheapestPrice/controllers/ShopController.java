@@ -2,6 +2,7 @@ package edu.eci.cosw.cheapestPrice.controllers;
 
 import edu.eci.cosw.cheapestPrice.entities.Tienda;
 import edu.eci.cosw.cheapestPrice.persistence.ShopPersistence;
+import edu.eci.cosw.cheapestPrice.services.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ import java.util.logging.Logger;
 public class ShopController {
 
     @Autowired
-    public ShopPersistence tp;
+    public ShopService tp;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> newTiendaRecurso(@RequestBody Tienda tienda){
@@ -42,7 +43,7 @@ public class ShopController {
         ResponseEntity a;
         try {
             //obtener datos que se enviarán a través del API
-            a = new ResponseEntity<>(tp.getTienda(nickname),HttpStatus.ACCEPTED);
+            a = new ResponseEntity<>(new Tienda(),HttpStatus.ACCEPTED);
 
         } catch (Exception ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);

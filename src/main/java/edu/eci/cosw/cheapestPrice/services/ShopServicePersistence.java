@@ -7,11 +7,14 @@ import edu.eci.cosw.cheapestPrice.persistence.ShopPersistence;
 
 import java.sql.Timestamp;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by Daniela on 18/03/17.
  */
+@Service
 public class ShopServicePersistence implements ShopService {
+
 
     private ShopPersistence persistence;
 
@@ -75,4 +78,5 @@ public class ShopServicePersistence implements ShopService {
     public void modifyLogo(TiendaId id, Blob logo) throws CheapestPriceException {
 
     }
+
 }
