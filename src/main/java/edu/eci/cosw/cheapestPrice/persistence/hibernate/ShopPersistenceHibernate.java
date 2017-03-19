@@ -4,6 +4,8 @@ import com.mysql.jdbc.Blob;
 import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ShopPersistence;
+import edu.eci.cosw.cheapestPrice.repositories.ShopRepository;
+import edu.eci.cosw.cheapestPrice.services.ShopServicePersistence;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -13,14 +15,17 @@ import java.util.List;
  */
 public class ShopPersistenceHibernate implements ShopPersistence {
 
+    private ShopRepository repository;
+
     @Override
     public void addTienda(Tienda tienda) {
-
+        repository.save(tienda);
     }
 
     @Override
     public void modifyTienda(TiendaId id, Tienda tienda) throws CheapestPriceException {
-
+        repository.delete(id);
+        addTienda(tienda);
     }
 
     @Override
@@ -35,7 +40,7 @@ public class ShopPersistenceHibernate implements ShopPersistence {
 
     @Override
     public void addProduct(TiendaId id, Producto producto) throws CheapestPriceException {
-
+        Tienda old=repository.getOne(id);
     }
 
     @Override

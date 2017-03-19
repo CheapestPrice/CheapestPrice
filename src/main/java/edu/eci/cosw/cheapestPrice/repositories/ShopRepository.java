@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Created by daniela on 14/03/17.
  */
-public interface StoreRepository extends JpaRepository<Tienda,TiendaId>{
+public interface ShopRepository extends JpaRepository<Tienda,TiendaId>{
 
 }

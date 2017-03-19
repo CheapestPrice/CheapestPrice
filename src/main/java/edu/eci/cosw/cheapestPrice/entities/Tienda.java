@@ -3,6 +3,7 @@ package edu.eci.cosw.cheapestPrice.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.sql.Blob;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
@@ -170,5 +171,22 @@ public class Tienda implements java.io.Serializable {
 
     public void setOpiniones(List<Opinion> opiniones) {
         this.opiniones = opiniones;
+    }
+    /**
+     * Agregar una opinion a la tienda
+     * @param opinion
+     */
+    public void addOpinion(Opinion opinion){
+        opiniones.add(opinion);
+    }
+
+    /***
+     * La tienda se encuentra abierta en la fecha estipualada
+     * @param time
+     *
+     */
+    public boolean isOpen(Timestamp time){
+
+        return false;
     }
 }

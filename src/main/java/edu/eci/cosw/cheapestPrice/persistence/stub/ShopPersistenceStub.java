@@ -153,14 +153,20 @@ public class ShopPersistenceStub implements ShopPersistence {
 
     @Override
     public boolean isOpen(TiendaId id, Timestamp fecha) throws CheapestPriceException {
-        return false;
+        boolean ans=false;
+        for (int i = 0; i < tiendas.size(); i++) {
+            if(tiendas.get(i).getId().equals(id)){
+                ans=tiendas.get(i).isOpen(fecha);
+            }
+        }
+        return ans;
     }
 
     @Override
     public void addOpinion(TiendaId id, Opinion opinion) throws CheapestPriceException {
         for (int i = 0; i < tiendas.size(); i++) {
             if(tiendas.get(i).getId().equals(id)){
-
+                tiendas.get(i).addOpinion(opinion);
             }
         }
     }
