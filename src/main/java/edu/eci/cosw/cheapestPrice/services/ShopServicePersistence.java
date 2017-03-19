@@ -7,7 +7,6 @@ import edu.eci.cosw.cheapestPrice.persistence.ShopPersistence;
 
 import java.sql.Timestamp;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,72 +15,68 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShopServicePersistence implements ShopService {
 
-    private ItemService itemService;
-    @Autowired
+
     private ShopPersistence persistence;
+
 
     @Override
     public void addTienda(Tienda tienda) throws CheapestPriceException {
-
+        persistence.addTienda(tienda);
     }
 
     @Override
     public void modifyTienda(TiendaId id, Tienda tienda) throws CheapestPriceException {
-
+        persistence.modifyTienda(id, tienda);
     }
 
     @Override
-    public List<Item> loadItems() {
+    public List<Item> loadItems(TiendaId idtienda, long idproducto) {
         return null;
     }
 
     @Override
-    public Item loadItem(long id) throws CheapestPriceException {
+    public Item loadItem(TiendaId idtienda, long idproducto) throws CheapestPriceException {
         return null;
     }
 
     @Override
-    public void addProduct(Producto producto) throws CheapestPriceException {
+    public void addProduct(TiendaId id, Producto producto) throws CheapestPriceException {
 
     }
 
     @Override
-    public void deleteProduct(long idproducto) throws CheapestPriceException {
+    public void deleteProduct(TiendaId id, long idproducto) throws CheapestPriceException {
 
     }
 
     @Override
-    public void modifyProduct(long idproducto, Producto producto) throws CheapestPriceException {
+    public void modifyProduct(TiendaId id, long idproducto, Producto producto) throws CheapestPriceException {
 
     }
 
     @Override
-    public void modifyHorary(String dia, Horario horario) throws CheapestPriceException {
+    public void modifyHorary(TiendaId id, String dia, Horario horario) throws CheapestPriceException {
 
     }
 
     @Override
-    public void modifyTelephone(String telefono) throws CheapestPriceException {
+    public void modifyTelephone(TiendaId id, String telefono) throws CheapestPriceException {
 
     }
 
     @Override
-    public boolean isOpen(Timestamp fecha) throws CheapestPriceException {
+    public boolean isOpen(TiendaId id, Timestamp fecha) throws CheapestPriceException {
         return false;
     }
 
     @Override
-    public void addOpinion(Opinion opinion) throws CheapestPriceException {
+    public void addOpinion(TiendaId id, Opinion opinion) throws CheapestPriceException {
 
     }
 
     @Override
-    public void modifyLogo(Blob logo) throws CheapestPriceException {
+    public void modifyLogo(TiendaId id, Blob logo) throws CheapestPriceException {
 
     }
 
-    @Override
-    public Tienda getTienda(String nickname) throws CheapestPriceException {
-        return null;
-    }
 }

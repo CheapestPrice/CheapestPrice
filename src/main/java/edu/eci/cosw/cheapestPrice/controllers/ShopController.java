@@ -43,7 +43,7 @@ public class ShopController {
         ResponseEntity a;
         try {
             //obtener datos que se enviarán a través del API
-            a = new ResponseEntity<>(tp.getTienda(nickname),HttpStatus.ACCEPTED);
+            a = new ResponseEntity<>(new Tienda(),HttpStatus.ACCEPTED);
 
         } catch (Exception ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);

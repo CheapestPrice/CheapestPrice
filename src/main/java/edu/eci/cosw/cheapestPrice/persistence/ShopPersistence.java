@@ -11,6 +11,7 @@ import java.util.List;
  * Created by Daniela on 19/02/2017.
  */
 public interface ShopPersistence {
+
     /***
      * Registrar la tienda
      * @param tienda
@@ -19,31 +20,40 @@ public interface ShopPersistence {
     public void addTienda(Tienda tienda) throws CheapestPriceException;
 
     /**
-     * Carga un item de la tienda
+     * Modificar la tienda
      * @param id
-     * @return item
+     * @param tienda
+     * @throws CheapestPriceException
      */
-    public Item loadItem(long id)throws CheapestPriceException;
+    public void modifyTienda(TiendaId id, Tienda tienda) throws CheapestPriceException;
 
     /**
      * Carga todos los items registrados en la tienda
      * @return todos los items de la tienda
      */
-    public List<Item> loadItems();
+    public List<Item> loadItems(TiendaId idtienda,long idproducto);
+
+    /**
+     * Carga un item de la tienda
+     * @param idproducto
+     * @param idtienda
+     * @return item
+     */
+    public Item loadItem(TiendaId idtienda,long idproducto)throws CheapestPriceException;
 
     /**
      * Registrar un nuevo producto a la tienda
      * @param producto
      * @throws CheapestPriceException
      */
-    public void addProduct(Producto producto) throws CheapestPriceException;
+    public void addProduct(TiendaId id,Producto producto) throws CheapestPriceException;
 
     /**
      * Eliminar producto registrado en la tienda
      * @param idproducto
      * @throws CheapestPriceException
      */
-    public void deleteProduct(long idproducto) throws CheapestPriceException;
+    public void deleteProduct(TiendaId id,long idproducto) throws CheapestPriceException;
 
     /**
      * Modificar producto registrado en la tienda
@@ -51,7 +61,7 @@ public interface ShopPersistence {
      * @param producto
      * @throws CheapestPriceException
      */
-    public void modifyProduct(long idproducto, Producto  producto)throws CheapestPriceException;
+    public void modifyProduct(TiendaId id,long idproducto, Producto  producto)throws CheapestPriceException;
 
     /**
      * Modificar horario de la tienda
@@ -59,34 +69,34 @@ public interface ShopPersistence {
      * @param horario
      * @throws CheapestPriceException
      */
-    public void modifyHorary(String dia, Horario horario) throws CheapestPriceException;
+    public void modifyHorary(TiendaId id,String dia, Horario horario) throws CheapestPriceException;
 
     /**
      * Modificar telefono de la tienda
      * @param telefono
      * @throws CheapestPriceException
      */
-    public void modifyTelephone(String telefono) throws CheapestPriceException;
+    public void modifyTelephone(TiendaId id,String telefono) throws CheapestPriceException;
 
     /**
      *  Verificar si la tienda esta abierta
      *  @param fecha
      *  @throws CheapestPriceException
      */
-    public boolean isOpen(Timestamp fecha) throws CheapestPriceException;
+    public boolean isOpen(TiendaId id,Timestamp fecha) throws CheapestPriceException;
 
     /**
      * Agregar opinion a la tienda
      * @param opinion
      * @throws CheapestPriceException
      */
-    public void addOpinion(Opinion opinion) throws CheapestPriceException;
+    public void addOpinion(TiendaId id,Opinion opinion) throws CheapestPriceException;
 
     /***
      * Modificar el logo de la tienda
      * @param logo
      * @throws CheapestPriceException
      */
-    public void modifyLogo(Blob logo) throws CheapestPriceException;
+    public void modifyLogo(TiendaId id,Blob logo) throws CheapestPriceException;
 
 }
