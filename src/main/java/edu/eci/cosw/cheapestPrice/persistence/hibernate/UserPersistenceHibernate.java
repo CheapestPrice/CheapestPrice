@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * Created by masterhugo on 3/18/17.
  */
+@Service
 public class UserPersistenceHibernate implements UserPersistence{
     @Autowired
     UserRepository us;
