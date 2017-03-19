@@ -1,6 +1,7 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by masterhugo on 2/16/17.
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="PRODUCTOS")
 
-public class Producto {
+public class Producto implements Serializable {
 
     private String nombre;
     private long precio;
