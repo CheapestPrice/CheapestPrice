@@ -160,7 +160,7 @@ public class ShopPersistenceStub implements ShopPersistence {
     public void addOpinion(TiendaId id, Opinion opinion) throws CheapestPriceException {
         for (int i = 0; i < tiendas.size(); i++) {
             if(tiendas.get(i).getId().equals(id)){
-                /////////////////////
+
             }
         }
     }
