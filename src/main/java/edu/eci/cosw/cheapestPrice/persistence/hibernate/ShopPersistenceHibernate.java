@@ -19,11 +19,6 @@ public class ShopPersistenceHibernate implements ShopPersistence {
     }
 
     @Override
-    public Tienda getTienda(String nickname) {
-        return null;
-    }
-
-    @Override
     public Item loadItem(long id) throws CheapestPriceException {
         return null;
     }
@@ -72,4 +67,5 @@ public class ShopPersistenceHibernate implements ShopPersistence {
     public void modifyLogo(Blob logo) throws CheapestPriceException {
 
     }
+
 }

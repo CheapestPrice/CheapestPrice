@@ -3,19 +3,13 @@ package edu.eci.cosw.cheapestPrice.persistence.hibernate;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ProductPersistence;
-import org.hibernate.Session;
 
 import java.util.Set;
 
 /**
  * Created by masterhugo on 2/16/17.
  */
-public class ProductPersistenceHibernate extends SessionFactoryPersistence implements ProductPersistence {
-    private Session sesion;
-
-    public ProductPersistenceHibernate(Session s) {
-        this.sesion=s;
-    }
+public class ProductPersistenceHibernate implements ProductPersistence {
 
     @Override
     public Set<Producto> loadProducts() {
@@ -54,11 +48,11 @@ public class ProductPersistenceHibernate extends SessionFactoryPersistence imple
 
     @Override
     public void updateProduct(Producto producto) throws CheapestPriceException {
-        sesion.update(producto);
+
     }
 
     @Override
     public void deleteProduct(Producto producto) throws CheapestPriceException {
-        sesion.delete(producto);
+
     }
 }

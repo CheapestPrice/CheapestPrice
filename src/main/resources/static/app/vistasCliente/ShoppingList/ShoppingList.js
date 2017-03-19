@@ -45,7 +45,7 @@ angular.module('myApp.shopList', ['ngRoute'])
     //$scope.comprado = function(iden, tien){
         //listasMercadoStubFactory.comprarItem(iden, tien, $rootScope.listaMercado.nombre);
      //};
-     $scope.comprado = function(iden,tien)
+     $scope.comprado = function(iden,tien){
         var ban = false
                 for(var i=0;i<$scope.usua.listas.length;i++){
                     if($scope.usua.listas[i].nombre == $scope.listado.nombre){

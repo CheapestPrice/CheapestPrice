@@ -19,7 +19,7 @@ angular.module('myApp.listasMercado', ['ngRoute'])
     //$scope.eliminar = function(nom){
         //listasMercadoStubFactory.eliminate(nom);
     //}
-    $scope.eliminarLista = function(listaNombre)
+    $scope.eliminarLista = function(listaNombre){
         for(var i=0;i<$rootScope.usuario.listas.length;i++){
              if($scope.listMerc.listas[i].nombre == listaNombre){
                  $scope.listMerc.listas.splice(i,1);
