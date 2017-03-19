@@ -3,7 +3,7 @@ package edu.eci.cosw.cheapestPrice.services;
 import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ItemPersistence;
-import edu.eci.cosw.cheapestPrice.repositories.ItemRepository;
+//import edu.eci.cosw.cheapestPrice.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -21,7 +21,6 @@ public class Tienda implements java.io.Serializable {
     private boolean disponible;
     private byte[] logo;
     private List<Horario> horarios;
-
     public Tendero tendero;
 
     public Tienda(){};
