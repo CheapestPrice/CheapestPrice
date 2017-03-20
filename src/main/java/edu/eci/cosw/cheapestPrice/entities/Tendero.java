@@ -4,13 +4,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Created by Paula on 21/02/2017.
  */
 @Entity
 @Table(name="TENDEROS")
-public class Tendero extends Usuario {
+public class Tendero extends Usuario implements Serializable {
 
     private double tiendaX;
     private double tiendaY;

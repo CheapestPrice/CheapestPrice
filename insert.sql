@@ -25,8 +25,8 @@ INSERT INTO `LISTAS_MERCADOS` (`nombre`,`fechaCreacion`,`realizado`,`USUARIOS_co
 		        ('ListaMercado2','2017-01-10 00:00:01',false,'admin@cheapestprice.com');
 
 LOCK TABLES `OPINIONES` WRITE;
-INSERT INTO `OPINIONES` (`id`,`comentario`,`like`,`fecha`,`USUARIOS_correo`) VALUES
-			(1,'lololololol',false,'2017-04-23 00:00:01','prueba@prueba.com');
+INSERT INTO `OPINIONES` (`id`,`comentario`,`gusta`,`fecha`,`USUARIOS_correo`,`TIENDAS_x`,`TIENDAS_y`,`TIENDAS_nit`) VALUES
+			(1,'lololololol',false,'2017-04-23 00:00:01','prueba@prueba.com',4.7649271,-74.0476042,'1234567-2');
 
 LOCK TABLES `PRODUCTOS` WRITE;
 INSERT INTO `PRODUCTOS` (`nombre`,`id`,`marca`,`imagen`,`categoria`) VALUES

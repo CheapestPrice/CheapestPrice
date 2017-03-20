@@ -13,11 +13,18 @@ public class Item implements Serializable {
 
     @EmbeddedId
     private ItemId id;
+    @Column(name = "precio")
+    private long precio;
 
     public Item(){};
 
     public Item(ItemId id){
         this.setId(id);
+    }
+
+    public Item(ItemId id,long precio){
+        this.setId(id);
+        setPrecio(precio);
     }
 
     public ItemId getId() {
@@ -26,5 +33,13 @@ public class Item implements Serializable {
 
     public void setId(ItemId id) {
         this.id = id;
+    }
+
+    public long getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(long precio) {
+        this.precio = precio;
     }
 }
