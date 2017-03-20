@@ -4,9 +4,13 @@ import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLException;
 
 /**
  * Created by Julian David Devia Serna on 2/20/17.
@@ -57,6 +61,18 @@ public class ItemController {
         try {
             return new ResponseEntity<>(is.loadItemById(id), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/imagen")
+    public ResponseEntity<?> getPictureById(@PathVariable long id){
+        try {
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType("image/png"))
+                    .body(new InputStreamResource(  is.loadProductById(id).getImagen().getBinaryStream()     ));
+        } catch (CheapestPriceException | SQLException e) {
             e.printStackTrace();
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }

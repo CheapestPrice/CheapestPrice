@@ -1,7 +1,10 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Blob;
 
 /**
  * Created by masterhugo on 2/16/17.
@@ -16,6 +19,9 @@ public class Producto implements Serializable {
     private String marca;
     @Column(name="categoria")
     private String categoria;
+    @Column(name="imagen")
+    @JsonIgnore
+    private Blob imagen;
     @GeneratedValue
     @Id
     private long id;
@@ -65,6 +71,14 @@ public class Producto implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Blob getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Blob imagen) {
+        this.imagen = imagen;
     }
 
     @Override
