@@ -13,23 +13,25 @@ angular.module('myApp.listasMercado', ['ngRoute'])
 .controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', 'getUserNickname', 'updateUser', function($scope, listasMercadoStubFactory, $rootScope, $location,getUserNickname, updateUser) {
     //listasMercadoStubFactory.listaCompleta();
     //Falta el usuario global, cambiar nickname1
-    $rootScope.usuario = getUserEmail.get({correo:'admin@cheapestprice.com'});
+    $scope.usuario1 = getUserEmail.get({correo:'admin@cheapestprice.com'});
     //$scope.listMerc = listasMercadoStubFactory.getListaMercado();
 
     //$scope.eliminar = function(nom){
         //listasMercadoStubFactory.eliminate(nom);
     //}
     $scope.eliminarLista = function(listaNombre){
-        for(var i=0;i<$rootScope.usuario.listas.length;i++){
-             if($scope.listMerc.listas[i].nombre == listaNombre){
-                 $scope.listMerc.listas.splice(i,1);
+        for(var i=0;i<$scope.usuario1.listas.length;i++){
+             if($scope.usuario1.listas[i].listaid.nombre == listaNombre){
+                 $scope.usuario1.listas.splice(i,1);
                     break
              }
 
         }
         //Falta el usuario global
-        updateUser.update({correo:$rootScope.usuario.correo},$rootScope.usuario);
+        updateUser.update({correo:$scope.usuario1.correo},$scope.usuario1);
     }
+
+    $rootScope.usuario=$scope.usuario1;
 
     $scope.propertyName = 'nombre';
     $scope.reverse = true;
