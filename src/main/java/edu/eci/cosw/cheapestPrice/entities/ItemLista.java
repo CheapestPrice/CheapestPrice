@@ -47,6 +47,7 @@ public class ItemLista implements Serializable{
     private boolean favorito;
 
     @EmbeddedId
+    @JsonIgnore
     private ItemListaId id;
 
     @OneToOne

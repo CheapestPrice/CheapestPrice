@@ -26,6 +26,7 @@ public class UserController {
     @RequestMapping(value="/{correo}" ,method = RequestMethod.GET)
     public ResponseEntity<?> getUsuarioPorCorreo(@PathVariable String correo){
         try{
+            System.out.println("correo-controlador: "+correo);
             return new ResponseEntity<>(uP.loadUserByEmail(correo),HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);

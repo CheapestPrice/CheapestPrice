@@ -32,6 +32,7 @@ public class UserPersistenceHibernate implements UserPersistence{
 
     @Override
     public Usuario loadUserByEmail(String correo) throws CheapestPriceException {
+        System.out.println("Persistencia: "+correo);
       return  us.loadUserByEmail(correo);
     }
 

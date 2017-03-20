@@ -39,6 +39,7 @@ public class ListaDeMercado implements Serializable {
     private List<ItemLista> items;
 
     @EmbeddedId
+    @JsonIgnore
     private ListaMercado_Item listaid;
 
     @ManyToOne(cascade = CascadeType.ALL)

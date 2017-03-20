@@ -26,7 +26,7 @@ public class Tienda implements java.io.Serializable {
     private boolean disponible;
     @Column(name = "logo", nullable=true)
     private Blob logo;
-    @OneToMany(cascade=CascadeType.ALL,targetEntity = Tendero.class)
+    @OneToMany(cascade=CascadeType.ALL)
     @JoinColumns({
             @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false, insertable=false, updatable=false),
             @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false, insertable=false, updatable=false),

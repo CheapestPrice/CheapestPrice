@@ -1,5 +1,7 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -11,6 +13,7 @@ import java.io.Serializable;
 public class Item implements Serializable {
 
     @EmbeddedId
+    @JsonIgnore
     private ItemId id;
 
     @Column(name="precio")

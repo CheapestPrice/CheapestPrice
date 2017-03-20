@@ -31,6 +31,7 @@ public class UserServicePersistence implements UserService{
 
     @Override
     public Usuario loadUserByEmail(String correo) throws CheapestPriceException {
+        System.out.println("Servicio: "+correo);
         return us.loadUserByEmail(correo);
     }
 

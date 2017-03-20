@@ -36,12 +36,12 @@ INSERT INTO `PRODUCTOS` (`nombre`,`id`,`marca`,`imagen`,`categoria`) VALUES
 			('Queso Pera',4,'Colanta',null,'Lacteos');
 
 LOCK TABLES `TENDEROS` WRITE;
-INSERT INTO `TENDEROS` (`USUARIOS_correo`,`TIENDAS_x`,`TIENDAS_y`,`TIENDAS_nit`) VALUES
-			('tendero@tendero.com',4.7649271,-74.0476042,'1234567-2');
+INSERT INTO `TENDEROS` (`USUARIOS_correo`,`nombre`,`TIENDAS_x`,`TIENDAS_y`,`TIENDAS_nit`) VALUES
+			('tendero@tendero.com',`tendero1`,4.7649271,-74.0476042,'1234567-2');
 
 LOCK TABLES `TIENDAS` WRITE;
-INSERT INTO `TIENDAS` (`direccion`,`x`,`y`,`nombre`,`nit`,`telefono`,`disponible`,`logo`,`TENDEROS_USUARIOS_correo`) VALUES
-		      ('CR NM #NM-NM',4.7649271,-74.0476042,'Donde Pepe','1234567-2','5473829',true,null,'tendero@tendero.com');
+INSERT INTO `TIENDAS` (`direccion`,`x`,`y`,`nombre`,`nit`,`telefono`,`disponible`,`logo`) VALUES
+		      ('CR NM #NM-NM',4.7649271,-74.0476042,'Donde Pepe','1234567-2','5473829',true,null);
 
 LOCK TABLES `USUARIOS` WRITE;
 INSERT INTO `USUARIOS` (`nombre`,`correo`) VALUES
