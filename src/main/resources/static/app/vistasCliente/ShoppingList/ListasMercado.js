@@ -10,7 +10,7 @@ angular.module('myApp.listasMercado', ['ngRoute'])
   });
 }])
 
-.controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', 'getUserNickname', 'updateUser', '$resource', function($scope, listasMercadoStubFactory, $rootScope, $location,getUserNickname, updateUser, $resource) {
+.controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', 'getUserEmail', 'updateUser', '$resource', function($scope, listasMercadoStubFactory, $rootScope, $location,getUserEmail, updateUser, $resource) {
     //listasMercadoStubFactory.listaCompleta();
     $scope.usuario1 = getUserEmail.get({correo:'admin@cheapestprice.com'});
     console.log("UUUUUUSSSUUUAAAARRRRIIIOOO");

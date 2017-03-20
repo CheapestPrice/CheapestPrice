@@ -35,7 +35,7 @@ public class ShopController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/x/{x}/y/{y}/nit/{nit}")
-    public ResponseEntity<?> getShop(@PathVariable long x, long y, String nit)  {
+    public ResponseEntity<?> getShop(@PathVariable long x,@PathVariable long y,@PathVariable String nit)  {
         try {
             TiendaId id=new TiendaId(nit,x,y);
             return new ResponseEntity<>(serviceShop.consultTienda(id), HttpStatus.ACCEPTED);
@@ -46,7 +46,7 @@ public class ShopController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/x/{x}/y/{y}/nit/{nit}/items")
-    public ResponseEntity<?> loadItems(@PathVariable long x, long y, String nit)  {
+    public ResponseEntity<?> loadItems(@PathVariable long x,@PathVariable long y,@PathVariable String nit)  {
         try {
             TiendaId id=new TiendaId(nit,x,y);
             return new ResponseEntity<>(serviceShop.loadItems(id), HttpStatus.ACCEPTED);
@@ -57,7 +57,7 @@ public class ShopController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/x/{x}/y/{y}/nit/{nit}/item/{idproducto}")
-    public ResponseEntity<?> loadItem(@PathVariable long x, long y, String nit,long idproducto)  {
+    public ResponseEntity<?> loadItem(@PathVariable long x,@PathVariable long y,@PathVariable String nit,@PathVariable long idproducto)  {
         try {
             TiendaId id=new TiendaId(nit,x,y);
             return new ResponseEntity<>(serviceShop.loadItem(id,idproducto), HttpStatus.ACCEPTED);
@@ -67,7 +67,7 @@ public class ShopController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<?> modifyShop(@RequestBody Tienda tienda){
         ResponseEntity a;
         try {
@@ -82,12 +82,12 @@ public class ShopController {
         return a;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> modifyShopTelephone(@RequestBody Tienda tienda){
+    @RequestMapping(method = RequestMethod.PUT,value = "/telephone/{tel}")
+    public ResponseEntity<?> modifyShopTelephone(@RequestBody Tienda tienda,@PathVariable String tel){
         ResponseEntity a;
         try {
             TiendaId id=tienda.getId();
-            serviceShop.modifyTelephone(id, tienda.getTelefono());
+            serviceShop.modifyTelephone(id, tel);
             a = new ResponseEntity<>(HttpStatus.ACCEPTED);
             System.out.println("Tienda actualizada sin error");
         } catch (CheapestPriceException ex) {
@@ -97,7 +97,7 @@ public class ShopController {
         return a;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.PUT,value = "/logo/{tel}")
     public ResponseEntity<?> modifyShopLogo(@RequestBody Tienda tienda){
         ResponseEntity a;
         try {
@@ -140,8 +140,8 @@ public class ShopController {
         return a;
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteProduct(@RequestBody Tienda tienda, long idproducto){
+    @RequestMapping(method = RequestMethod.DELETE,value = "/producto/{idproducto}")
+    public ResponseEntity<?> deleteProduct(@RequestBody Tienda tienda,@PathVariable long idproducto){
         ResponseEntity a;
         try {
             TiendaId id=tienda.getId();
