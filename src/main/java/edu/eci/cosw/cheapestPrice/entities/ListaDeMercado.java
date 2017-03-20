@@ -10,25 +10,47 @@ import java.util.List;
  * Created by 2105403 on 2/20/17.
  */
 @Entity
-@Table(name="LISTAS_MERCADOS")
+@Table(name = "LISTAS_MERCADOS")
 public class ListaDeMercado implements Serializable {
 
+    /**
+     * @return the usuario
+     */
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    @Column(name = "fechaCreacion",nullable = false)
     private Date fechaCreacion;
+
+    @Column(name = "realizado", nullable = false)
     private boolean revisado;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "lista")
     private List<ItemLista> items;
+
+    @EmbeddedId
     private ListaMercado_Item listaid;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumns({
+            @JoinColumn(name="USUARIOS_correo",referencedColumnName = "correo", nullable = false,insertable=false, updatable=false)
+    })
+    private Usuario usuario;
 
     public ListaDeMercado(){}
 
     public ListaDeMercado(Date fechaCreacion, boolean revisado){
-        this.setFechaCreacion(fechaCreacion);
-        this.setRevisado(revisado);
-        setItems(new ArrayList<>());
-    }
-    public ListaDeMercado(ListaMercado_Item id,Date fecha,boolean revisado){
-        setListaid(id);
-        setFechaCreacion(fecha);
-        setRevisado(revisado);
+        this.fechaCreacion=fechaCreacion;
+        this.revisado=revisado;
+        //items=new ArrayList<ItemLista>();
     }
 
     /**
@@ -43,28 +65,26 @@ public class ListaDeMercado implements Serializable {
      * Marca items como comprados
      * @param id
      */
-    public void marcarProductoComprado(long id){
+   /* public void marcarProductoComprado(long id){
         for(ItemLista i: items){
             if(i.getId().getItem().getId().getProducto().getId()==id){
                 i.setComprado(true);
             }
         }
-    }
+    }*/
 
     /**
      * Marca items como favoritos
-     * @param id
      */
-    public void marcarProductoFavorito(long id){
+    /*public void marcarProductoFavorito(long id){
         for(ItemLista i: items){
             if(i.getId().getItem().getId().getProducto().getId()==id){
                 i.setFavorito(true);
             }
         }
-    }
+    }*/
 
-    @Temporal(TemporalType.DATE)
-    @Column(name="fechaCreacion")
+
     public Date getFechaCreacion() {
         return fechaCreacion;
     }
@@ -73,8 +93,12 @@ public class ListaDeMercado implements Serializable {
         this.fechaCreacion = fechaCreacion;
     }
 
-    @Column(name="realizado")
+
     public boolean isRevisado() {
+        return revisado;
+    }
+
+    public boolean getRevisado() {
         return revisado;
     }
 
@@ -82,11 +106,6 @@ public class ListaDeMercado implements Serializable {
         this.revisado = revisado;
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumns({
-            @JoinColumn(name = "LISTAS_MERCADOS_nombre", referencedColumnName = "nombre", nullable = false),
-            @JoinColumn(name = "LISTAS_MERCADOS_USUARIOS_correo", referencedColumnName = "USUARIOS_correo", nullable = false)
-    })
     public List<ItemLista> getItems() {
         return items;
     }
@@ -96,7 +115,7 @@ public class ListaDeMercado implements Serializable {
     }
 
 
-    @EmbeddedId
+
     public ListaMercado_Item getListaid() {
         return listaid;
     }

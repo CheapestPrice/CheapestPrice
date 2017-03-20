@@ -8,18 +8,18 @@ import java.io.Serializable;
  */
 @Embeddable
 public class ListaMercado_Item implements Serializable {
-
+    @Column(name = "nombre")
     private String nombre;
-    private Usuario usuario;
+    @Column(name = "USUARIOS_correo")
+    private String usuario;
 
     public ListaMercado_Item(){}
 
-    public ListaMercado_Item(String nombre,Usuario usuario){
-        setNombre(nombre);
-        this.setUsuario(usuario);
+    public ListaMercado_Item(String nombre,String usuario){
+        this.nombre=nombre;
+        this.usuario=usuario;
     }
 
-    @Column(name="nombre", nullable = false,insertable=false, updatable=false)
     public String getNombre() {
         return nombre;
     }
@@ -28,15 +28,11 @@ public class ListaMercado_Item implements Serializable {
         this.nombre = nombre;
     }
 
-    @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name="USUARIOS_correo",referencedColumnName = "correo", nullable = false,insertable=false, updatable=false)
-    })
-    public Usuario getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 }

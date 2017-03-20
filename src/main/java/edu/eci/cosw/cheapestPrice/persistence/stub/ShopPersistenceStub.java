@@ -82,7 +82,7 @@ public class ShopPersistenceStub implements ShopPersistence {
     public Item loadItem(TiendaId idtienda, long idproducto) throws CheapestPriceException {
         Item tmp=null;
         for (Item i: items.get(idtienda)) {
-            if(i.getId().getProducto().getId()==idproducto){
+            if(i.getProducto().getId()==idproducto){
                 tmp=i;
             }
         }
@@ -98,8 +98,7 @@ public class ShopPersistenceStub implements ShopPersistence {
                 tmp=tiendas.get(i);
             }
         }
-        ItemId idt=new ItemId(tmp,producto);
-        Item item=new Item(idt);
+        Item item=new Item(producto,tmp);
         ArrayList<Item> ite=new ArrayList<>();
         ite.add(item);
         items.put(id,ite);
@@ -115,7 +114,7 @@ public class ShopPersistenceStub implements ShopPersistence {
         }
         ArrayList<Item> a=items.get(id);
         for (int i = 0; i < a.size(); i++) {
-            if(a.get(i).getId().getProducto().getId()==idproducto){
+            if(a.get(i).getProducto().getId()==idproducto){
                 items.remove(i);
             }
         }
@@ -124,8 +123,8 @@ public class ShopPersistenceStub implements ShopPersistence {
     @Override
     public void modifyProduct(TiendaId id, long idproducto, Producto producto) throws CheapestPriceException {
         for (Item i: items.get(id)) {
-            if(i.getId().getProducto().getId()==idproducto){
-                i.getId().setProducto(producto);
+            if(i.getProducto().getId()==idproducto){
+                i.setProducto(producto);
             }
         }
     }

@@ -9,15 +9,18 @@ import java.io.Serializable;
 
 @Entity
 @Table(name="PRODUCTOS")
-
 public class Producto implements Serializable {
-
+    @Column(name="nombre")
     private String nombre;
+    @Column(name = "marca")
     private String marca;
+    @Column(name="categoria")
     private String categoria;
+    @GeneratedValue
+    @Id
     private long id;
 
-    public Producto(long id, String nombre, String marca, String categoria){
+    public Producto(long id, String nombre,String marca, String categoria){
         this.id=id;
         this.nombre=nombre;
         this.marca=marca;
@@ -28,7 +31,7 @@ public class Producto implements Serializable {
 
     }
 
-    @Column(name="nombre")
+
     public String getNombre() {
         return nombre;
     }
@@ -37,7 +40,7 @@ public class Producto implements Serializable {
         this.nombre = nombre;
     }
 
-    @Column(name = "marca")
+
     public String getMarca() {
         return marca;
     }
@@ -46,7 +49,7 @@ public class Producto implements Serializable {
         this.marca = marca;
     }
 
-    @Column(name="categoria")
+
     public String getCategoria() {
         return categoria;
     }
@@ -55,8 +58,7 @@ public class Producto implements Serializable {
         this.categoria = categoria;
     }
 
-    @GeneratedValue
-    @Id
+
     public long getId() {
         return id;
     }

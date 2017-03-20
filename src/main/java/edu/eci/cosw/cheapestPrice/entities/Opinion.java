@@ -2,7 +2,7 @@ package edu.eci.cosw.cheapestPrice.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.security.Timestamp;
+import java.util.Date;
 
 /**
  * Created by ger9410 on 13/03/17.
@@ -10,23 +10,40 @@ import java.security.Timestamp;
 @Entity
 @Table(name="OPINIONES")
 public class Opinion implements Serializable {
+    @Id
+    @GeneratedValue
     private int id;
+    @Column(name="comentario")
     private String comentario;
-    private boolean like;
-    private Timestamp fecha;
-    private String correo;
+    @Column(name="gusta")
+    private boolean gusta;
+    @Column(name="fecha")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumns({
+            @JoinColumn(name="USUARIOS_correo",referencedColumnName = "correo", nullable = false,insertable=false, updatable=false)
+    })
+    private Usuario usuario;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumns({
+            @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false, insertable=false, updatable=false),
+            @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false, insertable=false, updatable=false),
+            @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false, insertable=false, updatable=false)
+    })
+    private Tienda tienda;
 
     public Opinion(){}
 
-    public Opinion(int id,String comentario,boolean like,Timestamp fecha){
-        this.setId(id);
-        this.setComentario(comentario);
-        this.setLike(like);
-        this.setFecha(fecha);
+    public Opinion(int id,String comentario,boolean like,Date fecha){
+        this.id=id;
+        this.comentario=comentario;
+        this.gusta=like;
+        this.fecha=fecha;
     }
 
-    @Id
-    @GeneratedValue
+
+
     public int getId() {
         return id;
     }
@@ -35,7 +52,7 @@ public class Opinion implements Serializable {
         this.id = id;
     }
 
-    @Column(name="comentario")
+
     public String getComentario() {
         return comentario;
     }
@@ -44,31 +61,42 @@ public class Opinion implements Serializable {
         this.comentario = comentario;
     }
 
-    @Column(name="like")
-    public boolean isLike() {
-        return like;
+
+    public boolean isGusta() {
+        return gusta;
     }
 
-    public void setLike(boolean like) {
-        this.like = like;
+    public boolean getGusta() {
+        return gusta;
     }
 
-    //@Temporal(TemporalType.TIMESTAMP)
-    @Column(name="fecha")
-    public Timestamp getFecha() {
+    public void setGusta(boolean like) {
+        this.gusta = like;
+    }
+
+
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(Timestamp fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    @Column(name="USUARIOS_correo",nullable = false,insertable=false, updatable=false)
-    public String getCorreo() {
-        return correo;
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Tienda getTienda() {
+        return tienda;
+    }
+
+    public void setTienda(Tienda tienda) {
+        this.tienda = tienda;
     }
 }

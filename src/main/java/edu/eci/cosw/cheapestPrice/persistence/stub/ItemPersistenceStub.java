@@ -41,7 +41,7 @@ public class ItemPersistenceStub implements ItemPersistence{
         }
         Item item=null;
         for (Item i : items){
-            if(i.getId().getTienda().getNombre().equals(shopName) && i.getId().getProducto().getId()==id){
+            if(i.getTienda().getNombre().equals(shopName) && i.getProducto().getId()==id){
                 item=i;
             }
         }
@@ -58,7 +58,7 @@ public class ItemPersistenceStub implements ItemPersistence{
         }
         List<Item> shop= new ArrayList<>();
         for (Item i : items){
-            if(i.getId().getTienda().getNombre().equals(shopName)){
+            if(i.getTienda().getNombre().equals(shopName)){
                 shop.add(i);
             }
         }
@@ -72,7 +72,7 @@ public class ItemPersistenceStub implements ItemPersistence{
         }
         List<Item> categoria = new ArrayList<>();
         for (Item i : items){
-            if(i.getId().getProducto().getCategoria().equalsIgnoreCase(category)){
+            if(i.getProducto().getCategoria().equalsIgnoreCase(category)){
                 categoria.add(i);
             }
         }
@@ -86,7 +86,7 @@ public class ItemPersistenceStub implements ItemPersistence{
         }
         List<Item> item = new ArrayList<>();
         for (Item i : items){
-            if(i.getId().getProducto().getId()==id){
+            if(i.getProducto().getId()==id){
                 item.add(i);
             }
         }
@@ -104,7 +104,7 @@ public class ItemPersistenceStub implements ItemPersistence{
             }
         }
         id++;
-        item.getId().getProducto().setId(id);
+        item.getProducto().setId(id);
         items.add(item);
     }
 
@@ -136,7 +136,7 @@ public class ItemPersistenceStub implements ItemPersistence{
         }
         Item old=null;
         for (Item i:items){
-            if(i.getId().getProducto().getId()==oldId && i.getId().getTienda().getNombre().equals(oldshop)){
+            if(i.getProducto().getId()==oldId && i.getTienda().getNombre().equals(oldshop)){
                 old=i;
                 break;
             }
@@ -168,7 +168,7 @@ public class ItemPersistenceStub implements ItemPersistence{
         Producto p2=new Producto(2,"Leche entera","Alqueria","Leche");
         Producto p3=new Producto(3,"Papas BBQ","Margarita","Papas");
         Producto p4=new Producto(4,"Coca-Cola","Coca-Cola","Gaseosa");
-        ItemId iid1=new ItemId(t1,p1);
+        /*ItemId iid1=new ItemId(t1,p1);
         ItemId iid2=new ItemId(t2,p2);
         ItemId iid3=new ItemId(t2,p1);
         ItemId iid4=new ItemId(t2,p3);
@@ -189,6 +189,6 @@ public class ItemPersistenceStub implements ItemPersistence{
             ips.addItem(i6);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }

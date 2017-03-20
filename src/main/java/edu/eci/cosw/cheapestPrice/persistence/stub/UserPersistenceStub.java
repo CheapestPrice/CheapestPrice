@@ -25,9 +25,9 @@ public class UserPersistenceStub implements UserPersistence{
 
     public UserPersistenceStub() throws CheapestPriceException {
         usuarios = new ArrayList<>();
-        UserPersistenceStub.poblarStub(this);
+        //UserPersistenceStub.poblarStub(this);
 
-        prueba(this);
+        //prueba(this);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class UserPersistenceStub implements UserPersistence{
         usuarios.add(usuario);
     }
 
-    public static void poblarStub(UserPersistenceStub ups){
+    /*public static void poblarStub(UserPersistenceStub ups){
         Producto p1=new Producto(1,"Queso crema","Alqueria","Queso");
         TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
         Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde pepe","6699132",true);
@@ -143,5 +143,6 @@ public class UserPersistenceStub implements UserPersistence{
         Usuario u=new Usuario("nombre","prueba@prueba.com");
         ups.addUser(u);
 
-    }
+    }*/
+
 }

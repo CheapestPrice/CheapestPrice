@@ -10,9 +10,11 @@ import javax.persistence.Embeddable;
 */
 @Embeddable
 public class TiendaId implements java.io.Serializable  {
-
+    @Column(name="nit", nullable=false, insertable=false,updatable=false)
     private String nit;
+    @Column(name="x", nullable=false ,insertable=false,updatable=false)
     private double x;
+    @Column(name="y", nullable=false ,insertable=false,updatable=false)
     private double y;
 
     public TiendaId(){
@@ -20,12 +22,13 @@ public class TiendaId implements java.io.Serializable  {
     };
 
     public TiendaId(String nit, double x, double y){
-        this.setX(x);
-        this.setY(y);
-        this.setNit(nit);
+        this.x=x;
+        this.y=y;
+        this.nit=nit;
     }
 
-    @Column(name="nit", nullable=false)
+
+
     public String getNit() {
         return nit;
     }
@@ -33,7 +36,7 @@ public class TiendaId implements java.io.Serializable  {
     public void setNit(String nit) {
         this.nit = nit;
     }
-    @Column(name="x", nullable=false)
+
     public double getX() {
         return x;
     }
@@ -41,7 +44,7 @@ public class TiendaId implements java.io.Serializable  {
     public void setX(double x) {
         this.x = x;
     }
-    @Column(name="y", nullable=false)
+
     public double getY() {
         return y;
     }

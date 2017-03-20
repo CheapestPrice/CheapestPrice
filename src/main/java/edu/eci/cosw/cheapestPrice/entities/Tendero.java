@@ -1,53 +1,86 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+import java.io.Serializable;
+import javax.persistence.AssociationOverride;
+import javax.persistence.AttributeOverride;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 /**
  * Created by Paula on 21/02/2017.
  */
 @Entity
-@Table(name="TENDEROS")
-public class Tendero extends Usuario implements Serializable {
+@Table(name = "TENDEROS")
+//@PrimaryKeyJoinColumn(name="USUARIOS_correo",referencedColumnName = "correo")
+//@AttributeOverride(name="correo", column=@Column(name="USUARIOS_correo"))
+public class Tendero implements Serializable, Persona{
 
-    private double tiendaX;
-    private double tiendaY;
-    private String tiendaNit;
+    @Column(name = "USUARIOS_correo", nullable = false, insertable = false, updatable = false)
+    @Id
+    protected String correo;
 
-    public Tendero(String nombre,String correo, double tiendaX,double tiendaY,String tiendaNIT){
-        super(nombre,correo);
-        this.setTiendaX(tiendaX);
-        this.setTiendaY(tiendaY);
-        this.setTiendaNit(tiendaNIT);
+    @Column(name = "nombre", nullable = false)
+    protected String nombre;
+
+    @OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER, targetEntity = Tienda.class)
+    @JoinColumns({
+            @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false, insertable=false, updatable=false),
+            @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false, insertable=false, updatable=false),
+            @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false, insertable=false, updatable=false)
+    })
+    private Tienda tienda;
+
+    /**
+     * @return the tienda
+     */
+    public Tienda getTienda() {
+        return tienda;
     }
 
-    @Column(name = "TIENDAS_x",nullable = false,insertable = false,updatable = false)
-    public double getTiendaX() {
-        return tiendaX;
+    /**
+     * @param tienda the tienda to set
+     */
+    public void setTienda(Tienda tienda) {
+        this.tienda = tienda;
     }
 
-    public void setTiendaX(double tiendaX) {
-        this.tiendaX = tiendaX;
+    public Tendero(){}
+
+    public Tendero(String nombre,String correo, Tienda tienda){
+        //super(nombre,correo);
+        this.nombre = nombre;
+        this.correo = correo;
+        //this.tienda=tienda;
     }
 
-    @Column(name = "TIENDAS_y",nullable = false,insertable = false,updatable = false)
-    public double getTiendaY() {
-        return tiendaY;
+    @Override
+    public String getCorreo(){
+        return correo;
     }
 
-    public void setTiendaY(double tiendaY) {
-        this.tiendaY = tiendaY;
+    @Override
+    public String getNombre(){
+        return nombre;
     }
 
-    @Column(name = "TIENDAS_nit",nullable = false,insertable = false,updatable = false)
-    public String getTiendaNit() {
-        return tiendaNit;
+    @Override
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
-    public void setTiendaNit(String tiendaNit) {
-        this.tiendaNit = tiendaNit;
+    @Override
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
+
+
 }

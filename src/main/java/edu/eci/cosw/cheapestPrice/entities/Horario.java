@@ -1,5 +1,4 @@
 package edu.eci.cosw.cheapestPrice.entities;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,10 +11,17 @@ import java.io.Serializable;
 @Entity
 @Table(name="HORARIOS")
 public class Horario implements Serializable{
+
+    @Column(name="horaInicio", nullable=false)
     private int horaInicio;
+    @Column(name="minutosInicio", nullable=false)
     private int minutosInicio;
+    @Column(name="horaFin", nullable=false)
     private int horaFin;
+    @Column(name="minutosFin", nullable=false)
     private int minutoFin;
+    @Column(name = "dia", nullable = false)
+    @Id
     private String dia;
 
     public Horario(int horaInicio, int minutosInicio, int horaFin, int minutoFin,String dia) {
@@ -30,7 +36,7 @@ public class Horario implements Serializable{
     }
 
 
-    @Column(name="horaInicio", nullable=false)
+
     public int getHoraInicio() {
         return horaInicio;
     }
@@ -39,7 +45,7 @@ public class Horario implements Serializable{
         this.horaInicio = horaInicio;
     }
 
-    @Column(name="minutosInicio", nullable=false)
+
     public int getMinutosInicio() {
         return minutosInicio;
     }
@@ -48,7 +54,7 @@ public class Horario implements Serializable{
         this.minutosInicio = minutosInicio;
     }
 
-    @Column(name="horaFin", nullable=false)
+
     public int getHoraFin() {
         return horaFin;
     }
@@ -57,7 +63,7 @@ public class Horario implements Serializable{
         this.horaFin = horaFin;
     }
 
-    @Column(name="minutosFin", nullable=false)
+
     public int getMinutoFin() {
         return minutoFin;
     }
@@ -66,8 +72,6 @@ public class Horario implements Serializable{
         this.minutoFin = minutoFin;
     }
 
-    @Column(name = "dia", nullable = false)
-    @Id
     public String getDia() {
         return dia;
     }
