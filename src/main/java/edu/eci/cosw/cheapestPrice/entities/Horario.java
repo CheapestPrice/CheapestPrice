@@ -20,6 +20,7 @@ public class Horario implements Serializable{
     private int horaFin;
     @Column(name="minutosFin", nullable=false)
     private int minutoFin;
+
     @Column(name = "dia", nullable = false)
     @Id
     private String dia;
@@ -34,8 +35,6 @@ public class Horario implements Serializable{
 
     public Horario() {
     }
-
-
 
     public int getHoraInicio() {
         return horaInicio;

@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "USUARIOS")
 //@Inheritance(strategy=InheritanceType.JOINED)
-public class Usuario implements Serializable, Persona {
+public class Usuario implements Persona,Serializable {
 
     @Column(name = "nombre", nullable = false)
     protected String nombre;
@@ -25,42 +25,13 @@ public class Usuario implements Serializable, Persona {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     protected List<Opinion> opiniones;
 
-    public Usuario() {
-    }
 
-    public Usuario(String nombre, String correo, List<ListaDeMercado> listas) {
-        this.nombre = nombre;
-        this.correo = correo;
-        this.listas=new ArrayList<>();
-    }
-
-    public Usuario(String nombre, String correo) {
-        this.nombre = nombre;
-        this.correo = correo;
-    }
-
-    public Usuario(String nombre, String correo, List<ListaDeMercado> listas, List<Opinion> opiniones) {
-        this.nombre = nombre;
-        this.correo = correo;
-        this.setListas(listas);
-        this.setOpiniones(opiniones);
-    }
-
-    /**
-     * Agregar productos a la lista de mercado seleccionada por el usuario
-     *
-     *
-     * public void agregarProducto(ItemLista iT, String nombreLista){
-     * for(ListaDeMercado lM: listas){
-     * if(lM.getListaid().getNombre().equals(nombreLista)){
-     * lM.agregarProducto(iT); } }
-    }*/
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre=nombre;
     }
 
     public String getCorreo() {
@@ -85,6 +56,38 @@ public class Usuario implements Serializable, Persona {
 
     public void setOpiniones(List<Opinion> opiniones) {
         this.opiniones = opiniones;
+    }
+    public Usuario() {
+    }
+
+    public Usuario(String nombre, String correo, List<ListaDeMercado> listas) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.listas=new ArrayList<>();
+    }
+
+    public Usuario(String nombre, String correo) {
+        this.nombre = nombre;
+        this.correo = correo;
+    }
+
+    public Usuario(String nombre, String correo, List<ListaDeMercado> listas, List<Opinion> opiniones) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.setListas(listas);
+        this.setOpiniones(opiniones);
+    }
+
+    /**
+     * Agregar productos a la lista de mercado seleccionada por el usuario
+     *
+     **/
+    public void agregarProducto(ItemLista iT, String nombreLista){
+        for(ListaDeMercado lM: listas){
+            if(lM.getListaid().getNombre().equals(nombreLista)){
+                lM.agregarProducto(iT);
+            }
+        }
     }
 
 }

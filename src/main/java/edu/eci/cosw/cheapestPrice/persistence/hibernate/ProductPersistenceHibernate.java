@@ -11,6 +11,8 @@ import java.util.Set;
  */
 public class ProductPersistenceHibernate implements ProductPersistence {
 
+
+
     @Override
     public Set<Producto> loadProducts() {
         return null;
