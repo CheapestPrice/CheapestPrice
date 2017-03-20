@@ -19,6 +19,21 @@ public interface ShopPersistence {
      */
     public void addTienda(Tienda tienda) throws CheapestPriceException;
 
+
+    /***
+     * Registrar la tienda
+     * @param tienda
+     * @throws CheapestPriceException
+     */
+    public void deleteTienda(Tienda tienda) throws CheapestPriceException;
+
+    /***
+     * Consultar la tienda
+     * @param idtienda
+     * @throws CheapestPriceException
+     */
+    public Tienda consultTienda(TiendaId idtienda) throws CheapestPriceException;
+
     /**
      * Modificar la tienda
      * @param id
@@ -31,7 +46,7 @@ public interface ShopPersistence {
      * Carga todos los items registrados en la tienda
      * @return todos los items de la tienda
      */
-    public List<Item> loadItems(TiendaId idtienda,long idproducto);
+    public List<Item> loadItems(TiendaId idtienda) throws CheapestPriceException;
 
     /**
      * Carga un item de la tienda
@@ -98,5 +113,26 @@ public interface ShopPersistence {
      * @throws CheapestPriceException
      */
     public void modifyLogo(TiendaId id,Blob logo) throws CheapestPriceException;
+
+    /**
+     * Agregar opinion a la tienda
+     * @param opinion
+     * @throws CheapestPriceException
+     */
+    public Opinion consultOpinion(TiendaId id,Opinion opinion) throws CheapestPriceException;
+
+    /**
+     * consultar lista de opiniones de la tienda
+     * @return  opiniones
+     * @throws CheapestPriceException
+     */
+    public List<Opinion> consultOpiniones(TiendaId id) throws CheapestPriceException;
+
+    /***
+     * Consultar las tiendas
+     * @return  tiendas
+     * @throws CheapestPriceException
+     */
+    public List<Tienda> consultShop() throws CheapestPriceException;
 
 }

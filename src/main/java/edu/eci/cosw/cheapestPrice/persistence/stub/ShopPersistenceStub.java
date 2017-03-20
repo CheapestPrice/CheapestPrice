@@ -4,6 +4,7 @@ import java.sql.Blob;
 import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ShopPersistence;
+import org.springframework.orm.hibernate4.support.OpenSessionInViewInterceptor;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -25,6 +26,7 @@ public class ShopPersistenceStub implements ShopPersistence {
     public ShopPersistenceStub(){
         tiendas=new ArrayList<Tienda>();
         items=new HashMap<TiendaId,ArrayList<Item>>();
+        poblarStub(this);
     }
     /**
      * Consultar las tiendas
@@ -64,6 +66,27 @@ public class ShopPersistenceStub implements ShopPersistence {
     }
 
     @Override
+    public void deleteTienda(Tienda tienda) throws CheapestPriceException {
+        for (int i = 0; i < tiendas.size(); i++) {
+            if(tiendas.get(i).getId().equals(tienda.getId())){
+                tiendas.remove(i);
+            }
+        }
+    }
+
+    @Override
+    public Tienda consultTienda(TiendaId idtienda) throws CheapestPriceException {
+        Tienda a=null;
+        for (int i = 0; i < tiendas.size(); i++) {
+            if(tiendas.get(i).getId().equals(idtienda)){
+                a=tiendas.get(i);
+            }
+        }
+        if(a==null) throw new CheapestPriceException("No se encontro la tienda con este identificado");
+        return a;
+    }
+
+    @Override
     public void modifyTienda(TiendaId id, Tienda tienda) throws CheapestPriceException {
         for (int i = 0; i < tiendas.size(); i++) {
             if(tiendas.get(i).getId().equals(id)){
@@ -74,7 +97,7 @@ public class ShopPersistenceStub implements ShopPersistence {
     }
 
     @Override
-    public List<Item> loadItems(TiendaId idtienda, long idproducto) {
+    public List<Item> loadItems(TiendaId idtienda) throws CheapestPriceException {
         return items.get(idtienda);
     }
 
@@ -175,6 +198,40 @@ public class ShopPersistenceStub implements ShopPersistence {
                 tiendas.get(i).setLogo(logo);
             }
         }
+    }
+
+    @Override
+    public Opinion consultOpinion(TiendaId id, Opinion opinion) throws CheapestPriceException {
+        Opinion n=null;
+        for (int i = 0; i < tiendas.size(); i++) {
+            if(tiendas.get(i).getId().equals(id)){
+                ArrayList<Opinion> opini= (ArrayList<Opinion>) tiendas.get(i).getOpiniones();
+                for (int j = 0; j < opini.size(); j++) {
+                    if(opinion.getId()==opini.get(j).getId()){
+                        n=opini.get(j);
+                    }
+                }
+            }
+        }
+        if(n==null) throw new CheapestPriceException("No se encontro la opinion con este identificado");
+        return n;
+    }
+
+    @Override
+    public List<Opinion> consultOpiniones(TiendaId id) throws CheapestPriceException {
+        ArrayList<Opinion> opini=null;
+        for (int i = 0; i < tiendas.size(); i++) {
+            if(tiendas.get(i).getId().equals(id)) {
+                opini = (ArrayList<Opinion>) tiendas.get(i).getOpiniones();
+            }
+        }
+        if(opini==null || opini.size()==0) throw new CheapestPriceException("Sin opiniones");
+        return opini;
+    }
+
+    @Override
+    public List<Tienda> consultShop() throws CheapestPriceException {
+        return tiendas;
     }
 
     /**

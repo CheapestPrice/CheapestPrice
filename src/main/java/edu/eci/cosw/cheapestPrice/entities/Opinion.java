@@ -15,19 +15,24 @@ public class Opinion implements Serializable {
     @Id
     @GeneratedValue
     private int id;
+
     @Column(name="comentario")
     private String comentario;
+
     @Column(name="gusta")
     private boolean gusta;
+
     @Column(name="fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumns({
             @JoinColumn(name="USUARIOS_correo",referencedColumnName = "correo", nullable = false,insertable=false, updatable=false)
     })
     @JsonIgnore
     private Usuario usuario;
+
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumns({
             @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false, insertable=false, updatable=false),

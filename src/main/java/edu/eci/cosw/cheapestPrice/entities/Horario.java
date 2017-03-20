@@ -43,8 +43,6 @@ public class Horario implements Serializable{
     public Horario() {
     }
 
-
-
     public int getHoraInicio() {
         return horaInicio;
     }
