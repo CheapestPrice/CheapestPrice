@@ -40,12 +40,14 @@ public class Tienda implements java.io.Serializable {
             @JoinColumn(name="y", referencedColumnName="TIENDAS_y", nullable=false, insertable=false, updatable=false),
             @JoinColumn(name="nit", referencedColumnName="TIENDAS_nit", nullable=false, insertable=false, updatable=false)
     })
+    @JsonIgnore
     private Tendero tendero;
 
     @OneToMany(cascade=CascadeType.ALL,mappedBy="tienda")
     private List<Opinion> opiniones;
 
     @OneToMany(cascade=CascadeType.ALL,mappedBy="tienda")
+    @JsonIgnore
     private List<Item> items;
 
 

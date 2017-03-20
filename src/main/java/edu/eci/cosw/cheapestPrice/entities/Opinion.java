@@ -1,5 +1,7 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -24,6 +26,7 @@ public class Opinion implements Serializable {
     @JoinColumns({
             @JoinColumn(name="USUARIOS_correo",referencedColumnName = "correo", nullable = false,insertable=false, updatable=false)
     })
+    @JsonIgnore
     private Usuario usuario;
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumns({
@@ -31,6 +34,7 @@ public class Opinion implements Serializable {
             @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false, insertable=false, updatable=false),
             @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false, insertable=false, updatable=false)
     })
+    @JsonIgnore
     private Tienda tienda;
 
     public Opinion(){}

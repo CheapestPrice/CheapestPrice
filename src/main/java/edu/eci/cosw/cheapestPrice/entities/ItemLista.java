@@ -1,5 +1,7 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -61,6 +63,7 @@ public class ItemLista implements Serializable{
             @JoinColumn(name = "LISTAS_MERCADOS_nombre", referencedColumnName = "nombre", nullable = false,insertable = false,updatable = false),
             @JoinColumn(name = "LISTAS_MERCADOS_USUARIOS_correo", referencedColumnName = "USUARIOS_correo", nullable = false,insertable = false,updatable = false)
     })
+    @JsonIgnore
     private ListaDeMercado lista;
 
     public ItemLista(){
