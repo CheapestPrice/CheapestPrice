@@ -1,6 +1,7 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
 import edu.eci.cosw.cheapestPrice.entities.Tienda;
+import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ShopPersistence;
 import edu.eci.cosw.cheapestPrice.services.ShopService;
@@ -24,7 +25,7 @@ public class ShopController {
     public ShopService serviceShop;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> newTiendaRecurso(@RequestBody Tienda tienda){
+    public ResponseEntity<?> addShop(@RequestBody Tienda tienda){
         ResponseEntity a;
         try {
             serviceShop.addTienda(tienda);
@@ -39,9 +40,20 @@ public class ShopController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getTiendas()  {
+    public ResponseEntity<?> getShops()  {
         try {
             return new ResponseEntity<>(serviceShop.consultShop(), HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException e) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, e);
+            return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value="/x/{x}/y/{y}/nit/{nit}")
+    public ResponseEntity<?> getShop(@PathVariable long x, long y, String nit)  {
+        try {
+            TiendaId id=new TiendaId(nit,x,y);
+            return new ResponseEntity<>(serviceShop.consultTienda(id), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, e);
             return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);

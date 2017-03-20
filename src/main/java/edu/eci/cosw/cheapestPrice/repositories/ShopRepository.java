@@ -31,7 +31,7 @@ public interface ShopRepository extends JpaRepository<Tienda,TiendaId>{
     @Query("select o from Opinion o where o.tienda.id.nit=:#{#idtienda.nit} and o.tienda.id.x=:#{#idtienda.x} and o.tienda.id.y=:#{#idtienda.y}")
     public List<Opinion> loadOpinions(@Param("idtienda") TiendaId idtienda);
 
-    @Query("select o from Opinion o where o.tienda.id.nit=:#{#idtienda.nit} and o.tienda.id.x=:#{#idtienda.x} and o.tienda.id.y=:#{#idtienda.y}")
+    @Query("select o from Opinion o where o.tienda.id.nit=:#{#idtienda.nit} and o.tienda.id.x=:#{#idtienda.x} and o.tienda.id.y=:#{#idtienda.y} and o.id=:#{#opinion.id}")
     public Opinion loadOpinion(@Param("idtienda") TiendaId idtienda,@Param("opinion") Opinion opinion);
 
     /*
