@@ -27,6 +27,7 @@ public class Tienda implements java.io.Serializable {
     @Column(name = "logo", nullable=true)
     private Blob logo;
     @OneToMany(cascade=CascadeType.ALL,mappedBy = "tienda")
+
     //@OneToMany(cascade=CascadeType.ALL)
     /*@JoinColumns({
             @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false, insertable=false, updatable=false),

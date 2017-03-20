@@ -14,7 +14,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /**
  * Created by Julián David Devia Serna on 2/20/17.
  */
-@Service
+//@Service
 public class ItemPersistenceStub implements ItemPersistence{
 
     private List<Item> items;
@@ -91,6 +91,11 @@ public class ItemPersistenceStub implements ItemPersistence{
             }
         }
         return item;
+    }
+
+    @Override
+    public Producto loadProductById(long id) throws CheapestPriceException {
+        return null;
     }
 
     @Override

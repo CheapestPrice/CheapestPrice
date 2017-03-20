@@ -1,6 +1,7 @@
 package edu.eci.cosw.cheapestPrice.services;
 
 import edu.eci.cosw.cheapestPrice.entities.Item;
+import edu.eci.cosw.cheapestPrice.entities.Producto;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 
 import java.util.List;
@@ -48,6 +49,14 @@ public interface ItemService {
      * @throws CheapestPriceException si el id es menor a 0
      */
     public List<Item> loadItemById(long id) throws CheapestPriceException;
+
+    /**
+     * Carga un producto con el id del producto especifico
+     * @param id el id del producto solicitado
+     * @return el producto encontrado por el id
+     * @throws CheapestPriceException si el id es menor a 0
+     */
+    public Producto loadProductById(long id) throws CheapestPriceException;
 
     /**
      * Registra un item

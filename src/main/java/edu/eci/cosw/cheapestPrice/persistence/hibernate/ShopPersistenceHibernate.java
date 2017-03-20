@@ -34,7 +34,8 @@ public class ShopPersistenceHibernate implements ShopPersistence {
     @Override
     ///actualizo todo lo referente a llave no primaria ni horario ni opiniones
     public void modifyTienda(TiendaId id, Tienda tienda) throws CheapestPriceException {
-
+            repositoryshop.modifyLogo(id,tienda.getLogo());
+            repositoryshop.modifyTelephone(id,tienda.getTelefono());
     }
 
     @Override
@@ -56,7 +57,9 @@ public class ShopPersistenceHibernate implements ShopPersistence {
 
     @Override
     public void modifyHorary(TiendaId id, String dia, Horario horario) throws CheapestPriceException {
-        
+        HorarioId idHor=new HorarioId(dia,id.getNit(),id.getX(),id.getY());
+        horarioRepository.delete(idHor);
+        horarioRepository.save(horario);
     }
 
     @Override

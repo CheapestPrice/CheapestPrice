@@ -41,7 +41,7 @@
     <div class="well" style="margin-top: 30px; width: 500px; overflow: hidden; margin-left: 30%;">
         <form class="form-search">
             <div class="input-append">
-                <input type="text" ng-model="search" class="search-query" style="width: 150px">
+                <input type="text" ng-model="search" class="search-query" style="width: 100%">
                 <button type="submit" class="btn">Search</button>
             </div>
             <ul class="nav nav-pills nav-stacked">
@@ -49,11 +49,11 @@
                 <div ng-animate="'animate'" ng-repeat="pro in items | filter:search | orderBy:propertyName:false"
                      class="container" style="padding-top: 15px;">
                     <div style="float:left; width: 30%;">
-                        <img src="http://www.elfaradio.com/wp-content/uploads/2016/06/leche.jpg"
+                        <img ng-src="/items/{{pro.producto.id}}/imagen"
                              style="width: 120px; height: 120px; float:left;" alt=""/>
                         <p>{{pro.producto.nombre}}</p>
                         <p>{{pro.tienda.nombre}}</p>
-                        <p>{{pro.producto.precio}}</p>
+                        <p>{{pro.precio}}</p>
                         <star-rating ng-model="rating2" readonly="isReadonly"></star-rating>
                         <label>60 reviews</label>
                     </div>
