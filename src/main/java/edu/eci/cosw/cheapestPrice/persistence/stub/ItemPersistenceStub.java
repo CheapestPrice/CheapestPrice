@@ -150,7 +150,6 @@ public class ItemPersistenceStub implements ItemPersistence{
     }
 
     public static void poblarStub(ItemPersistenceStub ips){
-        /*Producto p1=new Producto(1,"Queso crema",3000,"Alqueria","Queso");
         TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
         List<Horario> hor=new ArrayList<>();
         hor.add(new Horario(8, 15, 9, 0,"Lunes"));
@@ -161,19 +160,26 @@ public class ItemPersistenceStub implements ItemPersistence{
         hor.add(new Horario(7, 15, 8, 15,"Sabado"));
         hor.add(new Horario(8, 15, 9, 0,"Domingo"));
         Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde pepe","6699132",true);
-        t1.setHorario(hor);
-        Producto p2=new Producto(2,"Leche entera",3500,"Alqueria","Leche");
+        t1.setHorarios(hor);
         TiendaId id2=new TiendaId("123456456",4.7498466,-74.0623005);
         Tienda t2= new Tienda("Cll 167 #58a-20",id,"Surtir","6699132",true);
-        t1.setHorario(hor);
-        Producto p3=new Producto(3,"Papas BBQ",4500,"Margarita","Papas");
-        Producto p4=new Producto(4,"Coca-Cola",4500,"Coca-Cola","Gaseosa");
-        Item i1= new Item(t1,p1);
-        Item i2=new Item(t2,p2);
-        Item i3=new Item(t2,p1);
-        Item i4=new Item(t2,p3);
-        Item i5=new Item(t2,p4);
-        Item i6= new Item(t1,p4);
+        t1.setHorarios(hor);
+        Producto p1=new Producto(1,"Queso crema","Alqueria","Queso");
+        Producto p2=new Producto(2,"Leche entera","Alqueria","Leche");
+        Producto p3=new Producto(3,"Papas BBQ","Margarita","Papas");
+        Producto p4=new Producto(4,"Coca-Cola","Coca-Cola","Gaseosa");
+        ItemId iid1=new ItemId(t1,p1);
+        ItemId iid2=new ItemId(t2,p2);
+        ItemId iid3=new ItemId(t2,p1);
+        ItemId iid4=new ItemId(t2,p3);
+        ItemId iid5=new ItemId(t2,p4);
+        ItemId iid6=new ItemId(t1,p4);
+        Item i1= new Item(iid1,3000);
+        Item i2=new Item(iid2,3500);
+        Item i3=new Item(iid3,3000);
+        Item i4=new Item(iid4,4500);
+        Item i5=new Item(iid5,4500);
+        Item i6= new Item(iid6,4500);
         try {
             ips.addItem(i1);
             ips.addItem(i2);
@@ -183,6 +189,6 @@ public class ItemPersistenceStub implements ItemPersistence{
             ips.addItem(i6);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
-        }    */
+        }
     }
 }

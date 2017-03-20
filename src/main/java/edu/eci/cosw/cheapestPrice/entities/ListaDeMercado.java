@@ -25,6 +25,11 @@ public class ListaDeMercado implements Serializable {
         this.setRevisado(revisado);
         setItems(new ArrayList<>());
     }
+    public ListaDeMercado(ListaMercado_Item id,Date fecha,boolean revisado){
+        setListaid(id);
+        setFechaCreacion(fecha);
+        setRevisado(revisado);
+    }
 
     /**
      * Agrega items a la lista de mercado
