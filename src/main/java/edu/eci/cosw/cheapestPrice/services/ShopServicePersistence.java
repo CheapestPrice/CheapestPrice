@@ -27,6 +27,11 @@ public class ShopServicePersistence implements ShopService {
     }
 
     @Override
+    public List<Tienda> consultShop() throws CheapestPriceException {
+        return null;
+    }
+
+    @Override
     public void deleteTienda(Tienda tienda) throws CheapestPriceException {
         persistence.deleteTienda(tienda);
     }
@@ -89,6 +94,11 @@ public class ShopServicePersistence implements ShopService {
     @Override
     public Opinion consultOpinion(TiendaId id, Opinion opinion) throws CheapestPriceException {
         return persistence.consultOpinion(id,opinion);
+    }
+
+    @Override
+    public List<Opinion> consultOpiniones(TiendaId id) throws CheapestPriceException {
+        return persistence.consultOpiniones(id);
     }
 
     @Override

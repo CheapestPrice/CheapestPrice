@@ -27,7 +27,7 @@ angular.module('myApp.shopList', ['ngRoute'])
     $scope.eliminarItem = function(id,tien){
         var ban = false
         for(var i=0;i<$scope.usua.listas.length;i++){
-            if($scope.usua.listas[i].nombre == $scope.listado.nombre){
+            if($scope.usua.listas[i].listaid.nombre == $scope.listado.listaid.nombre){
                 for(var j=0; j<$scope.usua.listas[i].length;j++){
                     if($scope.usua.listas[i].items[j].producto.id == iden && $scope.usua.listas[i].items[j].tienda.nombre == tien){
                         $scope.usua.listas[i].items.splice(j,1);
@@ -48,7 +48,7 @@ angular.module('myApp.shopList', ['ngRoute'])
      $scope.comprado = function(iden,tien){
         var ban = false
                 for(var i=0;i<$scope.usua.listas.length;i++){
-                    if($scope.usua.listas[i].nombre == $scope.listado.nombre){
+                    if($scope.usua.listas[i].listaid.nombre == $scope.listado.listaid.nombre){
                         for(var j=0; j<$scope.usua.listas[i].length;j++){
                             if($scope.usua.listas[i].items[j].producto.id == iden && $scope.usua.listas[i].items[j].tienda.nombre == tien){
                                 $scope.usua.listas[i].items[j].comprado=!$scope.usua.listas[i].items[j].comprado;

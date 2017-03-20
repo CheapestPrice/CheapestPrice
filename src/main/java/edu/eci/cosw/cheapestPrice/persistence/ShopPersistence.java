@@ -121,4 +121,18 @@ public interface ShopPersistence {
      */
     public Opinion consultOpinion(TiendaId id,Opinion opinion) throws CheapestPriceException;
 
+    /**
+     * consultar lista de opiniones de la tienda
+     * @return  opiniones
+     * @throws CheapestPriceException
+     */
+    public List<Opinion> consultOpiniones(TiendaId id) throws CheapestPriceException;
+
+    /***
+     * Consultar las tiendas
+     * @return  tiendas
+     * @throws CheapestPriceException
+     */
+    public List<Tienda> consultShop() throws CheapestPriceException;
+
 }
