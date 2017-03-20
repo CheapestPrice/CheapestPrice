@@ -1,6 +1,7 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
 import edu.eci.cosw.cheapestPrice.entities.Tienda;
+import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ShopPersistence;
 import edu.eci.cosw.cheapestPrice.services.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,36 +21,31 @@ import java.util.logging.Logger;
 public class ShopController {
 
     @Autowired
-    public ShopService tp;
+    public ShopService serviceShop;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> newTiendaRecurso(@RequestBody Tienda tienda){
         ResponseEntity a;
         try {
-            tp.addTienda(tienda);
+            serviceShop.addTienda(tienda);
             a = new ResponseEntity<>(HttpStatus.ACCEPTED);
             System.out.println("Tienda creada sin error");
 
         } catch (Exception ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Tienda no creada!",HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
         }
         return a;
     }
 
-    @RequestMapping(value = "/{nickname}", method = RequestMethod.GET)
-    public ResponseEntity<?>obtenerTiendaPorNickname(@PathVariable String nickname){
-
-        ResponseEntity a;
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> getTiendas()  {
         try {
-            //obtener datos que se enviarán a través del API
-            a = new ResponseEntity<>(new Tienda(),HttpStatus.ACCEPTED);
-
-        } catch (Exception ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error no encontro tienda!",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(serviceShop.consultShop(), HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException e) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, e);
+            return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
         }
-        return a;
     }
 }
 

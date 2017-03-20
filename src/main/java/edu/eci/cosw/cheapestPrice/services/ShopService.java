@@ -18,6 +18,12 @@ public interface ShopService {
      */
     public void addTienda(Tienda tienda) throws CheapestPriceException;
 
+    /***
+     * Consultar las tiendas
+     * @return  tiendas
+     * @throws CheapestPriceException
+     */
+    public List<Tienda> consultShop() throws CheapestPriceException;
 
     /***
      * Eliminar la tienda
@@ -108,11 +114,19 @@ public interface ShopService {
     public void modifyLogo(TiendaId id,Blob logo) throws CheapestPriceException;
 
     /**
-     * Agregar opinion a la tienda
+     * Consultar opinion de la tienda
      * @param opinion
      * @throws CheapestPriceException
      */
     public Opinion consultOpinion(TiendaId id,Opinion opinion) throws CheapestPriceException;
+
+    /**
+     * consultar lista de opiniones de la tienda
+     * @return  opiniones
+     * @throws CheapestPriceException
+     */
+    public List<Opinion> consultOpiniones(TiendaId id) throws CheapestPriceException;
+
 
     /***
      * Consultar la tienda

@@ -217,6 +217,23 @@ public class ShopPersistenceStub implements ShopPersistence {
         return n;
     }
 
+    @Override
+    public List<Opinion> consultOpiniones(TiendaId id) throws CheapestPriceException {
+        ArrayList<Opinion> opini=null;
+        for (int i = 0; i < tiendas.size(); i++) {
+            if(tiendas.get(i).getId().equals(id)) {
+                opini = (ArrayList<Opinion>) tiendas.get(i).getOpiniones();
+            }
+        }
+        if(opini==null || opini.size()==0) throw new CheapestPriceException("Sin opiniones");
+        return opini;
+    }
+
+    @Override
+    public List<Tienda> consultShop() throws CheapestPriceException {
+        return tiendas;
+    }
+
     /**
      *Poblar stub tiendas
      * @param shopPersistence
