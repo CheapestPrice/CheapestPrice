@@ -23,7 +23,7 @@ public class UserController {
         return new ResponseEntity<>(uP.loadAllUsuarios(), HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(value="/{correo}" ,method = RequestMethod.GET)
+    @RequestMapping(value="/{correo:.+}" ,method = RequestMethod.GET)
     public ResponseEntity<?> getUsuarioPorCorreo(@PathVariable String correo){
         try{
             System.out.println("correo-controlador: "+correo);
