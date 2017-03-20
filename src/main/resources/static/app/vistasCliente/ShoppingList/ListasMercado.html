@@ -60,11 +60,11 @@
             </theader>
             <tbody>
             <tr ng-repeat="todo in usuario1.listas  | orderBy:propertyName:reverse">
-                <td><center>{{todo.nombre}}</center></td>
+                <td><center>{{todo.listaid.nombre}}</center></td>
                 <td><center>{{todo.fechaCreacion.toLocaleString()}}</center></td>
                 <td><center>{{completo(todo.revisado)}}</center></td>
                 <td><center><button ng-click="ver(todo)">Ver</button></center></td>
-                <td><center><button ng-click="eliminarLista(todo.nombre)">Eliminar</button></center></td>
+                <td><center><button ng-click="eliminarLista(todo.listaid.nombre)">Eliminar</button></center></td>
             </tr>
             </tbody>
         </table>

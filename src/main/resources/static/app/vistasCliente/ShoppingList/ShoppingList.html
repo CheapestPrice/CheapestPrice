@@ -71,7 +71,7 @@
             <tbody>
             <tr ng-repeat="todo in listado.items  | orderBy:propertyName:reverse">
                 <td><center>{{todo.producto.nombre}}</center></td>
-                <td><center>{{todo.producto.precio}}</center></td>
+                <td><center>{{todo.precio}}</center></td>
                 <td><center>{{todo.tienda.nombre}}</center></td>
                 <td>
                     <md-button class="md-primary md-raised" ng-click="showAdvanced($event,todo)">
