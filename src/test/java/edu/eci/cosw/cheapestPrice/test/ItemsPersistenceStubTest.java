@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ItemsPersistenceStubTest {
 
-    /*@Test
+    @Test
     public void CE1DeberiaAgregarItem(){
         ItemPersistenceStub ips= new ItemPersistenceStub();
         Producto p1=new Producto(7,"Lecherita","Nestle","Leche condensada");
@@ -27,9 +27,9 @@ public class ItemsPersistenceStubTest {
         } catch (CheapestPriceException e) {
             Assert.fail("arroja excepcion inesperada al agregar item");
         }
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void CE2DeberiaCargarItemPorTienda(){
         ItemPersistenceStub ips= new ItemPersistenceStub();
         Producto p1=new Producto(7,"Lecherita","Nestle","Leche condensada");
@@ -52,8 +52,8 @@ public class ItemsPersistenceStubTest {
         } catch (CheapestPriceException e) {
             Assert.fail("arroja excepcion inesperada al consultar item por tienda");
         }
-    }*/
-    /*@Test
+    }
+    @Test
     public void CE3DeberiaCargarItemPorCategoria(){
         ItemPersistenceStub ips= new ItemPersistenceStub();
         Producto p1=new Producto(7,"Lecherita","Nestle","Leche condensada");
@@ -62,17 +62,12 @@ public class ItemsPersistenceStubTest {
         Producto p4=new Producto(8,"Tostadas","Bimbo","Pan");
         TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
         Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde Juancho","6699132",true);
-        ItemId idT1=new ItemId(t1,p1);
-        Item i1= new Item(idT1,2000);
-        ItemId idT2=new ItemId(t1,p2);
-        Item i2= new Item(idT2,2000);
-        ItemId idT3=new ItemId(t1,p3);
-        Item i3= new Item(idT3,2000);
+        Item i1= new Item(p1,t1,2000);
+        Item i2= new Item(p2,t1,2000);
+        Item i3= new Item(p3,t1,2000);
         Tienda t2= new Tienda("calle 184 #52 A13",id,"Donde Roberto","6699132",true);
-        ItemId idT4=new ItemId(t2,p2);
-        Item i4= new Item(idT4,2000);
-        ItemId idT5=new ItemId(t2,p4);
-        Item i5 = new Item(idT5,2000);
+        Item i4= new Item(p2,t2,2000);
+        Item i5 = new Item(p3,t2,2000);
         List<Item> lista= new ArrayList<>();
         lista.add(i2);lista.add(i3);lista.add(i4);lista.add(i5);
         try {
@@ -86,16 +81,15 @@ public class ItemsPersistenceStubTest {
         } catch (CheapestPriceException e) {
             Assert.fail("arroja excepcion inesperada al consultar item por categoria");
         }
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void CE4DeberiaEliminarItem(){
         ItemPersistenceStub ips= new ItemPersistenceStub();
         Producto p1=new Producto(7,"Lecherita","Nestle","Leche condensada");
         TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
         Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde Juancho","6699132",true);
-        ItemId idT=new ItemId(t1,p1);
-        Item i1= new Item(idT,2000);
+        Item i1= new Item(p1,t1,2000);
         try {
             ips.addItem(i1);
             List<Item> items=ips.loadItemById(p1.getId());
@@ -105,22 +99,20 @@ public class ItemsPersistenceStubTest {
         } catch (CheapestPriceException e) {
             Assert.fail("arroja excepcion inesperada al eliminar un item");
         }
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void CE5DeberiaCActualizarItem(){
         ItemPersistenceStub ips= new ItemPersistenceStub();
         Producto p1=new Producto(7,"Lecherita","Nestle","Leche condensada");
         TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
         Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde Juancho","6699132",true);
-        ItemId idT=new ItemId(t1,p1);
-        Item i1= new Item(idT,2000);
+        Item i1= new Item(p1,t1,2000);
         try {
             ips.addItem(i1);
             List<Item> items=ips.loadItemById(p1.getId());
             Producto a=new Producto(8,"a","b","c");
-            ItemId idT2=new ItemId(t1,a);
-            Item i2= new Item(idT2,12);
+            Item i2= new Item(a,t1,12);
             ips.updateItem(p1.getId(),t1.getNombre(),i2);
             List<Item> items2=ips.loadItemById(i2.getProducto().getId());
             List<Item> old=new ArrayList<>();old.add(i1);
@@ -129,5 +121,5 @@ public class ItemsPersistenceStubTest {
         } catch (CheapestPriceException e) {
             Assert.fail("arroja excepcion inesperada al actualiza un item");
         }
-    }*/
+    }
 }
