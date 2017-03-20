@@ -1,8 +1,7 @@
 package edu.eci.cosw.cheapestPrice.entities;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -20,16 +19,25 @@ public class Horario implements Serializable{
     private int horaFin;
     @Column(name="minutosFin", nullable=false)
     private int minutoFin;
-    @Column(name = "dia", nullable = false)
-    @Id
-    private String dia;
+    @EmbeddedId
+    private HorarioId horarioId;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumns({
+            @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false, insertable=false, updatable=false),
+            @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false, insertable=false, updatable=false),
+            @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false, insertable=false, updatable=false)
+    })
+    @JsonIgnore
+    private Tienda tienda;
 
-    public Horario(int horaInicio, int minutosInicio, int horaFin, int minutoFin,String dia) {
+    public Horario(int horaInicio, int minutosInicio, int horaFin, int minutoFin,Tienda tienda,String dia) {
         this.setHoraInicio(horaInicio);
         this.setMinutosInicio(minutosInicio);
         this.setHoraFin(horaFin);
         this.setMinutoFin(minutoFin);
-        this.setDia(dia);
+        setTienda(tienda);
+        setHorarioId(new HorarioId(dia,tienda.getId().getNit(),tienda.getId().getX(),tienda.getId().getY()));
+
     }
 
     public Horario() {
@@ -72,11 +80,19 @@ public class Horario implements Serializable{
         this.minutoFin = minutoFin;
     }
 
-    public String getDia() {
-        return dia;
+    public HorarioId getHorarioId() {
+        return horarioId;
     }
 
-    public void setDia(String dia) {
-        this.dia = dia;
+    public void setHorarioId(HorarioId horarioId) {
+        this.horarioId = horarioId;
+    }
+
+    public Tienda getTienda() {
+        return tienda;
+    }
+
+    public void setTienda(Tienda tienda) {
+        this.tienda = tienda;
     }
 }

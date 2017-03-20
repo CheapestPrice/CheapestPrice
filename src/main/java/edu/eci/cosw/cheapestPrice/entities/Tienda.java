@@ -26,12 +26,13 @@ public class Tienda implements java.io.Serializable {
     private boolean disponible;
     @Column(name = "logo", nullable=true)
     private Blob logo;
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumns({
+    @OneToMany(cascade=CascadeType.ALL,mappedBy = "tienda")
+    //@OneToMany(cascade=CascadeType.ALL)
+    /*@JoinColumns({
             @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false, insertable=false, updatable=false),
             @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false, insertable=false, updatable=false),
             @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false, insertable=false, updatable=false)
-    })
+    })*/
     private List<Horario> horarios;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "tienda")
@@ -224,7 +225,7 @@ public class Tienda implements java.io.Serializable {
         boolean ans=false;
         for (int i = 0; i < horarios.size() && !ans; i++) {
             Horario tmp=horarios.get(i);
-            if(tmp.getDia().equals(dia)){
+            if(tmp.getHorarioId().getDia().equals(dia)){
                 if(tmp.getHoraInicio()<cal.HOUR_OF_DAY && tmp.getHoraFin()>cal.HOUR_OF_DAY && tmp.getMinutosInicio()<cal.MINUTE && tmp.getMinutoFin()>cal.MINUTE){
                     ans=true;
                 }
@@ -240,7 +241,7 @@ public class Tienda implements java.io.Serializable {
      */
     public void modifyHorary(String dia, Horario horario){
         for (int j = 0; j < horarios.size(); j++) {
-            if(horarios.get(j).getDia().equals(dia)){
+            if(horarios.get(j).getHorarioId().getDia().equals(dia)){
                 horarios.remove(j);
                 horarios.add(j,horario);
             }
