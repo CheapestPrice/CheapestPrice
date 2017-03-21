@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Created by Daniela on 21/02/2017.
  */
-@Service
+//@Service
 public class ShopPersistenceStub implements ShopPersistence {
 
     private List<Tienda> tiendas;

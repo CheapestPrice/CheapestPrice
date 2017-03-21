@@ -35,7 +35,7 @@ public class ShopController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/x/{x}/y/{y}/nit/{nit}")
-    public ResponseEntity<?> getShop(@PathVariable long x,@PathVariable long y,@PathVariable String nit)  {
+    public ResponseEntity<?> getShop(@PathVariable double x,@PathVariable double y,@PathVariable String nit)  {
         try {
             TiendaId id=new TiendaId(nit,x,y);
             return new ResponseEntity<>(serviceShop.consultTienda(id), HttpStatus.ACCEPTED);
@@ -46,7 +46,7 @@ public class ShopController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/x/{x}/y/{y}/nit/{nit}/items")
-    public ResponseEntity<?> loadItems(@PathVariable long x,@PathVariable long y,@PathVariable String nit)  {
+    public ResponseEntity<?> loadItems(@PathVariable double x,@PathVariable double y,@PathVariable String nit)  {
         try {
             TiendaId id=new TiendaId(nit,x,y);
             return new ResponseEntity<>(serviceShop.loadItems(id), HttpStatus.ACCEPTED);
@@ -57,7 +57,7 @@ public class ShopController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/x/{x}/y/{y}/nit/{nit}/item/{idproducto}")
-    public ResponseEntity<?> loadItem(@PathVariable long x,@PathVariable long y,@PathVariable String nit,@PathVariable long idproducto)  {
+    public ResponseEntity<?> loadItem(@PathVariable double x,@PathVariable double y,@PathVariable String nit,@PathVariable long idproducto)  {
         try {
             TiendaId id=new TiendaId(nit,x,y);
             return new ResponseEntity<>(serviceShop.loadItem(id,idproducto), HttpStatus.ACCEPTED);

@@ -28,7 +28,7 @@ public class ShopServicePersistence implements ShopService {
 
     @Override
     public List<Tienda> consultShop() throws CheapestPriceException {
-        return null;
+        return persistence.consultShop();
     }
 
     @Override
