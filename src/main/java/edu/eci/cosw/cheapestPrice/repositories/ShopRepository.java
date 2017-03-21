@@ -23,16 +23,19 @@ public interface ShopRepository extends JpaRepository<Tienda,TiendaId>{
     public Item loadItem(@Param("idtienda") TiendaId idtienda,@Param("idproducto") long idprodcuto);
 
     @Query("update Tienda t set t.logo=:logo where t.id.nit=:#{#idtienda.nit} and t.id.x=:#{#idtienda.x} and t.id.y=:#{#idtienda.y}")
-    public void modifyLogo(@Param("idtienda") TiendaId id, @Param("logo") Blob logo);
+    public void modifyLogo(@Param("idtienda") TiendaId idtienda, @Param("logo") Blob logo);
 
     @Query("update Tienda t set t.telefono=:telefono where t.id.nit=:#{#idtienda.nit} and t.id.x=:#{#idtienda.x} and t.id.y=:#{#idtienda.y}")
-    public void modifyTelephone(@Param("idtienda") TiendaId id, @Param("telefono") String telefono);
+    public void modifyTelephone(@Param("idtienda") TiendaId idtienda, @Param("telefono") String telefono);
 
     @Query("select o from Opinion o where o.tienda.id.nit=:#{#idtienda.nit} and o.tienda.id.x=:#{#idtienda.x} and o.tienda.id.y=:#{#idtienda.y}")
     public List<Opinion> loadOpinions(@Param("idtienda") TiendaId idtienda);
 
     @Query("select o from Opinion o where o.tienda.id.nit=:#{#idtienda.nit} and o.tienda.id.x=:#{#idtienda.x} and o.tienda.id.y=:#{#idtienda.y} and o.id=:#{#opinion.id}")
     public Opinion loadOpinion(@Param("idtienda") TiendaId idtienda,@Param("opinion") Opinion opinion);
+
+    @Query("select i from Item i where i.tienda.id.nit=:nit and i.tienda.id.x=:x and i.tienda.id.y=:y and i.producto.id=:idproducto")
+    public Item loadItem(@Param("nit") String nit, @Param("x") double x,@Param("y") double y,@Param("idproducto") long idprodcuto);
 
 
 }

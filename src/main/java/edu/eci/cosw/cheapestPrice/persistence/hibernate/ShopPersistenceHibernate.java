@@ -121,7 +121,13 @@ public class ShopPersistenceHibernate implements ShopPersistence {
 
     @Override
     public Item loadItem(TiendaId idtienda, long idproducto) throws CheapestPriceException {
+        System.out.println("_______"+idproducto+" "+idtienda.getX()+" "+idtienda.getY()+" "+idtienda.getNit());
         return repositoryshop.loadItem(idtienda,idproducto);
+    }
+
+    @Override
+    public Item loadItem(String nit, double x, double y, long idproducto) throws CheapestPriceException {
+        return repositoryshop.loadItem(nit,x,y,idproducto);
     }
 
     @Override
@@ -136,6 +142,6 @@ public class ShopPersistenceHibernate implements ShopPersistence {
 
     @Override
     public Tienda consultTienda(TiendaId idtienda) throws CheapestPriceException {
-        return repositoryshop.getOne(idtienda);
+        return repositoryshop.findOne(idtienda);
     }
 }
