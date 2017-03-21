@@ -5,6 +5,8 @@ import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ProductPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Blob;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -19,7 +21,7 @@ public class ProductServicePersistence implements ProductService {
     }
 
     @Override
-    public Set<Producto> getAllProducts() {
+    public List<Producto> getAllProducts() {
         return productoPersistence.loadProducts();
     }
 
@@ -29,22 +31,17 @@ public class ProductServicePersistence implements ProductService {
     }
 
     @Override
-    public Set<Producto> getAllProductsByName(String name) throws CheapestPriceException {
+    public List<Producto> getAllProductsByName(String name) throws CheapestPriceException {
         return productoPersistence.loadAllProductsByName(name);
     }
 
     @Override
-    public Set<Producto> getAllProductsByPrice(long price) throws CheapestPriceException {
-        return productoPersistence.loadAllProductsByPrice(price);
-    }
-
-    @Override
-    public Set<Producto> getAllProductsByTrademark(String marca) throws CheapestPriceException {
+    public List<Producto> getAllProductsByTrademark(String marca) throws CheapestPriceException {
         return productoPersistence.loadAllProductsByTrademark(marca);
     }
 
     @Override
-    public Set<Producto> getAllProductsByCategory(String categoria) throws CheapestPriceException {
+    public List<Producto> getAllProductsByCategory(String categoria) throws CheapestPriceException {
         return productoPersistence.loadAllProductsByCategory(categoria);
     }
 
@@ -54,8 +51,23 @@ public class ProductServicePersistence implements ProductService {
     }
 
     @Override
-    public void updateProduct(Producto producto) throws CheapestPriceException {
-        productoPersistence.updateProduct(producto);
+    public void updateProductByMarca(Producto producto, String marca) throws CheapestPriceException {
+        productoPersistence.updateProductByMarca(producto,marca);
+    }
+
+    @Override
+    public void updateProductByCategoria(Producto producto, String categoria) throws CheapestPriceException {
+        productoPersistence.updateProductByCategoria(producto, categoria);
+    }
+
+    @Override
+    public void updateProductByName(Producto producto, String name) throws CheapestPriceException {
+        productoPersistence.updateProductByName(producto, name);
+    }
+
+    @Override
+    public void updateProductByImage(Producto producto, Blob image) throws CheapestPriceException {
+        productoPersistence.updateProductByImage(producto, image);
     }
 
     @Override

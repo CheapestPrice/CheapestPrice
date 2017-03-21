@@ -4,6 +4,8 @@ import edu.eci.cosw.cheapestPrice.entities.Producto;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ProductPersistence;
 
+import java.sql.Blob;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,7 +14,7 @@ import java.util.Set;
 public class ProductPersistenceStub implements ProductPersistence {
 
     @Override
-    public Set<Producto> loadProducts() {
+    public List<Producto> loadProducts() {
         return null;
     }
 
@@ -22,22 +24,17 @@ public class ProductPersistenceStub implements ProductPersistence {
     }
 
     @Override
-    public Set<Producto> loadAllProductsByName(String name) throws CheapestPriceException {
+    public List<Producto> loadAllProductsByName(String name) throws CheapestPriceException {
         return null;
     }
 
     @Override
-    public Set<Producto> loadAllProductsByPrice(long price) throws CheapestPriceException {
+    public List<Producto> loadAllProductsByTrademark(String marca) throws CheapestPriceException {
         return null;
     }
 
     @Override
-    public Set<Producto> loadAllProductsByTrademark(String marca) throws CheapestPriceException {
-        return null;
-    }
-
-    @Override
-    public Set<Producto> loadAllProductsByCategory(String categoria) throws CheapestPriceException {
+    public List<Producto> loadAllProductsByCategory(String categoria) throws CheapestPriceException {
         return null;
     }
 
@@ -47,7 +44,22 @@ public class ProductPersistenceStub implements ProductPersistence {
     }
 
     @Override
-    public void updateProduct(Producto producto) throws CheapestPriceException {
+    public void updateProductByMarca(Producto producto, String marca) throws CheapestPriceException {
+        
+    }
+
+    @Override
+    public void updateProductByCategoria(Producto producto, String categoria) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public void updateProductByName(Producto producto, String name) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public void updateProductByImage(Producto producto, Blob image) throws CheapestPriceException {
 
     }
 
