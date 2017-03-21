@@ -50,9 +50,9 @@ public class ShopPersistenceHibernate implements ShopPersistence {
 
     @Override
     public void modifyProduct(TiendaId id, long idproducto, Producto producto) throws CheapestPriceException {
-        productRepository.updateByCategoria(producto);
-        productRepository.updateByMarca(producto);
-        productRepository.updateByName(producto);
+        //productRepository.updateByCategoria(producto);
+        //productRepository.updateByMarca(producto);
+        //productRepository.updateByName(producto);
     }
 
     @Override

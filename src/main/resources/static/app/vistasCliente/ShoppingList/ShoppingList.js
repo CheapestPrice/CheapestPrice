@@ -29,7 +29,7 @@ angular.module('myApp.shopList', ['ngRoute'])
         for(var i=0;i<$scope.usua.listas.length;i++){
             if($scope.usua.listas[i].listaid.nombre == $scope.listado.listaid.nombre){
                 for(var j=0; j<$scope.usua.listas[i].length;j++){
-                    if($scope.usua.listas[i].items[j].producto.id == iden && $scope.usua.listas[i].items[j].tienda.nombre == tien){
+                    if($scope.usua.listas[i].items[j].item.producto.id == iden && $scope.usua.listas[i].items[j].item.tienda.nombre == tien){
                         $scope.usua.listas[i].items.splice(j,1);
                         ban = true
                         break
@@ -50,8 +50,8 @@ angular.module('myApp.shopList', ['ngRoute'])
                 for(var i=0;i<$scope.usua.listas.length;i++){
                     if($scope.usua.listas[i].listaid.nombre == $scope.listado.listaid.nombre){
                         for(var j=0; j<$scope.usua.listas[i].length;j++){
-                            if($scope.usua.listas[i].items[j].producto.id == iden && $scope.usua.listas[i].items[j].tienda.nombre == tien){
-                                $scope.usua.listas[i].items[j].comprado=!$scope.usua.listas[i].items[j].comprado;
+                            if($scope.usua.listas[i].items[j].item.producto.id == iden && $scope.usua.listas[i].items[j].item.tienda.nombre == tien){
+                                $scope.usua.listas[i].items[j].item.comprado=!$scope.usua.listas[i].items[j].item.comprado;
                                 ban = true
                                 break
                             }

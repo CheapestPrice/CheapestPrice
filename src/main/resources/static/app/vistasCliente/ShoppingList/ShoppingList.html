@@ -70,9 +70,9 @@
             </theader>
             <tbody>
             <tr ng-repeat="todo in listado.items  | orderBy:propertyName:reverse">
-                <td><center>{{todo.producto.nombre}}</center></td>
-                <td><center>{{todo.precio}}</center></td>
-                <td><center>{{todo.tienda.nombre}}</center></td>
+                <td><center>{{todo.item.producto.nombre}}</center></td>
+                <td><center>{{todo.item.precio}}</center></td>
+                <td><center>{{todo.item.tienda.nombre}}</center></td>
                 <td>
                     <md-button class="md-primary md-raised" ng-click="showAdvanced($event,todo)">
                         Detalles
@@ -80,7 +80,7 @@
                 </td>
                 <td>
                     <center>
-                        <md-checkbox ng-model="todo.producto.comprado" aria-label="Checkbox" ng-click="comprado(todo.producto.id, todo.tienda.nombre)">
+                        <md-checkbox ng-model="todo.producto.comprado" aria-label="Checkbox" ng-click="comprado(todo.item.producto.id, todo.item.tienda.nombre)">
                         </md-checkbox>
                     </center>
                 </td>
@@ -90,7 +90,7 @@
                     </div>
                 </center>
                 </td>
-                <td><center><button ng-click="eliminarItem(todo.producto.id, todo.tienda.nombre)">Eliminar</button></center></td>
+                <td><center><button ng-click="eliminarItem(todo.item.producto.id, todo.item.tienda.nombre)">Eliminar</button></center></td>
             </tr>
             </tbody>
         </table>
