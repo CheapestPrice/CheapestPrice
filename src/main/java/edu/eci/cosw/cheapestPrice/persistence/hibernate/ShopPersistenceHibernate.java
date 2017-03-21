@@ -10,6 +10,7 @@ import edu.eci.cosw.cheapestPrice.repositories.ProductRepository;
 import edu.eci.cosw.cheapestPrice.repositories.ShopRepository;
 import edu.eci.cosw.cheapestPrice.services.ShopServicePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 /**
  * Created by Daniela on 18/03/17.
  */
+@Service
 public class ShopPersistenceHibernate implements ShopPersistence {
 
     @Autowired

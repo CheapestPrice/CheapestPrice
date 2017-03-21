@@ -1,6 +1,8 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+
 import java.sql.Blob;
 
 import java.sql.Timestamp;
@@ -25,15 +27,9 @@ public class Tienda implements java.io.Serializable {
     @Column(name="disponible", nullable=false)
     private boolean disponible;
     @Column(name = "logo", nullable=true)
+    @JsonIgnore
     private Blob logo;
     @OneToMany(cascade=CascadeType.ALL,mappedBy = "tienda")
-
-    //@OneToMany(cascade=CascadeType.ALL)
-    /*@JoinColumns({
-            @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false, insertable=false, updatable=false),
-            @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false, insertable=false, updatable=false),
-            @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false, insertable=false, updatable=false)
-    })*/
     private List<Horario> horarios;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "tienda")

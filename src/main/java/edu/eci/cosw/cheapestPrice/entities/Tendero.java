@@ -31,7 +31,7 @@ public class Tendero implements Serializable, Persona{
     @Column(name = "nombre", nullable = false)
     protected String nombre;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER, targetEntity = Tienda.class)
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Tienda.class)
     @JoinColumns({
             @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false, insertable=false, updatable=false),
             @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false, insertable=false, updatable=false),
