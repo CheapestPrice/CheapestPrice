@@ -57,6 +57,7 @@ public class ListaDeMercado implements Serializable {
         //items=new ArrayList<ItemLista>();
     }
 
+
     /**
      * Agrega items a la lista de mercado
      * @param ite

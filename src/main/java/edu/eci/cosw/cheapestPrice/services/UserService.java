@@ -46,4 +46,12 @@ public interface UserService {
      */
     public void updateUser(String correo, Usuario usuario)throws CheapestPriceException;
 
+    /**
+     * Elimina una lista de mercado de un usuario
+     * @param correo
+     * @param nombreLista
+     * @throws CheapestPriceException
+     */
+    public void deleteShoppingList(String correo, String nombreLista)throws  CheapestPriceException;
+
 }

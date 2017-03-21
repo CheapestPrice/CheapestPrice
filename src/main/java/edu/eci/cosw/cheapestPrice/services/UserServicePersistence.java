@@ -31,7 +31,6 @@ public class UserServicePersistence implements UserService{
 
     @Override
     public Usuario loadUserByEmail(String correo) throws CheapestPriceException {
-        System.out.println("Servicio: "+correo);
         return us.loadUserByEmail(correo);
     }
 
@@ -43,5 +42,10 @@ public class UserServicePersistence implements UserService{
     @Override
     public void updateUser(String correo, Usuario usuario) throws CheapestPriceException {
         us.updateUser(correo,usuario);
+    }
+
+    @Override
+    public void deleteShoppingList(String correo, String nombreLista) throws CheapestPriceException {
+        us.deleteShoppingList(correo,nombreLista);
     }
 }

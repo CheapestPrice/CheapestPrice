@@ -33,6 +33,7 @@ public class ShopController {
     @Autowired
     public ShopService serviceShop;
 
+
     @RequestMapping(method = RequestMethod.GET, value="/x/{x}/y/{y}/nit/{nit}/items")
     public ResponseEntity<?> loadItems(@PathVariable double x,@PathVariable double y,@PathVariable String nit)  {
         try {

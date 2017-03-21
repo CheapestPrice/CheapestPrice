@@ -45,7 +45,7 @@ public class ProductPersistenceStub implements ProductPersistence {
 
     @Override
     public void updateProductByMarca(Producto producto, String marca) throws CheapestPriceException {
-        
+
     }
 
     @Override
