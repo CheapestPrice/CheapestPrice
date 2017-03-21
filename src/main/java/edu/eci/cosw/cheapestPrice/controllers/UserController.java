@@ -55,8 +55,8 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="/{correo:.+}/{listaNombre}" ,method = RequestMethod.PUT)
-    public ResponseEntity<?> actualizarUsuario(@PathVariable String correo, String listaNombre){
+    @RequestMapping(value="/{correo:.+}/{listaNombre}" ,method = RequestMethod.DELETE)
+    public ResponseEntity<?> borrarListaMercado(@PathVariable String correo, @PathVariable String listaNombre){
         try{
             uP.deleteShoppingList(correo,listaNombre);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);

@@ -1,9 +1,11 @@
 package edu.eci.cosw.cheapestPrice.persistence.hibernate;
 
 import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
+import edu.eci.cosw.cheapestPrice.entities.ListaMercado_Item;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
+import edu.eci.cosw.cheapestPrice.repositories.ShoppingListRepository;
 import edu.eci.cosw.cheapestPrice.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,10 +15,12 @@ import org.springframework.stereotype.Service;
 /**
  * Created by masterhugo on 3/18/17.
  */
-//@Service
+@Service
 public class UserPersistenceHibernate implements UserPersistence{
     @Autowired
     UserRepository us;
+    @Autowired
+    ShoppingListRepository slR;
 
     @Override
     public List<Usuario> loadAllUsuarios() {
@@ -49,6 +53,12 @@ public class UserPersistenceHibernate implements UserPersistence{
 
     @Override
     public void deleteShoppingList(String correo, String nombreLista) throws CheapestPriceException {
+        ListaMercado_Item lmI=new ListaMercado_Item(correo,nombreLista);
+        slR.delete(lmI);
+    }
+
+    @Override
+    public void favoriteShoppingListItem(String correo, String nombreLista, long idProducto, String nombreTienda) throws CheapestPriceException {
 
     }
 }

@@ -57,5 +57,14 @@ public interface UserPersistence {
      * @throws CheapestPriceException
      */
     public void deleteShoppingList(String correo,String nombreLista)throws CheapestPriceException;
-    
+
+    /**
+     * Pone en favorito un elemento de una lista de mercado de un usuario
+     * @param correo
+     * @param nombreLista
+     * @param idProducto
+     * @param nombreTienda
+     * @throws CheapestPriceException
+     */
+    public void favoriteShoppingListItem(String correo,String nombreLista,long idProducto,String nombreTienda)throws CheapestPriceException;
 }

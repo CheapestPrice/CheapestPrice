@@ -10,7 +10,7 @@ import java.util.*;
 /**
  * Created by 2105403 on 2/21/17.
  */
-@Service
+//@Service
 public class UserPersistenceStub implements UserPersistence{
 
     public List<Usuario> getUsuarios() {
@@ -85,7 +85,6 @@ public class UserPersistenceStub implements UserPersistence{
 
     @Override
     public void deleteShoppingList(String correo, String nombreLista) throws CheapestPriceException {
-        boolean ban=false;
         for(Usuario u:usuarios){
             if(u.getCorreo().equals(correo)){
                 for(ListaDeMercado lm:u.getListas()){
@@ -94,12 +93,29 @@ public class UserPersistenceStub implements UserPersistence{
                         break;
                     }
                 }
-                if(ban){
-                    break;
+            }
+        }
+    }
+
+    @Override
+    public void favoriteShoppingListItem(String correo, String nombreLista, long idProducto, String nombreTienda) throws CheapestPriceException {
+        boolean ban=false;
+        for(Usuario u:usuarios){
+            if(u.getCorreo().equals(correo)){
+                for(ListaDeMercado lm:u.getListas()){
+                    if(lm.getListaid().getNombre().equals(nombreLista)){
+                        for(ItemLista itL:lm.getItems()){
+                            if(itL.getItem().getProducto().getId()==idProducto && itL.getItem().getTienda().getNombre().equals(nombreTienda)){
+                                itL.setFavorito(!itL.getFavorito());
+                                break;
+                            }
+                        }
+                    }
                 }
             }
         }
     }
+
 
     public static void poblarStub(UserPersistenceStub ups){
         Producto p1=new Producto(1,"Queso crema","Alqueria","Queso");
