@@ -346,4 +346,11 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
                 {
                     'delete' : {method:'DELETE'}
                 });
-        });
+        })
+     .factory('favoriteItemList',function($resource){
+            return $resource('/usuarios/:correo/:nombreList/:productoId/:nombreTienda',null,
+            {
+                  'update':{method:'PUT'}
+            });
+
+     });

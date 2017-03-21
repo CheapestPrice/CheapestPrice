@@ -9,7 +9,7 @@ angular.module('myApp.shopList', ['ngRoute'])
   });
 }])
 
-.controller('shopListCtrl', ['$scope','listasMercadoStubFactory','$rootScope','$mdDialog', 'updateUser', function($scope, listasMercadoStubFactory, $rootScope,$mdDialog, updateUser) {
+.controller('shopListCtrl', ['$scope','listasMercadoStubFactory','$rootScope','$mdDialog', 'updateUser', 'favoriteItemList',function($scope, listasMercadoStubFactory, $rootScope,$mdDialog, updateUser,favoriteItemList) {
     $scope.listado = $rootScope.listaMercado;
     $scope.usua = $rootScope.usuario;
     $scope.propertyName = 'producto.nombre';
@@ -99,6 +99,7 @@ angular.module('myApp.shopList', ['ngRoute'])
            elem.bind('click', function() {
              scope.$apply(function(){
                scope.todo.favorito = !scope.todo.favorito;
+               favoriteItemList.update({correo:$scope.usua.correo,nombreLista:$scope.listado.listaid.nombre,prodcutoId:scope.todo.item.producto.id,nombreTienda:scope.todo.item.tienda.nombre});
              });
            });
          }

@@ -12,7 +12,7 @@ angular.module('myApp.listasMercado', ['ngRoute'])
 
 .controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', 'getUserEmail', 'updateUser', 'deleteShoppingList', function($scope, listasMercadoStubFactory, $rootScope, $location,getUserEmail, updateUser, deleteShoppingList) {
     //listasMercadoStubFactory.listaCompleta();
-    $scope.usuario1 = getUserEmail.get({correo:'prueba@prueba.com'});
+    $scope.usuario1 = getUserEmail.get({correo:'email1'});
     //$scope.eliminar = function(nom){
         //listasMercadoStubFactory.eliminate(nom);
     //}

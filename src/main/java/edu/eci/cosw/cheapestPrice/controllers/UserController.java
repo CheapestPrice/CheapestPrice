@@ -67,4 +67,16 @@ public class UserController {
     }
 
 
+    @RequestMapping(value="/{correo:.+}/{listaNombre}/{productoId}/{nombreTienda}" ,method = RequestMethod.POST)
+    public ResponseEntity<?> favoritoItemUsuario(@PathVariable String correo, @PathVariable String listaNombre,@PathVariable long productoId,@PathVariable String nombreTienda){
+        System.out.println("LJGYYYVJHVU: "+correo+" "+listaNombre+" "+productoId+" "+nombreTienda);
+        try{
+            uP.favoriteShoppingListItem(correo,listaNombre,productoId,nombreTienda);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }catch (CheapestPriceException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

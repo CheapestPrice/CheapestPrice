@@ -10,7 +10,7 @@ import java.util.*;
 /**
  * Created by 2105403 on 2/21/17.
  */
-//@Service
+@Service
 public class UserPersistenceStub implements UserPersistence{
 
     public List<Usuario> getUsuarios() {
@@ -99,7 +99,6 @@ public class UserPersistenceStub implements UserPersistence{
 
     @Override
     public void favoriteShoppingListItem(String correo, String nombreLista, long idProducto, String nombreTienda) throws CheapestPriceException {
-        boolean ban=false;
         for(Usuario u:usuarios){
             if(u.getCorreo().equals(correo)){
                 for(ListaDeMercado lm:u.getListas()){

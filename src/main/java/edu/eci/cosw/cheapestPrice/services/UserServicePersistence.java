@@ -48,4 +48,9 @@ public class UserServicePersistence implements UserService{
     public void deleteShoppingList(String correo, String nombreLista) throws CheapestPriceException {
         us.deleteShoppingList(correo,nombreLista);
     }
+
+    @Override
+    public void favoriteShoppingListItem(String correo, String nombreLista, long productoId, String nombreTienda) throws CheapestPriceException {
+        us.favoriteShoppingListItem(correo,nombreLista,productoId,nombreTienda);
+    }
 }
