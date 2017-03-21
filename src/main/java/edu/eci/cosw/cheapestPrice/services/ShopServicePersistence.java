@@ -52,6 +52,11 @@ public class ShopServicePersistence implements ShopService {
     }
 
     @Override
+    public Item loadItem(String nit, double x, double y, long idproducto) throws CheapestPriceException {
+        return persistence.loadItem(nit,x,y,idproducto);
+    }
+
+    @Override
     public void addProduct(TiendaId id, Producto producto) throws CheapestPriceException {
         persistence.addProduct(id, producto);
     }

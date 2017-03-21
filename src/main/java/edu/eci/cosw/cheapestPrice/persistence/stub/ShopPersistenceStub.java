@@ -114,6 +114,12 @@ public class ShopPersistenceStub implements ShopPersistence {
     }
 
     @Override
+    public Item loadItem(String nit, double x, double y, long idproducto) throws CheapestPriceException {
+        TiendaId id=new TiendaId(nit,x,y);
+        return loadItem(id,idproducto);
+    }
+
+    @Override
     public void addProduct(TiendaId id, Producto producto) throws CheapestPriceException {
         Tienda tmp=null;
         for (int i = 0; i < tiendas.size(); i++) {

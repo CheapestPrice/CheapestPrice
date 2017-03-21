@@ -57,6 +57,16 @@ public interface ShopPersistence {
     public Item loadItem(TiendaId idtienda,long idproducto)throws CheapestPriceException;
 
     /**
+     * Carga un item de la tienda
+     * @param idproducto
+     * @param nit
+     * @param x
+     * @param y
+     * @return item
+     */
+    public Item loadItem(String nit,double x,double y,long idproducto)throws CheapestPriceException;
+
+    /**
      * Registrar un nuevo producto a la tienda
      * @param producto
      * @throws CheapestPriceException
