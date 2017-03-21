@@ -1,5 +1,6 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
+import edu.eci.cosw.cheapestPrice.entities.Producto;
 import edu.eci.cosw.cheapestPrice.entities.Tienda;
 import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
@@ -46,51 +47,20 @@ public class ShopController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<?> modifyShop(@RequestBody Tienda tienda){
+    @RequestMapping(method = RequestMethod.DELETE,value = "/x/{x}/y/{y}/nit/{nit}/item/{idproducto}")
+    public ResponseEntity<?> deleteProduct(@PathVariable double x,@PathVariable double y,@PathVariable String nit,@PathVariable long idproducto){
         ResponseEntity a;
         try {
-            TiendaId id=tienda.getId();
-            serviceShop.modifyTienda(id, tienda);
+            TiendaId id=new TiendaId(nit,x,y);
+            serviceShop.deleteProduct(id, idproducto);
             a = new ResponseEntity<>(HttpStatus.ACCEPTED);
-            System.out.println("Tienda actualizada sin error");
+            System.out.println("Product eliminada sin error");
         } catch (CheapestPriceException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
         }
         return a;
     }
-
-    @RequestMapping(method = RequestMethod.PUT,value = "/telephone/{tel}")
-    public ResponseEntity<?> modifyShopTelephone(@RequestBody Tienda tienda,@PathVariable String tel){
-        ResponseEntity a;
-        try {
-            TiendaId id=tienda.getId();
-            serviceShop.modifyTelephone(id, tel);
-            a = new ResponseEntity<>(HttpStatus.ACCEPTED);
-            System.out.println("Tienda actualizada sin error");
-        } catch (CheapestPriceException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
-        }
-        return a;
-    }
-
-    @RequestMapping(method = RequestMethod.PUT,value = "/logo/{tel}")
-    public ResponseEntity<?> modifyShopLogo(@RequestBody Tienda tienda){
-        ResponseEntity a;
-        try {
-            TiendaId id=tienda.getId();
-            serviceShop.modifyLogo(id, tienda.getLogo());
-            a = new ResponseEntity<>(HttpStatus.ACCEPTED);
-            System.out.println("Tienda actualizada sin error");
-        } catch (CheapestPriceException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
-        }
-        return a;
-    }
-
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addShop(@RequestBody Tienda tienda){
         ResponseEntity a;
@@ -104,21 +74,54 @@ public class ShopController {
         }
         return a;
     }
-    
-    @RequestMapping(method = RequestMethod.DELETE,value = "/producto/{idproducto}")
-    public ResponseEntity<?> deleteProduct(@RequestBody Tienda tienda,@PathVariable long idproducto){
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/x/{x}/y/{y}/nit/{nit}")
+    public ResponseEntity<?> modifyShop(@PathVariable double x,@PathVariable double y,@PathVariable String nit,@RequestBody Tienda tienda){
         ResponseEntity a;
         try {
-            TiendaId id=tienda.getId();
-            serviceShop.deleteProduct(id, idproducto);
+            TiendaId id=new TiendaId(nit,x,y);
+            serviceShop.modifyTienda(id, tienda);
             a = new ResponseEntity<>(HttpStatus.ACCEPTED);
-            System.out.println("Product eliminada sin error");
+            System.out.println("Tienda actualizada sin error");
         } catch (CheapestPriceException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
         }
         return a;
     }
+
+    @RequestMapping(method = RequestMethod.PUT,value = "/x/{x}/y/{y}/nit/{nit}/telephone")
+    public ResponseEntity<?> modifyShopTelephone(@PathVariable double x,@PathVariable double y,@PathVariable String nit,@RequestBody String tel){
+        ResponseEntity a;
+        try {
+            TiendaId id=new TiendaId(nit,x,y);
+            serviceShop.modifyTelephone(id, tel);
+            a = new ResponseEntity<>(HttpStatus.ACCEPTED);
+            System.out.println("Tienda actualizada sin error");
+        } catch (CheapestPriceException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
+        }
+        return a;
+    }
+
+    @RequestMapping(method = RequestMethod.PUT,value = "/x/{x}/y/{y}/nit/{nit}/logo")
+    public ResponseEntity<?> modifyShopLogo(@PathVariable double x,@PathVariable double y,@PathVariable String nit,@RequestBody Tienda tienda){
+        ResponseEntity a;
+        try {
+            TiendaId id=new TiendaId(nit,x,y);
+            serviceShop.modifyLogo(id, tienda.getLogo());
+            a = new ResponseEntity<>(HttpStatus.ACCEPTED);
+            System.out.println("Tienda actualizada sin error");
+        } catch (CheapestPriceException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
+        }
+        return a;
+    }
+
+
+
 
 }
 

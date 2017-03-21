@@ -4,10 +4,7 @@ import java.sql.Blob;
 import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ShopPersistence;
-import edu.eci.cosw.cheapestPrice.repositories.HoraryRepository;
-import edu.eci.cosw.cheapestPrice.repositories.OpinionRepository;
-import edu.eci.cosw.cheapestPrice.repositories.ProductRepository;
-import edu.eci.cosw.cheapestPrice.repositories.ShopRepository;
+import edu.eci.cosw.cheapestPrice.repositories.*;
 import edu.eci.cosw.cheapestPrice.services.ShopServicePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +30,9 @@ public class ShopPersistenceHibernate implements ShopPersistence {
     @Autowired
     private HoraryRepository horarioRepository;
 
+    @Autowired
+    private ItemRepository itemRepository;
+
     @Override
     ///actualizo todo lo referente a llave no primaria ni horario ni opiniones
     public void modifyTienda(TiendaId id, Tienda tienda) throws CheapestPriceException {
@@ -43,10 +43,13 @@ public class ShopPersistenceHibernate implements ShopPersistence {
     @Override
     public void addProduct(TiendaId id, Producto producto) throws CheapestPriceException {
         productRepository.save(producto);
+
     }
 
     @Override
     public void deleteProduct(TiendaId id, long idproducto) throws CheapestPriceException {
+        ItemId iditem=new ItemId(idproducto,id.getX(),id.getY(),id.getNit());
+        itemRepository.delete(iditem);
         productRepository.delete(idproducto);
     }
 
@@ -121,7 +124,6 @@ public class ShopPersistenceHibernate implements ShopPersistence {
 
     @Override
     public Item loadItem(TiendaId idtienda, long idproducto) throws CheapestPriceException {
-        System.out.println("_______"+idproducto+" "+idtienda.getX()+" "+idtienda.getY()+" "+idtienda.getNit());
         return repositoryshop.loadItem(idtienda,idproducto);
     }
 
