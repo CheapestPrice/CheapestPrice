@@ -10,24 +10,27 @@ angular.module('myApp.listasMercado', ['ngRoute'])
   });
 }])
 
-.controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', 'getUserEmail', 'updateUser', '$resource', function($scope, listasMercadoStubFactory, $rootScope, $location,getUserEmail, updateUser, $resource) {
+.controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', 'getUserEmail', 'updateUser', 'deleteShoppingList', function($scope, listasMercadoStubFactory, $rootScope, $location,getUserEmail, updateUser, deleteShoppingList) {
     //listasMercadoStubFactory.listaCompleta();
-    $scope.usuario1 = getUserEmail.get({correo:'admin@cheapestprice.com'});
+    $scope.usuario1 = getUserEmail.get({correo:'email1'});
     //$scope.eliminar = function(nom){
         //listasMercadoStubFactory.eliminate(nom);
     //}
-    $scope.eliminarLista = function(listaNombre){
+    $scope.eliminarLista=function(listaNombre){
+        deleteShoppingList.delete({correo:$scope.usuario1.correo,nombreLista:listaNombre})
+     };
+     /*function(listaNombre){
         for(var i=0;i<$scope.usuario1.listas.length;i++){
              if($scope.usuario1.listas[i].listaid.nombre == listaNombre){
                  $scope.usuario1.listas.splice(i,1);
                     break
              }
 
-        }
+        }*/
         //Falta el usuario global
-        updateUser.update({correo:$scope.usuario1.correo},$scope.usuario1);
-    }
-    $rootScope.usuario=$scope.usuario1;
+        $rootScope.usuario=$scope.usuario1;
+
+
 
     $scope.propertyName = 'nombre';
     $scope.reverse = true;

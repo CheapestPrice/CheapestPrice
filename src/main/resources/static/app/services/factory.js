@@ -340,4 +340,10 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
     })
     .factory('getUserEmail',function($resource) {
         return $resource('/usuarios/:correo');
-    });
+    })
+    .factory('deleteShoppingList',function($resource){
+            return $resource('/usuarios/:correo/:nombreLista',null,
+                {
+                    'delete' : {method:'DELETE'}
+                });
+        });

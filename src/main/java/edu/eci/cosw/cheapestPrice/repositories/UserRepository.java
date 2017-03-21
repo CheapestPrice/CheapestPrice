@@ -16,13 +16,10 @@ import java.util.Map;
  */
 public interface UserRepository extends JpaRepository<Usuario,String> {
 
-    @Query("select u from Usuario u where u.correo=?1")
+    @Query("select u from Usuario u where u.correo = ?1")
     public Usuario loadUserByEmail(String correo);
 
-    @Query("delete from Usuario u where u.correo=?1")
-    public void deleteUser(String correo);
-
-    @Query("select u.listas from Usuario u where u.correo=?1")
+    @Query("select u.listas from Usuario u where u.correo= ?1")
     public List<ListaDeMercado> loadShoppingListByUserEmail(String correo);
 
     @Query("select u from Usuario u")

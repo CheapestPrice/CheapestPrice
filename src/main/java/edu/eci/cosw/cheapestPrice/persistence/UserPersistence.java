@@ -50,4 +50,12 @@ public interface UserPersistence {
      * @param usuario
      */
     public void updateUser(String correo, Usuario usuario)throws CheapestPriceException;
+
+    /**
+     * Elimina una lista de mercado segun su nombre
+     * @param nombreLista
+     * @throws CheapestPriceException
+     */
+    public void deleteShoppingList(String correo,String nombreLista)throws CheapestPriceException;
+    
 }

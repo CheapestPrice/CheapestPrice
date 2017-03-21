@@ -22,11 +22,10 @@ public class UserController {
     public ResponseEntity<?> getUsuarios(){
         return new ResponseEntity<>(uP.loadAllUsuarios(), HttpStatus.ACCEPTED);
     }
-
+    //{correo:.+}
     @RequestMapping(value="/{correo:.+}" ,method = RequestMethod.GET)
     public ResponseEntity<?> getUsuarioPorCorreo(@PathVariable String correo){
         try{
-            System.out.println("correo-controlador: "+correo);
             return new ResponseEntity<>(uP.loadUserByEmail(correo),HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
@@ -44,10 +43,22 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="/{correo}" ,method = RequestMethod.PUT)
+    @RequestMapping(value="/{correo:.+}" ,method = RequestMethod.PUT)
     public ResponseEntity<?> actualizarUsuario(@PathVariable String correo, Usuario usuario){
+        System.out.println(usuario.getCorreo());
         try{
             uP.updateUser(correo, usuario);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }catch (CheapestPriceException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value="/{correo:.+}/{listaNombre}" ,method = RequestMethod.PUT)
+    public ResponseEntity<?> actualizarUsuario(@PathVariable String correo, String listaNombre){
+        try{
+            uP.deleteShoppingList(correo,listaNombre);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             e.printStackTrace();
