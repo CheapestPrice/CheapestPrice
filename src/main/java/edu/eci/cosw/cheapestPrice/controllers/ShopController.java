@@ -45,7 +45,7 @@ public class ShopController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/x/{x}/y/{y}/nit/{nit}/items")
+    @RequestMapping(method = RequestMethod.GET, value="/x/{x:.+}/y/{y:.+}/nit/{nit:-+}/items")
     public ResponseEntity<?> loadItems(@PathVariable double x,@PathVariable double y,@PathVariable String nit)  {
         try {
             TiendaId id=new TiendaId(nit,x,y);
