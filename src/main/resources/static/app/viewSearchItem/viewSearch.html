@@ -51,11 +51,13 @@
                     <div style="float:left; width: 30%;">
                         <img ng-src="/items/{{pro.producto.id}}/imagen"
                              style="width: 120px; height: 120px; float:left;" alt=""/>
-                        <p>{{pro.producto.nombre}}</p>
-                        <p>{{pro.tienda.nombre}}</p>
-                        <p>{{pro.precio}}</p>
-                        <star-rating ng-model="rating2" readonly="isReadonly"></star-rating>
+                        <p class="pname">{{pro.producto.nombre}}</p>
+
+                        <p class="tname">{{pro.tienda.nombre}}</p>
                         <label>60 reviews</label>
+                        <p class="price">{{pro.precio}}</p>
+                        <star-rating ng-model="rating2" readonly="isReadonly"></star-rating>
+
                     </div>
                     <div>
                         <md-button class="md-primary md-raised" ng-click="showAdvanced($event,pro)">

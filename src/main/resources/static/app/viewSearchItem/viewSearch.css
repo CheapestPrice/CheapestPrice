@@ -47,6 +47,16 @@
 .readonly .star.filled {
     color: #666;
 }
-p {
+.tname {
+    margin-bottom:0px;
+    float:left;
+    display: inline;
+    width: 32%;
+}
+.pname{
+    margin-bottom:0px;
+
+}
+.price{
     margin-bottom:0px;
 }
