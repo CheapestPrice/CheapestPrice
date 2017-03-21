@@ -17,7 +17,7 @@ public class ProductPersistenceHibernate implements ProductPersistence {
 
     @Autowired
     ProductRepository pr;
-
+    
     @Override
     public List<Producto> loadProducts() {
         return pr.findAll();

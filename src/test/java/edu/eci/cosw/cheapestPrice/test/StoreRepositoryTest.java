@@ -1,8 +1,8 @@
 package edu.eci.cosw.cheapestPrice.test;
 
+import edu.eci.cosw.cheapestPrice.CheapestPriceApplication;
 import org.junit.After;
 import org.junit.Before;
-import org.springframework.boot.test.SpringApplicationConfiguration;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,11 +10,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Created by daniela on 14/03/17.
+ * Created by Daniela on 14/03/17.
  */
 
-@SpringApplicationConfiguration
 public class StoreRepositoryTest {
+
     public StoreRepositoryTest() {
     }
 
