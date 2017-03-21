@@ -1,5 +1,6 @@
 package edu.eci.cosw.cheapestPrice.test;
 
+import edu.eci.cosw.cheapestPrice.CheapestPriceApplication;
 import org.junit.After;
 import org.junit.Before;
 
@@ -9,9 +10,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Created by daniela on 14/03/17.
+ * Created by Daniela on 14/03/17.
  */
+
 public class StoreRepositoryTest {
+
     public StoreRepositoryTest() {
     }
 
