@@ -134,6 +134,26 @@ public class UserPersistenceStub implements UserPersistence{
         }
     }
 
+    @Override
+    public void sellSelectedItem(String correo, String nombreLista, long idProducto, double x, double y, String nit,boolean comp) throws CheapestPriceException {
+        for(Usuario u:usuarios){
+            if(u.getCorreo().equals(correo)){
+                for(ListaDeMercado lm:u.getListas()){
+                    if(lm.getListaid().getNombre().equals(nombreLista)){
+                        for(ItemLista itL:lm.getItems()){
+                            Tienda t=itL.getItem().getTienda();
+                            if(itL.getItem().getProducto().getId()==idProducto && t.getId().getX()==x && t.getId().getY()==y && t.getId().getNit().equals(nit)){
+                                itL.setComprado(comp);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
 
     public static void poblarStub(UserPersistenceStub ups){
         Producto p1=new Producto(1,"Queso crema","Alqueria","Queso");

@@ -73,4 +73,17 @@ public interface UserPersistence {
      * @throws CheapestPriceException
      */
     public void deleteSelectedItem(String correo,String nombreLista,long idProducto,double x,double y,String nit)throws CheapestPriceException;
+
+    /**
+     * Item comprado
+     * @param correo
+     * @param nombreLista
+     * @param idProducto
+     * @param x
+     * @param y
+     * @param nit
+     * @param comp
+     * @throws CheapestPriceException
+     */
+    public void sellSelectedItem(String correo,String nombreLista,long idProducto,double x,double y,String nit, boolean comp)throws CheapestPriceException;
 }

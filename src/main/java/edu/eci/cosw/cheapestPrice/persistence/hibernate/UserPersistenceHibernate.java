@@ -72,5 +72,10 @@ public class UserPersistenceHibernate implements UserPersistence{
         ilR.delete(iLId);
     }
 
+    @Override
+    public void sellSelectedItem(String correo, String nombreLista, long idProducto, double x, double y, String nit, boolean comp) throws CheapestPriceException {
+        ilR.sellItemSelected(correo,nombreLista,idProducto,x,y,nit,comp);
+    }
+
 
 }

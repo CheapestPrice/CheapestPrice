@@ -359,4 +359,10 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
             {
                 'delete' : {method:'DELETE'}
             });
+     })
+     .factory('sellItemSelected',function($resource){
+                 return $resource('/usuarios/:correo/:listaNombre/:productoId/:nit/:x/:y/:comp',null,
+                 {
+                     'update' : {method:'PUT'}
+                 });
      });

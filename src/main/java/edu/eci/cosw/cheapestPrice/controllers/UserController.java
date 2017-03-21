@@ -67,7 +67,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value="/{correo:.+}/{listaNombre}/{productoId}/{nombreTienda}" ,method = RequestMethod.POST)
+    @RequestMapping(value="/{correo:.+}/{listaNombre}/{productoId}/{nombreTienda}" ,method = RequestMethod.PUT)
     public ResponseEntity<?> favoritoItemUsuario(@PathVariable String correo, @PathVariable String listaNombre,@PathVariable long productoId,@PathVariable String nombreTienda){
         try{
             uP.favoriteShoppingListItem(correo,listaNombre,productoId,nombreTienda);
@@ -88,6 +88,19 @@ public class UserController {
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(value="/{correo:.+}/{listaNombre}/{productoId}/{nit}/{x}/{y}/{comp}" ,method = RequestMethod.PUT)
+    public ResponseEntity<?> eliminarItemSeleccionado(@PathVariable String correo, @PathVariable String listaNombre,@PathVariable long productoId,@PathVariable String nit,@PathVariable double x,@PathVariable double y,@PathVariable boolean comp){
+        try{
+            uP.sellSelectedItem(correo,listaNombre,productoId,x,y,nit,comp);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }catch (CheapestPriceException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 
 
 }
