@@ -72,7 +72,7 @@ public class ItemController {
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType("image/png"))
                     .body(new InputStreamResource(  is.loadProductById(id).getImagen().getBinaryStream()     ));
-        } catch (CheapestPriceException | SQLException e) {
+        } catch (CheapestPriceException | SQLException | NullPointerException  e) {
             e.printStackTrace();
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
