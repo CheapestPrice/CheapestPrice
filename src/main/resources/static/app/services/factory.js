@@ -348,9 +348,15 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
                 });
         })
      .factory('favoriteItemList',function($resource){
-            return $resource('/usuarios/:correo/:nombreList/:productoId/:nombreTienda',null,
+            return $resource('/usuarios/:correo/:listaNombre/:productoId/:nombreTienda',null,
             {
                   'update':{method:'PUT'}
             });
 
+     })
+     .factory('deleteItemSelected',function($resource){
+            return $resource('/usuarios/:correo/:listaNombre/:productoId/:nit/:x/:y',null,
+            {
+                'delete' : {method:'DELETE'}
+            });
      });

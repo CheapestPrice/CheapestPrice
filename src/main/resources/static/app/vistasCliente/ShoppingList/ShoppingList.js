@@ -9,7 +9,7 @@ angular.module('myApp.shopList', ['ngRoute'])
   });
 }])
 
-.controller('shopListCtrl', ['$scope','listasMercadoStubFactory','$rootScope','$mdDialog', 'updateUser', 'favoriteItemList',function($scope, listasMercadoStubFactory, $rootScope,$mdDialog, updateUser,favoriteItemList) {
+.controller('shopListCtrl', ['$scope','listasMercadoStubFactory','$rootScope','$mdDialog', 'deleteItemSelected', 'favoriteItemList','getUserEmail',function($scope, listasMercadoStubFactory, $rootScope,$mdDialog, deleteItemSelected,favoriteItemList,getUserEmail) {
     $scope.listado = $rootScope.listaMercado;
     $scope.usua = $rootScope.usuario;
     $scope.propertyName = 'producto.nombre';
@@ -21,30 +21,9 @@ angular.module('myApp.shopList', ['ngRoute'])
         $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
         $scope.propertyName = propertyName;
     };
-    //$scope.eliminar = function(iden, tien){
-        //listasMercadoStubFactory.eliminarItem(iden, tien, $rootScope.listaMercado.nombre);
-    //};
     $scope.eliminarItem = function(id,tien){
-        var ban = false
-        for(var i=0;i<$scope.usua.listas.length;i++){
-            if($scope.usua.listas[i].listaid.nombre == $scope.listado.listaid.nombre){
-                for(var j=0; j<$scope.usua.listas[i].length;j++){
-                    if($scope.usua.listas[i].items[j].item.producto.id == iden && $scope.usua.listas[i].items[j].item.tienda.nombre == tien){
-                        $scope.usua.listas[i].items.splice(j,1);
-                        ban = true
-                        break
-                    }
-                }
-                if(ban){
-                    break
-                }
-            }
-        }
-        updateUser.update({correo:$scope.usua.correo},$scope.usua);
+       deleteItemSelected.delete({correo:$scope.usua.correo,listaNombre:$scope.listado.listaid.nombre,productoId:id,nit:tien.id.nit,x:tien.id.x,y:tien.id.y});
     };
-    //$scope.comprado = function(iden, tien){
-        //listasMercadoStubFactory.comprarItem(iden, tien, $rootScope.listaMercado.nombre);
-     //};
      $scope.comprado = function(iden,tien){
         var ban = false
                 for(var i=0;i<$scope.usua.listas.length;i++){
@@ -61,7 +40,6 @@ angular.module('myApp.shopList', ['ngRoute'])
                         }
                     }
                 }
-                updateUser.update({correo:$scope.usua.correo},$scope.usua);
             };
 
      $scope.showAdvanced = function(ev,produc) {
@@ -99,7 +77,8 @@ angular.module('myApp.shopList', ['ngRoute'])
            elem.bind('click', function() {
              scope.$apply(function(){
                scope.todo.favorito = !scope.todo.favorito;
-               favoriteItemList.update({correo:$scope.usua.correo,nombreLista:$scope.listado.listaid.nombre,prodcutoId:scope.todo.item.producto.id,nombreTienda:scope.todo.item.tienda.nombre});
+               console.log("Entro a favorite ItemList");
+               favoriteItemList.update({correo:$scope.usua.correo,listaNombre:$scope.listado.listaid.nombre,prodcutoId:scope.todo.item.producto.id,nombreTienda:scope.todo.item.tienda.nombre});
              });
            });
          }

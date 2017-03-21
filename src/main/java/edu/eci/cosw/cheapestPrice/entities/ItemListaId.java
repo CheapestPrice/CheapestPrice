@@ -117,5 +117,14 @@ public class ItemListaId implements Serializable {
 
     }
 
+    public ItemListaId(String listaCorreo,String listaNombre,String tiendaNit,double tiendaX,double tiendaY, long productoId){
+        this.listaCorreo=listaCorreo;
+        this.listaNombre=listaNombre;
+        this.tiendaNit=tiendaNit;
+        this.tiendaX=tiendaX;
+        this.tiendaY=tiendaY;
+        this.productoId=productoId;
+    }
+
 
 }
