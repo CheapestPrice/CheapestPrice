@@ -62,10 +62,21 @@ public class ShopServicePersistence implements ShopService {
     }
 
     @Override
-    public void modifyProduct(TiendaId id, long idproducto, Producto producto) throws CheapestPriceException {
-        persistence.modifyProduct(id,idproducto,producto);
+    public void modifyProductByCategoria(Producto producto, String cambio) throws CheapestPriceException {
+        persistence.modifyProductByCategoria(producto,cambio);
     }
-
+    @Override
+    public void modifyProductByImage(Producto producto, Blob cambio) throws CheapestPriceException {
+        persistence.modifyProductByImage(producto,cambio);
+    }
+    @Override
+    public void modifyProductByMarca(Producto producto, String cambio) throws CheapestPriceException {
+        persistence.modifyProductByMarca(producto,cambio);
+    }
+    @Override
+    public void modifyProductByNombre(Producto producto, String cambio) throws CheapestPriceException {
+        persistence.modifyProductByNombre(producto,cambio);
+    }
     @Override
     public void modifyHorary(TiendaId id, String dia, Horario horario) throws CheapestPriceException {
         persistence.modifyHorary(id, dia, horario);

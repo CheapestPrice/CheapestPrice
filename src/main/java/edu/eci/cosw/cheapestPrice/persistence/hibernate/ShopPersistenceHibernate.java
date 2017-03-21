@@ -49,11 +49,24 @@ public class ShopPersistenceHibernate implements ShopPersistence {
     }
 
     @Override
-    public void modifyProduct(TiendaId id, long idproducto, Producto producto) throws CheapestPriceException {
-        //productRepository.updateByCategoria(producto);
-        //productRepository.updateByMarca(producto);
-        //productRepository.updateByName(producto);
+    public void modifyProductByCategoria(Producto producto, String cambio) throws CheapestPriceException {
+        productRepository.updateByCategoria(producto,cambio);
     }
+    @Override
+    public void modifyProductByMarca(Producto producto, String cambio) throws CheapestPriceException {
+        productRepository.updateByMarca(producto, cambio);
+    }
+
+    @Override
+    public void modifyProductByNombre(Producto producto, String cambio) throws CheapestPriceException {
+        productRepository.updateByName(producto,cambio);
+    }
+
+    @Override
+    public void modifyProductByImage(Producto producto, Blob cambio) throws CheapestPriceException {
+        productRepository.updateByImage(producto,cambio);
+    }
+
 
     @Override
     public void modifyHorary(TiendaId id, String dia, Horario horario) throws CheapestPriceException {

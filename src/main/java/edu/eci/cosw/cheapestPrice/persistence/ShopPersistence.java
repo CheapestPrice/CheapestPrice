@@ -72,11 +72,34 @@ public interface ShopPersistence {
 
     /**
      * Modificar producto registrado en la tienda
-     * @param  idproducto
+     * @param  cambio
      * @param producto
      * @throws CheapestPriceException
      */
-    public void modifyProduct(TiendaId id,long idproducto, Producto  producto)throws CheapestPriceException;
+    public void modifyProductByCategoria(Producto producto, String cambio) throws CheapestPriceException;
+
+    /**
+     * Modificar producto registrado en la tienda
+     * @param  cambio
+     * @param producto
+     * @throws CheapestPriceException
+     */
+    public void modifyProductByMarca(Producto producto, String cambio) throws CheapestPriceException;
+    /**
+     * Modificar producto registrado en la tienda
+     * @param  cambio
+     * @param producto
+     * @throws CheapestPriceException
+     */
+    public void modifyProductByImage(Producto producto, Blob cambio) throws CheapestPriceException;
+
+    /**
+     * Modificar producto registrado en la tienda
+     * @param  cambio
+     * @param producto
+     * @throws CheapestPriceException
+     */
+    public void modifyProductByNombre(Producto producto, String cambio) throws CheapestPriceException;
 
     /**
      * Modificar horario de la tienda

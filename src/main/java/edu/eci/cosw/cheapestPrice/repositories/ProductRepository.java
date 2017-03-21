@@ -24,5 +24,5 @@ public interface ProductRepository extends JpaRepository<Producto, Long> {
     @Query("update Producto p set p.categoria=:categoria where p.id=:#{#producto.id}")
     public void updateByCategoria(@Param("producto") Producto producto,@Param("categoria") String categoria);
     @Query("update Producto p set p.imagen=:logo where p.id=:#{#producto.id}")
-    public void updateByCategoria(@Param("producto") Producto producto, @Param("logo") Blob logo);
+    public void updateByImage(@Param("producto") Producto producto, @Param("logo") Blob logo);
 }

@@ -144,13 +144,33 @@ public class ShopPersistenceStub implements ShopPersistence {
     }
 
     @Override
+    public void modifyProductByCategoria(Producto producto, String cambio) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public void modifyProductByMarca(Producto producto, String cambio) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public void modifyProductByImage(Producto producto, Blob cambio) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public void modifyProductByNombre(Producto producto, String cambio) throws CheapestPriceException {
+
+    }
+
+    /*@Override
     public void modifyProduct(TiendaId id, long idproducto, Producto producto) throws CheapestPriceException {
         for (Item i: items.get(id)) {
             if(i.getProducto().getId()==idproducto){
                 i.setProducto(producto);
             }
         }
-    }
+    }*/
 
     @Override
     public void modifyHorary(TiendaId id, String dia, Horario horario) throws CheapestPriceException {
