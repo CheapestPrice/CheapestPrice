@@ -17,6 +17,12 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Producto, Long> {
     @Query("select p from Producto p")
     public List<Producto> loadAllProductos();
+    @Query("select p from Producto p where p.nombre=:nombre")
+    public List<Producto> loadProductsByName(@Param("nombre") String nombre);
+    @Query("select p from Producto p where p.categoria=:categoria")
+    public List<Producto> loadProductsByCategoria(@Param("categoria") String categoria);
+    @Query("select p from Producto p where p.marca=:marca")
+    public List<Producto> loadProductsByMarca(@Param("marca") String marca);
     @Query("update Producto p set p.nombre=:nombre where p.id=:#{#producto.id}")
     public void updateByName(@Param("producto") Producto producto, @Param("nombre") String nombre);
     @Query("update Producto p set p.marca=:marca where p.id=:#{#producto.id}")
