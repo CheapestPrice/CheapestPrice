@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 /**
  * Created by masterhugo on 3/18/17.
  */
-@Service
+//@Service
 public class UserPersistenceHibernate implements UserPersistence{
     @Autowired
     UserRepository us;
@@ -32,7 +32,6 @@ public class UserPersistenceHibernate implements UserPersistence{
 
     @Override
     public Usuario loadUserByEmail(String correo) throws CheapestPriceException {
-        System.out.println("Persistencia: "+correo);
       return  us.loadUserByEmail(correo);
     }
 
@@ -44,7 +43,12 @@ public class UserPersistenceHibernate implements UserPersistence{
 
     @Override
     public void updateUser(String oldEmail, Usuario usuario) throws CheapestPriceException {
-        us.deleteUser(oldEmail);
+        us.delete(oldEmail);
         us.save(usuario);
+    }
+
+    @Override
+    public void deleteShoppingList(String correo, String nombreLista) throws CheapestPriceException {
+
     }
 }
