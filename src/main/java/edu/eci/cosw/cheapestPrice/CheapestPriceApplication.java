@@ -40,7 +40,7 @@ public class    CheapestPriceApplication {
 
         @Override
         protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-            builder.inMemoryAuthentication().withUser("admin@cheapestprice.com").password("password").roles("USER");
+            builder.inMemoryAuthentication().withUser("1").password("1").roles("USER");
         }
 
         @Override

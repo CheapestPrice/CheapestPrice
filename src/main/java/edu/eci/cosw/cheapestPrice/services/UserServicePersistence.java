@@ -61,7 +61,7 @@ public class UserServicePersistence implements UserService{
 
     @Override
     public void sellSelectedItem(String correo, String nombreLista, long idProducto, double x, double y, String nit, boolean comp) throws CheapestPriceException {
-
+        us.sellSelectedItem(correo,nombreLista,idProducto,x,y,nit,comp);
     }
 
 

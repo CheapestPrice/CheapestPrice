@@ -24,9 +24,11 @@ angular.module('myApp.shopList', ['ngRoute'])
     $scope.eliminarItem = function(id,tien){
        deleteItemSelected.delete({correo:$scope.usua.correo,listaNombre:$scope.listado.listaid.nombre,productoId:id,nit:tien.id.nit,x:tien.id.x,y:tien.id.y});
     };
-     $scope.comprado = function(id,tien,comp){
+     $scope.comprado = function(id,tien,comp,item){
+        console.log(comp);
         comp=!comp
-        sellItemSelected.update({correo:$scope.usua.correo,listaNombre:$scope.listado.listaid.nombre,productoId:id,nit:tien.id.nit,x:tien.id.x,y:tien.id.y,comp:comp})
+        console.log(comp);
+        sellItemSelected.update({correo:$scope.usua.correo,listaNombre:$scope.listado.listaid.nombre,productoId:id,nit:tien.id.nit,x:tien.id.x,y:tien.id.y,comp:comp},item)
     };
 
      $scope.showAdvanced = function(ev,produc) {
