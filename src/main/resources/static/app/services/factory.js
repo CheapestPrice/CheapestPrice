@@ -348,7 +348,7 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
                 });
         })
      .factory('favoriteItemList',function($resource){
-            return $resource('/usuarios/:correo/:listaNombre/:productoId/:nombreTienda',null,
+            return $resource('/usuarios/favorito/:correo/:listaNombre/:productoId/:nit/:x/:y/:fav',null,
             {
                   'update':{method:'PUT'}
             });

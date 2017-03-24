@@ -98,14 +98,15 @@ public class UserPersistenceStub implements UserPersistence{
     }
 
     @Override
-    public void favoriteShoppingListItem(String correo, String nombreLista, long idProducto, String nombreTienda) throws CheapestPriceException {
+    public void favoriteShoppingListItem(String correo, String nombreLista, long idProducto, double x,double y, String nit,boolean fav) throws CheapestPriceException {
         for(Usuario u:usuarios){
             if(u.getCorreo().equals(correo)){
                 for(ListaDeMercado lm:u.getListas()){
                     if(lm.getListaid().getNombre().equals(nombreLista)){
                         for(ItemLista itL:lm.getItems()){
-                            if(itL.getItem().getProducto().getId()==idProducto && itL.getItem().getTienda().getNombre().equals(nombreTienda)){
-                                itL.setFavorito(!itL.getFavorito());
+                            Tienda t=itL.getItem().getTienda();
+                            if(itL.getItem().getProducto().getId()==idProducto && t.getId().getX()==x && t.getId().getY()==y && t.getId().getNit().equals(nit)){
+                                itL.setFavorito(fav);
                                 break;
                             }
                         }

@@ -57,17 +57,18 @@ angular.module('myApp.shopList', ['ngRoute'])
           }
 
 }])
- .directive('buttonFavorite', function(favoriteItemList) {
+ .directive('buttonFavorite', function() {
        return {
          scope: true,
          restrict: 'E',
          template: '<button class="btn btn-icon"><span class="glyphicon glyphicon-heart" ng-class="{active: todo.favorito}"></span></button>',
          link: function(scope, elem) {
            elem.bind('click', function() {
-             scope.$apply(function(){
+             scope.$apply(function(favoriteItemList,$rootScope,$scope){
                scope.todo.favorito = !scope.todo.favorito;
-               console.log("Entro a favorite ItemList");
-               favoriteItemList.update({correo:scope.todo.lista.usuario.correo,listaNombre:scope.todo.lista.listaid.nombre,prodcutoId:scope.todo.item.producto.id,nombreTienda:scope.todo.item.tienda.nombre});
+               $scope.listado = $rootScope.listaMercado;
+               $scope.usua = $rootScope.usuario;
+               favoriteItemList.update({correo:$scope.usua.correo,listaNombre:$scope.listado.listaid.nombre,prodcutoId:scope.todo.item.producto.id,nit:scope.todo.item.tienda.id.nit,x:scope.todo.item.tienda.id.x,y:scope.todo.item.tienda.id.y,fav:scope.todo.favorito},scope.todo);
              });
            });
          }

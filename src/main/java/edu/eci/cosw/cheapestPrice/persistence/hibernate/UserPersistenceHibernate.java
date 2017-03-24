@@ -58,13 +58,13 @@ public class UserPersistenceHibernate implements UserPersistence{
 
     @Override
     public void deleteShoppingList(String correo, String nombreLista) throws CheapestPriceException {
-        //System.out.println(correo +" "+nombreLista);
         ListaMercado_Item lmI=new ListaMercado_Item(nombreLista,correo);
         slR.delete(lmI);
     }
 
     @Override
-    public void favoriteShoppingListItem(String correo, String nombreLista, long idProducto, String nombreTienda) throws CheapestPriceException {
+    public void favoriteShoppingListItem(String correo, String nombreLista, long idProducto,double x,double y,String nit,boolean fav) throws CheapestPriceException {
+        ilR.favoriteItemSelected(correo,nombreLista,idProducto,x,y,nit,fav);
     }
 
     @Override
@@ -75,7 +75,6 @@ public class UserPersistenceHibernate implements UserPersistence{
 
     @Override
     public void sellSelectedItem(String correo, String nombreLista, long idProducto, double x, double y, String nit, boolean comp) throws CheapestPriceException {
-        System.out.println(correo+"\n"+nombreLista+"\n"+idProducto+"\n"+x+"\n"+y+"\n"+nit+"\n"+(comp?1:0));
         ilR.sellItemSelected(correo,nombreLista,idProducto,x,y,nit,comp);
     }
 
