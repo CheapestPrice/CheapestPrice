@@ -1,6 +1,7 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
 import edu.eci.cosw.cheapestPrice.entities.Item;
+import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +37,10 @@ public class ItemController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET,value="/shop/{shopName}")
-    public ResponseEntity<?> getItemsShop(@PathVariable String shopName){
+    @RequestMapping(method = RequestMethod.GET,value="/shop/x/{x}/y/{y}/nit/{nit}")
+    public ResponseEntity<?> getItemsShop(@PathVariable double x,@PathVariable double y,@PathVariable String nit){
         try {
-            return new ResponseEntity<>(is.loadItemByShop(shopName), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(is.loadItemByShop(new TiendaId(nit,x,y)), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
@@ -81,6 +82,7 @@ public class ItemController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> postItem(@RequestBody Item item){
         try {
+            System.out.println(item);
             is.addItem(item);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {

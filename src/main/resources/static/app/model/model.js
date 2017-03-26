@@ -27,8 +27,8 @@ function TiendaId(nit, x, y){
     this.y = y;
 }
 
-function Tienda(tiendaId, direccion, nombre, telefono, disponible, tendero){
-    this.tiendaId = tiendaId;
+function Tienda(id, direccion, nombre, telefono, disponible, tendero){
+    this.id = id;
     this.direccion = direccion;
     this.nombre = nombre;
     this.telefono = telefono;
@@ -46,8 +46,8 @@ function ItemId(productoId, tiendaX, tiendaY, tiendaNit){
     this.tiendaNit = tiendaNit;
 }
 
-function Item(itemId, tienda, producto, precio){
-    this.itemId = itemId;
+function Item(id, tienda, producto, precio){
+    this.id = id;
     this.tienda = tienda;
     this.producto = producto;
     this.precio = precio;

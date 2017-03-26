@@ -150,5 +150,16 @@ public class ShopController {
         return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/x/{x}/y/{y}/nit/{nit}")
+    public ResponseEntity<?> getShop(@PathVariable double x,@PathVariable double y,@PathVariable String nit){
+        try {
+            return new ResponseEntity<>(serviceShop.consultTienda(new TiendaId(nit,x,y)),HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
+
 }
 

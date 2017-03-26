@@ -86,4 +86,8 @@ public class Item implements Serializable {
         this.producto = producto;
     }
 
+    @Override
+    public String toString() {
+        return id.getTiendaNit()+ " "+ id.getTiendaX() + " " + id.getTiendaY() + " "+id.getProductoId() +" "+precio;
+    }
 }

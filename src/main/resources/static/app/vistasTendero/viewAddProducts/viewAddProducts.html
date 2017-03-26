@@ -44,14 +44,14 @@
             <div class="row">
             <div class="col-6">
                 <label>Nombre:</label>
-                <input ng-model="product.nombre" type="text" />
+                <input ng-model="produc.nombre" type="text" />
                 <label>Precio:</label>
                 <input ng-model="ite.precio" type="number" min="50" step="50"/>
                 <br>
                 <label>Marca:</label>
-                <input ng-model="product.marca" type="text" />
+                <input ng-model="produc.marca" type="text" />
                 <label>Categoria:</label>
-                <select ng-options="c for c in categorias" ng-model="product.categoria">
+                <select ng-options="c for c in categorias" ng-model="produc.categoria">
                 </select>
                 <br>
             </div>
@@ -131,7 +131,7 @@
                             <a ng-click="sortBy('producto.marca')">Marca</a>
                         </th>
                         <th>
-                            <a ng-click="sortBy('producto.precio')">Precio</a>
+                            <a ng-click="sortBy('precio')">Precio</a>
                         </th>
                         <th>
                             <p>Foto</p>
@@ -149,8 +149,8 @@
                     <td>{{item.producto.categoria}}</td>
                     <td>{{item.producto.nombre}}</td>
                     <td>{{item.producto.marca}}</td>
-                    <td>${{item.producto.precio}}</td>
-                    <td>  <img src="http://camaleon.tuzitio.com/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png" height="60" width="80" alt="temporal"/></td>
+                    <td>${{item.precio}}</td>
+                    <td>  <img ng-src="/items/{{item.producto.id}}/imagen" height="60" width="80" alt="temporal"/></td>
                     <td>
                         <md-button ng-click="modoModificar(item)" aria-label="editar"><i class="fa fa-pencil-square-o"
                                                                                          aria-hidden="true"></i></md-button>

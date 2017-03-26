@@ -52,13 +52,13 @@ public class ItemPersistenceStub implements ItemPersistence{
     }
 
     @Override
-    public List<Item> loadItemByShop(String shopName) throws CheapestPriceException {
-        if(shopName==null || shopName.length()==0){
-            throw new CheapestPriceException("El nombre de la tienda no puede ser vacio");
+    public List<Item> loadItemByShop(TiendaId tiendaId) throws CheapestPriceException {
+        if(tiendaId==null || tiendaId.getNit().length()==0){
+            throw new CheapestPriceException("El identificador debe existir");
         }
         List<Item> shop= new ArrayList<>();
         for (Item i : items){
-            if(i.getTienda().getNombre().equals(shopName)){
+            if(i.getTienda().getId().getNit().equals(tiendaId.getNit()) && tiendaId.getX() == i.getTienda().getId().getX() && tiendaId.getY() == i.getTienda().getId().getY()){
                 shop.add(i);
             }
         }

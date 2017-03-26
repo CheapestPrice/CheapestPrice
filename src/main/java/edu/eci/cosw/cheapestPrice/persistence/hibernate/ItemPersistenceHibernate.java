@@ -2,6 +2,7 @@ package edu.eci.cosw.cheapestPrice.persistence.hibernate;
 
 import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
+import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ItemPersistence;
 import edu.eci.cosw.cheapestPrice.repositories.ItemRepository;
@@ -33,8 +34,8 @@ public class ItemPersistenceHibernate implements ItemPersistence {
     }
 
     @Override
-    public List<Item> loadItemByShop(String shopName) throws CheapestPriceException {
-        return null;
+    public List<Item> loadItemByShop(TiendaId tiendaId) throws CheapestPriceException {
+        return ir.loadItems(tiendaId.getNit(),tiendaId.getX(),tiendaId.getY());
     }
 
     @Override
@@ -54,7 +55,7 @@ public class ItemPersistenceHibernate implements ItemPersistence {
 
     @Override
     public void addItem(Item item) throws CheapestPriceException {
-
+        ir.save(item);
     }
 
     @Override

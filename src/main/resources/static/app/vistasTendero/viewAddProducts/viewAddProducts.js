@@ -39,7 +39,7 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
         });
     }
 }])
-.controller('ViewAddProductsCtrl', ['$scope', 'items2StubFactory', '$rootScope','$location','itemsByShop','updateItem','itemByShopAndId','allItems','fileUpload', function($scope,items2StubFactory,$rootScope,$location,itemsByShop,updateItem,itemByShopAndId,allItems,fileUpload) {
+.controller('ViewAddProductsCtrl', ['$scope', 'items2StubFactory', '$rootScope','$location','itemsByShop','getShop','updateItem','itemByShopAndId','allItems','fileUpload', function($scope,items2StubFactory,$rootScope,$location,itemsByShop,getShop,updateItem,itemByShopAndId,allItems,fileUpload) {
     //AGREGAR
     $scope.agregar=true;
     $rootScope.tienda="Surtir";
@@ -52,7 +52,7 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
     $rootScope.shop.nombre = 'Donde Pepe';
     $rootScope.shop.telefono = '5473829';
     $rootScope.shop.disponible = true;
-    $rootScope.shop.tiendaId= $rootScope.tiendaId;
+    $rootScope.shop.id= $rootScope.shopId;
 
     /*{
         direccion:'CR NM #NM-NM',
@@ -76,13 +76,14 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
     $scope.produc.categoria = "";
     $scope.ite = new Item();
     $scope.ite.precio = 50;
-    $scope.selectedCategoria="";
+    /*$scope.selectedCategoria="";
     $scope.nombre="";
     $scope.precio=50;
-    $scope.marca="";
+    $scope.marca="";*/
     //$scope.listaProductos=itemsByShop.query({shopName:$rootScope.shop.nombre});
-    console.log(itemsByShop.query({shopName:$rootScope.shop.nombre}));
-    $scope.listado=itemsByShop.query({shopName:$rootScope.shop.nombre});
+    console.log(getShop);
+    console.log(getShop.get({x:$rootScope.shopId.x, y:$rootScope.shopId.y, nit:$rootScope.shopId.nit}));
+    $scope.listado=itemsByShop.query({x:$rootScope.shopId.x, y:$rootScope.shopId.y, nit:$rootScope.shopId.nit});
     $scope.propertyName = 'producto.nombre';
     $scope.reverse = false;
     $scope.sortBy = function(propertyName) {
@@ -95,11 +96,11 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
         $scope.mensaje="Por favor, revise la información suministrada...";
         $scope.fail=false;
         $scope.success=false;
-        if($scope.nombre.length>0 && $scope.marca.length>0 && $scope.selectedCategoria.length>0 && $scope.precio>0){
+        if($scope.produc.nombre.length>0 && $scope.produc.marca.length>0 && $scope.produc.categoria.length>0 && $scope.ite.precio>0){
             $scope.mensaje="El producto fue registrado sactisfactoriamente...";
             $scope.success=true;
             $scope.fail=false;
-            var num=items2StubFactory.getItems().length;
+            /*var num=items2StubFactory.getItems().length;
             var itemm={
                 producto:{
                     nombre: $scope.nombre,
@@ -108,10 +109,22 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
                 },
                 tienda:$rootScope.shop,
                 precio:$scope.precio
-            }
-
-            allItems.save(itemm,function(data){
-                $scope.listado=itemsByShop.query({shopName:$rootScope.shop.nombre});
+            }*/
+            $scope.ite.producto = $scope.produc;
+            $scope.ite.tienda = $rootScope.shop;
+            $scope.iteId = new ItemId();
+            $scope.iteId.tiendaNit = $rootScope.shopId.nit;
+            $scope.iteId.tiendaX = $rootScope.shopId.x;
+            $scope.iteId.tiendaY = $rootScope.shopId.y;
+            $scope.iteId.productoId = $scope.listado.length + 1;
+            $scope.ite.id = $scope.iteId;
+            allItems.save($scope.ite,function(data){
+                var file = $scope.myFile;
+                console.log('file is ' );
+                console.dir(file);
+                var uploadUrl = "/dispatches/upload?idpedido="+$scope.idpedido+"&idvehiculo="+$scope.idvehiculo;
+                fileUpload.uploadFileToUrl(file, uploadUrl);
+                $scope.listado=itemsByShop.query({x:$rootScope.shopId.x, y:$rootScope.shopId.y, nit:$rootScope.shopId.nit});
               },function(error){
                 $scope.fail=true;
                 $scope.success=false;

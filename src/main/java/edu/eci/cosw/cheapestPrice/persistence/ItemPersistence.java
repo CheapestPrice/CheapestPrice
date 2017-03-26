@@ -2,6 +2,7 @@ package edu.eci.cosw.cheapestPrice.persistence;
 
 import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
+import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 
 import java.util.List;
@@ -28,11 +29,11 @@ public interface ItemPersistence {
 
     /**
      * Carga todos los items registrados a nombre de una tienda dada
-     * @param shopName el nombre de la tienda deseada
+     * @param tiendaId el identificador de la tienda
      * @return todos los items registrados a nombre de la tienda solicitada
      * @throws CheapestPriceException si shopName es vacío o de longitud 0
      */
-    public List<Item> loadItemByShop(String shopName) throws CheapestPriceException;
+    public List<Item> loadItemByShop(TiendaId tiendaId) throws CheapestPriceException;
 
     /**
      * Carga todos los items con una categoría dada
