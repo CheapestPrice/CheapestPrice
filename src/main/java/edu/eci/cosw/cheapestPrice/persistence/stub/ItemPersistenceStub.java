@@ -5,6 +5,7 @@ import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ItemPersistence;
 import org.springframework.stereotype.Service;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -152,6 +153,11 @@ public class ItemPersistenceStub implements ItemPersistence{
         }else{
             throw new CheapestPriceException("No hay ningun item registrado con el id suministrado");
         }
+    }
+
+    @Override
+    public void updateProductImage(Blob imagen, String nombre, String marca, String categoria) throws CheapestPriceException {
+
     }
 
     public static void poblarStub(ItemPersistenceStub ips){

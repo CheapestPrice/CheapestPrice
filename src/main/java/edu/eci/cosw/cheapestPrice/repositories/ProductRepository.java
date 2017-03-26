@@ -5,8 +5,10 @@ import edu.eci.cosw.cheapestPrice.entities.Producto;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Blob;
 import java.util.List;
@@ -29,6 +31,8 @@ public interface ProductRepository extends JpaRepository<Producto, Long> {
     public void updateByMarca(@Param("producto") Producto producto,@Param("marca") String marca);
     @Query("update Producto p set p.categoria=:categoria where p.id=:#{#producto.id}")
     public void updateByCategoria(@Param("producto") Producto producto,@Param("categoria") String categoria);
-    @Query("update Producto p set p.imagen=:logo where p.id=:#{#producto.id}")
-    public void updateByImage(@Param("producto") Producto producto, @Param("logo") Blob logo);
+    @Modifying
+    @Transactional
+    @Query("update Producto p set p.imagen=:logo where p.nombre=:nombre and p.marca=:marca and p.categoria=:categoria")
+    public void updateByImage(@Param("nombre") String nombre,@Param("marca") String marca,@Param("categoria") String categoria , @Param("logo") Blob logo);
 }

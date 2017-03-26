@@ -5,6 +5,7 @@ import edu.eci.cosw.cheapestPrice.entities.Producto;
 import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 
+import java.sql.Blob;
 import java.util.List;
 
 /**
@@ -82,4 +83,14 @@ public interface ItemService {
      * @throws CheapestPriceException si alguno de los parametros es nulo o no hay ningun item registrado con oldId o los nuevos datos de item no son validos
      */
     public void updateItem(long oldId,String oldShop,Item item) throws CheapestPriceException;
+
+    /**
+     * Actualiza la imagen del producto bajo el nombre, la marca y categoria
+     * @param imagen la imagen a actualizar
+     * @param nombre el nombre del producto
+     * @param marca la marca del producto
+     * @param categoria la categoria del producto
+     * @throws CheapestPriceException si alguno de los parametros es nulo o no hay ningun producto registrado
+     */
+    void updateProductImage(Blob imagen, String nombre, String marca, String categoria) throws CheapestPriceException;
 }

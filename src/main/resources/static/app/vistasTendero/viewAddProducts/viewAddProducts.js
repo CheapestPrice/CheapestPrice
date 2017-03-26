@@ -33,10 +33,6 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         })
-        .success(function(){
-        })
-        .error(function(){
-        });
     }
 }])
 .controller('ViewAddProductsCtrl', ['$scope', 'items2StubFactory', '$rootScope','$location','itemsByShop','getShop','updateItem','itemByShopAndId','allItems','fileUpload', function($scope,items2StubFactory,$rootScope,$location,itemsByShop,getShop,updateItem,itemByShopAndId,allItems,fileUpload) {
@@ -122,7 +118,7 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
                 var file = $scope.myFile;
                 console.log('file is ' );
                 console.dir(file);
-                var uploadUrl = "/dispatches/upload?idpedido="+$scope.idpedido+"&idvehiculo="+$scope.idvehiculo;
+                var uploadUrl = "/items/upload?nombre="+ $scope.produc.nombre+"&marca="+$scope.produc.marca+"&categoria="+$scope.produc.categoria;
                 fileUpload.uploadFileToUrl(file, uploadUrl);
                 $scope.listado=itemsByShop.query({x:$rootScope.shopId.x, y:$rootScope.shopId.y, nit:$rootScope.shopId.nit});
               },function(error){

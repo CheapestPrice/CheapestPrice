@@ -9,9 +9,15 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.Iterator;
 
 /**
  * Created by Julian David Devia Serna on 2/20/17.
@@ -111,5 +117,25 @@ public class ItemController {
             e.printStackTrace();
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
+    }
+    @RequestMapping(value = "/upload", method = RequestMethod.POST
+    )
+    public ResponseEntity uploadFile(MultipartHttpServletRequest request, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "categoria") String categoria) {
+
+        try {
+            Iterator<String> itr = request.getFileNames();
+
+            while (itr.hasNext()) {
+                String uploadedFile = itr.next();
+                MultipartFile file = request.getFile(uploadedFile);
+                Blob  imagen = new SerialBlob(StreamUtils.copyToByteArray(file.getInputStream()));
+                is.updateProductImage(imagen,nombre,marca,categoria);
+            }
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>("{}", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 }

@@ -10,6 +10,7 @@ import edu.eci.cosw.cheapestPrice.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Blob;
 import java.util.List;
 
 /**
@@ -66,5 +67,10 @@ public class ItemPersistenceHibernate implements ItemPersistence {
     @Override
     public void updateItem(long oldId, String oldShop, Item item) throws CheapestPriceException {
 
+    }
+
+    @Override
+    public void updateProductImage(Blob imagen, String nombre, String marca, String categoria) throws CheapestPriceException {
+        pr.updateByImage(nombre,marca,categoria,imagen);
     }
 }

@@ -65,7 +65,7 @@ public class ProductPersistenceHibernate implements ProductPersistence {
 
     @Override
     public void updateProductByImage(Producto producto, Blob image) throws CheapestPriceException {
-        pr.updateByImage(producto, image);
+        pr.updateByImage(producto.getNombre(),producto.getMarca(),producto.getCategoria(), image);
     }
 
     @Override

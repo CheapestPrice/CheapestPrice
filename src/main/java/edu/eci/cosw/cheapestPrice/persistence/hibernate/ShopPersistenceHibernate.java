@@ -69,7 +69,7 @@ public class ShopPersistenceHibernate implements ShopPersistence {
 
     @Override
     public void modifyProductByImage(Producto producto, Blob cambio) throws CheapestPriceException {
-        productRepository.updateByImage(producto,cambio);
+        productRepository.updateByImage(producto.getNombre(),producto.getMarca(),producto.getCategoria(),cambio);
     }
 
 
