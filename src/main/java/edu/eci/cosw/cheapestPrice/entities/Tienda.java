@@ -16,19 +16,26 @@ import javax.persistence.*;
 @Entity
 @Table(name="TIENDAS")
 public class Tienda implements java.io.Serializable {
+
     @EmbeddedId
     private TiendaId id;
+
     @Column(name="direccion", nullable=false)
     private String direccion;
+
     @Column(name="nombre", nullable=false)
     private String nombre;
+
     @Column(name="telefono", nullable=false)
     private String telefono;
+
     @Column(name="disponible", nullable=false)
     private boolean disponible;
+
     @Column(name = "logo", nullable=true)
     @JsonIgnore
     private Blob logo;
+
     @OneToMany(cascade=CascadeType.ALL,mappedBy = "tienda")
     private List<Horario> horarios;
 
@@ -38,6 +45,7 @@ public class Tienda implements java.io.Serializable {
             @JoinColumn(name="y", referencedColumnName="TIENDAS_y", nullable=false, insertable=false, updatable=false),
             @JoinColumn(name="nit", referencedColumnName="TIENDAS_nit", nullable=false, insertable=false, updatable=false)
     })
+
     @JsonIgnore
     private Tendero tendero;
 
@@ -48,10 +56,7 @@ public class Tienda implements java.io.Serializable {
     @JsonIgnore
     private List<Item> items;
 
-
-    public Tienda(){
-
-    };
+    public Tienda(){}
 
     public Tienda(String direccion,TiendaId id,String nombre,String telefono, boolean disponible) {
         this.horarios=new ArrayList<Horario>();
@@ -64,7 +69,6 @@ public class Tienda implements java.io.Serializable {
         this.disponible = disponible;
 
     }
-
 
     public Tienda(String direccion,TiendaId id, String nombre,String telefono, boolean disponible,Blob logo) {
         this.horarios=new ArrayList<Horario>();
@@ -108,7 +112,6 @@ public class Tienda implements java.io.Serializable {
         this.direccion = direccion;
     }
 
-
     public String getNombre() {
         return nombre;
     }
@@ -116,7 +119,6 @@ public class Tienda implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
 
     public String getTelefono() {
         return telefono;
@@ -126,7 +128,6 @@ public class Tienda implements java.io.Serializable {
         this.telefono = telefono;
     }
 
-
     public boolean isDisponible() {
         return disponible;
     }
@@ -134,7 +135,6 @@ public class Tienda implements java.io.Serializable {
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
-
 
     public Blob getLogo() {
         return logo;
@@ -163,22 +163,13 @@ public class Tienda implements java.io.Serializable {
         this.tendero = tendero;
     }
 
-    /*
-     * Get horarios
-     * @return horarios
-     */
-
     public List<Horario> getHorarios() {
         return horarios;
     }
-    /*
-     * Set horarios
-     * @param horarios
-     */
+
     public void setHorarios(List<Horario> horarios) {
         this.horarios = horarios;
     }
-
 
     public List<Opinion> getOpiniones() {
         return opiniones;
@@ -187,6 +178,7 @@ public class Tienda implements java.io.Serializable {
     public void setOpiniones(List<Opinion> opiniones) {
         this.opiniones = opiniones;
     }
+
     /*
      * Agregar una opinion a la tienda
      * @param opinion
@@ -202,11 +194,11 @@ public class Tienda implements java.io.Serializable {
     public void setItems(List<Item> items) {
         this.items = items;
     }
+
     /*
      * La tienda se encuentra abierta en la fecha estipualada
      * @param time
      */
-
     public boolean isOpen(Timestamp time){
         HashMap<Integer, String> diasemana=new HashMap<Integer,String>();
         java.util.GregorianCalendar cal=(GregorianCalendar) Calendar.getInstance();

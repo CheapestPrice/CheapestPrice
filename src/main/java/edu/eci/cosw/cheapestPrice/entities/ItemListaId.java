@@ -9,90 +9,6 @@ import java.io.Serializable;
 @Embeddable
 public class ItemListaId implements Serializable {
 
-    /**
-     * @return the tiendaNit
-     */
-    public String getTiendaNit() {
-        return tiendaNit;
-    }
-
-    /**
-     * @param tiendaNit the tiendaNit to set
-     */
-    public void setTiendaNit(String tiendaNit) {
-        this.tiendaNit = tiendaNit;
-    }
-
-    /**
-     * @return the tiendaX
-     */
-    public double getTiendaX() {
-        return tiendaX;
-    }
-
-    /**
-     * @param tiendaX the tiendaX to set
-     */
-    public void setTiendaX(double tiendaX) {
-        this.tiendaX = tiendaX;
-    }
-
-    /**
-     * @return the tiendaY
-     */
-    public double getTiendaY() {
-        return tiendaY;
-    }
-
-    /**
-     * @param tiendaY the tiendaY to set
-     */
-    public void setTiendaY(double tiendaY) {
-        this.tiendaY = tiendaY;
-    }
-
-    /**
-     * @return the productoId
-     */
-    public long getProductoId() {
-        return productoId;
-    }
-
-    /**
-     * @param productoId the productoId to set
-     */
-    public void setProductoId(long productoId) {
-        this.productoId = productoId;
-    }
-
-    /**
-     * @return the listaNombre
-     */
-    public String getListaNombre() {
-        return listaNombre;
-    }
-
-    /**
-     * @param listaNombre the listaNombre to set
-     */
-    public void setListaNombre(String listaNombre) {
-        this.listaNombre = listaNombre;
-    }
-
-    /**
-     * @return the listaCorreo
-     */
-    public String getListaCorreo() {
-        return listaCorreo;
-    }
-
-    /**
-     * @param listaCorreo the listaCorreo to set
-     */
-    public void setListaCorreo(String listaCorreo) {
-        this.listaCorreo = listaCorreo;
-    }
-
     @Column(name = "ITEMS_TIENDAS_nit",nullable = false)
     private String tiendaNit;
 
@@ -126,5 +42,52 @@ public class ItemListaId implements Serializable {
         this.productoId=productoId;
     }
 
+    public String getTiendaNit() {
+        return tiendaNit;
+    }
+
+    public void setTiendaNit(String tiendaNit) {
+        this.tiendaNit = tiendaNit;
+    }
+
+    public double getTiendaX() {
+        return tiendaX;
+    }
+
+    public void setTiendaX(double tiendaX) {
+        this.tiendaX = tiendaX;
+    }
+
+    public double getTiendaY() {
+        return tiendaY;
+    }
+
+    public void setTiendaY(double tiendaY) {
+        this.tiendaY = tiendaY;
+    }
+
+    public long getProductoId() {
+        return productoId;
+    }
+
+    public void setProductoId(long productoId) {
+        this.productoId = productoId;
+    }
+
+    public String getListaNombre() {
+        return listaNombre;
+    }
+
+    public void setListaNombre(String listaNombre) {
+        this.listaNombre = listaNombre;
+    }
+
+    public String getListaCorreo() {
+        return listaCorreo;
+    }
+
+    public void setListaCorreo(String listaCorreo) {
+        this.listaCorreo = listaCorreo;
+    }
 
 }

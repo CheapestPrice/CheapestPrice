@@ -39,20 +39,6 @@ public class Tendero implements Serializable, Persona{
     })
     private Tienda tienda;
 
-    /**
-     * @return the tienda
-     */
-    public Tienda getTienda() {
-        return tienda;
-    }
-
-    /**
-     * @param tienda the tienda to set
-     */
-    public void setTienda(Tienda tienda) {
-        this.tienda = tienda;
-    }
-
     public Tendero(){}
 
     public Tendero(String nombre,String correo, Tienda tienda){
@@ -82,5 +68,12 @@ public class Tendero implements Serializable, Persona{
         this.nombre = nombre;
     }
 
+    public Tienda getTienda() {
+        return tienda;
+    }
+
+    public void setTienda(Tienda tienda) {
+        this.tienda = tienda;
+    }
 
 }
