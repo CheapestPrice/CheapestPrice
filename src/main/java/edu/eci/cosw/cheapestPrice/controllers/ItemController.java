@@ -88,7 +88,6 @@ public class ItemController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> postItem(@RequestBody Item item){
         try {
-            System.out.println(item);
             is.addItem(item);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
