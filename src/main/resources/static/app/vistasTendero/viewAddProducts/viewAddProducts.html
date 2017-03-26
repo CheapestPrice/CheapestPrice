@@ -44,21 +44,21 @@
             <div class="row">
             <div class="col-6">
                 <label>Nombre:</label>
-                <input ng-model="nombre" type="text" />
+                <input ng-model="product.nombre" type="text" />
                 <label>Precio:</label>
-                <input ng-model="precio" type="number" min="50" step="50"/>
+                <input ng-model="ite.precio" type="number" min="50" step="50"/>
                 <br>
                 <label>Marca:</label>
-                <input ng-model="marca" type="text" />
+                <input ng-model="product.marca" type="text" />
                 <label>Categoria:</label>
-                <select ng-options="c for c in categorias" ng-model="selectedCategoria">
+                <select ng-options="c for c in categorias" ng-model="product.categoria">
                 </select>
                 <br>
             </div>
             <div class="col-6">
                 <form id="ImagenProducto" runat="server">
                     <label>Fotografia:</label>
-                    <input type='file' id="imgInp" accept="image/gif, image/jpeg, image/png"/>
+                    <input type='file' id="imgInp" accept="image/gif, image/jpeg, image/png" file-model="myFile"/>
                     <img height="200" width="200" id="blah" src="#" alt="Your Image"/>
                 </form>
 

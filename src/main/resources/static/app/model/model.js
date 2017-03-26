@@ -27,13 +27,12 @@ function TiendaId(nit, x, y){
     this.y = y;
 }
 
-function Tienda(tiendaId, direccion, nombre, telefono, disponible, logo, tendero){
+function Tienda(tiendaId, direccion, nombre, telefono, disponible, tendero){
     this.tiendaId = tiendaId;
     this.direccion = direccion;
     this.nombre = nombre;
     this.telefono = telefono;
     this.disponible = disponible;
-    this.logo = logo;
     this.tendero = tendero;
     this.horarios = [];
     this.opiniones = [];
@@ -53,7 +52,3 @@ function Item(itemId, tienda, producto, precio){
     this.producto = producto;
     this.precio = precio;
 }
-$(document).ready(
-        function () {
-        }
-);

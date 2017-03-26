@@ -5,23 +5,77 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/viewAddProducts', {
         templateUrl: 'vistasTendero/viewAddProducts/viewAddProducts.html',
+        directive: 'fileModel',
+        service: 'fileUpload',
         controller: 'ViewAddProductsCtrl'
     });
 }])
+.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
 
-.controller('ViewAddProductsCtrl', ['$scope', 'items2StubFactory', '$rootScope','$location','itemsByShop','updateItem','itemByShopAndId','allItems', function($scope,items2StubFactory,$rootScope,$location,itemsByShop,updateItem,itemByShopAndId,allItems) {
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}])
+.service('fileUpload', ['$http', function ($http) {
+    this.uploadFileToUrl = function(file, uploadUrl){
+        var fd = new FormData();
+        fd.append('file', file);
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(function(){
+        })
+        .error(function(){
+        });
+    }
+}])
+.controller('ViewAddProductsCtrl', ['$scope', 'items2StubFactory', '$rootScope','$location','itemsByShop','updateItem','itemByShopAndId','allItems','fileUpload', function($scope,items2StubFactory,$rootScope,$location,itemsByShop,updateItem,itemByShopAndId,allItems,fileUpload) {
     //AGREGAR
     $scope.agregar=true;
     $rootScope.tienda="Surtir";
-    $rootScope.shop={
-        direccion:'Cll 167 #58a-20',
-        x:4.7498466,
-        y:-74.0623005,
-        nombre:'Surtir',
-        telefono:"65498765",
+    $rootScope.shopId = new TiendaId();
+    $rootScope.shop= new Tienda();
+    $rootScope.shopId.nit = '1234567-2';
+    $rootScope.shopId.x = 4.7649271000;
+    $rootScope.shopId.y = -74.0476042000;
+    $rootScope.shop.direccion = 'Cll 167 #58a-20';
+    $rootScope.shop.nombre = 'Donde Pepe';
+    $rootScope.shop.telefono = '5473829';
+    $rootScope.shop.disponible = true;
+    $rootScope.shop.tiendaId= $rootScope.tiendaId;
+
+    /*{
+        direccion:'CR NM #NM-NM',
+        x:4.7649271000,
+        y:-74.0476042000,
+        nombre:'Donde Pepe',
+        telefono:"5473829",
         disponible:true,
-        nit:'123456456'
+        nit:'1234567-2'
+    };*/
+    $scope.uploadFile = function(){
+        var file = $scope.myFile;
+        console.log('file is ' );
+        console.dir(file);
+        var uploadUrl = "/dispatches/upload?idpedido="+$scope.idpedido+"&idvehiculo="+$scope.idvehiculo;
+        fileUpload.uploadFileToUrl(file, uploadUrl);
     };
+    $scope.produc = new Producto();
+    $scope.produc.nombre = "";
+    $scope.produc.marca = "";
+    $scope.produc.categoria = "";
+    $scope.ite = new Item();
+    $scope.ite.precio = 50;
     $scope.selectedCategoria="";
     $scope.nombre="";
     $scope.precio=50;
@@ -50,11 +104,10 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
                 producto:{
                     nombre: $scope.nombre,
                     categoria: $scope.selectedCategoria,
-                    precio: $scope.precio,
-                    marca:$scope.marca,
-                    id:(num+1).toString()
+                    marca:$scope.marca
                 },
-                tienda:$rootScope.shop
+                tienda:$rootScope.shop,
+                precio:$scope.precio
             }
 
             allItems.save(itemm,function(data){
