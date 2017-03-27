@@ -25,10 +25,13 @@ angular.module('myApp.shopList', ['ngRoute'])
        deleteItemSelected.delete({correo:$scope.usua.correo,listaNombre:$scope.listado.listaid.nombre,productoId:id,nit:tien.id.nit,x:tien.id.x,y:tien.id.y});
     };
      $scope.comprado = function(id,tien,comp,item){
-        console.log(comp);
         comp=!comp
-        console.log(comp);
         sellItemSelected.update({correo:$scope.usua.correo,listaNombre:$scope.listado.listaid.nombre,productoId:id,nit:tien.id.nit,x:tien.id.x,y:tien.id.y,comp:comp},item)
+    };
+
+    $scope.favorito = function(id,tien,fav,item){
+        fav=!fav
+        favoriteItemList.update({correo:$scope.usua.correo,listaNombre:$scope.listado.listaid.nombre,productoId:id,nit:tien.id.nit,x:tien.id.x,y:tien.id.y,fav:fav},item)
     };
 
      $scope.showAdvanced = function(ev,produc) {
@@ -56,21 +59,4 @@ angular.module('myApp.shopList', ['ngRoute'])
 
           }
 
-}])
- .directive('buttonFavorite', function() {
-       return {
-         scope: true,
-         restrict: 'E',
-         template: '<button class="btn btn-icon"><span class="glyphicon glyphicon-heart" ng-class="{active: todo.favorito}"></span></button>',
-         link: function(scope, elem) {
-           elem.bind('click', function() {
-             scope.$apply(function(favoriteItemList,$rootScope,$scope){
-               scope.todo.favorito = !scope.todo.favorito;
-               $scope.listado = $rootScope.listaMercado;
-               $scope.usua = $rootScope.usuario;
-               favoriteItemList.update({correo:$scope.usua.correo,listaNombre:$scope.listado.listaid.nombre,prodcutoId:scope.todo.item.producto.id,nit:scope.todo.item.tienda.id.nit,x:scope.todo.item.tienda.id.x,y:scope.todo.item.tienda.id.y,fav:scope.todo.favorito},scope.todo);
-             });
-           });
-         }
-       };
-     });
+}]);

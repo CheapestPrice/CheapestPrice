@@ -22,7 +22,6 @@ public class UserController {
     public ResponseEntity<?> getUsuarios(){
         return new ResponseEntity<>(uP.loadAllUsuarios(), HttpStatus.ACCEPTED);
     }
-    //{correo:.+}
     @RequestMapping(value="/{correo:.+}" ,method = RequestMethod.GET)
     public ResponseEntity<?> getUsuarioPorCorreo(@PathVariable String correo){
         try{
