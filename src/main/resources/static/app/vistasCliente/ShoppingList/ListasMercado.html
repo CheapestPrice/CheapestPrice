@@ -38,6 +38,14 @@
 
     <div ng-controller="listasMercadoCtrl">
         <h1>Listas de mercado</h1>
+        <th>
+            <td>
+                <input type="text" name="nombreLista" ng-model="nombreLista">
+            </td>
+            <td>
+                <button ng-click="agregarLista()">Agregar Lista</button>
+            </td>
+        </th>
         <table class="table table-condensed table-hover">
             <theader>
                 <tr>

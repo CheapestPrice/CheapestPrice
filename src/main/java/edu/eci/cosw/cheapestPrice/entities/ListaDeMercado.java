@@ -43,6 +43,12 @@ public class ListaDeMercado implements Serializable {
         //items=new ArrayList<ItemLista>();
     }
 
+    public ListaDeMercado(ListaMercado_Item lmi){
+        this.listaid=lmi;
+        this.fechaCreacion=new Date();
+        this.revisado=false;
+    }
+
     /**
      * Agrega items a la lista de mercado
      * @param ite

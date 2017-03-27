@@ -3,14 +3,15 @@
 
 angular.module('myApp.listasMercado', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider) {
+.config(['$routeProvider','$qProvider', function($routeProvider,$qProvider) {
   $routeProvider.when('/ListasMercado', {
     templateUrl: 'vistasCliente/ShoppingList/ListasMercado.html',
     controller: 'listasMercadoCtrl'
   });
+  $qProvider.errorOnUnhandledRejections(false);
 }])
 
-.controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', 'getUserEmail', 'updateUser', 'deleteShoppingList', function($scope, listasMercadoStubFactory, $rootScope, $location,getUserEmail, updateUser, deleteShoppingList) {
+.controller('listasMercadoCtrl', ['$scope','listasMercadoStubFactory','$rootScope', '$location', 'getUserEmail', 'updateUser', 'deleteShoppingList', 'saveShoppingList', function($scope, listasMercadoStubFactory, $rootScope, $location,getUserEmail, updateUser, deleteShoppingList, saveShoppingList) {
     //listasMercadoStubFactory.listaCompleta();
     $scope.usuario1 = getUserEmail.get({correo:'prueba@prueba.com'});
     //$scope.eliminar = function(nom){
@@ -31,7 +32,10 @@ angular.module('myApp.listasMercado', ['ngRoute'])
         //Falta el usuario global
         $rootScope.usuario=$scope.usuario1;
 
-
+    $scope.nombreLista=""
+    $scope.agregarLista = function(){
+        saveShoppingList.save({correo:$scope.usuario1.correo,listaNombre:$scope.nombreLista})
+    };
 
     $scope.propertyName = 'nombre';
     $scope.reverse = true;
@@ -56,3 +60,4 @@ angular.module('myApp.listasMercado', ['ngRoute'])
 
 
 }]);
+

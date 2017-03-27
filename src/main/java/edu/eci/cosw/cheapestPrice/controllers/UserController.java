@@ -99,6 +99,17 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value="/{correo:.+}/{listaNombre}" ,method = RequestMethod.POST)
+    public ResponseEntity<?> agregarListaMercado(@PathVariable String correo, @PathVariable String listaNombre){
+        System.out.println(correo+" "+listaNombre);
+        try{
+            uP.addShoppingList(listaNombre,correo);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
 
 
 

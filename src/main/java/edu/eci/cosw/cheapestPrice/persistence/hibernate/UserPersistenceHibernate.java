@@ -78,5 +78,12 @@ public class UserPersistenceHibernate implements UserPersistence{
         ilR.sellItemSelected(correo,nombreLista,idProducto,x,y,nit,comp);
     }
 
+    @Override
+    public void addShoppingList(String nombreLista, String correo) throws CheapestPriceException {
+        ListaMercado_Item lmi=new ListaMercado_Item(nombreLista,correo);
+        ListaDeMercado lm = new ListaDeMercado(lmi);
+        slR.save(lm);
+    }
+
 
 }

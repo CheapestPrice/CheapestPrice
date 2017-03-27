@@ -84,4 +84,10 @@ public interface UserService {
      */
     public void sellSelectedItem(String correo,String nombreLista,long idProducto,double x,double y,String nit, boolean comp)throws CheapestPriceException;
 
+    /**
+     * Agrega una lista de mercado
+     * @throws CheapestPriceException
+     */
+    public void addShoppingList(String nombreLista,String correo)throws CheapestPriceException;
+
 }

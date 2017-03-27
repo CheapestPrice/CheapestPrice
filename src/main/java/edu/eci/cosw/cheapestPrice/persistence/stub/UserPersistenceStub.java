@@ -154,6 +154,17 @@ public class UserPersistenceStub implements UserPersistence{
         }
     }
 
+    @Override
+    public void addShoppingList(String nombreLista, String correo) throws CheapestPriceException {
+        ListaMercado_Item lmi=new ListaMercado_Item(nombreLista,correo);
+        ListaDeMercado lm = new ListaDeMercado(lmi);
+        for(Usuario u:usuarios){
+            if(u.getCorreo().equals(correo)){
+                u.getListas().add(lm);
+                break;
+            }
+        }
+    }
 
 
     public static void poblarStub(UserPersistenceStub ups){
