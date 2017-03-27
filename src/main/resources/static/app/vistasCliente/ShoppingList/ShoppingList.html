@@ -85,9 +85,8 @@
                     </center>
                 </td>
                 <td><center>
-                    <div class="presentation">
-                        <button-favorite></button-favorite>
-                    </div>
+                    <md-checkbox ng-model="todo.favorito" aria-label="Checkbox" ng-click="favorito(todo.item.producto.id, todo.item.tienda,todo.favorito,todo)">
+                    </md-checkbox>
                 </center>
                 </td>
                 <td><center><button ng-click="eliminarItem(todo.item.producto.id, todo.item.tienda)">Eliminar</button></center></td>
