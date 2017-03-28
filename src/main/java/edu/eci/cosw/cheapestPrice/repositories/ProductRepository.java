@@ -17,8 +17,8 @@ import java.util.List;
  * Created by masterhugo on 3/20/17.
  */
 public interface ProductRepository extends JpaRepository<Producto, Long> {
-    @Query("select p from Producto p")
-    public List<Producto> loadAllProductos();
+    @Query("select count(p) from Producto p")
+    public long countProductos();
     @Query("select p from Producto p where p.nombre=:nombre")
     public List<Producto> loadProductsByName(@Param("nombre") String nombre);
     @Query("select p from Producto p where p.categoria=:categoria")

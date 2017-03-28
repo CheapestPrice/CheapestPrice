@@ -72,4 +72,9 @@ public class ItemServicePersistence implements ItemService{
     public void updateProductImage(Blob imagen, String nombre, String marca, String categoria) throws CheapestPriceException {
         ip.updateProductImage(imagen, nombre, marca, categoria);
     }
+
+    @Override
+    public List<Producto> getProducts() {
+        return ip.getProducts();
+    }
 }

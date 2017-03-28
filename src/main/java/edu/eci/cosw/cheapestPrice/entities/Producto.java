@@ -25,10 +25,11 @@ public class Producto implements Serializable {
 
     @Column(name="imagen")
     @JsonIgnore
+    @Lob
     private Blob imagen;
 
-    @GeneratedValue
     @Id
+    @Column(name = "id", nullable = false)
     private long id;
 
     public Producto(long id, String nombre,String marca, String categoria){

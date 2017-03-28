@@ -1,6 +1,7 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
 import edu.eci.cosw.cheapestPrice.entities.Item;
+import edu.eci.cosw.cheapestPrice.entities.Producto;
 import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.services.ItemService;
@@ -12,12 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.sql.rowset.serial.SerialBlob;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.Iterator;
 
 /**
  * Created by Julian David Devia Serna on 2/20/17.
@@ -31,6 +30,10 @@ public class ItemController {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getItems(){
         return new ResponseEntity<>(is.loadItems(), HttpStatus.ACCEPTED);
+    }
+    @RequestMapping(method = RequestMethod.GET,value="/products" )
+    public ResponseEntity<?> getProducts(){
+        return new ResponseEntity<>(is.getProducts(), HttpStatus.ACCEPTED);
     }
 
     @RequestMapping(method = RequestMethod.GET,value="/shop/{shop}/id/{id}")
@@ -117,18 +120,18 @@ public class ItemController {
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
     }
-    @RequestMapping(value = "/upload", method = RequestMethod.POST
-    )
-    public ResponseEntity uploadFile(MultipartHttpServletRequest request, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "marca") String marca, @RequestParam(name = "categoria") String categoria) {
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public ResponseEntity uploadFile(@RequestPart(value = "items") Item items,@RequestPart(value = "files", required = false) MultipartFile files) {
 
         try {
-            Iterator<String> itr = request.getFileNames();
-
-            while (itr.hasNext()) {
-                String uploadedFile = itr.next();
-                MultipartFile file = request.getFile(uploadedFile);
-                Blob  imagen = new SerialBlob(StreamUtils.copyToByteArray(file.getInputStream()));
-                is.updateProductImage(imagen,nombre,marca,categoria);
+            if(files != null){
+                Blob imagen = new SerialBlob(StreamUtils.copyToByteArray(files.getInputStream()));
+                Producto p =items.getProducto();
+                p.setImagen(imagen);
+                items.setProducto(p);
+                is.addItem(items);
+            }else{
+                is.addItem(items);
             }
         }
         catch (Exception e) {

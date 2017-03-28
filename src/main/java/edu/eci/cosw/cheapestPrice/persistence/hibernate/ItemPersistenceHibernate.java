@@ -36,7 +36,7 @@ public class ItemPersistenceHibernate implements ItemPersistence {
 
     @Override
     public List<Item> loadItemByShop(TiendaId tiendaId) throws CheapestPriceException {
-        return ir.loadItems(tiendaId.getNit(),tiendaId.getX(),tiendaId.getY());
+        return ir.loadItemsByShop(tiendaId.getNit(),tiendaId.getX(),tiendaId.getY());
     }
 
     @Override
@@ -72,5 +72,10 @@ public class ItemPersistenceHibernate implements ItemPersistence {
     @Override
     public void updateProductImage(Blob imagen, String nombre, String marca, String categoria) throws CheapestPriceException {
         pr.updateByImage(nombre,marca,categoria,imagen);
+    }
+
+    @Override
+    public List<Producto> getProducts() {
+        return pr.findAll();
     }
 }

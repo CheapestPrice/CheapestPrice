@@ -160,6 +160,11 @@ public class ItemPersistenceStub implements ItemPersistence{
 
     }
 
+    @Override
+    public List<Producto> getProducts() {
+        return null;
+    }
+
     public static void poblarStub(ItemPersistenceStub ips){
         TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
         List<Horario> hor=new ArrayList<>();

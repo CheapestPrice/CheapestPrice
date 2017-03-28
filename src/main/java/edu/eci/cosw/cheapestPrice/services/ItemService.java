@@ -93,4 +93,10 @@ public interface ItemService {
      * @throws CheapestPriceException si alguno de los parametros es nulo o no hay ningun producto registrado
      */
     void updateProductImage(Blob imagen, String nombre, String marca, String categoria) throws CheapestPriceException;
+
+    /**
+     * Carga todos los productos registrados
+     * @return todos los productos registrados
+     */
+    public List<Producto> getProducts();
 }

@@ -313,6 +313,9 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
     .factory('allItems',function($resource) {
         return $resource('/items');
     })
+    .factory('totalProducts',function($resource) {
+            return $resource('/items/products');
+     })
     .factory('itemByShopAndId',function($resource) {
         return $resource('/items/shop/:shopName/id/:idNum');
     })

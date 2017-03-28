@@ -26,16 +26,38 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
     };
 }])
 .service('fileUpload', ['$http', function ($http) {
-    this.uploadFileToUrl = function(file, uploadUrl){
-        var fd = new FormData();
+    this.uploadFileToUrl = function(file, uploadUrl,item){
+        /*var fd = new FormData();
         fd.append('file', file);
-        $http.post(uploadUrl, fd, {
+        fd.append('formdata',JSON.stringify(item));*/
+        $http({
+            method: 'POST',
+            url: uploadUrl,
+            headers: {'Content-Type': undefined},
+            data: {
+                items: item,
+                files: file
+            },
+            transformRequest: function (data) {
+                var formData = new FormData();
+                //formData.append("items", angular.toJson(data.items),{ header: { contentType: 'application/json; charset=UTF-8' } });
+                //formData.append("items", angular.toJson(data.items));
+                formData.append("items", new Blob([JSON.stringify(data.items)], {type: "application/json"}));
+                formData.append("files", data.files);
+
+                //var headers = headersGetter();
+                //console.log(headers);
+                //delete headers['Content-Type'];
+                return formData;
+            }
+        });
+        /*$http.post(uploadUrl, fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
-        })
+        })*/
     }
 }])
-.controller('ViewAddProductsCtrl', ['$scope', 'items2StubFactory', '$rootScope','$location','itemsByShop','getShop','updateItem','itemByShopAndId','allItems','fileUpload', function($scope,items2StubFactory,$rootScope,$location,itemsByShop,getShop,updateItem,itemByShopAndId,allItems,fileUpload) {
+.controller('ViewAddProductsCtrl', ['$scope', 'totalProducts','items2StubFactory', '$rootScope','$location','itemsByShop','getShop','updateItem','itemByShopAndId','allItems','fileUpload', function($scope,totalProducts,items2StubFactory,$rootScope,$location,itemsByShop,getShop,updateItem,itemByShopAndId,allItems,fileUpload) {
     //AGREGAR
     $scope.agregar=true;
     $rootScope.tienda="Surtir";
@@ -67,10 +89,22 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
         fileUpload.uploadFileToUrl(file, uploadUrl);
     };
     $scope.produc = new Producto();
+    $scope.iteId = new ItemId();
+    $scope.ite = new Item();
     $scope.produc.nombre = "";
     $scope.produc.marca = "";
     $scope.produc.categoria = "";
-    $scope.ite = new Item();
+    totalProducts.query()
+    $scope.prod = totalProducts.query();
+    $scope.prod.$promise.then(function (result) {
+        $scope.prod = result;
+        $scope.produc.id = $scope.prod.length + 1;
+        $scope.iteId.productoId = $scope.produc.id;
+        console.log($scope.prod);
+        console.log($scope.prod.length);
+    });
+
+
     $scope.ite.precio = 50;
     /*$scope.selectedCategoria="";
     $scope.nombre="";
@@ -108,24 +142,23 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
             }*/
             $scope.ite.producto = $scope.produc;
             $scope.ite.tienda = $rootScope.shop;
-            $scope.iteId = new ItemId();
+
             $scope.iteId.tiendaNit = $rootScope.shopId.nit;
             $scope.iteId.tiendaX = $rootScope.shopId.x;
             $scope.iteId.tiendaY = $rootScope.shopId.y;
-            $scope.iteId.productoId = $scope.listado.length + 1;
             $scope.ite.id = $scope.iteId;
-            allItems.save($scope.ite,function(data){
-                var file = $scope.myFile;
-                console.log('file is ' );
-                console.dir(file);
-                var uploadUrl = "/items/upload?nombre="+ $scope.produc.nombre+"&marca="+$scope.produc.marca+"&categoria="+$scope.produc.categoria;
-                fileUpload.uploadFileToUrl(file, uploadUrl);
+            var file = $scope.myFile;
+            console.log('file is ' );
+            console.dir(file);
+            var uploadUrl = "/items/upload";
+            fileUpload.uploadFileToUrl(file, uploadUrl,$scope.ite);
+            /*allItems.save($scope.ite,function(data){
                 $scope.listado=itemsByShop.query({x:$rootScope.shopId.x, y:$rootScope.shopId.y, nit:$rootScope.shopId.nit});
               },function(error){
                 $scope.fail=true;
                 $scope.success=false;
                 $scope.mensaje="Por favor, revise la información suministrada...";
-              })
+             })*/
             $scope.mensaje="Por favor, revise la información suministrada...";
 
             /*var sePudo=items2StubFactory.registrarProducto(itemm);

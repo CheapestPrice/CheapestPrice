@@ -20,6 +20,12 @@ public interface ItemPersistence {
     public List<Item> loadItems();
 
     /**
+     * Carga todos los productos registrados
+     * @return todos los productos registrados
+     */
+    public List<Producto> getProducts();
+
+    /**
      * Retorna el item deseado
      * @param shopName el nombre de la tienda relacionada con el item
      * @param id el id del producto relacionado con el item
