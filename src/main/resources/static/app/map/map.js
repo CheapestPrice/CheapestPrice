@@ -52,7 +52,7 @@ angular.module('myApp.viewMap', ['ngRoute'])
           }
           return false;
         }
-        $rootScope.listaMercado.forEach(function(item,index){
+        $rootScope.listaMercado.items.forEach(function(item,index){
             //$scope.markers.push({id: index+"",center: {latitude: item.x,longitude: item.y}});
             var latlng={
                 location:{
