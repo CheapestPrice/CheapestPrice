@@ -9,6 +9,7 @@ angular.module('myApp.viewMap', ['ngRoute'])
         });
     }])
     .controller('ViewMapCtrl', ['uiGmapGoogleMapApi', '$scope', '$rootScope', '$location', '$http','$document', function (uiGmapGoogleMapApi, $scope, $rootScope, $location, $http,$document) {
+        var show=false;
         console.log($rootScope.x + " " + $rootScope.y);
         $scope.map = {center: {latitude: $rootScope.x, longitude: $rootScope.y}, zoom: 15,control : {}};
         $scope.curr = {
@@ -42,16 +43,29 @@ angular.module('myApp.viewMap', ['ngRoute'])
             waypoints:[],
             optimizeWaypoints: true
         };
-        places.forEach(function(item,index){
-            $scope.markers.push({id: index+"",center: {latitude: item.x,longitude: item.y}});
-            $scope.request.waypoints.push({
+
+        function isIn(data,arr){
+          for (var i = 0; i < arr.length; i++) {
+            if(arr[i].lat==data.lat && arr[i].lng==data.lng){
+              return true;
+            }
+          }
+          return false;
+        }
+        $rootScope.listaMercado.forEach(function(item,index){
+            //$scope.markers.push({id: index+"",center: {latitude: item.x,longitude: item.y}});
+            var latlng={
                 location:{
-                    lat: item.x,
-                    lng: item.y
+                    lat: item.item.tienda.id.x,
+                    lng: item.item.tienda.id.y
                 },
                 stopover:true
-            });
+            }
+            if(!isIn(latlng,$scope.request.waypoints)){
+                $scope.request.waypoints.push(latlng);
+            }
         });
+
         var directionsDisplay = new google.maps.DirectionsRenderer();
         var directionsService = new google.maps.DirectionsService();
         directionsService.route($scope.request, function (response, status) {
@@ -61,5 +75,12 @@ angular.module('myApp.viewMap', ['ngRoute'])
             } else {
                 alert('Google route unsuccesfull!');
             }
-        });     
+        });
+        $scope.flipShow=function(){
+            if(!show && !navigator.geolocation){
+                alert("Por favor active la geolocaclizaci�n del explorador");
+            }else{
+                show=!show;
+            }
+        }
     }])

@@ -35,6 +35,14 @@
 
         </div>
     </div>
+    <div ng-controller="ViewMapCtrl">
+        <md-button class="md-primary md-raised" ng-click="flipShow()">
+            Mostrar mapa
+        </md-button>
+        <ui-gmap-google-map control="map.control" center='map.center' zoom='map.zoom'  ng-show="show">
+            <!--ui-gmap-markers models="markers" coords="'center'" idKey="'id'"></ui-gmap-markers-->
+        </ui-gmap-google-map>
+    </div>
     <div ng-controller="shopListCtrl">
         <h1>{{listado.nombre}}</h1>
         <table class="table table-condensed table-hover">

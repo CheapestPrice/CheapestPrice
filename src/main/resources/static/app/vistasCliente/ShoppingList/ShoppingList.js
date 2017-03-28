@@ -16,7 +16,17 @@ angular.module('myApp.shopList', ['ngRoute'])
     $scope.customFullscreen = false;
     $scope.reverse = true;
     $scope.producto=null;
-
+    
+    $rootScope.x=0;
+    $rootScope.y=0;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+          $rootScope.x = position.coords.latitude;
+          $rootScope.y = position.coords.longitude;
+      })
+    }else{
+      //console.log("no navigator.geolocation");
+    }
     $scope.sortBy = function(propertyName) {
         $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
         $scope.propertyName = propertyName;

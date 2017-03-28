@@ -57,7 +57,20 @@ angular.module('myApp.listasMercado', ['ngRoute'])
            $rootScope.listaMercado=items;
            $location.path("/ShoppingList");
        }
-
+    
+    $rootScope.x=0;
+    $rootScope.y=0;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+          //console.log(position);
+          $rootScope.x = position.coords.latitude;
+          $rootScope.y = position.coords.longitude;
+          //console.log($rootScope.x+" "+$rootScope.y);
+      })
+      //console.log("navigator.geolocation");
+    }else{
+      //console.log("no navigator.geolocation");
+    }
 
 }]);
 
