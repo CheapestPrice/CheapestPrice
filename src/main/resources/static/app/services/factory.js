@@ -372,6 +372,9 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
                      'update' : {method:'PUT'}
                  });
      })
+     .factory('saveItemList',function($resource){
+             return $resource('/usuarios/itemlistamercado');
+          })
      .factory('saveShoppingList',function($resource){
         return $resource('/usuarios/listaMercado');
      });

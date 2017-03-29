@@ -10,7 +10,7 @@ angular.module('myApp.viewSearch', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('ViewSearchCtrl', ['$scope', 'placesStubFactory', '$rootScope', 'allItems', '$mdDialog', 'listasMercadoStubFactory', function ($scope, placesStubFactory, $rootScope, allItems, $mdDialog, listasMercadoStubFactory) {
+    .controller('ViewSearchCtrl', ['$scope', 'placesStubFactory', '$rootScope','saveItemList', 'allItems', '$mdDialog', 'listasMercadoStubFactory','getUserEmail', function ($scope, placesStubFactory, $rootScope,saveItemList, allItems, $mdDialog, listasMercadoStubFactory,getUserEmail) {
         //$scope.items= placesStubFactory.getListado()[0].sedes[0].productos;
         $scope.items = allItems.query();
         $scope.status = '  ';
@@ -60,8 +60,6 @@ angular.module('myApp.viewSearch', ['ngRoute', 'ngMaterial'])
          }*/
         $scope.showAdvanced = function (ev, item) {
             $scope.chooseItem = item;
-            $scope.chooseItem['favorito'] = false;
-            $scope.chooseItem.comprado = false;
             console.log("Escogio el item ", item);
             $mdDialog.show({
                 controller: DialogController,
@@ -72,15 +70,29 @@ angular.module('myApp.viewSearch', ['ngRoute', 'ngMaterial'])
                 fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
             })
                 .then(function (list) {
-                    $scope.chooseList = list;
                     console.log("Llego la lista ", list);
-                    listasMercadoStubFactory.agregarProducto($scope.chooseItem, $scope.chooseList);
+                    $scope.il = new ItemLista();
+                    $scope.ilId = new ItemListaId();
+                    $scope.ilId.tiendaNit = item.id.tiendaNit;
+                    $scope.ilId.tiendaX = item.id.tiendaX;
+                    $scope.ilId.tiendaY = item.id.tiendaY;
+                    $scope.ilId.productoId = item.id.productoId;
+                    $scope.ilId.listaNombre = list.listaid.nombre;
+                    $scope.ilId.listaCorreo = list.listaid.usuario;
+                    $scope.il.id = $scope.ilId;
+                    $scope.il.comprado = false;
+                    $scope.il.favorito = false;
+                    $scope.il.item = item;
+                    //list.items.push(item);
+                    $scope.il.lista = list;
+                    saveItemList.save($scope.il);
+                    //listasMercadoStubFactory.agregarProducto($scope.chooseItem, $scope.chooseList);
                 });
         };
-        function DialogController($scope, $mdDialog, listasMercadoStubFactory, $rootScope, $location) {
+        function DialogController($scope, $mdDialog, listasMercadoStubFactory, getUserEmail, $rootScope, $location) {
             listasMercadoStubFactory.listaCompleta();
+            $scope.usuario1 = getUserEmail.get({correo:'prueba@prueba.com'});
 
-            $scope.listMerc = listasMercadoStubFactory.getListaMercado();
             $scope.listaMercado = "";
             $scope.hide = function () {
                 $mdDialog.hide();

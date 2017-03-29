@@ -117,5 +117,5 @@ INSERT INTO `USUARIOS_AUTENTICACION` (`USUARIOS_correo`,`hash`,`habilitado`,`rol
 	('admin@cheapestprice.com','$2a$04$9bTPMRnWTVwi.xUjK2uQn.iCZowsVnNode.hG.czbSzT3LWDNn6Gu',true,'Usuario'),
 	('prueba2@prueba.com','$2a$06$xP01EJ/jiHbM76ydX52M.uYQX4GTqjvrAJyBkkrzU8Y.uUAx7hmQK',true,'Usuario'),
 	('tendero2@tendero.com','$2a$06$dQSpBh.CyVqRIt8VJQiniOoJwfA2lopdKC8vt4CRYKGYFwRwqo02y',true,'Tendero'),
-	('prueb3@prueba.com','$2a$06$xP01EJ/jiHbM76ydX52M.uYQX4GTqjvrAJyBkkrzU8Y.uUAx7hmQK',true,'Usuario'),
+	('prueba3@prueba.com','$2a$06$xP01EJ/jiHbM76ydX52M.uYQX4GTqjvrAJyBkkrzU8Y.uUAx7hmQK',true,'Usuario'),
 	('tendero3@tendero.com','$2a$06$dQSpBh.CyVqRIt8VJQiniOoJwfA2lopdKC8vt4CRYKGYFwRwqo02y',true,'Tendero');
