@@ -91,4 +91,6 @@ public interface UserPersistence {
      * @throws CheapestPriceException
      */
     public void addShoppingList(ListaDeMercado listaDeMercado)throws CheapestPriceException;
+
+    public void addItemListaMercado(ItemLista itemLista);
 }

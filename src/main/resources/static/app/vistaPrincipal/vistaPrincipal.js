@@ -23,7 +23,7 @@ angular.module('myApp.vistaPrincipal', ['ngRoute'])
           //console.log($rootScope.x+" "+$rootScope.y);
       },function (err) {
           console.warn('ERROR(' + err.code + '): ' + err.message);
-        })
+        },{timeout:10000, enableHighAccuracy: true})
       console.log("navigator.geolocation");
     }else{
       console.log("no navigator.geolocation");

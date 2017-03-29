@@ -165,6 +165,10 @@ public class UserPersistenceStub implements UserPersistence{
         }
     }
 
+    @Override
+    public void addItemListaMercado(ItemLista itemLista) {
+
+    }
 
     public static void poblarStub(UserPersistenceStub ups){
         Producto p1=new Producto(1,"Queso crema","Alqueria","Queso");

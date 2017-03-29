@@ -1,9 +1,6 @@
 package edu.eci.cosw.cheapestPrice.persistence.hibernate;
 
-import edu.eci.cosw.cheapestPrice.entities.ItemListaId;
-import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
-import edu.eci.cosw.cheapestPrice.entities.ListaMercado_Item;
-import edu.eci.cosw.cheapestPrice.entities.Usuario;
+import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
 import edu.eci.cosw.cheapestPrice.repositories.ItemListRepository;
@@ -83,5 +80,8 @@ public class UserPersistenceHibernate implements UserPersistence{
         slR.save(listaDeMercado);
     }
 
-
+    @Override
+    public void addItemListaMercado(ItemLista itemLista) {
+        ilR.save(itemLista);
+    }
 }

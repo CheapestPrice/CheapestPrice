@@ -1,5 +1,6 @@
 package edu.eci.cosw.cheapestPrice.services;
 
+import edu.eci.cosw.cheapestPrice.entities.ItemLista;
 import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
@@ -69,5 +70,8 @@ public class UserServicePersistence implements UserService{
         us.addShoppingList(listaDeMercado);
     }
 
-
+    @Override
+    public void addItemListaMercado(ItemLista itemLista) throws CheapestPriceException {
+        us.addItemListaMercado(itemLista);
+    }
 }

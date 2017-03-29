@@ -20,6 +20,7 @@ angular.module('myApp', [
   'myApp.version',
   'myApp.viewAddProducts',
   'myApp.viewSearch',
+  'myApp.miniMap',
   'services.listFactoryApi'
 ]).
 config(['$routeProvider','$httpProvider','uiGmapGoogleMapApiProvider', function($routeProvider, $httpProvider,uiGmapGoogleMapApiProvider) {

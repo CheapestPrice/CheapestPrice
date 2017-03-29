@@ -1,5 +1,6 @@
 package edu.eci.cosw.cheapestPrice.services;
 
+import edu.eci.cosw.cheapestPrice.entities.ItemLista;
 import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
@@ -89,5 +90,11 @@ public interface UserService {
      * @throws CheapestPriceException
      */
     public void addShoppingList(ListaDeMercado listaDeMercado)throws CheapestPriceException;
+
+    /**
+     * Agrega una lista de mercado
+     * @throws CheapestPriceException
+     */
+    public void addItemListaMercado(ItemLista itemLista)throws CheapestPriceException;
 
 }
