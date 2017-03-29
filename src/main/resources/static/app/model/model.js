@@ -10,6 +10,9 @@ Tienda.prototype.agregarItem = function(item){
 Tienda.prototype.agregarOpinion = function(opinion){
     this.opiniones.push(opinion);
 }
+ListaDeMercado.prototype.agregarItem = function(item){
+    this.items.push(item);
+}
 function Producto(id, nombre, marca, categoria){
     this.id = id;
     this.nombre = nombre;

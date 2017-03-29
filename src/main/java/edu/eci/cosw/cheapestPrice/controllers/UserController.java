@@ -1,5 +1,6 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
+import edu.eci.cosw.cheapestPrice.entities.ItemLista;
 import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
@@ -105,6 +106,17 @@ public class UserController {
         //System.out.println(correo+" "+listaNombre);
         try{
             uP.addShoppingList(listaDeMercado);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+    @RequestMapping(value="/itemlistamercado" ,method = RequestMethod.POST)
+    public ResponseEntity<?> agregarItemListaMercado(@RequestBody ItemLista itemLista){
+        System.out.println("ASDADASD AS ASD FDZ GDFSFS "+ itemLista);
+        try{
+            uP.addItemListaMercado(itemLista);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (Exception e){
             e.printStackTrace();
