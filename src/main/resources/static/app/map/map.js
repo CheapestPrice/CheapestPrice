@@ -43,8 +43,18 @@ angular.module('myApp.viewMap', ['ngRoute'])
           }
           return false;
         }
-        $rootScope.listaMercado.items.forEach(function(item,index){
-            //$scope.markers.push({id: index+"",center: {latitude: item.x,longitude: item.y}});
+        places.forEach(function(item,index){
+            $scope.request.waypoints.push({
+                     location:{
+                         lat: item.x,
+                         lng: item.y
+                     },
+                     stopover:true
+                  });
+              });
+
+        /*$rootScope.listaMercado.items.forEach(function(item,index){
+            $scope.markers.push({id: index+"",center: {latitude: item.x,longitude: item.y}});
             var latlng={
                 location:{
                     lat: item.item.tienda.id.x,
@@ -55,21 +65,25 @@ angular.module('myApp.viewMap', ['ngRoute'])
             if(!isIn(latlng,$scope.request.waypoints)){
                 $scope.request.waypoints.push(latlng);
             }
-        });
+        });*/
 
         var directionsDisplay = new google.maps.DirectionsRenderer();
         var directionsService = new google.maps.DirectionsService();
-        directionsService.route($scope.request, function (response, status) {
-            console.log($scope.request);
-            console.log(response);
-            console.log(status);
-            if (status === google.maps.DirectionsStatus.OK) {
-                directionsDisplay.setDirections(response);
-                directionsDisplay.setMap($scope.map.control.getGMap());
-            } else {
-                alert('Google route unsuccesfull!');
-            }
-        });
+        getear();
+        function getear(){
+            directionsService.route($scope.request, function (response, status) {
+                console.log($scope.request);
+                console.log(response);
+                console.log(status);
+                if (status === google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                    directionsDisplay.setMap($scope.map.control.getGMap());
+                } else {
+                    alert('Google route unsuccesfull!');
+                }
+            });
+        }
+
         $scope.flipShow=function(){
             //console.log($scope.show);
             /*if(!$scope.show && !navigator.geolocation){
@@ -77,6 +91,10 @@ angular.module('myApp.viewMap', ['ngRoute'])
             }else{
                 $scope.show=!$scope.show;
             }*/
+            //$location.path("/viewMap");
+            if(!$scope.show){
+                getear();
+            }
             $scope.show=!$scope.show;
         }
     }])
