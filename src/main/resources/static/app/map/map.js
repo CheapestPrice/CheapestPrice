@@ -9,7 +9,7 @@ angular.module('myApp.viewMap', ['ngRoute'])
         });
     }])
     .controller('ViewMapCtrl', ['uiGmapGoogleMapApi', '$scope', '$rootScope', '$location', '$http','$document', function (uiGmapGoogleMapApi, $scope, $rootScope, $location, $http,$document) {
-        var show=false;
+        $scope.show=false;
         console.log($rootScope.x + " " + $rootScope.y);
         $scope.map = {center: {latitude: $rootScope.x, longitude: $rootScope.y}, zoom: 15,control : {}};
         $scope.curr = {
@@ -20,16 +20,7 @@ angular.module('myApp.viewMap', ['ngRoute'])
             }
         };
         $scope.markers=[{id: 'source',center: {latitude : $rootScope.x,longitude : $rootScope.y}}];
-        var places=[
-            {
-                x: 4.750667,
-                y: -74.062927
-            },
-            {
-                x: 4.747331,
-                y: -74.065019
-            }
-        ];
+        var places=[{x: 4.750667,y: -74.062927},{x: 4.747331,y: -74.065019}];
         $scope.request={
             origin: {
                     lat : $rootScope.x,
@@ -46,7 +37,7 @@ angular.module('myApp.viewMap', ['ngRoute'])
 
         function isIn(data,arr){
           for (var i = 0; i < arr.length; i++) {
-            if(arr[i].lat==data.lat && arr[i].lng==data.lng){
+            if(arr[i].location.lat==data.location.lat && arr[i].location.lng==data.location.lng){
               return true;
             }
           }
@@ -69,6 +60,9 @@ angular.module('myApp.viewMap', ['ngRoute'])
         var directionsDisplay = new google.maps.DirectionsRenderer();
         var directionsService = new google.maps.DirectionsService();
         directionsService.route($scope.request, function (response, status) {
+            console.log($scope.request);
+            console.log(response);
+            console.log(status);
             if (status === google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(response);
                 directionsDisplay.setMap($scope.map.control.getGMap());
@@ -77,10 +71,12 @@ angular.module('myApp.viewMap', ['ngRoute'])
             }
         });
         $scope.flipShow=function(){
-            if(!show && !navigator.geolocation){
+            //console.log($scope.show);
+            /*if(!$scope.show && !navigator.geolocation){
                 alert("Por favor active la geolocaclizaci�n del explorador");
             }else{
-                show=!show;
-            }
+                $scope.show=!$scope.show;
+            }*/
+            $scope.show=!$scope.show;
         }
     }])
