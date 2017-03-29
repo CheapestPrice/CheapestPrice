@@ -31,7 +31,7 @@ import java.io.IOException;
 @SpringBootApplication
 @EnableJpaRepositories("edu.eci.cosw.cheapestPrice.repositories")
 @EntityScan("edu.eci.cosw.cheapestPrice.entities")
-public class    CheapestPriceApplication {
+public class CheapestPriceApplication {
 
     @Configuration
     @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -40,7 +40,7 @@ public class    CheapestPriceApplication {
 
         @Override
         protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-            builder.inMemoryAuthentication().withUser("admin@cheapestprice.com").password("admin").roles("USER");
+            builder.inMemoryAuthentication().withUser("admin@cheapestprice.com").password("password").roles("USER");
         }
 
         @Override
