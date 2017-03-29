@@ -79,10 +79,8 @@ public class UserPersistenceHibernate implements UserPersistence{
     }
 
     @Override
-    public void addShoppingList(String nombreLista, String correo) throws CheapestPriceException {
-        ListaMercado_Item lmi=new ListaMercado_Item(nombreLista,correo);
-        ListaDeMercado lm = new ListaDeMercado(lmi);
-        slR.save(lm);
+    public void addShoppingList(ListaDeMercado listaDeMercado) throws CheapestPriceException {
+        slR.save(listaDeMercado);
     }
 
 

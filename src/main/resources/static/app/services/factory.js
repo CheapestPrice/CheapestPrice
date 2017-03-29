@@ -373,5 +373,5 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
                  });
      })
      .factory('saveShoppingList',function($resource){
-        return $resource('/usuarios/:correo/:listaNombre');
+        return $resource('/usuarios/listaMercado');
      });

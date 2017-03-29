@@ -65,8 +65,8 @@ public class UserServicePersistence implements UserService{
     }
 
     @Override
-    public void addShoppingList(String nombreLista,String correo) throws CheapestPriceException {
-        us.addShoppingList(nombreLista,correo);
+    public void addShoppingList(ListaDeMercado listaDeMercado) throws CheapestPriceException {
+        us.addShoppingList(listaDeMercado);
     }
 
 

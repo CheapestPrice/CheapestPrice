@@ -53,3 +53,33 @@ function Item(id, tienda, producto, precio){
     this.producto = producto;
     this.precio = precio;
 }
+
+function ItemListaId(tiendaNit, tiendaX, tiendaY, productoId, listaNombre, listaCorreo){
+    this.tiendaNit = tiendaNit;
+    this.tiendaX = tiendaX;
+    this.tiendaY = tiendaY;
+    this.productoId = productoId;
+    this.listaNombre = listaNombre;
+    this.listaCorreo = listaCorreo;
+}
+
+function ItemLista(id, comprado, favorito, item, lista){
+    this.id=id;
+    this.comprado = comprado;
+    this.favorito = favorito;
+    this.item = item;
+    this.lista = lista;
+}
+
+function ListaMercado_Item(nombre, usuario){
+    this.nombre = nombre;
+    this.usuario = usuario;
+}
+
+function ListaDeMercado(listaid, fechaCreacion, revisado, usuario){
+    this.listaid = listaid;
+    this.fechaCreacion = fechaCreacion;
+    this.revisado = revisado;
+    this.usuario = usuario;
+    this.items = [];
+}

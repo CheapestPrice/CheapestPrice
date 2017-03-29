@@ -1,5 +1,6 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
+import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
@@ -99,11 +100,11 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="/{correo:.+}/{listaNombre}" ,method = RequestMethod.POST)
-    public ResponseEntity<?> agregarListaMercado(@PathVariable String correo, @PathVariable String listaNombre){
-        System.out.println(correo+" "+listaNombre);
+    @RequestMapping(value="/listaMercado" ,method = RequestMethod.POST)
+    public ResponseEntity<?> agregarListaMercado(@RequestBody ListaDeMercado listaDeMercado){
+        //System.out.println(correo+" "+listaNombre);
         try{
-            uP.addShoppingList(listaNombre,correo);
+            uP.addShoppingList(listaDeMercado);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (Exception e){
             e.printStackTrace();
