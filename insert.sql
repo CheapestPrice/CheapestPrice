@@ -11,8 +11,8 @@ INSERT INTO `USUARIOS` (`nombre`,`correo`) VALUES
 LOCK TABLES `TIENDAS` WRITE;
 INSERT INTO `TIENDAS` (`direccion`,`x`,`y`,`nombre`,`nit`,`telefono`,`disponible`,`logo`) VALUES
 	('Cra. 54d #186-78 a 186-98',4.7649271,-74.0476042,'Donde Pepe','1234567-2','5473829',true,null),
-	('Cl. 209 #45-62 a 45-98',4.788479, -74.045011,'Donde Juan','1295567-2','1234567',true,null),
-	('La Caro #197-2 a 197-54',4.775933, -74.041923,'Donde Juan','1295567-2','1234567',true,null);
+	('Cl. 209 #45-62 a 45-98',4.788479, -74.045011,'Donde Juan','1232567-2','1234567',true,null),
+	('La Caro #197-2 a 197-54',4.775933, -74.041923,'Donde Carlos','1295567-2','1234567',true,null);
 
 LOCK TABLES `TENDEROS` WRITE;
 INSERT INTO `TENDEROS` (`USUARIOS_correo`,`nombre`,`TIENDAS_x`,`TIENDAS_y`,`TIENDAS_nit`) VALUES
@@ -73,9 +73,9 @@ INSERT INTO `ITEMS`    (`PRODUCTOS_id`,`TIENDAS_x`,`TIENDAS_y`,`TIENDAS_nit`,`pr
 LOCK TABLES `LISTAS_MERCADOS` WRITE;
 INSERT INTO `LISTAS_MERCADOS` (`nombre`,`fechaCreacion`,`realizado`,`USUARIOS_correo`) VALUES
 	('ListaMercado1','2017-01-01 00:00:01',false,'prueba@prueba.com'),
-    ('ListaMercado2','2017-01-10 00:00:01',false,'admin@cheapestprice.com')
+    ('ListaMercado2','2017-01-10 00:00:01',false,'admin@cheapestprice.com'),
 	('ListaMercado','2017-03-28 00:00:01',false,'admin@cheapestprice.com'),
-	('ListaMercado','2017-03-28 00:00:01',false,'prueba@prueba.com');
+	('ListaMercado','2017-03-28 00:00:01',false,'prueba@prueba.com'),
 	('ListaMercado','2017-03-28 00:00:01',false,'prueba2@prueba.com');
 
 LOCK TABLES `ITEMS_LISTA` WRITE;
