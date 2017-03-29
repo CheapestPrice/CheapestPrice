@@ -90,5 +90,5 @@ public interface UserPersistence {
      * Agrega una lista de mercado
      * @throws CheapestPriceException
      */
-    public void addShoppingList(String nombreLista,String correo)throws CheapestPriceException;
+    public void addShoppingList(ListaDeMercado listaDeMercado)throws CheapestPriceException;
 }

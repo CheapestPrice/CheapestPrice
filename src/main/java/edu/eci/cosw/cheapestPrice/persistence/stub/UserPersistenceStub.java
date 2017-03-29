@@ -155,11 +155,10 @@ public class UserPersistenceStub implements UserPersistence{
     }
 
     @Override
-    public void addShoppingList(String nombreLista, String correo) throws CheapestPriceException {
-        ListaMercado_Item lmi=new ListaMercado_Item(nombreLista,correo);
-        ListaDeMercado lm = new ListaDeMercado(lmi);
+    public void addShoppingList(ListaDeMercado listaDeMercado) throws CheapestPriceException {
+        ListaDeMercado lm = listaDeMercado;
         for(Usuario u:usuarios){
-            if(u.getCorreo().equals(correo)){
+            if(u.getCorreo().equals(lm.getUsuario().getCorreo())){
                 u.getListas().add(lm);
                 break;
             }

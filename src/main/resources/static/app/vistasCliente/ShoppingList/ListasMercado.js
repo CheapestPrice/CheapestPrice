@@ -31,10 +31,18 @@ angular.module('myApp.listasMercado', ['ngRoute'])
         }*/
         //Falta el usuario global
         $rootScope.usuario=$scope.usuario1;
+    $scope.AddLista = new ListaDeMercado();
+    $scope.AddListaId = new ListaMercado_Item();
 
     $scope.nombreLista=""
     $scope.agregarLista = function(){
-        saveShoppingList.save({correo:$scope.usuario1.correo,listaNombre:$scope.nombreLista})
+        $scope.AddListaId.nombre = $scope.nombreLista;
+        $scope.AddListaId.usuario = $scope.usuario1.correo;
+        $scope.AddLista.listaid = $scope.AddListaId;
+        $scope.AddLista.revision = false;
+        $scope.AddLista.fechaCreacion = new Date();
+        $scope.AddLista.usuario = $scope.usuario1;
+        saveShoppingList.save($scope.AddLista);
     };
 
     $scope.propertyName = 'nombre';
