@@ -1,8 +1,8 @@
-<md-dialog aria-label="Detalles del producto " style="width:50%">
+<md-dialog aria-label="Detalles del producto "style="width:60%" >
     <form ng-cloak >
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Detalles del producto {{producto.producto.nombre}}</h2>
+                <h2>Detalles del producto {{producto.item.producto.nombre}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon md-svg-src="images/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
@@ -19,30 +19,30 @@
                             <td>
                                 <fieldset>
                                     <center><legend><h2>Producto:</h2></legend></center>
-                                    <center><label>Nombre:</label></center>
-                                    <center><label>{{producto.producto.nombre}}</label></center>
-                                    <center><label>Precio:</label></center>
-                                    <center><label>{{producto.producto.precio}}</label></center>
-                                    <center><label>Marca:</label></center>
-                                    <center><label>{{producto.producto.marca}}</label></center>
-                                    <center><label>Categoria:</label></center>
-                                    <center><label>{{producto.producto.categoria}}</label></center>
-                                    <center><img height="100" width="100" ng-src="/items/{{producto.producto.id}}/imagen" alt="Imagen del producto"/></center>
+                                    <center><label><strong>Nombre:</strong></label></center>
+                                    <center><label>{{producto.item.producto.nombre}}</label></center>
+                                    <center><label><strong>Precio:</strong></label></center>
+                                    <center><label>{{producto.item.precio}}</label></center>
+                                    <center><label><strong>Marca:</strong></label></center>
+                                    <center><label>{{producto.item.producto.marca}}</label></center>
+                                    <center><label><strong>Categoria:</strong></label></center>
+                                    <center><label>{{producto.item.producto.categoria}}</label></center>
+                                    <center><img height="100" width="100" ng-src="/items/{{producto.item.producto.id}}/imagen" alt="Imagen del producto"/></center>
                                 </fieldset>
 
                             </td>
                             <td>
                                 <fieldset>
                                     <center><legend><h2>Tienda:</h2></legend></center>
-                                    <center><label>Nombre:</label></center>
-                                    <center><label>{{producto.tienda.nombre}}</label></center>
-                                    <center><label>Direccion:</label></center>
-                                    <center><label>{{producto.tienda.direccion}}</label></center>
-                                    <center><label>Telefono:</label></center>
-                                    <center><label>{{producto.tienda.telefono}}</label></center>
-                                    <center><label>Horario:</label></center>
-                                    <center><label>PEnsarr</label></center>
-                                    <center><img height="100" width="100"  ng-src="/tiendas/x/{{producto.tienda.id.x}}/y/{{producto.tienda.id.y}}/nit/{{producto.tienda.id.nit}}/logo" alt="Logo/fotografia tienda"/></center>
+                                    <center><label><strong>Nombre:</strong></label></center>
+                                    <center><label>{{producto.item.tienda.nombre}}</label></center>
+                                    <center><label><strong>Direccion:</strong></label></center>
+                                    <center><label>{{producto.item.tienda.direccion}}</label></center>
+                                    <center><label><strong>Telefono:</strong></label></center>
+                                    <center><label>{{producto.item.tienda.telefono}}</label></center>
+                                    <center><label><strong>Horario:</strong></label></center>
+                                    <center><label>{{producto.item.producto.horario}}</label></center>
+                                    <center><img height="100" width="100"  ng-src="/tiendas/x/{{producto.item.tienda.id.x}}/y/{{producto.tienda.id.y}}/nit/{{producto.tienda.id.nit}}/logo" alt="Logo/fotografia tienda"/></center>
                                 </fieldset>
                             </td>
 
