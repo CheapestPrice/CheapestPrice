@@ -8,8 +8,10 @@ import java.io.Serializable;
  */
 @Embeddable
 public class ListaMercado_Item implements Serializable {
+
     @Column(name = "nombre")
     private String nombre;
+
     @Column(name = "USUARIOS_correo")
     private String usuario;
 

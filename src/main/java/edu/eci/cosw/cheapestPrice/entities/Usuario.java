@@ -22,41 +22,10 @@ public class Usuario implements Persona,Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     protected List<ListaDeMercado> listas;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     protected List<Opinion> opiniones;
 
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre=nombre;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public List<ListaDeMercado> getListas() {
-        return listas;
-    }
-
-    public void setListas(List<ListaDeMercado> listas) {
-        this.listas = listas;
-    }
-
-    public List<Opinion> getOpiniones() {
-        return opiniones;
-    }
-
-    public void setOpiniones(List<Opinion> opiniones) {
-        this.opiniones = opiniones;
-    }
     public Usuario() {
     }
 
@@ -88,6 +57,38 @@ public class Usuario implements Persona,Serializable {
                 lM.agregarProducto(iT);
             }
         }
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre=nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public List<ListaDeMercado> getListas() {
+        return listas;
+    }
+
+    public void setListas(List<ListaDeMercado> listas) {
+        this.listas = listas;
+    }
+
+    public List<Opinion> getOpiniones() {
+        return opiniones;
+    }
+
+    public void setOpiniones(List<Opinion> opiniones) {
+        this.opiniones = opiniones;
     }
 
 }

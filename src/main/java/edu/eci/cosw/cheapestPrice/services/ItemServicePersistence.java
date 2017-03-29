@@ -2,12 +2,14 @@ package edu.eci.cosw.cheapestPrice.services;
 
 import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
+import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ItemPersistence;
 //import edu.eci.cosw.cheapestPrice.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Blob;
 import java.util.List;
 
 /**
@@ -32,8 +34,8 @@ public class ItemServicePersistence implements ItemService{
     }
 
     @Override
-    public List<Item> loadItemByShop(String shopName) throws CheapestPriceException {
-        return ip.loadItemByShop(shopName);
+    public List<Item> loadItemByShop(TiendaId tiendaId) throws CheapestPriceException {
+        return ip.loadItemByShop(tiendaId);
     }
 
     @Override
@@ -64,5 +66,15 @@ public class ItemServicePersistence implements ItemService{
     @Override
     public void updateItem(long oldId, String oldShop, Item item) throws CheapestPriceException {
         ip.updateItem(oldId,oldShop,item);
+    }
+
+    @Override
+    public void updateProductImage(Blob imagen, String nombre, String marca, String categoria) throws CheapestPriceException {
+        ip.updateProductImage(imagen, nombre, marca, categoria);
+    }
+
+    @Override
+    public List<Producto> getProducts() {
+        return ip.getProducts();
     }
 }

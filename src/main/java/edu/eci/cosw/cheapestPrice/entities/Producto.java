@@ -13,17 +13,23 @@ import java.sql.Blob;
 @Entity
 @Table(name="PRODUCTOS")
 public class Producto implements Serializable {
+
     @Column(name="nombre")
     private String nombre;
+
     @Column(name = "marca")
     private String marca;
+
     @Column(name="categoria")
     private String categoria;
+
     @Column(name="imagen")
     @JsonIgnore
+    @Lob
     private Blob imagen;
-    @GeneratedValue
+
     @Id
+    @Column(name = "id", nullable = false)
     private long id;
 
     public Producto(long id, String nombre,String marca, String categoria){
@@ -37,7 +43,6 @@ public class Producto implements Serializable {
 
     }
 
-
     public String getNombre() {
         return nombre;
     }
@@ -45,7 +50,6 @@ public class Producto implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
 
     public String getMarca() {
         return marca;
@@ -55,7 +59,6 @@ public class Producto implements Serializable {
         this.marca = marca;
     }
 
-
     public String getCategoria() {
         return categoria;
     }
@@ -63,7 +66,6 @@ public class Producto implements Serializable {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-
 
     public long getId() {
         return id;

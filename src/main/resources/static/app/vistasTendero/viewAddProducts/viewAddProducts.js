@@ -5,30 +5,115 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/viewAddProducts', {
         templateUrl: 'vistasTendero/viewAddProducts/viewAddProducts.html',
+        directive: 'fileModel',
+        service: 'fileUpload',
         controller: 'ViewAddProductsCtrl'
     });
 }])
+.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
 
-.controller('ViewAddProductsCtrl', ['$scope', 'items2StubFactory', '$rootScope','$location','itemsByShop','updateItem','itemByShopAndId','allItems', function($scope,items2StubFactory,$rootScope,$location,itemsByShop,updateItem,itemByShopAndId,allItems) {
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}])
+.service('fileUpload', ['$http', function ($http) {
+    this.uploadFileToUrl = function(file, uploadUrl,item){
+        /*var fd = new FormData();
+        fd.append('file', file);
+        fd.append('formdata',JSON.stringify(item));*/
+        $http({
+            method: 'POST',
+            url: uploadUrl,
+            headers: {'Content-Type': undefined},
+            data: {
+                items: item,
+                files: file
+            },
+            transformRequest: function (data) {
+                var formData = new FormData();
+                //formData.append("items", angular.toJson(data.items),{ header: { contentType: 'application/json; charset=UTF-8' } });
+                //formData.append("items", angular.toJson(data.items));
+                formData.append("items", new Blob([JSON.stringify(data.items)], {type: "application/json"}));
+                formData.append("files", data.files);
+
+                //var headers = headersGetter();
+                //console.log(headers);
+                //delete headers['Content-Type'];
+                return formData;
+            }
+        });
+        /*$http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })*/
+    }
+}])
+.controller('ViewAddProductsCtrl', ['$scope', 'totalProducts','items2StubFactory', '$rootScope','$location','itemsByShop','getShop','updateItem','itemByShopAndId','allItems','fileUpload', function($scope,totalProducts,items2StubFactory,$rootScope,$location,itemsByShop,getShop,updateItem,itemByShopAndId,allItems,fileUpload) {
     //AGREGAR
     $scope.agregar=true;
     $rootScope.tienda="Surtir";
-    $rootScope.shop={
-        direccion:'Cll 167 #58a-20',
-        x:4.7498466,
-        y:-74.0623005,
-        nombre:'Surtir',
-        telefono:"65498765",
+    $rootScope.shopId = new TiendaId();
+    $rootScope.shop= new Tienda();
+    $rootScope.shopId.nit = '1234567-2';
+    $rootScope.shopId.x = 4.7649271000;
+    $rootScope.shopId.y = -74.0476042000;
+    $rootScope.shop.direccion = 'Cll 167 #58a-20';
+    $rootScope.shop.nombre = 'Donde Pepe';
+    $rootScope.shop.telefono = '5473829';
+    $rootScope.shop.disponible = true;
+    $rootScope.shop.id= $rootScope.shopId;
+
+    /*{
+        direccion:'CR NM #NM-NM',
+        x:4.7649271000,
+        y:-74.0476042000,
+        nombre:'Donde Pepe',
+        telefono:"5473829",
         disponible:true,
-        nit:'123456456'
+        nit:'1234567-2'
+    };*/
+    $scope.uploadFile = function(){
+        var file = $scope.myFile;
+        console.log('file is ' );
+        console.dir(file);
+        var uploadUrl = "/dispatches/upload?idpedido="+$scope.idpedido+"&idvehiculo="+$scope.idvehiculo;
+        fileUpload.uploadFileToUrl(file, uploadUrl);
     };
-    $scope.selectedCategoria="";
+    $scope.produc = new Producto();
+    $scope.iteId = new ItemId();
+    $scope.ite = new Item();
+    $scope.produc.nombre = "";
+    $scope.produc.marca = "";
+    $scope.produc.categoria = "";
+    totalProducts.query()
+    $scope.prod = totalProducts.query();
+    $scope.prod.$promise.then(function (result) {
+        $scope.prod = result;
+        $scope.produc.id = $scope.prod.length + 1;
+        $scope.iteId.productoId = $scope.produc.id;
+        console.log($scope.prod);
+        console.log($scope.prod.length);
+    });
+
+
+    $scope.ite.precio = 50;
+    /*$scope.selectedCategoria="";
     $scope.nombre="";
     $scope.precio=50;
-    $scope.marca="";
+    $scope.marca="";*/
     //$scope.listaProductos=itemsByShop.query({shopName:$rootScope.shop.nombre});
-    console.log(itemsByShop.query({shopName:$rootScope.shop.nombre}));
-    $scope.listado=itemsByShop.query({shopName:$rootScope.shop.nombre});
+    console.log(getShop);
+    console.log(getShop.get({x:$rootScope.shopId.x, y:$rootScope.shopId.y, nit:$rootScope.shopId.nit}));
+    $scope.listado=itemsByShop.query({x:$rootScope.shopId.x, y:$rootScope.shopId.y, nit:$rootScope.shopId.nit});
     $scope.propertyName = 'producto.nombre';
     $scope.reverse = false;
     $scope.sortBy = function(propertyName) {
@@ -41,29 +126,39 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
         $scope.mensaje="Por favor, revise la información suministrada...";
         $scope.fail=false;
         $scope.success=false;
-        if($scope.nombre.length>0 && $scope.marca.length>0 && $scope.selectedCategoria.length>0 && $scope.precio>0){
+        if($scope.produc.nombre.length>0 && $scope.produc.marca.length>0 && $scope.produc.categoria.length>0 && $scope.ite.precio>0){
             $scope.mensaje="El producto fue registrado sactisfactoriamente...";
             $scope.success=true;
             $scope.fail=false;
-            var num=items2StubFactory.getItems().length;
+            /*var num=items2StubFactory.getItems().length;
             var itemm={
                 producto:{
                     nombre: $scope.nombre,
                     categoria: $scope.selectedCategoria,
-                    precio: $scope.precio,
-                    marca:$scope.marca,
-                    id:(num+1).toString()
+                    marca:$scope.marca
                 },
-                tienda:$rootScope.shop
-            }
+                tienda:$rootScope.shop,
+                precio:$scope.precio
+            }*/
+            $scope.ite.producto = $scope.produc;
+            $scope.ite.tienda = $rootScope.shop;
 
-            allItems.save(itemm,function(data){
-                $scope.listado=itemsByShop.query({shopName:$rootScope.shop.nombre});
+            $scope.iteId.tiendaNit = $rootScope.shopId.nit;
+            $scope.iteId.tiendaX = $rootScope.shopId.x;
+            $scope.iteId.tiendaY = $rootScope.shopId.y;
+            $scope.ite.id = $scope.iteId;
+            var file = $scope.myFile;
+            console.log('file is ' );
+            console.dir(file);
+            var uploadUrl = "/items/upload";
+            fileUpload.uploadFileToUrl(file, uploadUrl,$scope.ite);
+            /*allItems.save($scope.ite,function(data){
+                $scope.listado=itemsByShop.query({x:$rootScope.shopId.x, y:$rootScope.shopId.y, nit:$rootScope.shopId.nit});
               },function(error){
                 $scope.fail=true;
                 $scope.success=false;
                 $scope.mensaje="Por favor, revise la información suministrada...";
-              })
+             })*/
             $scope.mensaje="Por favor, revise la información suministrada...";
 
             /*var sePudo=items2StubFactory.registrarProducto(itemm);

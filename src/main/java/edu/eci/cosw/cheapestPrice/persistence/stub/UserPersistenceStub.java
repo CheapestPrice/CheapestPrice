@@ -10,7 +10,7 @@ import java.util.*;
 /**
  * Created by 2105403 on 2/21/17.
  */
-@Service
+//@Service
 public class UserPersistenceStub implements UserPersistence{
 
     public List<Usuario> getUsuarios() {
@@ -85,7 +85,6 @@ public class UserPersistenceStub implements UserPersistence{
 
     @Override
     public void deleteShoppingList(String correo, String nombreLista) throws CheapestPriceException {
-        boolean ban=false;
         for(Usuario u:usuarios){
             if(u.getCorreo().equals(correo)){
                 for(ListaDeMercado lm:u.getListas()){
@@ -94,12 +93,79 @@ public class UserPersistenceStub implements UserPersistence{
                         break;
                     }
                 }
-                if(ban){
-                    break;
+            }
+        }
+    }
+
+    @Override
+    public void favoriteShoppingListItem(String correo, String nombreLista, long idProducto, double x,double y, String nit,boolean fav) throws CheapestPriceException {
+        for(Usuario u:usuarios){
+            if(u.getCorreo().equals(correo)){
+                for(ListaDeMercado lm:u.getListas()){
+                    if(lm.getListaid().getNombre().equals(nombreLista)){
+                        for(ItemLista itL:lm.getItems()){
+                            Tienda t=itL.getItem().getTienda();
+                            if(itL.getItem().getProducto().getId()==idProducto && t.getId().getX()==x && t.getId().getY()==y && t.getId().getNit().equals(nit)){
+                                itL.setFavorito(fav);
+                                break;
+                            }
+                        }
+                    }
                 }
             }
         }
     }
+
+    @Override
+    public void deleteSelectedItem(String correo, String nombreLista, long idProducto, double x,double y, String nit) throws CheapestPriceException {
+        for(Usuario u:usuarios){
+            if(u.getCorreo().equals(correo)) {
+                for(ListaDeMercado lm:u.getListas()){
+                    if(lm.getListaid().getNombre().equals(nombreLista)){
+                        for(ItemLista itL:lm.getItems()){
+                            Tienda t=itL.getItem().getTienda();
+                            if(itL.getItem().getProducto().getId()==idProducto && t.getId().getX()==x && t.getId().getY()==y && t.getId().getNit().equals(nit)){
+                                lm.getItems().remove(itL);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void sellSelectedItem(String correo, String nombreLista, long idProducto, double x, double y, String nit,boolean comp) throws CheapestPriceException {
+        for(Usuario u:usuarios){
+            if(u.getCorreo().equals(correo)){
+                for(ListaDeMercado lm:u.getListas()){
+                    if(lm.getListaid().getNombre().equals(nombreLista)){
+                        for(ItemLista itL:lm.getItems()){
+                            Tienda t=itL.getItem().getTienda();
+                            if(itL.getItem().getProducto().getId()==idProducto && t.getId().getX()==x && t.getId().getY()==y && t.getId().getNit().equals(nit)){
+                                itL.setComprado(comp);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void addShoppingList(String nombreLista, String correo) throws CheapestPriceException {
+        ListaMercado_Item lmi=new ListaMercado_Item(nombreLista,correo);
+        ListaDeMercado lm = new ListaDeMercado(lmi);
+        for(Usuario u:usuarios){
+            if(u.getCorreo().equals(correo)){
+                u.getListas().add(lm);
+                break;
+            }
+        }
+    }
+
 
     public static void poblarStub(UserPersistenceStub ups){
         Producto p1=new Producto(1,"Queso crema","Alqueria","Queso");

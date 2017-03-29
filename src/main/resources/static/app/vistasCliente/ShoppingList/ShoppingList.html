@@ -35,6 +35,14 @@
 
         </div>
     </div>
+    <div ng-controller="ViewMapCtrl">
+        <md-button class="md-primary md-raised" ng-click="flipShow()">
+            Mostrar mapa
+        </md-button>
+        <ui-gmap-google-map control="map.control" center='map.center' zoom='map.zoom'  ng-show="show">
+            <!--ui-gmap-markers models="markers" coords="'center'" idKey="'id'"></ui-gmap-markers-->
+        </ui-gmap-google-map>
+    </div>
     <div ng-controller="shopListCtrl">
         <h1>{{listado.nombre}}</h1>
         <table class="table table-condensed table-hover">
@@ -80,17 +88,16 @@
                 </td>
                 <td>
                     <center>
-                        <md-checkbox ng-model="todo.producto.comprado" aria-label="Checkbox" ng-click="comprado(todo.item.producto.id, todo.item.tienda.nombre)">
+                        <md-checkbox ng-model="todo.comprado" aria-label="Checkbox" ng-click="comprado(todo.item.producto.id, todo.item.tienda,todo.comprado,todo)">
                         </md-checkbox>
                     </center>
                 </td>
                 <td><center>
-                    <div class="presentation">
-                        <button-favorite></button-favorite>
-                    </div>
+                    <md-checkbox ng-model="todo.favorito" aria-label="Checkbox" ng-click="favorito(todo.item.producto.id, todo.item.tienda,todo.favorito,todo)">
+                    </md-checkbox>
                 </center>
                 </td>
-                <td><center><button ng-click="eliminarItem(todo.item.producto.id, todo.item.tienda.nombre)">Eliminar</button></center></td>
+                <td><center><button ng-click="eliminarItem(todo.item.producto.id, todo.item.tienda)">Eliminar</button></center></td>
             </tr>
             </tbody>
         </table>

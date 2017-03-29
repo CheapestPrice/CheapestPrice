@@ -1,9 +1,14 @@
 package edu.eci.cosw.cheapestPrice.persistence.hibernate;
 
+import edu.eci.cosw.cheapestPrice.entities.ItemListaId;
 import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
+import edu.eci.cosw.cheapestPrice.entities.ListaMercado_Item;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
+import edu.eci.cosw.cheapestPrice.repositories.ItemListRepository;
+import edu.eci.cosw.cheapestPrice.repositories.ShopRepository;
+import edu.eci.cosw.cheapestPrice.repositories.ShoppingListRepository;
 import edu.eci.cosw.cheapestPrice.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,10 +18,14 @@ import org.springframework.stereotype.Service;
 /**
  * Created by masterhugo on 3/18/17.
  */
-//@Service
+@Service
 public class UserPersistenceHibernate implements UserPersistence{
     @Autowired
     UserRepository us;
+    @Autowired
+    ShoppingListRepository slR;
+    @Autowired
+    ItemListRepository ilR;
 
     @Override
     public List<Usuario> loadAllUsuarios() {
@@ -49,6 +58,32 @@ public class UserPersistenceHibernate implements UserPersistence{
 
     @Override
     public void deleteShoppingList(String correo, String nombreLista) throws CheapestPriceException {
-
+        ListaMercado_Item lmI=new ListaMercado_Item(nombreLista,correo);
+        slR.delete(lmI);
     }
+
+    @Override
+    public void favoriteShoppingListItem(String correo, String nombreLista, long idProducto,double x,double y,String nit,boolean fav) throws CheapestPriceException {
+        ilR.favoriteItemSelected(correo,nombreLista,idProducto,x,y,nit,fav);
+    }
+
+    @Override
+    public void deleteSelectedItem(String correo, String nombreLista, long idProducto, double x, double y, String nit) throws CheapestPriceException {
+        ItemListaId iLId = new ItemListaId(correo,nombreLista,nit,x,y,idProducto);
+        ilR.delete(iLId);
+    }
+
+    @Override
+    public void sellSelectedItem(String correo, String nombreLista, long idProducto, double x, double y, String nit, boolean comp) throws CheapestPriceException {
+        ilR.sellItemSelected(correo,nombreLista,idProducto,x,y,nit,comp);
+    }
+
+    @Override
+    public void addShoppingList(String nombreLista, String correo) throws CheapestPriceException {
+        ListaMercado_Item lmi=new ListaMercado_Item(nombreLista,correo);
+        ListaDeMercado lm = new ListaDeMercado(lmi);
+        slR.save(lm);
+    }
+
+
 }

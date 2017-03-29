@@ -30,7 +30,7 @@
                     <li><a href="#!/ListasMercado">Listas de mercado</a></li>
                     <li><a href="#!/viewSearch">Buscar productos</a></li>
                     <li class="break"><a href="#!/viewAddProducts">Agregar Productos</a></li>
-                    <li ng-show="authenticated"><a href="#!/viewMap">Mapa</a></li>
+                    <!--li ng-show="authenticated"><a href="#!/viewMap">Mapa</a></li-->
                     <li><a ng-controller="logout" ng-click="logout()">Log Out</a></li>
                 </ul>
             </nav>
@@ -52,12 +52,10 @@
                         <img ng-src="/items/{{pro.producto.id}}/imagen"
                              style="width: 120px; height: 120px; float:left;" alt=""/>
                         <p class="pname">{{pro.producto.nombre}}</p>
-
-                        <p class="tname">{{pro.tienda.nombre}}</p>
-                        <label>60 reviews</label>
                         <p class="price">{{pro.precio}}</p>
+                        <p class="tname">{{pro.tienda.nombre}}</p>
+                        <label>60 opiniones</label>
                         <star-rating ng-model="rating2" readonly="isReadonly"></star-rating>
-
                     </div>
                     <div>
                         <md-button class="md-primary md-raised" ng-click="showAdvanced($event,pro)">

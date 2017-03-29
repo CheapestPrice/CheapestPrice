@@ -10,10 +10,13 @@ import javax.persistence.Embeddable;
 */
 @Embeddable
 public class TiendaId implements java.io.Serializable  {
+
     @Column(name="nit", nullable=false, insertable=false,updatable=false)
     private String nit;
+
     @Column(name="x", nullable=false ,insertable=false,updatable=false)
     private double x;
+
     @Column(name="y", nullable=false ,insertable=false,updatable=false)
     private double y;
 
@@ -26,8 +29,6 @@ public class TiendaId implements java.io.Serializable  {
         this.y=y;
         this.nit=nit;
     }
-
-
 
     public String getNit() {
         return nit;

@@ -12,6 +12,7 @@ import java.util.Date;
 @Entity
 @Table(name="OPINIONES")
 public class Opinion implements Serializable {
+
     @Id
     @GeneratedValue
     private int id;
@@ -61,7 +62,6 @@ public class Opinion implements Serializable {
         this.id = id;
     }
 
-
     public String getComentario() {
         return comentario;
     }
@@ -69,7 +69,6 @@ public class Opinion implements Serializable {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
-
 
     public boolean isGusta() {
         return gusta;
@@ -83,7 +82,6 @@ public class Opinion implements Serializable {
         this.gusta = like;
     }
 
-
     public Date getFecha() {
         return fecha;
     }
@@ -91,7 +89,6 @@ public class Opinion implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-
 
     public Usuario getUsuario() {
         return usuario;

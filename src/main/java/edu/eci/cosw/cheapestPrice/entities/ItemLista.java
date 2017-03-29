@@ -12,34 +12,6 @@ import java.io.Serializable;
 @Table(name = "ITEMS_LISTA")
 public class ItemLista implements Serializable{
 
-    /**
-     * @return the lista
-     */
-    public ListaDeMercado getLista() {
-        return lista;
-    }
-
-    /**
-     * @param lista the lista to set
-     */
-    public void setLista(ListaDeMercado lista) {
-        this.lista = lista;
-    }
-
-    /**
-     * @return the item
-     */
-    public Item getItem() {
-        return item;
-    }
-
-    /**
-     * @param item the item to set
-     */
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
     @Column(name = "comprado",nullable = false)
     private boolean comprado;
 
@@ -47,7 +19,7 @@ public class ItemLista implements Serializable{
     private boolean favorito;
 
     @EmbeddedId
-    @JsonIgnore
+    //@JsonIgnore
     private ItemListaId id;
 
     @OneToOne
@@ -68,7 +40,7 @@ public class ItemLista implements Serializable{
     private ListaDeMercado lista;
 
     public ItemLista(){
-        super();
+
     }
 
     public ItemLista(ItemListaId id, boolean comprado, boolean favorito){
@@ -76,6 +48,21 @@ public class ItemLista implements Serializable{
         this.favorito=favorito;
     }
 
+    public ListaDeMercado getLista() {
+        return lista;
+    }
+
+    public void setLista(ListaDeMercado lista) {
+        this.lista = lista;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
 
     public boolean isComprado() {
         return comprado;

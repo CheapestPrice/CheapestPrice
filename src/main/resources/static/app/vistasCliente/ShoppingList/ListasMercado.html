@@ -38,6 +38,14 @@
 
     <div ng-controller="listasMercadoCtrl">
         <h1>Listas de mercado</h1>
+        <th>
+            <td>
+                <input type="text" name="nombreLista" ng-model="nombreLista">
+            </td>
+            <td>
+                <button ng-click="agregarLista()">Agregar Lista</button>
+            </td>
+        </th>
         <table class="table table-condensed table-hover">
             <theader>
                 <tr>
@@ -61,7 +69,7 @@
             <tbody>
             <tr ng-repeat="todo in usuario1.listas  | orderBy:propertyName:reverse">
                 <td><center>{{todo.listaid.nombre}}</center></td>
-                <td><center>{{todo.fechaCreacion.toLocaleString()}}</center></td>
+                <td><center>{{todo.fechaCreacion |date :  "dd/MM/y"}}</center></td>
                 <td><center>{{completo(todo.revisado)}}</center></td>
                 <td><center><button ng-click="ver(todo)">Ver</button></center></td>
                 <td><center><button ng-click="eliminarLista(todo.listaid.nombre)">Eliminar</button></center></td>

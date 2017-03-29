@@ -31,7 +31,7 @@ import java.io.IOException;
 @SpringBootApplication
 @EnableJpaRepositories("edu.eci.cosw.cheapestPrice.repositories")
 @EntityScan("edu.eci.cosw.cheapestPrice.entities")
-public class    CheapestPriceApplication {
+public class CheapestPriceApplication {
 
     @Configuration
     @EnableGlobalMethodSecurity(prePostEnabled = true)

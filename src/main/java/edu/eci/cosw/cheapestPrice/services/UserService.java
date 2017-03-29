@@ -54,4 +54,40 @@ public interface UserService {
      */
     public void deleteShoppingList(String correo, String nombreLista)throws  CheapestPriceException;
 
+    /**
+     * Pone en favorito un item de la lista de mercado de un usuario
+     * @param correo
+     * @param nombreLista
+     * @param productoId
+     * @throws CheapestPriceException
+     */
+    public void favoriteShoppingListItem(String correo,String nombreLista,long productoId,double x,double y,String nit,boolean fav)throws CheapestPriceException;
+
+    /**
+     * Elimina un item de la lista de mercado de un usuario
+     * @param correo
+     * @param nombreLista
+     * @param idProducto
+     * @throws CheapestPriceException
+     */
+    public void deleteSelectedItem(String correo,String nombreLista,long idProducto,double x,double y,String nit)throws CheapestPriceException;
+
+    /**
+     * Marca como comprado un item de la lista de mercado de un usuario
+     * @param correo
+     * @param nombreLista
+     * @param idProducto
+     * @param x
+     * @param y
+     * @param nit
+     * @throws CheapestPriceException
+     */
+    public void sellSelectedItem(String correo,String nombreLista,long idProducto,double x,double y,String nit, boolean comp)throws CheapestPriceException;
+
+    /**
+     * Agrega una lista de mercado
+     * @throws CheapestPriceException
+     */
+    public void addShoppingList(String nombreLista,String correo)throws CheapestPriceException;
+
 }

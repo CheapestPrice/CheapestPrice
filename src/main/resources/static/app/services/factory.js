@@ -313,11 +313,14 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
     .factory('allItems',function($resource) {
         return $resource('/items');
     })
+    .factory('totalProducts',function($resource) {
+            return $resource('/items/products');
+     })
     .factory('itemByShopAndId',function($resource) {
         return $resource('/items/shop/:shopName/id/:idNum');
     })
     .factory('itemsByShop',function($resource) {
-        return $resource('/items/shop/:shopName');
+        return $resource('/items/shop/x/:x/y/:y/nit/:nit');
     })
     .factory('itemsByCategory',function($resource) {
         return $resource('/items/category/:categoryName');
@@ -325,6 +328,9 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
     .factory('itemsById',function($resource) {
         return $resource('/items/:idNum');
     })
+    .factory('getShop',function($resource) {
+            return $resource('/tiendas/x/:x/y/:y/nit/:nit');
+        })
     .factory('updateItem',function($resource) {
             return $resource('/items/shop/:oldShop/id/:oldId', null,
                    {
@@ -346,4 +352,26 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
                 {
                     'delete' : {method:'DELETE'}
                 });
-        });
+        })
+     .factory('favoriteItemList',function($resource){
+            return $resource('/usuarios/favorito/:correo/:listaNombre/:productoId/:nit/:x/:y/:fav',null,
+            {
+                  'update':{method:'PUT'}
+            });
+
+     })
+     .factory('deleteItemSelected',function($resource){
+            return $resource('/usuarios/:correo/:listaNombre/:productoId/:nit/:x/:y',null,
+            {
+                'delete' : {method:'DELETE'}
+            });
+     })
+     .factory('sellItemSelected',function($resource){
+                 return $resource('/usuarios/:correo/:listaNombre/:productoId/:nit/:x/:y/:comp',null,
+                 {
+                     'update' : {method:'PUT'}
+                 });
+     })
+     .factory('saveShoppingList',function($resource){
+        return $resource('/usuarios/:correo/:listaNombre');
+     });

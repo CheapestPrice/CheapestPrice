@@ -5,6 +5,7 @@ import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ItemPersistence;
 import org.springframework.stereotype.Service;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,13 +53,13 @@ public class ItemPersistenceStub implements ItemPersistence{
     }
 
     @Override
-    public List<Item> loadItemByShop(String shopName) throws CheapestPriceException {
-        if(shopName==null || shopName.length()==0){
-            throw new CheapestPriceException("El nombre de la tienda no puede ser vacio");
+    public List<Item> loadItemByShop(TiendaId tiendaId) throws CheapestPriceException {
+        if(tiendaId==null || tiendaId.getNit().length()==0){
+            throw new CheapestPriceException("El identificador debe existir");
         }
         List<Item> shop= new ArrayList<>();
         for (Item i : items){
-            if(i.getTienda().getNombre().equals(shopName)){
+            if(i.getTienda().getId().getNit().equals(tiendaId.getNit()) && tiendaId.getX() == i.getTienda().getId().getX() && tiendaId.getY() == i.getTienda().getId().getY()){
                 shop.add(i);
             }
         }
@@ -152,6 +153,16 @@ public class ItemPersistenceStub implements ItemPersistence{
         }else{
             throw new CheapestPriceException("No hay ningun item registrado con el id suministrado");
         }
+    }
+
+    @Override
+    public void updateProductImage(Blob imagen, String nombre, String marca, String categoria) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public List<Producto> getProducts() {
+        return null;
     }
 
     public static void poblarStub(ItemPersistenceStub ips){

@@ -9,6 +9,7 @@ import java.io.Serializable;
  */
 @Embeddable
 public class HorarioId implements Serializable {
+
     @Column(name = "dia",nullable = false,insertable = false,updatable = false)
     private String dia;
 

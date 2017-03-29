@@ -22,7 +22,6 @@ public class UserController {
     public ResponseEntity<?> getUsuarios(){
         return new ResponseEntity<>(uP.loadAllUsuarios(), HttpStatus.ACCEPTED);
     }
-    //{correo:.+}
     @RequestMapping(value="/{correo:.+}" ,method = RequestMethod.GET)
     public ResponseEntity<?> getUsuarioPorCorreo(@PathVariable String correo){
         try{
@@ -55,16 +54,63 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="/{correo:.+}/{listaNombre}" ,method = RequestMethod.PUT)
-    public ResponseEntity<?> actualizarUsuario(@PathVariable String correo, String listaNombre){
+    @RequestMapping(value="/{correo:.+}/{listaNombre}" ,method = RequestMethod.DELETE)
+    public ResponseEntity<?> borrarListaMercado(@PathVariable String correo, @PathVariable String listaNombre){
         try{
             uP.deleteShoppingList(correo,listaNombre);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    @RequestMapping(value="/favorito/{correo:.+}/{listaNombre}/{productoId}/{nit}/{x}/{y}/{fav}" ,method = RequestMethod.PUT)
+    public ResponseEntity<?> favoritoItemUsuario(@PathVariable String correo, @PathVariable String listaNombre,@PathVariable long productoId,@PathVariable String nit,@PathVariable double x,@PathVariable double y,@PathVariable boolean fav){
+        try{
+            uP.favoriteShoppingListItem(correo,listaNombre,productoId,x,y,nit,fav);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             e.printStackTrace();
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(value="/{correo:.+}/{listaNombre}/{productoId}/{nit}/{x}/{y}" ,method = RequestMethod.DELETE)
+    public ResponseEntity<?> eliminarItemSeleccionado(@PathVariable String correo, @PathVariable String listaNombre,@PathVariable long productoId,@PathVariable String nit,@PathVariable double x,@PathVariable double y){
+        try{
+            uP.deleteSelectedItem(correo,listaNombre,productoId,x,y,nit);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }catch (CheapestPriceException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value="/{correo:.+}/{listaNombre}/{productoId}/{nit}/{x}/{y}/{comp}" ,method = RequestMethod.PUT)
+    public ResponseEntity<?> eliminarItemSeleccionado(@PathVariable String correo, @PathVariable String listaNombre,@PathVariable long productoId,@PathVariable String nit,@PathVariable double x,@PathVariable double y,@PathVariable boolean comp){
+        try{
+            uP.sellSelectedItem(correo,listaNombre,productoId,x,y,nit,comp);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }catch (CheapestPriceException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value="/{correo:.+}/{listaNombre}" ,method = RequestMethod.POST)
+    public ResponseEntity<?> agregarListaMercado(@PathVariable String correo, @PathVariable String listaNombre){
+        System.out.println(correo+" "+listaNombre);
+        try{
+            uP.addShoppingList(listaNombre,correo);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 
 }

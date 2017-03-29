@@ -14,48 +14,6 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class ItemId implements Serializable{
 
-    /**
-     * @return the tiendaNit
-     */
-    public String getTiendaNit() {
-        return tiendaNit;
-    }
-
-    /**
-     * @param tiendaNit the tiendaNit to set
-     */
-    public void setTiendaNit(String tiendaNit) {
-        this.tiendaNit = tiendaNit;
-    }
-
-    /**
-     * @return the tiendaX
-     */
-    public double getTiendaX() {
-        return tiendaX;
-    }
-
-    /**
-     * @param tiendaX the tiendaX to set
-     */
-    public void setTiendaX(double tiendaX) {
-        this.tiendaX = tiendaX;
-    }
-
-    /**
-     * @return the tiendaY
-     */
-    public double getTiendaY() {
-        return tiendaY;
-    }
-
-    /**
-     * @param tiendaY the tiendaY to set
-     */
-    public void setTiendaY(double tiendaY) {
-        this.tiendaY = tiendaY;
-    }
-
     @Column(name = "TIENDAS_nit",nullable = false)
     private String tiendaNit;
 
@@ -64,7 +22,6 @@ public class ItemId implements Serializable{
 
     @Column(name = "TIENDAS_y",nullable = false)
     private double tiendaY;
-
 
     @Column(name = "PRODUCTOS_id",nullable = false)
     private long productoId;
@@ -90,7 +47,29 @@ public class ItemId implements Serializable{
     public void setTiendaId(TiendaId tienda) {
         this.tiendaId = tienda;
     }*/
+    public String getTiendaNit() {
+        return tiendaNit;
+    }
 
+    public void setTiendaNit(String tiendaNit) {
+        this.tiendaNit = tiendaNit;
+    }
+
+    public double getTiendaX() {
+        return tiendaX;
+    }
+
+    public void setTiendaX(double tiendaX) {
+        this.tiendaX = tiendaX;
+    }
+
+    public double getTiendaY() {
+        return tiendaY;
+    }
+
+    public void setTiendaY(double tiendaY) {
+        this.tiendaY = tiendaY;
+    }
 
     public long getProductoId() {
         return productoId;

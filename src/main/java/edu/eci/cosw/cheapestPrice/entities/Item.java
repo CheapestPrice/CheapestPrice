@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class Item implements Serializable {
 
     @EmbeddedId
-    @JsonIgnore
+    //@JsonIgnore
     private ItemId id;
 
     @Column(name="precio")
@@ -27,22 +27,6 @@ public class Item implements Serializable {
             @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false, insertable=false, updatable=false)
     })
     private Tienda tienda;
-
-    public Tienda getTienda() {
-        return tienda;
-    }
-
-    public void setTienda(Tienda tienda) {
-        this.tienda = tienda;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
 
     //@MapsId("productoId")
     @ManyToOne(cascade=CascadeType.ALL)
@@ -70,7 +54,6 @@ public class Item implements Serializable {
         this.id=new ItemId(producto.getId(),tienda.getId().getX(),tienda.getId().getY(),tienda.getId().getNit());
     }
 
-
     public ItemId getId() {
         return id;
     }
@@ -78,18 +61,33 @@ public class Item implements Serializable {
     public void setId(ItemId id) {
         this.id = id;
     }
-    /**
-     * @return the precio
-     */
+
     public long getPrecio() {
         return precio;
     }
 
-    /**
-     * @param precio the precio to set
-     */
     public void setPrecio(long precio) {
         this.precio = precio;
     }
 
+    public Tienda getTienda() {
+        return tienda;
+    }
+
+    public void setTienda(Tienda tienda) {
+        this.tienda = tienda;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    @Override
+    public String toString() {
+        return id.getTiendaNit()+ " "+ id.getTiendaX() + " " + id.getTiendaY() + " "+id.getProductoId() +" "+precio;
+    }
 }

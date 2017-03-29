@@ -15,20 +15,6 @@ import java.util.List;
 @Table(name = "LISTAS_MERCADOS")
 public class ListaDeMercado implements Serializable {
 
-    /**
-     * @return the usuario
-     */
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    /**
-     * @param usuario the usuario to set
-     */
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     @Column(name = "fechaCreacion",nullable = false)
     private Date fechaCreacion;
 
@@ -57,6 +43,11 @@ public class ListaDeMercado implements Serializable {
         //items=new ArrayList<ItemLista>();
     }
 
+    public ListaDeMercado(ListaMercado_Item lmi){
+        this.listaid=lmi;
+        this.fechaCreacion=new Date();
+        this.revisado=false;
+    }
 
     /**
      * Agrega items a la lista de mercado
@@ -98,7 +89,6 @@ public class ListaDeMercado implements Serializable {
         this.fechaCreacion = fechaCreacion;
     }
 
-
     public boolean isRevisado() {
         return revisado;
     }
@@ -119,7 +109,13 @@ public class ListaDeMercado implements Serializable {
         this.items = items;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     public ListaMercado_Item getListaid() {
         return listaid;

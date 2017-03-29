@@ -13,14 +13,19 @@ public class Horario implements Serializable{
 
     @Column(name="horaInicio", nullable=false)
     private int horaInicio;
+
     @Column(name="minutosInicio", nullable=false)
     private int minutosInicio;
+
     @Column(name="horaFin", nullable=false)
     private int horaFin;
+
     @Column(name="minutosFin", nullable=false)
     private int minutoFin;
+
     @EmbeddedId
     private HorarioId horarioId;
+
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumns({
             @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false, insertable=false, updatable=false),

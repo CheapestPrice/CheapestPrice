@@ -2,7 +2,7 @@
     <form ng-cloak >
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Detalles del producto {{producto.producto.nombre}}</h2>
+                <h2>Detalles del producto {{producto.item.producto.nombre}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon md-svg-src="images/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
@@ -20,14 +20,14 @@
                                 <fieldset>
                                     <center><legend><h2>Producto:</h2></legend></center>
                                     <center><label>Nombre:</label></center>
-                                    <center><label>{{producto.producto.nombre}}</label></center>
+                                    <center><label>{{producto.item.producto.nombre}}</label></center>
                                     <center><label>Precio:</label></center>
-                                    <center><label>{{producto.producto.precio}}</label></center>
+                                    <center><label>{{producto.item.precio}}</label></center>
                                     <center><label>Marca:</label></center>
-                                    <center><label>{{producto.producto.marca}}</label></center>
+                                    <center><label>{{producto.item.producto.marca}}</label></center>
                                     <center><label>Categoria:</label></center>
-                                    <center><label>{{producto.producto.categoria}}</label></center>
-                                    <!--<center><img height="100" width="100" ng-src="/items/{{producto.producto.id}}/imagen" alt="Fotografia producto"/></center>-->
+                                    <center><label>{{producto.item.producto.categoria}}</label></center>
+                                    <center><img height="100" width="100" ng-src="/items/{{producto.item.producto.id}}/imagen" alt="Imagen del producto"/></center>
                                 </fieldset>
 
                             </td>
@@ -35,14 +35,14 @@
                                 <fieldset>
                                     <center><legend><h2>Tienda:</h2></legend></center>
                                     <center><label>Nombre:</label></center>
-                                    <center><label>{{producto.tienda.nombre}}</label></center>
+                                    <center><label>{{producto.item.tienda.nombre}}</label></center>
                                     <center><label>Direccion:</label></center>
-                                    <center><label>{{producto.tienda.direccion}}</label></center>
+                                    <center><label>{{producto.item.tienda.direccion}}</label></center>
                                     <center><label>Telefono:</label></center>
-                                    <center><label>{{producto.tienda.telefono}}</label></center>
+                                    <center><label>{{producto.item.tienda.telefono}}</label></center>
                                     <center><label>Horario:</label></center>
-                                    <center><label>Lunes a viernes 8 a.m a 9 p.m</label></center>
-                                    <center><img height="100" width="100"  src="images/shop.png" alt="Logo/fotografia tienda"/></center>
+                                    <center><label>PEnsarr</label></center>
+                                    <center><img height="100" width="100"  ng-src="/tiendas/x/{{producto.tienda.id.x}}/y/{{producto.tienda.id.y}}/nit/{{producto.tienda.id.nit}}/logo" alt="Logo/fotografia tienda"/></center>
                                 </fieldset>
                             </td>
 

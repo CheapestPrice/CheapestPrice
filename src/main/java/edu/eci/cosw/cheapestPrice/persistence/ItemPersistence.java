@@ -2,8 +2,10 @@ package edu.eci.cosw.cheapestPrice.persistence;
 
 import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
+import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 
+import java.sql.Blob;
 import java.util.List;
 
 /**
@@ -18,6 +20,12 @@ public interface ItemPersistence {
     public List<Item> loadItems();
 
     /**
+     * Carga todos los productos registrados
+     * @return todos los productos registrados
+     */
+    public List<Producto> getProducts();
+
+    /**
      * Retorna el item deseado
      * @param shopName el nombre de la tienda relacionada con el item
      * @param id el id del producto relacionado con el item
@@ -28,11 +36,11 @@ public interface ItemPersistence {
 
     /**
      * Carga todos los items registrados a nombre de una tienda dada
-     * @param shopName el nombre de la tienda deseada
+     * @param tiendaId el identificador de la tienda
      * @return todos los items registrados a nombre de la tienda solicitada
      * @throws CheapestPriceException si shopName es vacío o de longitud 0
      */
-    public List<Item> loadItemByShop(String shopName) throws CheapestPriceException;
+    public List<Item> loadItemByShop(TiendaId tiendaId) throws CheapestPriceException;
 
     /**
      * Carga todos los items con una categoría dada
@@ -80,4 +88,14 @@ public interface ItemPersistence {
      * @throws CheapestPriceException si alguno de los parametros es nulo o no hay ningun item registrado con oldId o los nuevos datos de item no son validos
      */
     public void updateItem(long oldId,String oldShop,Item item) throws CheapestPriceException;
+
+    /**
+     * Actualiza la imagen del producto bajo el nombre, la marca y categoria
+     * @param imagen la imagen a actualizar
+     * @param nombre el nombre del producto
+     * @param marca la marca del producto
+     * @param categoria la categoria del producto
+     * @throws CheapestPriceException si alguno de los parametros es nulo o no hay ningun producto registrado
+     */
+    public void updateProductImage(Blob imagen, String nombre, String marca, String categoria) throws CheapestPriceException;
 }

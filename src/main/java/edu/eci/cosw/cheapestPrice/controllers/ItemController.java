@@ -1,6 +1,8 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
 import edu.eci.cosw.cheapestPrice.entities.Item;
+import edu.eci.cosw.cheapestPrice.entities.Producto;
+import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +10,12 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.sql.Blob;
 import java.sql.SQLException;
 
 /**
@@ -25,6 +31,10 @@ public class ItemController {
     public ResponseEntity<?> getItems(){
         return new ResponseEntity<>(is.loadItems(), HttpStatus.ACCEPTED);
     }
+    @RequestMapping(method = RequestMethod.GET,value="/products" )
+    public ResponseEntity<?> getProducts(){
+        return new ResponseEntity<>(is.getProducts(), HttpStatus.ACCEPTED);
+    }
 
     @RequestMapping(method = RequestMethod.GET,value="/shop/{shop}/id/{id}")
     public ResponseEntity<?> getItem(@PathVariable String shop,@PathVariable long id){
@@ -36,10 +46,10 @@ public class ItemController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET,value="/shop/{shopName}")
-    public ResponseEntity<?> getItemsShop(@PathVariable String shopName){
+    @RequestMapping(method = RequestMethod.GET,value="/shop/x/{x}/y/{y}/nit/{nit}")
+    public ResponseEntity<?> getItemsShop(@PathVariable double x,@PathVariable double y,@PathVariable String nit){
         try {
-            return new ResponseEntity<>(is.loadItemByShop(shopName), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(is.loadItemByShop(new TiendaId(nit,x,y)), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
@@ -109,5 +119,25 @@ public class ItemController {
             e.printStackTrace();
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
+    }
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public ResponseEntity uploadFile(@RequestPart(value = "items") Item items,@RequestPart(value = "files", required = false) MultipartFile files) {
+
+        try {
+            if(files != null){
+                Blob imagen = new SerialBlob(StreamUtils.copyToByteArray(files.getInputStream()));
+                Producto p =items.getProducto();
+                p.setImagen(imagen);
+                items.setProducto(p);
+                is.addItem(items);
+            }else{
+                is.addItem(items);
+            }
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>("{}", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 }
