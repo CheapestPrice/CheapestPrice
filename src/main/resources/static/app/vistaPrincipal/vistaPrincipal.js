@@ -29,7 +29,7 @@ angular.module('myApp.vistaPrincipal', ['ngRoute'])
       console.log("no navigator.geolocation");
     }
     $scope.nextRegistro=function(){
-                $location.path("/vistaRegistro");
+                $location.path("/registro");
         }
 
 }]);

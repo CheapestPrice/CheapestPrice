@@ -24,16 +24,10 @@ public class Cuenta implements Serializable{
 
     private boolean habilitado;
 
-    public Cuenta(String email, String contraseña, String rol){
+    public Cuenta(String email, String hash, String rol){
         this.email=email;
-        this.hash=contraseña;
+        this.hash=hash;
         this.rol=rol;
-        this.habilitado=true;
-    }
-
-    public Cuenta(String email, String contraseña){
-        this.email=email;
-        this.hash=contraseña;
         this.habilitado=true;
     }
 

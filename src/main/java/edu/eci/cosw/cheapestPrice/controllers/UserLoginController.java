@@ -21,13 +21,23 @@ import java.security.Principal;
 @RestController
 public class UserLoginController {
 
-   // @Autowired
-    //CuentaService cs;
+   @Autowired
+    CuentaService cs;
 
     @RequestMapping("/app/user")
     public Principal user(Principal user) {
         return user;
     }
 
+    @RequestMapping(value="/cuenta",method = RequestMethod.POST)
+    public ResponseEntity<?> agregarCuenta(@RequestBody Cuenta cuenta){
+        try{
+            cs.agregarCuenta(cuenta);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }catch (CheapestPriceException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

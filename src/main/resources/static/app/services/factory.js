@@ -7,8 +7,13 @@ angular.module('services.listFactory', ['ngRoute', 'ngResource'])
     })
 
     .factory('registroU', function($resource) {
-                    return $resource('/usuarios');
+                    return $resource('/cuenta');
                 })
+
+    .factory('registroC', function($resource) {
+                        return $resource('/usuarios');
+                    })
+
     .factory('listasMercadoStubFactory', function () {
             var listaMercado = {
                         lista:[{
