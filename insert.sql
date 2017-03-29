@@ -33,15 +33,16 @@ INSERT INTO `PRODUCTOS` (`nombre`,`id`,`marca`,`imagen`,`categoria`) VALUES
 			('Leche',1,'Alpina',null,'Lacteos'),
 			('Papas BBQ',2,'Margarita',null,'Pasabocas'),
 			('Gelatina Fresa',3,'Gelhada',null,'Postre'),
-			('Queso Pera',4,'Colanta',null,'Lacteos');
+			('Queso Pera',4,'Colanta',null,'Lacteos'),
+			('Nutella',5,'Nutella',null,'Lacteos');
 
 LOCK TABLES `TENDEROS` WRITE;
 INSERT INTO `TENDEROS` (`USUARIOS_correo`,`nombre`,`TIENDAS_x`,`TIENDAS_y`,`TIENDAS_nit`) VALUES
-			('tendero@tendero.com',`tendero1`,4.7649271,-74.0476042,'1234567-2');
+			('tendero@tendero.com','tendero1',4.7649271,-74.0476042,'1234567-2');
 
 LOCK TABLES `TIENDAS` WRITE;
 INSERT INTO `TIENDAS` (`direccion`,`x`,`y`,`nombre`,`nit`,`telefono`,`disponible`,`logo`) VALUES
-		      ('CR NM #NM-NM',4.7649271,-74.0476042,'Donde Pepe','1234567-2','5473829',true,null);
+		      ('Cra. 54d #186-78 a 186-98',4.7649271,-74.0476042,'Donde Pepe','1234567-2','5473829',true,null);
 
 LOCK TABLES `USUARIOS` WRITE;
 INSERT INTO `USUARIOS` (`nombre`,`correo`) VALUES
@@ -56,12 +57,11 @@ INSERT INTO `USUARIOS_ROLES` (`id`,`USUARIOS_correo`,`rol`) VALUES
 			     (2,'prueba@prueba.com','Usuario'),
 			     (3,'admin@cheapestprice.com','Usuario');
 
+/*prueba
+tendero
+admin*/
 LOCK TABLES `USUARIOS_AUTENTICACION` WRITE;
 INSERT INTO `USUARIOS_AUTENTICACION` (`USUARIOS_correo`,`hash`,`habilitado`) VALUES
-				     ('prueba@prueba.com','$2a$06$xP01EJ/jiHbM76ydX52M.uYQX4GTqjvrAJyBkkrzU8Y.uUAx7hmQK',true),
-				     ('tendero@tendero.com','$2a$06$dQSpBh.CyVqRIt8VJQiniOoJwfA2lopdKC8vt4CRYKGYFwRwqo02y',true),
-				     ('admin@cheapestprice.com','$2a$04$9bTPMRnWTVwi.xUjK2uQn.iCZowsVnNode.hG.czbSzT3LWDNn6Gu',true);
-
-
-
-
+				('prueba@prueba.com','$2a$06$xP01EJ/jiHbM76ydX52M.uYQX4GTqjvrAJyBkkrzU8Y.uUAx7hmQK',true),
+				('tendero@tendero.com','$2a$06$dQSpBh.CyVqRIt8VJQiniOoJwfA2lopdKC8vt4CRYKGYFwRwqo02y',true),
+				('admin@cheapestprice.com','$2a$04$9bTPMRnWTVwi.xUjK2uQn.iCZowsVnNode.hG.czbSzT3LWDNn6Gu',true),
