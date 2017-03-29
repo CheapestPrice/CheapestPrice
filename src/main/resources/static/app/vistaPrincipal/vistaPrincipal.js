@@ -17,14 +17,16 @@ angular.module('myApp.vistaPrincipal', ['ngRoute'])
     $rootScope.y=0;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
-          //console.log(position);
+          console.log(position);
           $rootScope.x = position.coords.latitude;
           $rootScope.y = position.coords.longitude;
           //console.log($rootScope.x+" "+$rootScope.y);
-      })
-      //console.log("navigator.geolocation");
+      },function (err) {
+          console.warn('ERROR(' + err.code + '): ' + err.message);
+        })
+      console.log("navigator.geolocation");
     }else{
-      //console.log("no navigator.geolocation");
+      console.log("no navigator.geolocation");
     }
     $scope.nextRegistro=function(){
                 $location.path("/vistaRegistro");
