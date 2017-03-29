@@ -51,17 +51,11 @@ INSERT INTO `USUARIOS` (`nombre`,`correo`) VALUES
 		       ('admin','admin@cheapestprice.com');
 
 
-LOCK TABLES `USUARIOS_ROLES` WRITE;
-INSERT INTO `USUARIOS_ROLES` (`id`,`USUARIOS_correo`,`rol`) VALUES
-			     (1,'tendero@tendero.com','Tendero'),
-			     (2,'prueba@prueba.com','Usuario'),
-			     (3,'admin@cheapestprice.com','Usuario');
-
 /*prueba
 tendero
 admin*/
 LOCK TABLES `USUARIOS_AUTENTICACION` WRITE;
-INSERT INTO `USUARIOS_AUTENTICACION` (`USUARIOS_correo`,`hash`,`habilitado`) VALUES
-				('prueba@prueba.com','$2a$06$xP01EJ/jiHbM76ydX52M.uYQX4GTqjvrAJyBkkrzU8Y.uUAx7hmQK',true),
-				('tendero@tendero.com','$2a$06$dQSpBh.CyVqRIt8VJQiniOoJwfA2lopdKC8vt4CRYKGYFwRwqo02y',true),
-				('admin@cheapestprice.com','$2a$04$9bTPMRnWTVwi.xUjK2uQn.iCZowsVnNode.hG.czbSzT3LWDNn6Gu',true),
+INSERT INTO `USUARIOS_AUTENTICACION` (`USUARIOS_correo`,`hash`,`rol`,`habilitado`) VALUES
+				('prueba@prueba.com','$2a$06$xP01EJ/jiHbM76ydX52M.uYQX4GTqjvrAJyBkkrzU8Y.uUAx7hmQK','Usuario',true),
+				('tendero@tendero.com','$2a$06$dQSpBh.CyVqRIt8VJQiniOoJwfA2lopdKC8vt4CRYKGYFwRwqo02y','Tendero',true),
+				('admin@cheapestprice.com','$2a$04$9bTPMRnWTVwi.xUjK2uQn.iCZowsVnNode.hG.czbSzT3LWDNn6Gu','Usuario',true),

@@ -78,20 +78,13 @@ INSERT INTO `ITEMS_LISTA` (`comprado`,`favorito`,`ITEMS_PRODUCTOS_id`,`ITEMS_TIE
 				(false,false,7,4.775933, -74.041923,'1295567-2','ListaMercado','prueba2@prueba.com'),
 				(false,false,8,4.775933, -74.041923,'1295567-2','ListaMercado','prueba2@prueba.com');
 
-LOCK TABLES `USUARIOS_ROLES` WRITE;
-INSERT INTO `USUARIOS_ROLES` (`id`,`USUARIOS_correo`,`rol`) VALUES
-					 (4,'tendero2@tendero.com','Tendero'),
-			     (5,'prueba2@prueba.com','Usuario'),
-					 (6,'tendero3@tendero.com','Tendero'),
-			     (7,'prueba3@prueba.com','Usuario');
-
 /*prueba
 tendero
 prueba
 tendero*/
 LOCK TABLES `USUARIOS_AUTENTICACION` WRITE;
-INSERT INTO `USUARIOS_AUTENTICACION` (`USUARIOS_correo`,`hash`,`habilitado`) VALUES
-						 ('prueba2@prueba.com','$2a$06$xP01EJ/jiHbM76ydX52M.uYQX4GTqjvrAJyBkkrzU8Y.uUAx7hmQK',true),
-				     ('tendero2@tendero.com','$2a$06$dQSpBh.CyVqRIt8VJQiniOoJwfA2lopdKC8vt4CRYKGYFwRwqo02y',true),
-						 ('prueb3@prueba.com','$2a$06$xP01EJ/jiHbM76ydX52M.uYQX4GTqjvrAJyBkkrzU8Y.uUAx7hmQK',true),
-				     ('tendero3@tendero.com','$2a$06$dQSpBh.CyVqRIt8VJQiniOoJwfA2lopdKC8vt4CRYKGYFwRwqo02y',true);
+INSERT INTO `USUARIOS_AUTENTICACION` (`USUARIOS_correo`,`hash`,`rol`,`habilitado`) VALUES
+						 ('prueba2@prueba.com','$2a$06$xP01EJ/jiHbM76ydX52M.uYQX4GTqjvrAJyBkkrzU8Y.uUAx7hmQK','Usuario',true),
+				     ('tendero2@tendero.com','$2a$06$dQSpBh.CyVqRIt8VJQiniOoJwfA2lopdKC8vt4CRYKGYFwRwqo02y','Tendero',true),
+						 ('prueb3@prueba.com','$2a$06$xP01EJ/jiHbM76ydX52M.uYQX4GTqjvrAJyBkkrzU8Y.uUAx7hmQK','Usuario',true),
+				     ('tendero3@tendero.com','$2a$06$dQSpBh.CyVqRIt8VJQiniOoJwfA2lopdKC8vt4CRYKGYFwRwqo02y','Tendero',true);

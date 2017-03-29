@@ -38,9 +38,6 @@ ALTER TABLE TIENDAS
 ALTER TABLE USUARIOS_AUTENTICACION
     DROP FOREIGN KEY USUARIOS_AUTENTICACION_USUARIOS;
 
-ALTER TABLE USUARIOS_ROLES
-    DROP FOREIGN KEY USUARIOS_ROLES_USUARIOS;
-
 ALTER TABLE TENDEROS
     DROP FOREIGN KEY USUARIOS_TENDEROS;
 
@@ -64,8 +61,6 @@ DROP TABLE TIENDAS;
 DROP TABLE USUARIOS;
 
 DROP TABLE USUARIOS_AUTENTICACION;
-
-DROP TABLE USUARIOS_ROLES;
 
 -- End of file.
 
@@ -151,6 +146,7 @@ CREATE TABLE PRODUCTOS (
 -- Table: TENDEROS
 CREATE TABLE TENDEROS (
     USUARIOS_correo varchar(100) NOT NULL,
+    nombre varchar(100) NOT NULL,
     TIENDAS_x double(100,10) NOT NULL,
     TIENDAS_y double(100,10) NOT NULL,
     TIENDAS_nit varchar(100) NOT NULL,
@@ -182,17 +178,11 @@ CREATE TABLE USUARIOS (
 CREATE TABLE USUARIOS_AUTENTICACION (
     USUARIOS_correo varchar(100) NOT NULL,
     hash varchar(70) NOT NULL,
+    rol varchar(100)  NOT NULL,
     habilitado bool NOT NULL,
     CONSTRAINT USUARIOS_AUTENTICACION_pk PRIMARY KEY (USUARIOS_correo)
 );
 
--- Table: USUARIOS_ROLES
-CREATE TABLE USUARIOS_ROLES (
-    id int NOT NULL AUTO_INCREMENT,
-    USUARIOS_correo varchar(100) NOT NULL,
-    rol varchar(100) NOT NULL,
-    CONSTRAINT USUARIOS_ROLES_pk PRIMARY KEY (id)
-);
 
 -- foreign keys
 -- Reference: HORARIOS_TIENDAS (table: HORARIOS)
@@ -239,10 +229,6 @@ ALTER TABLE TIENDAS ADD CONSTRAINT TIENDAS_TENDEROS FOREIGN KEY TIENDAS_TENDEROS
 ALTER TABLE USUARIOS_AUTENTICACION ADD CONSTRAINT USUARIOS_AUTENTICACION_USUARIOS FOREIGN KEY USUARIOS_AUTENTICACION_USUARIOS (USUARIOS_correo)
     REFERENCES USUARIOS (correo);
 
--- Reference: USUARIOS_ROLES_USUARIOS (table: USUARIOS_ROLES)
-ALTER TABLE USUARIOS_ROLES ADD CONSTRAINT USUARIOS_ROLES_USUARIOS FOREIGN KEY USUARIOS_ROLES_USUARIOS (USUARIOS_correo)
-    REFERENCES USUARIOS (correo);
-
 -- Reference: USUARIOS_TENDEROS (table: TENDEROS)
 ALTER TABLE TENDEROS ADD CONSTRAINT USUARIOS_TENDEROS FOREIGN KEY USUARIOS_TENDEROS (USUARIOS_correo)
     REFERENCES USUARIOS (correo);
@@ -287,8 +273,8 @@ INSERT INTO `PRODUCTOS` (`nombre`,`id`,`marca`,`imagen`,`categoria`) VALUES
             ('Queso Pera',4,'Colanta',null,'Lacteos');
 
 LOCK TABLES `TENDEROS` WRITE;
-INSERT INTO `TENDEROS` (`USUARIOS_correo`,`TIENDAS_x`,`TIENDAS_y`,`TIENDAS_nit`) VALUES
-            ('tendero@tendero.com',4.7649271,-74.0476042,'1234567-2');
+INSERT INTO `TENDEROS` (`USUARIOS_correo`,`nombre`,`TIENDAS_x`,`TIENDAS_y`,`TIENDAS_nit`) VALUES
+			('tendero@tendero.com','tendero1',4.7649271,-74.0476042,'1234567-2');
 
 LOCK TABLES `TIENDAS` WRITE;
 INSERT INTO `TIENDAS` (`direccion`,`x`,`y`,`nombre`,`nit`,`telefono`,`disponible`,`logo`,`TENDEROS_USUARIOS_correo`) VALUES
@@ -301,17 +287,11 @@ INSERT INTO `USUARIOS` (`nombre`,`correo`) VALUES
                ('admin','admin@cheapestprice.com');
 
 
-LOCK TABLES `USUARIOS_ROLES` WRITE;
-INSERT INTO `USUARIOS_ROLES` (`id`,`USUARIOS_correo`,`rol`) VALUES
-                 (1,'tendero@tendero.com','Tendero'),
-                 (2,'prueba@prueba.com','Usuario'),
-                 (3,'admin@cheapestprice.com','Usuario');
-
 LOCK TABLES `USUARIOS_AUTENTICACION` WRITE;
-INSERT INTO `USUARIOS_AUTENTICACION` (`USUARIOS_correo`,`hash`,`habilitado`) VALUES
-                     ('prueba@prueba.com','$2a$06$xP01EJ/jiHbM76ydX52M.uYQX4GTqjvrAJyBkkrzU8Y.uUAx7hmQK',true),
-                     ('tendero@tendero.com','$2a$06$dQSpBh.CyVqRIt8VJQiniOoJwfA2lopdKC8vt4CRYKGYFwRwqo02y',true),
-                     ('admin@cheapestprice.com','$2a$04$9bTPMRnWTVwi.xUjK2uQn.iCZowsVnNode.hG.czbSzT3LWDNn6Gu',true);
+INSERT INTO `USUARIOS_AUTENTICACION` (`USUARIOS_correo`,`hash`,`rol`,`habilitado`) VALUES
+				('prueba@prueba.com','$2a$06$xP01EJ/jiHbM76ydX52M.uYQX4GTqjvrAJyBkkrzU8Y.uUAx7hmQK','Usuario',true),
+				('tendero@tendero.com','$2a$06$dQSpBh.CyVqRIt8VJQiniOoJwfA2lopdKC8vt4CRYKGYFwRwqo02y','Tendero',true),
+				('admin@cheapestprice.com','$2a$04$9bTPMRnWTVwi.xUjK2uQn.iCZowsVnNode.hG.czbSzT3LWDNn6Gu','Usuario',true);
 
 
 

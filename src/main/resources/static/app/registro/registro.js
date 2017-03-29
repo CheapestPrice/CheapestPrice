@@ -16,7 +16,7 @@ angular.module('myApp.registro', ['ngRoute'])
       console.log($scope.hash);
       $scope.registro = function(){
               if(($scope.password==$scope.passwordConf)){
-                  var usuario={"nombre":$scope.nameU,"email":$scope.email,"nickname":$scope.nickname};
+                  var usuario={"nombre":$scope.nameU,"email":$scope.email};
                   registroU.save(usuario);
               }
 

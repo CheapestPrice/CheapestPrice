@@ -21,7 +21,7 @@ angular.module('myApp.login', ['ngRoute'])
                 $http.get('user', {headers: headers}).then(successCallback, errorCallback);
 
                 function successCallback(data){
-                    if (data.data.name) {
+                    if (data.name) {
                         $rootScope.authenticated = true;
                     }else {
                         $rootScope.authenticated = false;
@@ -45,6 +45,7 @@ angular.module('myApp.login', ['ngRoute'])
                     } else {
                         $location.path("/login");
                         $scope.error = true;
+                        alert("Error en autenticaci&oacute;n");
                     }
                 });
             };
