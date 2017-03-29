@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2017-03-20 17:39:57.026
+-- Last modification date: 2017-03-29 03:45:11.745
 
 -- tables
 -- Table: HORARIOS
@@ -72,7 +72,7 @@ CREATE TABLE PRODUCTOS (
     nombre varchar(100) NOT NULL,
     id bigint NOT NULL AUTO_INCREMENT,
     marca varchar(100) NOT NULL,
-    imagen blob NULL,
+    imagen longblob NULL,
     categoria varchar(100) NOT NULL,
     CONSTRAINT PRODUCTOS_pk PRIMARY KEY (id)
 );
@@ -96,7 +96,7 @@ CREATE TABLE TIENDAS (
     nit varchar(100) NOT NULL,
     telefono varchar(100) NOT NULL,
     disponible bool NOT NULL,
-    logo blob NULL,
+    logo longblob NULL,
     CONSTRAINT TIENDAS_pk PRIMARY KEY (x,y,nit)
 );
 
@@ -112,9 +112,9 @@ CREATE TABLE USUARIOS_AUTENTICACION (
     USUARIOS_correo varchar(100) NOT NULL,
     hash varchar(70) NOT NULL,
     habilitado bool NOT NULL,
+    rol varchar(100) NOT NULL,
     CONSTRAINT USUARIOS_AUTENTICACION_pk PRIMARY KEY (USUARIOS_correo)
 );
-
 
 -- foreign keys
 -- Reference: HORARIOS_TIENDAS (table: HORARIOS)
@@ -162,4 +162,3 @@ ALTER TABLE TENDEROS ADD CONSTRAINT USUARIOS_TENDEROS FOREIGN KEY USUARIOS_TENDE
     REFERENCES USUARIOS (correo);
 
 -- End of file.
-
