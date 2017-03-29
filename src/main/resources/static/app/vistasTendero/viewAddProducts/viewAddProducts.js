@@ -64,9 +64,9 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
     $rootScope.shopId = new TiendaId();
     $rootScope.shop= new Tienda();
     $rootScope.shopId.nit = '1234567-2';
-    $rootScope.shopId.x = 4.7649271000;
-    $rootScope.shopId.y = -74.0476042000;
-    $rootScope.shop.direccion = 'Cll 167 #58a-20';
+    $rootScope.shopId.x = 4.7649271;
+    $rootScope.shopId.y = -74.0476042;
+    $rootScope.shop.direccion = 'Cra. 54d #186-78 a 186-98';
     $rootScope.shop.nombre = 'Donde Pepe';
     $rootScope.shop.telefono = '5473829';
     $rootScope.shop.disponible = true;
@@ -159,7 +159,7 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
                 $scope.success=false;
                 $scope.mensaje="Por favor, revise la información suministrada...";
              })*/
-            $scope.mensaje="Por favor, revise la información suministrada...";
+            //$scope.mensaje="Por favor, revise la información suministrada...";
 
             /*var sePudo=items2StubFactory.registrarProducto(itemm);
             if(!sePudo){
@@ -174,6 +174,7 @@ angular.module('myApp.viewAddProducts', ['ngRoute'])
         }else{
             $scope.fail=true;
             $scope.success=false;
+            $scope.mensaje="Por favor, revise la información suministrada...";
         }
     };
 
