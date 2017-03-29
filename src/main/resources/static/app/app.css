@@ -1584,7 +1584,7 @@
 
 	h1, h2, h3, h4, h5, h6 {
 		font-weight: 300;
-		color: #52575c;
+		color: #000000;
 	}
 
 	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -1595,6 +1595,7 @@
 	h2 {
 		font-size: 2em;
 		line-height: 1.25em;
+		color:#000000
 	}
 
 	h3 {
