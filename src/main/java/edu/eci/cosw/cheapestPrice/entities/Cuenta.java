@@ -13,18 +13,16 @@ import java.io.Serializable;
 @Table(name="USUARIOS_AUTENTICACION")
 public class Cuenta implements Serializable{
 
-    @Column(name = "hash", nullable = false)
-    protected String hash;
 
-    @Column(name = "USUARIOS_correo", nullable = false, insertable = false, updatable = false)
-    @Id
-    protected String email;
+    private String hash;
 
-    @Column(name = "rol", nullable = false)
-    protected String rol;
+    private String email;
 
-    @Column(name = "habilitado", nullable = false)
-    protected boolean habilitado;
+
+    private String rol;
+
+
+    private boolean habilitado;
 
     public Cuenta(String email, String contraseña, String rol){
         this.email=email;
@@ -33,8 +31,15 @@ public class Cuenta implements Serializable{
         this.habilitado=true;
     }
 
+    public Cuenta(String email, String contraseña){
+        this.email=email;
+        this.hash=contraseña;
+        this.habilitado=true;
+    }
+
     public Cuenta(){ this.habilitado=true; }
 
+    @Column(name = "hash", nullable = false)
     public String getHash() {
         return hash;
     }
@@ -43,6 +48,8 @@ public class Cuenta implements Serializable{
         this.hash = hash;
     }
 
+    @Column(name = "USUARIOS_correo", nullable = false, insertable = false, updatable = false)
+    @Id
     public String getEmail() {
         return email;
     }
@@ -51,6 +58,7 @@ public class Cuenta implements Serializable{
         this.email = email;
     }
 
+    @Column(name = "habilitado", nullable = false)
     public boolean isHabilitado() {
         return habilitado;
     }
@@ -59,6 +67,7 @@ public class Cuenta implements Serializable{
         this.habilitado = habilitado;
     }
 
+    @Column(name = "rol", nullable = false)
     public String getRol() { return rol;}
 
     public void setRol(String rol) { this.rol = rol;}

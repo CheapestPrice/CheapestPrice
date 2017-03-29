@@ -8,7 +8,6 @@ import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
  */
 public interface CuentaService {
 
-    Cuenta Login(String email, String hash) throws CheapestPriceException;
 
     public void agregarCuenta(Cuenta cuenta) throws CheapestPriceException;
 }

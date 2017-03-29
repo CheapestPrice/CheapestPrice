@@ -45,7 +45,7 @@ angular.module('myApp.login', ['ngRoute'])
                     } else {
                         $location.path("/login");
                         $scope.error = true;
-                        alert("Error en autenticaci&oacute;n");
+                        alert("Error en autenticación");
                     }
                 });
             };

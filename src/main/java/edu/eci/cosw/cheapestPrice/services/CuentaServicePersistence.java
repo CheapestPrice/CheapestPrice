@@ -2,7 +2,7 @@ package edu.eci.cosw.cheapestPrice.services;
 
 import edu.eci.cosw.cheapestPrice.entities.Cuenta;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
-import edu.eci.cosw.cheapestPrice.persistence.CuentaPersistence;
+import edu.eci.cosw.cheapestPrice.repositories.CuentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,17 +12,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class CuentaServicePersistence implements CuentaService{
 
+
     @Autowired
-    CuentaPersistence cp;
-
-
-    @Override
-    public Cuenta Login(String email, String hash) throws CheapestPriceException {
-        return cp.Login(email,hash);
-    }
+    CuentaRepository cr;
 
     @Override
     public void agregarCuenta(Cuenta cuenta) throws CheapestPriceException {
-        cp.addCuentaTendero(cuenta);
+        cr.save(cuenta);
     }
 }

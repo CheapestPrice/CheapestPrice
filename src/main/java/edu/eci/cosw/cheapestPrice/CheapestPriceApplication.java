@@ -55,7 +55,7 @@ public class CheapestPriceApplication {
     protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         @Autowired
-        CuentaService cuentaService;
+        CuentaRepository cr;
 
 
         @Override
@@ -66,14 +66,9 @@ public class CheapestPriceApplication {
                 @Override
                 public Authentication authenticate(Authentication auth) throws AuthenticationException {
                     System.out.println(auth.getDetails()+" user  "+auth.getName()+" pas "+auth.getCredentials().toString()+"  otros "+ auth.getAuthorities());
-                    String email = auth.getName();
-                    String hash = auth.getCredentials().toString();
-                    Cuenta cuenta = null;
-                    try {
-                        cuenta = cuentaService.Login(email,hash);
-                    } catch (CheapestPriceException e) {
-                        e.printStackTrace();
-                    }
+
+                        Cuenta cuenta = cr.Login(auth.getName(),auth.getCredentials().toString());
+                        System.out.println("CUENTA: "+cuenta);
                     if (cuenta != null) {
                         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
                         authorities.add(new SimpleGrantedAuthority(cuenta.getRol()));
@@ -99,10 +94,10 @@ public class CheapestPriceApplication {
                     .antMatchers("/app/**","/logout","/login","/vistaPrincipal", "/usuarios/**","/tiendas/**", "/assets/**").permitAll()
                     .anyRequest().authenticated().and()
                     .logout().logoutSuccessUrl("/")
-                    .and().csrf()
-                    .csrfTokenRepository(csrfTokenRepository()).and()
-                    .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class).formLogin()
-                    .loginPage("/app/index.html");
+                    .and().csrf().disable();
+                    //.csrfTokenRepository(csrfTokenRepository()).and()
+                    //.addFilterAfter(csrfHeaderFilter(), CsrfFilter.class).formLogin()
+                    //.loginPage("/app/index.html");
         }
 
         private Filter csrfHeaderFilter() {

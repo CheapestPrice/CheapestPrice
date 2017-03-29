@@ -13,7 +13,4 @@ public interface CuentaRepository extends JpaRepository<Cuenta,String> {
     @Query("select c from Cuenta c where  c.email=:email and c.hash= :hash")
     Cuenta Login(@Param(value = "email")String email,@Param(value = "hash")String hash);
 
-    @Query("select c from Cuenta c where c.email=:email")
-    public Cuenta cargarCuentaPorCorreo(@Param("email") String email);
-
 }
