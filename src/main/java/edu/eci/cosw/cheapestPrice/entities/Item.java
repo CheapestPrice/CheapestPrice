@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class Item implements Serializable {
 
     @EmbeddedId
-    //@JsonIgnore
+    @JsonIgnore
     private ItemId id;
 
     @Column(name="precio")
