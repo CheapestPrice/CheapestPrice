@@ -6,7 +6,7 @@
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://ec2-35-164-220-111.us-west-2.compute.amazonaws.com:3306/bd2107646</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">2107646</property>
+        <property name="hibernate.connection.password">cheapestprice</property>
         <mapping class="edu.eci.cosw.cheapestPrice.entities.Item"/>
         <mapping class="edu.eci.cosw.cheapestPrice.entities.ItemLista"/>
         <mapping class="edu.eci.cosw.cheapestPrice.entities.Usuario"/>
