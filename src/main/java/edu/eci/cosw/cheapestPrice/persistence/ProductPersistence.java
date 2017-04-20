@@ -72,7 +72,7 @@ public interface ProductPersistence {
     /**
      * updateProduct nos actualiza un producto EXISTENTE
      * @param producto - el prodcuto a actualizar
-     * @throws CheapestPriceException si el producto no existe
+     * @throws CheapestPriceException si el producto no exisste
      * @throws CheapestPriceException si el producto es incompleto(falta alguna caracteristica)
      * @throws CheapestPriceException si el producto es nulo
      */
