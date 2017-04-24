@@ -23,10 +23,10 @@
                         <label for="email">Email:</label> <input type="email" required="true" class="form-control" id="email" name="email" ng-model="email"/>
                     </div>
                     <div class="form-group">
-                        <label for="password">Contraseña:</label> <input type="password" required="true" class="form-control" id="password" name="password" />
+                        <label for="password">Contraseña:</label> <input type="password" required="true" class="form-control" id="password" name="password" ng-model="password" />
                     </div>
                     <div class="form-group">
-                        <label for="passwordConf">Confirmar Contraseña:</label> <input type="password" required="true" class="form-control" id="passwordConf" name="passwordConf" />
+                        <label for="passwordConf">Confirmar Contraseña:</label> <input type="password" required="true" class="form-control" id="passwordConf" name="passwordConf" ng-model ="passwordConf" />
                     </div>
                     <div class="form-group">
                         <ul class="actions">
@@ -37,21 +37,19 @@
                     <div  ng-show="validada" div class="form-group" ng-submit="registroTienda()">
 
                         <div class="form-group">
-                            <label for="nomTienda">Nombre de la Tienda:</label> <input type="text" required="true" class="form-control" id="nomTienda" name="nomTienda" ng-model="nomTienda"/>
+                            <label for="nomTienda">Nombre de la Tienda:</label> <input type="text" ng-required="validada" class="form-control" id="nomTienda" name="nomTienda" ng-model="nomTienda"/>
                         </div>
                         <div class="form-group">
-                            <label for="dirTienda">Direccion de la Tienda:</label> <input type="text" required="true" class="form-control" id="dirTienda" name="dirTienda" ng-model="dirTienda"/>
+                            <label for="dirTienda">Direccion de la Tienda:</label> <input type="text" ng-required="validada" class="form-control" id="dirTienda" name="dirTienda" ng-model="dirTienda"/>
                         </div>
                         <div class="form-group">
-                            <label for="telTienda">Telefono de la Tienda:</label> <input type="text" required="true" class="form-control" id="telTienda" name="telTienda" ng-model="telTienda"/>
+                            <label for="telTienda">Telefono de la Tienda:</label> <input type="text" ng-required="validada" class="form-control" id="telTienda" name="telTienda" ng-model="telTienda"/>
                         </div>
                         <div class="form-group">
-                            <label for="nitTienda">Nit de la Tienda:</label> <input type="text" required="true" class="form-control" id="nitTienda" name="nitTienda" ng-model="nitTienda"/>
+                            <label for="nitTienda">Nit de la Tienda:</label> <input type="text" ng-required="validada" class="form-control" id="nitTienda" name="nitTienda" ng-model="nitTienda"/>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-
-
                 </form>
             </md-card-content>
 

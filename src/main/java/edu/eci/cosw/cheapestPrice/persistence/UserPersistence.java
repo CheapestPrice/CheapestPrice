@@ -1,5 +1,6 @@
 package edu.eci.cosw.cheapestPrice.persistence;
 
+import edu.eci.cosw.cheapestPrice.entities.Cuenta;
 import edu.eci.cosw.cheapestPrice.entities.ItemLista;
 import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
@@ -93,4 +94,10 @@ public interface UserPersistence {
     public void addShoppingList(ListaDeMercado listaDeMercado)throws CheapestPriceException;
 
     public void addItemListaMercado(ItemLista itemLista);
+    /**
+     *
+     * Agrega una cuenta
+     * @param cuenta
+     */
+    void addCuenta(Cuenta cuenta);
 }

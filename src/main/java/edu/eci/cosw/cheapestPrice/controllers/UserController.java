@@ -1,5 +1,6 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
+import edu.eci.cosw.cheapestPrice.entities.Cuenta;
 import edu.eci.cosw.cheapestPrice.entities.ItemLista;
 import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
@@ -37,6 +38,16 @@ public class UserController {
     public ResponseEntity<?> agregarUsuario(@RequestBody Usuario usuario){
         try{
             uP.addUser(usuario);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }catch (CheapestPriceException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+    @RequestMapping(method = RequestMethod.POST, value = "/cuenta")
+    public ResponseEntity<?> agregarCuenta(@RequestBody Cuenta cuenta){
+        try{
+            uP.addCuenta(cuenta);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             e.printStackTrace();

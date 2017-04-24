@@ -1,5 +1,6 @@
 package edu.eci.cosw.cheapestPrice.services;
 
+import edu.eci.cosw.cheapestPrice.entities.Cuenta;
 import edu.eci.cosw.cheapestPrice.entities.ItemLista;
 import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
 import edu.eci.cosw.cheapestPrice.entities.Usuario;
@@ -40,6 +41,13 @@ public interface UserService {
      * @param usuario
      */
     public void addUser(Usuario usuario) throws CheapestPriceException;
+
+    /**
+     *
+     * Agrega Cuenta
+     * @param cuenta
+     */
+    public void addCuenta(Cuenta cuenta) throws CheapestPriceException;
 
     /**
      * Actualiza a un usuario existente

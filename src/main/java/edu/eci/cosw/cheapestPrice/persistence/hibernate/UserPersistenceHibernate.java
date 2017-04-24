@@ -3,10 +3,7 @@ package edu.eci.cosw.cheapestPrice.persistence.hibernate;
 import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
-import edu.eci.cosw.cheapestPrice.repositories.ItemListRepository;
-import edu.eci.cosw.cheapestPrice.repositories.ShopRepository;
-import edu.eci.cosw.cheapestPrice.repositories.ShoppingListRepository;
-import edu.eci.cosw.cheapestPrice.repositories.UserRepository;
+import edu.eci.cosw.cheapestPrice.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -23,6 +20,9 @@ public class UserPersistenceHibernate implements UserPersistence{
     ShoppingListRepository slR;
     @Autowired
     ItemListRepository ilR;
+    @Autowired
+    CuentaRepository cr;
+
 
     @Override
     public List<Usuario> loadAllUsuarios() {
@@ -83,5 +83,10 @@ public class UserPersistenceHibernate implements UserPersistence{
     @Override
     public void addItemListaMercado(ItemLista itemLista) {
         ilR.save(itemLista);
+    }
+
+    @Override
+    public void addCuenta(Cuenta cuenta) {
+        cr.save(cuenta);
     }
 }

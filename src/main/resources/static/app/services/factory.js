@@ -380,6 +380,16 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
      .factory('saveItemList',function($resource){
              return $resource('/usuarios/itemlistamercado');
           })
+    .factory('registroC', function($resource) {
+        return $resource('/usuarios/cuenta');
+    })
+
+    .factory('registroU', function($resource) {
+        return $resource('/usuarios');
+    })
+    .factory('registroT', function($resource) {
+        return $resource('/tiendas');
+    })
      .factory('saveShoppingList',function($resource){
         return $resource('/usuarios/listaMercado');
      });

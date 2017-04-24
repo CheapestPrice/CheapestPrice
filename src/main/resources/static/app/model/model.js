@@ -86,3 +86,15 @@ function ListaDeMercado(listaid, fechaCreacion, revisado, usuario){
     this.usuario = usuario;
     this.items = [];
 }
+function Usuario(nombre, correo){
+    this.nombre = nombre;
+    this.correo = correo;
+    this.listas = [];
+    this.opiniones = [];
+}
+function Cuenta(email, hash, rol, habilitado){
+    this.email = email;
+    this.hash = hash;
+    this.rol = rol;
+    this.habilitado = habilitado;
+}
