@@ -15,7 +15,7 @@
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
-                <form role="form" ng-submit="registroTienda()">
+                <form role="form" ng-submit="registroTienda($event)">
                     <div class="form-group">
                         <label for="nameU">Nombre:</label> <input type="text" required="true" class="form-control" id="nameU" name="nameU" ng-model="nameU"/>
                     </div>
@@ -49,7 +49,7 @@
                             <label for="nitTienda">Nit de la Tienda:</label> <input type="text" ng-required="validada" class="form-control" id="nitTienda" name="nitTienda" ng-model="nitTienda"/>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" >Submit</button>
                 </form>
             </md-card-content>
 
