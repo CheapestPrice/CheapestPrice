@@ -45,11 +45,12 @@ public class CheapestPriceApplication {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
+            //Para asegurar el API nuevamente toca quitar el "/**" del antMatches
             http
                     .httpBasic()
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/app/**","/logout","/login","/vistaPrincipal", "/usuarios/**","/tiendas/**", "/assets/**").permitAll()
+                    .antMatchers("/**","/app/**","/logout","/login","/vistaPrincipal", "/usuarios/**","/tiendas/**", "/assets/**").permitAll()
                     .anyRequest().authenticated().and()
                     .logout().logoutSuccessUrl("/")
                     .and().csrf()
