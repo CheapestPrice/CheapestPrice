@@ -39,13 +39,24 @@ public class Tendero implements Serializable, Persona{
     })
     private Tienda tienda;
 
+    @Column(name="TIENDAS_nit", nullable=false, insertable=false,updatable=false)
+    private String nit;
+
+    @Column(name="TIENDAS_x", nullable=false ,insertable=false,updatable=false)
+    private double x;
+
+    @Column(name="TIENDAS_y", nullable=false ,insertable=false,updatable=false)
+    private double y;
+
     public Tendero(){}
 
-    public Tendero(String nombre,String correo, Tienda tienda){
+    public Tendero(String nombre,String correo, String nit, double x, double y){
         //super(nombre,correo);
         this.nombre = nombre;
         this.correo = correo;
-        //this.tienda=tienda;
+        this.nit=nit;
+        this.x=x;
+        this.y=y;
     }
 
     @Override
@@ -76,4 +87,27 @@ public class Tendero implements Serializable, Persona{
         this.tienda = tienda;
     }
 
+    public String getNit() {
+        return nit;
+    }
+
+    public void setNit(String nit) {
+        this.nit = nit;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
 }

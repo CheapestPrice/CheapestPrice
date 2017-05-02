@@ -22,6 +22,8 @@ public class UserPersistenceHibernate implements UserPersistence{
     ItemListRepository ilR;
     @Autowired
     CuentaRepository cr;
+    @Autowired
+    TenderoRepository tr;
 
 
     @Override
@@ -88,5 +90,10 @@ public class UserPersistenceHibernate implements UserPersistence{
     @Override
     public void addCuenta(Cuenta cuenta) {
         cr.save(cuenta);
+    }
+
+    @Override
+    public void addTendero(Tendero tendero) {
+        tr.save(tendero);
     }
 }

@@ -1,9 +1,6 @@
 package edu.eci.cosw.cheapestPrice.services;
 
-import edu.eci.cosw.cheapestPrice.entities.Cuenta;
-import edu.eci.cosw.cheapestPrice.entities.ItemLista;
-import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
-import edu.eci.cosw.cheapestPrice.entities.Usuario;
+import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 
 import java.util.List;
@@ -104,5 +101,10 @@ public interface UserService {
      * @throws CheapestPriceException
      */
     public void addItemListaMercado(ItemLista itemLista)throws CheapestPriceException;
-
+    /**
+     *
+     * Agrega un nuevo tendero
+     * @param tendero
+     */
+    public void  addTendero(Tendero tendero)throws CheapestPriceException;
 }

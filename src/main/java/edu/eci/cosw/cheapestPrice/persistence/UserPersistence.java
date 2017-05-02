@@ -1,9 +1,6 @@
 package edu.eci.cosw.cheapestPrice.persistence;
 
-import edu.eci.cosw.cheapestPrice.entities.Cuenta;
-import edu.eci.cosw.cheapestPrice.entities.ItemLista;
-import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
-import edu.eci.cosw.cheapestPrice.entities.Usuario;
+import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import org.eclipse.jetty.server.Authentication;
 import org.springframework.stereotype.Service;
@@ -93,11 +90,17 @@ public interface UserPersistence {
      */
     public void addShoppingList(ListaDeMercado listaDeMercado)throws CheapestPriceException;
 
-    public void addItemListaMercado(ItemLista itemLista);
+    public void addItemListaMercado(ItemLista itemLista)throws CheapestPriceException;
     /**
      *
      * Agrega una cuenta
      * @param cuenta
      */
-    void addCuenta(Cuenta cuenta);
+    void addCuenta(Cuenta cuenta)throws CheapestPriceException;
+    /**
+     *
+     * Agrega un tendero
+     * @param tendero
+     */
+    void addTendero(Tendero tendero)throws CheapestPriceException;
 }

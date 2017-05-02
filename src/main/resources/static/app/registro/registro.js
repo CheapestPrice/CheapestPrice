@@ -9,7 +9,7 @@ angular.module('myApp.registro', ['ngRoute'])
   });
 }])
 
-.controller('registro', ['bcrypt','$scope', '$rootScope', 'registroU','registroC','registroT','$mdDialog', function (bcrypt,$scope,$rootScope, registroU, registroC, registroT,$mdDialog)  {
+.controller('registro', ['bcrypt','$scope', '$rootScope', 'registroU','registroC','registroTi','registroTe','$mdDialog', function (bcrypt,$scope,$rootScope, registroU, registroC, registroTi,registroTe,$mdDialog)  {
 
     $scope.validada=false;
     $scope.validada2=false;
@@ -19,8 +19,7 @@ angular.module('myApp.registro', ['ngRoute'])
         else $scope.validada=true;
 
     }
-
-    var random=Math.floor((Math.random() * 10) + 5);
+    /*var random=Math.floor((Math.random() * 10) + 5);
     $scope.salt = bcrypt.genSaltSync(random);
     $scope.hash = bcrypt.hashSync("tendero", $scope.salt);
     console.log($scope.hash);
@@ -31,7 +30,7 @@ angular.module('myApp.registro', ['ngRoute'])
             registroC.save(cuenta);
             registroU.save(usuario);
         }
-    }
+    }*/
 
     $scope.registroTienda = function(ev){
         if($scope.validada){
@@ -51,9 +50,8 @@ angular.module('myApp.registro', ['ngRoute'])
                 cuenta.email = $scope.email;
                 cuenta.hash = $scope.password;
                 cuenta.rol = 'Usuario';
+
                 //registroU.save(usuario).$promise.then(registroC.save(cuenta));
-
-
             }
             else{
                 alert("Llena los campos correctamente");
@@ -74,35 +72,43 @@ angular.module('myApp.registro', ['ngRoute'])
              }
         })
             .then(function(answer) {
-              $scope.status = 'You said the information was "' + answer + '".';
+              console.log('2. La longitud es: ' + $scope.longitud + ', la latitud es: ' + $scope.latitud);
+              var cuenta = new Cuenta();
+              cuenta.email = $scope.email;
+              cuenta.hash = $scope.password;
+              cuenta.rol = 'Tendero';
+              var usuario = new Usuario();
+              usuario.nombre = $scope.nameU;
+              usuario.correo = $scope.email;
+              var tiendaId = new TiendaId($scope.nitTienda, $scope.longitud, $scope.latitud);
+              var tienda = new Tienda(tiendaId, $scope.dirTienda, $scope.nomTienda, $scope.telTienda, true);
+              var tendero = new Tendero($scope.email, $scope.nameU, $scope.nitTienda, $scope.longitud, $scope.latitud);
+              registroU.save(usuario).$promise.then(registroTi.save(tienda).$promise.then(registroTe.save(tendero).$promise.then(registroC.save(cuenta))));
+              //$scope.status = 'You said the information was "' + answer + '".';
             }, function() {
-              $scope.status = 'You cancelled the dialog.';
+            alert("Bueno jodase");
+              //$scope.status = 'You cancelled the dialog.';
             });
       };
       $scope.mapi = function(){
-        console.log($rootScope.x+", "+$rootScope.y);
-        var latitud;
-        var longitud;
+        $scope.latitud;
+        $scope.longitud;
         var latlon = "";
         var geocoder = new google.maps.Geocoder();
         var address = $scope.dirTienda+",Bogota";
         geocoder.geocode( { 'address': address}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 console.log(results);
-                latitud = results[0].geometry.location.lat();
-                longitud = results[0].geometry.location.lng();
-                console.log('La longitud es: ' + longitud + ', la latitud es: ' + latitud);
-                latlon = latitud + "," + longitud;
+                $scope.latitud = results[0].geometry.location.lat();
+                $scope.longitud = results[0].geometry.location.lng();
+                console.log('La longitud es: ' + $scope.longitud + ', la latitud es: ' + $scope.latitud);
+                latlon = $scope.latitud + "," + $scope.longitud;
                 var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="
                     +latlon+"&zoom=17&size=400x300&markers=color:blue|label:H|"
                     +latlon+"&sensor=true&key=AIzaSyAHWCLBHGvJpCZkc82kL9w9FykQB6Zy3pM";
                 document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
                 //$scope.validada2=true;
-                var tiendaId={"nit":$scope.nitTienda,"latitud":latitud,"longitud":longitud};
-                var tendero={"nombre":$scope.nombre,"email":$scope.email,"nickname":$scope.nickname};
-                var cuenta={"email":$scope.email, "hash:" :$scope.password, "rol":'Tendero'}
-                var tienda={"direccion":$scope.dirTienda,"id":tiendaId,"nombre":$scope.nomTienda,"telefono":$scope.telTienda,"tendero":tendero};
-                //registroT.save(tienda).$promise.then(registroC.save(cuenta));
+
                     }
                         });
       }
@@ -117,6 +123,7 @@ angular.module('myApp.registro', ['ngRoute'])
               };
 
               $scope.answer = function() {
+
                 $mdDialog.hide();
               };
         }

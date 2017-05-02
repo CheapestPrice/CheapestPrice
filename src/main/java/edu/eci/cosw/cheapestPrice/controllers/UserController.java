@@ -1,9 +1,6 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
-import edu.eci.cosw.cheapestPrice.entities.Cuenta;
-import edu.eci.cosw.cheapestPrice.entities.ItemLista;
-import edu.eci.cosw.cheapestPrice.entities.ListaDeMercado;
-import edu.eci.cosw.cheapestPrice.entities.Usuario;
+import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
 import edu.eci.cosw.cheapestPrice.services.UserService;
@@ -48,6 +45,16 @@ public class UserController {
     public ResponseEntity<?> agregarCuenta(@RequestBody Cuenta cuenta){
         try{
             uP.addCuenta(cuenta);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }catch (CheapestPriceException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+    @RequestMapping(method = RequestMethod.POST, value = "/tendero")
+    public ResponseEntity<?> agregarTendero(@RequestBody Tendero tendero){
+        try{
+            uP.addTendero(tendero);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             e.printStackTrace();

@@ -175,6 +175,11 @@ public class UserPersistenceStub implements UserPersistence{
 
     }
 
+    @Override
+    public void addTendero(Tendero tendero) {
+
+    }
+
     public static void poblarStub(UserPersistenceStub ups){
         Producto p1=new Producto(1,"Queso crema","Alqueria","Queso");
         TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);

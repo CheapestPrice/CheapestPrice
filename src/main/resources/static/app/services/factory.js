@@ -387,7 +387,10 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
     .factory('registroU', function($resource) {
         return $resource('/usuarios');
     })
-    .factory('registroT', function($resource) {
+    .factory('registroTe', function($resource) {
+        return $resource('/usuarios/tendero');
+    })
+    .factory('registroTi', function($resource) {
         return $resource('/tiendas');
     })
      .factory('saveShoppingList',function($resource){
