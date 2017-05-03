@@ -10,15 +10,17 @@ import java.util.List;
  */
 @Entity
 @Table(name = "USUARIOS")
-//@Inheritance(strategy=InheritanceType.JOINED)
 public class Usuario implements Persona,Serializable {
 
     @Column(name = "nombre", nullable = false)
     protected String nombre;
 
     @Column(name = "correo", nullable = false, insertable = false, updatable = false)
-    @Id
     protected String correo;
+
+    @Column(name = "id", nullable = false, insertable = false, updatable = false)
+    @Id
+    protected int id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     protected List<ListaDeMercado> listas;
@@ -29,22 +31,25 @@ public class Usuario implements Persona,Serializable {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String correo, List<ListaDeMercado> listas) {
+    public Usuario(String nombre, String correo, List<ListaDeMercado> listas,int id) {
         this.nombre = nombre;
         this.correo = correo;
         this.listas=new ArrayList<>();
+        this.setId(id);
     }
 
-    public Usuario(String nombre, String correo) {
+    public Usuario(String nombre, String correo,int id) {
         this.nombre = nombre;
         this.correo = correo;
+        this.setId(id);
     }
 
-    public Usuario(String nombre, String correo, List<ListaDeMercado> listas, List<Opinion> opiniones) {
+    public Usuario(String nombre, String correo, List<ListaDeMercado> listas, List<Opinion> opiniones,int id) {
         this.nombre = nombre;
         this.correo = correo;
         this.setListas(listas);
         this.setOpiniones(opiniones);
+        this.setId(id);
     }
 
     /**
@@ -91,4 +96,11 @@ public class Usuario implements Persona,Serializable {
         this.opiniones = opiniones;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

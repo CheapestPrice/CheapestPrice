@@ -29,16 +29,14 @@ public class Opinion implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumns({
-            @JoinColumn(name="USUARIOS_correo",referencedColumnName = "correo", nullable = false,insertable=false, updatable=false)
+            @JoinColumn(name="USUARIOS_id",referencedColumnName = "id", nullable = false,insertable=false, updatable=false)
     })
     @JsonIgnore
     private Usuario usuario;
 
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumns({
-            @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false, insertable=false, updatable=false),
-            @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false, insertable=false, updatable=false),
-            @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false, insertable=false, updatable=false)
+            @JoinColumn(name="TIENDAS_id", referencedColumnName="id", nullable=false, insertable=false, updatable=false)
     })
     @JsonIgnore
     private Tienda tienda;

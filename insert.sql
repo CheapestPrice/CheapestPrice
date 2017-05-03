@@ -15,10 +15,10 @@ INSERT INTO `TIENDAS` (`direccion`,`x`,`y`,`nombre`,`nit`,`telefono`,`disponible
 	('La Caro #197-2 a 197-54',4.775933, -74.041923,'Donde Carlos','1295567-2','1234567',true,null);
 
 LOCK TABLES `TENDEROS` WRITE;
-INSERT INTO `TENDEROS` (`USUARIOS_id`,`nombre`,`TIENDAS_id`) VALUES
-	(3,'tendero1',1),
-	(5,'tendero2',3),
-	(7,'tendero3',2);
+INSERT INTO `TENDEROS` (`USUARIOS_id`,`TIENDAS_id`) VALUES
+	(3,1),
+	(5,3),
+	(7,2);
 
 LOCK TABLES `HORARIOS` WRITE;
 INSERT INTO `HORARIOS` (`horaInicio`,`horaFin`,`minutosInicio`,`minutosFin`,`TIENDAS_id`,`dia`) VALUES
