@@ -4,10 +4,10 @@ Entities:
 	cambiar_Tendero DONE
 	cambiar_Opinion DONE
 	cambiar_Producto DONE
-	cambiar_Item
-	cambiar_Horario
-	cambiar_ListaMercado
-	cambiar_ItemLista
+	cambiar_Item DONE
+	cambiar_Horario DONE
+	cambiar_ListaMercado DONE
+	cambiar_ItemLista DONE
 	cambiar_Cuenta
 	crear_CuentaPass
 	eliminar_*Id

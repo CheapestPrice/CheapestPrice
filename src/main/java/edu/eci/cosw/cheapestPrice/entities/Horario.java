@@ -23,25 +23,26 @@ public class Horario implements Serializable{
     @Column(name="minutosFin", nullable=false)
     private int minutoFin;
 
-    @EmbeddedId
-    private HorarioId horarioId;
+    @Id
+    private int id;
+
+    @Column(name="dia", nullable=false)
+    private String dia;
 
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumns({
-            @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false, insertable=false, updatable=false),
-            @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false, insertable=false, updatable=false),
-            @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false, insertable=false, updatable=false)
+            @JoinColumn(name="TIENDAS_id", referencedColumnName="id", nullable=false, insertable=false, updatable=false)
     })
     @JsonIgnore
     private Tienda tienda;
 
-    public Horario(int horaInicio, int minutosInicio, int horaFin, int minutoFin,Tienda tienda,String dia) {
+    public Horario(int horaInicio, int minutosInicio, int horaFin, int minutoFin,Tienda tienda,String dia,int id) {
         this.setHoraInicio(horaInicio);
         this.setMinutosInicio(minutosInicio);
         this.setHoraFin(horaFin);
         this.setMinutoFin(minutoFin);
         setTienda(tienda);
-        setHorarioId(new HorarioId(dia,tienda.getId().getNit(),tienda.getId().getX(),tienda.getId().getY()));
+        this.id=id;
 
     }
 
@@ -83,19 +84,27 @@ public class Horario implements Serializable{
         this.minutoFin = minutoFin;
     }
 
-    public HorarioId getHorarioId() {
-        return horarioId;
-    }
-
-    public void setHorarioId(HorarioId horarioId) {
-        this.horarioId = horarioId;
-    }
-
     public Tienda getTienda() {
         return tienda;
     }
 
     public void setTienda(Tienda tienda) {
         this.tienda = tienda;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDia() {
+        return dia;
+    }
+
+    public void setDia(String dia) {
+        this.dia = dia;
     }
 }

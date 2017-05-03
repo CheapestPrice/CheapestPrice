@@ -18,23 +18,19 @@ public class ItemLista implements Serializable{
     @Column(name = "favorito",nullable = false)
     private boolean favorito;
 
-    @EmbeddedId
+    @Id
     //@JsonIgnore
-    private ItemListaId id;
+    private int id;
 
     @OneToOne
     @JoinColumns({
-            @JoinColumn(name = "ITEMS_TIENDAS_nit", referencedColumnName = "TIENDAS_nit", nullable = false,insertable = false,updatable = false),
-            @JoinColumn(name = "ITEMS_TIENDAS_x", referencedColumnName = "TIENDAS_x", nullable = false,insertable = false,updatable = false),
-            @JoinColumn(name = "ITEMS_TIENDAS_y", referencedColumnName = "TIENDAS_y", nullable = false,insertable = false,updatable = false),
-            @JoinColumn(name = "ITEMS_PRODUCTOS_id", referencedColumnName = "PRODUCTOS_id", nullable = false,insertable = false,updatable = false)
+            @JoinColumn(name = "ITEMS_TIENDAS_id", referencedColumnName = "TIENDAS_id", nullable = false,insertable = false,updatable = false)
     })
     private Item item;
 
     @ManyToOne
     @JoinColumns({
-            @JoinColumn(name = "LISTAS_MERCADOS_nombre", referencedColumnName = "nombre", nullable = false,insertable = false,updatable = false),
-            @JoinColumn(name = "LISTAS_MERCADOS_USUARIOS_correo", referencedColumnName = "USUARIOS_correo", nullable = false,insertable = false,updatable = false)
+            @JoinColumn(name = "LISTAS_MERCADOS_id", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
     })
     @JsonIgnore
     private ListaDeMercado lista;
@@ -88,11 +84,11 @@ public class ItemLista implements Serializable{
         this.favorito = favorito;
     }
 
-    public ItemListaId getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(ItemListaId id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

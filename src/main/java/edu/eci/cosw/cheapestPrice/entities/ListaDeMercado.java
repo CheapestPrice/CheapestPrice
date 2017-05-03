@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,13 +23,15 @@ public class ListaDeMercado implements Serializable {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "lista")
     private List<ItemLista> items;
 
-    @EmbeddedId
-    //@JsonIgnore
-    private ListaMercado_Item listaid;
+    @Id
+    private int id;
+
+    @Column(name = "nombre")
+    private String nombre;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumns({
-            @JoinColumn(name="USUARIOS_correo",referencedColumnName = "correo", nullable = false,insertable=false, updatable=false)
+            @JoinColumn(name="USUARIOS_id",referencedColumnName = "id", nullable = false,insertable=false, updatable=false)
     })
     @JsonIgnore
     private Usuario usuario;
@@ -43,8 +44,8 @@ public class ListaDeMercado implements Serializable {
         //items=new ArrayList<ItemLista>();
     }
 
-    public ListaDeMercado(ListaMercado_Item lmi){
-        this.listaid=lmi;
+    public ListaDeMercado(int lmi){
+        this.setId(lmi);
         this.fechaCreacion=new Date();
         this.revisado=false;
     }
@@ -117,11 +118,19 @@ public class ListaDeMercado implements Serializable {
         this.usuario = usuario;
     }
 
-    public ListaMercado_Item getListaid() {
-        return listaid;
+    public int getId() {
+        return id;
     }
 
-    public void setListaid(ListaMercado_Item listaid) {
-        this.listaid = listaid;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }
