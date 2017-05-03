@@ -72,7 +72,7 @@ CREATE TABLE PRODUCTOS (
     nombre varchar(100) NOT NULL,
     id bigint NOT NULL AUTO_INCREMENT,
     marca varchar(100) NOT NULL,
-    imagen longblob NULL,
+    imagen blob NULL,
     categoria varchar(100) NOT NULL,
     CONSTRAINT PRODUCTOS_pk PRIMARY KEY (id)
 );
@@ -96,7 +96,7 @@ CREATE TABLE TIENDAS (
     nit varchar(100) NOT NULL,
     telefono varchar(100) NOT NULL,
     disponible bool NOT NULL,
-    logo longblob NULL,
+    logo blob NULL,
     CONSTRAINT TIENDAS_pk PRIMARY KEY (x,y,nit)
 );
 
@@ -162,3 +162,5 @@ ALTER TABLE TENDEROS ADD CONSTRAINT USUARIOS_TENDEROS FOREIGN KEY USUARIOS_TENDE
     REFERENCES USUARIOS (correo);
 
 -- End of file.
+
+
