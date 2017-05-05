@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CheapestPrice</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+
+</head>
+<body>
+
+<div layout="row" >
+    <div flex="30">    </div>
+    <div flex="45" layout-align="center center">
+        <md-card>
+            <img ng-src="{{imagePath}}" class="md-card-image" >
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Inicia Sesion</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <form role="form" ng-submit="login()">
+                    <div class="form-group">
+                        <label for="username">Username:</label> <input type="text" class="form-control" id="username" name="username" ng-model="credentials.username"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label> <input type="password" class="form-control" id="password" name="password" ng-model="credentials.password"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </md-card-content>
+
+        </md-card>
+    </div>
+
+</div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+</body>
+</html>

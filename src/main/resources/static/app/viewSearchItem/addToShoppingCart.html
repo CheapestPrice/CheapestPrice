@@ -1,0 +1,38 @@
+
+
+<md-dialog>
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Escoger lista</h2>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <table class="table table-condensed table-hover">
+                <theader>
+                    <tr>
+                        <th>
+                            <center><p>Nombre</p></center>
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                </theader>
+                <tbody>
+                <tr ng-repeat="todo in usuario1.listas | orderBy:propertyName:reverse">
+                    <td><center>{{todo.listaid.nombre}}</center></td>
+                    <td><center><button ng-click="ver(todo)">Seleccionar</button></center></td>
+                </tr>
+                </tbody>
+            </table>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">
+                Cancel
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+

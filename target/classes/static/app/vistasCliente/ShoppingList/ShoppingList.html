@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<!--
+	Telephasic by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <div id="header-wrapper">
+        <div id="header" class="container">
+
+            <!-- Logo -->
+            <h1 id="logo"><a href="index.html">Cheapest Price</a></h1>
+
+            <!-- Nav -->
+            <nav id="nav" ng-show="authenticated">
+                <ul>
+                    <li><a href="#!/ListasMercado">Listas de mercado</a></li>
+                    <li><a href="#!/viewSearch">Buscar productos</a></li>
+                    <li class="break"><a href="#!/viewAddProducts">Agregar Productos</a></li>
+                    <li><a ng-controller="logout" ng-click="logout()">Log Out</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+    <div >
+        <md-button class="md-primary md-raised" ng-click="flipShow()">
+            Mostrar mapa
+        </md-button>
+        <ui-gmap-google-map control="map.control" center='map.center' zoom='map.zoom'  ng-show="show">
+            <!--ui-gmap-markers models="markers" coords="'center'" idKey="'id'"></ui-gmap-markers-->
+        </ui-gmap-google-map>
+    </div>
+    <div ng-controller="shopListCtrl">
+        <h1>{{listado.nombre}}</h1>
+        <table class="table table-condensed table-hover">
+            <theader>
+                <tr>
+                    <th><center>
+                        <md-button ng-click="sortBy('producto.nombre')">Producto</md-button>
+                    </center>
+                    </th>
+                    <th><center>
+                        <md-button ng-click="sortBy('producto.precio')">Precio</md-button>
+                    </center>
+                    </th>
+                    <th><center>
+                        <md-button ng-click="sortBy('producto.tienda')">Tienda</md-button>
+                    </center>
+                    </th>
+                    <th><center>
+                        <p>Detalles</p>
+                    </center>
+                    </th>
+                    <th><center>
+                        <p>Comprado</p>
+                    </center>
+                    </th>
+                    <th><center>
+                        <p>Favoritos</p>
+                    </center>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </theader>
+            <tbody>
+            <tr ng-repeat="todo in listado.items  | orderBy:propertyName:reverse">
+                <td><center>{{todo.item.producto.nombre}}</center></td>
+                <td><center>{{todo.item.precio}}</center></td>
+                <td><center>{{todo.item.tienda.nombre}}</center></td>
+                <td>
+                    <md-button class="md-primary md-raised" ng-click="showAdvanced($event,todo)">
+                        Detalles
+                    </md-button>
+                </td>
+                <td>
+                    <center>
+                        <md-checkbox ng-model="todo.comprado" aria-label="Checkbox" ng-click="comprado(todo.item.producto.id, todo.item.tienda,todo.comprado,todo)">
+                        </md-checkbox>
+                    </center>
+                </td>
+                <td><center>
+                    <md-checkbox ng-model="todo.favorito" aria-label="Checkbox" ng-click="favorito(todo.item.producto.id, todo.item.tienda,todo.favorito,todo)">
+                    </md-checkbox>
+                </center>
+                </td>
+                <td><center><button ng-click="eliminarItem(todo.item.producto.id, todo.item.tienda)">Eliminar</button></center></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

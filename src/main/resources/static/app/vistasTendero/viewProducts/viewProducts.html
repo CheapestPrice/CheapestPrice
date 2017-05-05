@@ -1,0 +1,48 @@
+<!--div  ng-show="authenticated"-->
+    <h1>Productos de la tienda {{tienda}}</h1>
+    <p>LOGO DE LA TIENDA (PROXIMAMENTE)</p>
+    <div class="table-responsive ">
+        <table class="table table-condensed table-hover">
+            <theader>
+                <tr>
+                    <th>
+                        <a ng-click="sortBy('producto.categoria')">Categoría</a>
+                    </th>
+                    <th>
+                        <a ng-click="sortBy('producto.nombre')">Nombre</a>
+                    </th>
+                    <th>
+                        <a ng-click="sortBy('producto.marca')">Marca</a>
+                    </th>
+                    <th>
+                        <a ng-click="sortBy('producto.precio')">Precio</a>
+                    </th>
+                    <th>
+                        <p>Foto</p>
+                    </th>
+                    <th>
+                        <p>Modificar</p>
+                    </th>
+                    <th>
+                        <p>Eliminar</p>
+                    </th>
+                </tr>
+            </theader>
+            <tbody>
+                <tr ng-repeat="item in listado  | orderBy:propertyName:reverse">
+                    <td>{{item.producto.categoria}}</td>
+                    <td>{{item.producto.nombre}}</td>
+                    <td>{{item.producto.marca}}</td>
+                    <td>${{item.precio}}</td>
+                    <td><img ng-src="/items/{{item.producto.id}}/imagen"
+                                            style="width: 120px; height: 120px;" alt=""/></td>
+                    <td><md-button><i class="fa fa-pencil-square-o" aria-hidden="true"></i></md-button></td>
+                    <td><md-button><i class="fa fa-eraser" aria-hidden="true"></i></md-button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<!--/div-->
+<!--div  ng-show="!authenticated">
+    <h1>No tiene autorización para acceder</h1>
+</div-->

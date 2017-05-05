@@ -1,0 +1,40 @@
+
+body {
+  padding: 3rem 1rem 0;
+  font-family: 'Lato', sans-serif;
+  background: #444;
+}
+
+.presentation {
+  .btn-icon {
+    font-size: 5em;
+    margin: 0 0.5em;
+  }
+}
+
+
+.glyphicon-heart {
+  padding: 0;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+
+
+
+
+.glyphicon-heart {
+    color: #666;
+}
+.glyphicon-heart:hover{
+    color: fadeout(#666, 15%);
+}
+.glyphicon-heart.active {
+     color: #FE4365;
+}
+.glyphicon-heart.active:hover {
+     color: fadeout(#FE4365, 15%);
+ }

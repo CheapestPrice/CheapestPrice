@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://ec2-35-164-220-111.us-west-2.compute.amazonaws.com:3306/bd2107646_test</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">cheapestprice</property>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Item"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.ItemLista"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Usuario"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Tendero"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Tienda"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.ListaDeMercado"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Horario"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Producto"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Opinion"/>
+    </session-factory>
+</hibernate-configuration>
