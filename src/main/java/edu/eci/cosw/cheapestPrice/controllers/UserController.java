@@ -22,7 +22,7 @@ public class UserController {
     public ResponseEntity<?> getUsuarios(){
         return new ResponseEntity<>(uP.loadAllUsuarios(), HttpStatus.ACCEPTED);
     }
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET,value="/tenderos")
     public ResponseEntity<?> getTenderos(){
         return new ResponseEntity<>(uP.loadAllTenderos(), HttpStatus.ACCEPTED);
     }
@@ -90,10 +90,10 @@ public class UserController {
     }
 
 
-    @RequestMapping(value="/favorito/{correo:.+}/{listaNombre}/{productoId}/{nit}/{x}/{y}/{fav}" ,method = RequestMethod.PUT)
-    public ResponseEntity<?> favoritoItemUsuario(@PathVariable String correo, @PathVariable String listaNombre,@PathVariable long productoId,@PathVariable String nit,@PathVariable double x,@PathVariable double y,@PathVariable boolean fav){
+    @RequestMapping(value="/favorito/{itemListaId}/{productoId}/{tiendaId}/{fav}" ,method = RequestMethod.PUT)
+    public ResponseEntity<?> favoritoItemUsuario(@PathVariable int itemListaId,@PathVariable long productoId,@PathVariable int tiendaId,@PathVariable boolean fav){
         try{
-            uP.favoriteShoppingListItem(correo,listaNombre,productoId,x,y,nit,fav);
+            uP.favoriteShoppingListItem(itemListaId,productoId,tiendaId,fav);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             e.printStackTrace();
@@ -112,10 +112,10 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="/{correo:.+}/{listaNombre}/{productoId}/{nit}/{x}/{y}/{comp}" ,method = RequestMethod.PUT)
-    public ResponseEntity<?> eliminarItemSeleccionado(@PathVariable String correo, @PathVariable String listaNombre,@PathVariable long productoId,@PathVariable String nit,@PathVariable double x,@PathVariable double y,@PathVariable boolean comp){
+    @RequestMapping(value="/{itemListaId}/{productoId}/{nit}/{x}/{y}/{comp}" ,method = RequestMethod.PUT)
+    public ResponseEntity<?> eliminarItemSeleccionado(@PathVariable int itemListaId,@PathVariable long productoId,@PathVariable int tiendaId,@PathVariable boolean comp){
         try{
-            uP.sellSelectedItem(correo,listaNombre,productoId,x,y,nit,comp);
+            uP.sellSelectedItem(itemListaId,productoId,tiendaId,comp);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             e.printStackTrace();

@@ -98,14 +98,14 @@ public class UserPersistenceStub implements UserPersistence{
     }
 
     @Override
-    public void favoriteShoppingListItem(String correo, String nombreLista, long idProducto, double x,double y, String nit,boolean fav) throws CheapestPriceException {
-        for(Usuario u:usuarios){
+    public void favoriteShoppingListItem(int itemListaId, long idProducto, int tiendaId,boolean fav) throws CheapestPriceException {
+        /*for(Usuario u:usuarios){
             if(u.getCorreo().equals(correo)){
                 for(ListaDeMercado lm:u.getListas()){
                     if(lm.getNombre().equals(nombreLista)){
                         for(ItemLista itL:lm.getItems()){
                             Tienda t=itL.getItem().getTienda();
-                            if(itL.getItem().getProducto().getId()==idProducto && t.getX()==x && t.getY()==y && t.getNit().equals(nit)){
+                            if(itL.getItem().getProducto().getId()==idProducto && t.getId()==tiendaId){
                                 itL.setFavorito(fav);
                                 break;
                             }
@@ -113,7 +113,7 @@ public class UserPersistenceStub implements UserPersistence{
                     }
                 }
             }
-        }
+        }*/
     }
 
     @Override
@@ -136,14 +136,14 @@ public class UserPersistenceStub implements UserPersistence{
     }
 
     @Override
-    public void sellSelectedItem(String correo, String nombreLista, long idProducto, double x, double y, String nit,boolean comp) throws CheapestPriceException {
-        for(Usuario u:usuarios){
+    public void sellSelectedItem(int listaItemId, long idProducto, int tiendaId,boolean comp) throws CheapestPriceException {
+        /*for(Usuario u:usuarios){
             if(u.getCorreo().equals(correo)){
                 for(ListaDeMercado lm:u.getListas()){
                     if(lm.getNombre().equals(nombreLista)){
                         for(ItemLista itL:lm.getItems()){
                             Tienda t=itL.getItem().getTienda();
-                            if(itL.getItem().getProducto().getId()==idProducto && t.getX()==x && t.getY()==y && t.getNit().equals(nit)){
+                            if(itL.getItem().getProducto().getId()==idProducto && t.getId()==tiendaId){
                                 itL.setComprado(comp);
                                 break;
                             }
@@ -151,7 +151,7 @@ public class UserPersistenceStub implements UserPersistence{
                     }
                 }
             }
-        }
+        }*/
     }
 
     @Override
