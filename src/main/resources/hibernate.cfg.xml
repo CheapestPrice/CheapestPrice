@@ -16,5 +16,7 @@
         <mapping class="edu.eci.cosw.cheapestPrice.entities.Horario"/>
         <mapping class="edu.eci.cosw.cheapestPrice.entities.Producto"/>
         <mapping class="edu.eci.cosw.cheapestPrice.entities.Opinion"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Cuenta"/>
+        <mapping class="edu.eci.cosw.cheapestPrice.entities.Usuario"/>
     </session-factory>
 </hibernate-configuration>
