@@ -1,11 +1,13 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Created by Paula on 18/03/2017.
+ * Created by amoto on 5/4/17.
  */
+
 @Entity
 @Table(name="USUARIOS_AUTENTICACION")
 public class Cuenta implements Serializable{
@@ -36,22 +38,9 @@ public class Cuenta implements Serializable{
         return hash;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
-
     public boolean isHabilitado() {
         return habilitado;
     }
-
-    public void setHabilitado(boolean habilitado) {
-        this.habilitado = habilitado;
-    }
-
-    public String getRol() { return rol;}
-
-    public void setRol(String rol) { this.rol = rol;}
-
     public int getId() {
         return id;
     }
@@ -59,4 +48,9 @@ public class Cuenta implements Serializable{
     public void setId(int id) {
         this.id = id;
     }
+
+
+    public String getRol() { return rol;}
+
+    public void setRol(String rol) { this.rol = rol;}
 }

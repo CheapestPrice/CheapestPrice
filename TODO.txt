@@ -8,7 +8,7 @@ Entities:
 	cambiar_Horario DONE
 	cambiar_ListaMercado DONE
 	cambiar_ItemLista DONE
-	cambiar_Cuenta
-	crear_CuentaPass
+	cambiar_Cuenta DONE
+	crear_CuentaPass DONE
 	eliminar_*Id
 
