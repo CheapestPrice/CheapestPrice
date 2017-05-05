@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Julián David Devia Serna on 2/20/17.
  */
 public class ItemsPersistenceStubTest {
-
+/*
     @Test
     public void CE1DeberiaAgregarItem(){
         ItemPersistenceStub ips= new ItemPersistenceStub();
@@ -29,7 +29,7 @@ public class ItemsPersistenceStubTest {
         }
     }
 
-    /*@Test
+    @Test
     public void CE2DeberiaCargarItemPorTienda(){
         ItemPersistenceStub ips= new ItemPersistenceStub();
         Producto p1=new Producto(7,"Lecherita","Nestle","Leche condensada");
@@ -52,7 +52,7 @@ public class ItemsPersistenceStubTest {
         } catch (CheapestPriceException e) {
             Assert.fail("arroja excepcion inesperada al consultar item por tienda");
         }
-    }*/
+    }
     @Test
     public void CE3DeberiaCargarItemPorCategoria(){
         ItemPersistenceStub ips= new ItemPersistenceStub();
@@ -121,5 +121,5 @@ public class ItemsPersistenceStubTest {
         } catch (CheapestPriceException e) {
             Assert.fail("arroja excepcion inesperada al actualiza un item");
         }
-    }
+    }*/
 }

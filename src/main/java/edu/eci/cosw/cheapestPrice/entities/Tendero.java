@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Tendero implements Serializable{
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Tienda.class)
     @JoinColumns({
-            @JoinColumn(name="TIENDAS_id", referencedColumnName="x", nullable=false, insertable=false, updatable=false)
+            @JoinColumn(name="TIENDAS_id", referencedColumnName="id", nullable=false, insertable=false, updatable=false)
     })
     private Tienda tienda;
 

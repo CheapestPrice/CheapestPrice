@@ -90,10 +90,10 @@ public class UserController {
     }
 
 
-    @RequestMapping(value="/favorito/{itemListaId}/{productoId}/{tiendaId}/{fav}" ,method = RequestMethod.PUT)
-    public ResponseEntity<?> favoritoItemUsuario(@PathVariable int itemListaId,@PathVariable long productoId,@PathVariable int tiendaId,@PathVariable boolean fav){
+    @RequestMapping(value="/favorito/{itemListaId}/favorite/{fav}" ,method = RequestMethod.PUT)
+    public ResponseEntity<?> favoritoItemUsuario(@PathVariable int itemListaId,@PathVariable boolean fav){
         try{
-            uP.favoriteShoppingListItem(itemListaId,productoId,tiendaId,fav);
+            uP.favoriteShoppingListItem(itemListaId,fav);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             e.printStackTrace();
@@ -112,10 +112,10 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="/{itemListaId}/{productoId}/{nit}/{x}/{y}/{comp}" ,method = RequestMethod.PUT)
-    public ResponseEntity<?> eliminarItemSeleccionado(@PathVariable int itemListaId,@PathVariable long productoId,@PathVariable int tiendaId,@PathVariable boolean comp){
+    @RequestMapping(value="/{itemListaId}/comprado/{comp}" ,method = RequestMethod.PUT)
+    public ResponseEntity<?> eliminarItemSeleccionado(@PathVariable int itemListaId,@PathVariable boolean comp){
         try{
-            uP.sellSelectedItem(itemListaId,productoId,tiendaId,comp);
+            uP.sellSelectedItem(itemListaId,comp);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             e.printStackTrace();

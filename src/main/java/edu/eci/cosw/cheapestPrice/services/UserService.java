@@ -60,12 +60,9 @@ public interface UserService {
 
     /**
      * Pone en favorito un item de la lista de mercado de un usuario
-     * @param correo
-     * @param nombreLista
-     * @param productoId
      * @throws CheapestPriceException
      */
-    public void favoriteShoppingListItem(int itemListaId,long productoId,int tiendaId,boolean fav)throws CheapestPriceException;
+    public void favoriteShoppingListItem(int itemListaId,boolean fav)throws CheapestPriceException;
 
     /**
      * Elimina un item de la lista de mercado de un usuario
@@ -75,10 +72,9 @@ public interface UserService {
 
     /**
      * Marca como comprado un item de la lista de mercado de un usuario
-     * @param idProducto
      * @throws CheapestPriceException
      */
-    public void sellSelectedItem(int itemListaId,long idProducto,int tiendaId, boolean comp)throws CheapestPriceException;
+    public void sellSelectedItem(int itemListaId, boolean comp)throws CheapestPriceException;
 
     /**
      * Agrega una lista de mercado

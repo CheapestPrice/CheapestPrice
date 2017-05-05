@@ -50,7 +50,7 @@ public class CheapestPriceApplication {
                     .httpBasic()
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/**","/app/**","/logout","/login","/vistaPrincipal", "/usuarios/**","/tiendas/**", "/assets/**").permitAll()
+                    .antMatchers("/**","/api/**","/app/**","/logout","/login","/vistaPrincipal", "/usuarios/**","/tiendas/**", "/assets/**").permitAll()
                     .anyRequest().authenticated().and()
                     .logout().logoutSuccessUrl("/")
                     .and().csrf()
@@ -86,6 +86,13 @@ public class CheapestPriceApplication {
             HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
             repository.setHeaderName("X-XSRF-TOKEN");
             return repository;
+        }
+    }
+    @Configuration
+    public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.csrf().disable();
         }
     }
 

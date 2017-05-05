@@ -1,6 +1,7 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
 import edu.eci.cosw.cheapestPrice.entities.Cuenta;
+import edu.eci.cosw.cheapestPrice.entities.CuentaPass;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.services.CuentaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,9 @@ public class LoginController {
     @Autowired
     CuentaService cs;
     @RequestMapping(value="/api/login",method = RequestMethod.POST)
-    public ResponseEntity<?> agregarCuenta(@RequestBody Cuenta cuenta){
+    public ResponseEntity<?> agregarCuenta(@RequestBody CuentaPass cuenta){
         try{
-            //Consultar que el usuario exista
-            //retornar el usuario con su rol y su id
-            cs.agregarCuenta(cuenta);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(cs.login(cuenta),HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             e.printStackTrace();
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);

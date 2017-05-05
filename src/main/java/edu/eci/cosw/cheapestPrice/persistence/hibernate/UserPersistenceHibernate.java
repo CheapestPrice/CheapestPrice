@@ -61,8 +61,8 @@ public class UserPersistenceHibernate implements UserPersistence{
     }
 
     @Override
-    public void favoriteShoppingListItem(int itemListaId , long idProducto,int id,boolean fav) throws CheapestPriceException {
-        ilR.favoriteItemSelected(itemListaId,idProducto,id,fav);
+    public void favoriteShoppingListItem(int itemListaId ,boolean fav) throws CheapestPriceException {
+        ilR.favoriteItemSelected(itemListaId,fav);
     }
 
     @Override
@@ -71,8 +71,8 @@ public class UserPersistenceHibernate implements UserPersistence{
     }
 
     @Override
-    public void sellSelectedItem(int itemListaId, long idProducto, int id, boolean comp) throws CheapestPriceException {
-        ilR.sellItemSelected(itemListaId,idProducto,id,comp);
+    public void sellSelectedItem(int itemListaId,boolean comp) throws CheapestPriceException {
+        ilR.sellItemSelected(itemListaId,comp);
     }
 
     @Override

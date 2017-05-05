@@ -20,8 +20,8 @@ public interface ShopRepository extends JpaRepository<Tienda,Integer>{
     @Query("select t.items from Tienda t where t.id=:idtienda")
     public List<Item> loadItems(@Param("idtienda") int idtienda);
 
-    @Query("select i from Item i where i.tienda.id=:idtienda and i.producto.id=:idproducto")
-    public Item loadItem(@Param("idtienda") int idtienda,@Param("idproducto") long idprodcuto);
+    @Query("select i from Item i where i.tienda.id=:idtienda and i.producto.id=:iditem")
+    public Item loadItem(@Param("idtienda") int idtienda,@Param("iditem") long iditem);
     @Modifying
     @Transactional
     @Query("update Tienda t set t.logo=:logo where t.id=:idtienda")

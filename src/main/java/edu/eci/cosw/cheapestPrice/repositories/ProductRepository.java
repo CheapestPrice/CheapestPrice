@@ -35,4 +35,8 @@ public interface ProductRepository extends JpaRepository<Producto, Long> {
     @Transactional
     @Query("update Producto p set p.imagen=:logo where p.nombre=:nombre and p.marca=:marca and p.categoria=:categoria")
     public void updateByImage(@Param("nombre") String nombre,@Param("marca") String marca,@Param("categoria") String categoria , @Param("logo") Blob logo);
+    @Modifying
+    @Transactional
+    @Query("update Producto p set p.imagen=:logo where p.id=:id")
+    public void updateImage(@Param("id") int id , @Param("logo") Blob logo);
 }

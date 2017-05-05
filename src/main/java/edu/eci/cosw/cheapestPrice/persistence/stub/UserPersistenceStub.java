@@ -98,6 +98,10 @@ public class UserPersistenceStub implements UserPersistence{
     }
 
     @Override
+    public void favoriteShoppingListItem(int itemListaId, boolean fav) throws CheapestPriceException {
+
+    }
+
     public void favoriteShoppingListItem(int itemListaId, long idProducto, int tiendaId,boolean fav) throws CheapestPriceException {
         /*for(Usuario u:usuarios){
             if(u.getCorreo().equals(correo)){
@@ -136,6 +140,10 @@ public class UserPersistenceStub implements UserPersistence{
     }
 
     @Override
+    public void sellSelectedItem(int itemListaId, boolean comp) throws CheapestPriceException {
+
+    }
+
     public void sellSelectedItem(int listaItemId, long idProducto, int tiendaId,boolean comp) throws CheapestPriceException {
         /*for(Usuario u:usuarios){
             if(u.getCorreo().equals(correo)){

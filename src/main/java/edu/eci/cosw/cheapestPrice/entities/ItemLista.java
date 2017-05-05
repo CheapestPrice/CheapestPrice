@@ -24,7 +24,7 @@ public class ItemLista implements Serializable{
 
     @OneToOne
     @JoinColumns({
-            @JoinColumn(name = "ITEMS_TIENDAS_id", referencedColumnName = "TIENDAS_id", nullable = false,insertable = false,updatable = false)
+            @JoinColumn(name = "ITEMS_id", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
     })
     private Item item;
 

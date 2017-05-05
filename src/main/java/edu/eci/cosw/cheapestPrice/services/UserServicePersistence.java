@@ -49,8 +49,8 @@ public class UserServicePersistence implements UserService{
     }
 
     @Override
-    public void favoriteShoppingListItem(int itemListaId, long productoId,int tiendaId,boolean fav) throws CheapestPriceException {
-        us.favoriteShoppingListItem(itemListaId,productoId,tiendaId,fav);
+    public void favoriteShoppingListItem(int itemListaId,boolean fav) throws CheapestPriceException {
+        us.favoriteShoppingListItem(itemListaId,fav);
     }
 
     @Override
@@ -59,8 +59,8 @@ public class UserServicePersistence implements UserService{
     }
 
     @Override
-    public void sellSelectedItem(int itemListaId, long idProducto, int tiendaId, boolean comp) throws CheapestPriceException {
-        us.sellSelectedItem(itemListaId,idProducto,tiendaId,comp);
+    public void sellSelectedItem(int itemListaId, boolean comp) throws CheapestPriceException {
+        us.sellSelectedItem(itemListaId,comp);
     }
 
     @Override
