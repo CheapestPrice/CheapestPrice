@@ -1,10 +1,7 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
-import edu.eci.cosw.cheapestPrice.entities.Producto;
 import edu.eci.cosw.cheapestPrice.entities.Tienda;
-import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
-import edu.eci.cosw.cheapestPrice.persistence.ShopPersistence;
 import edu.eci.cosw.cheapestPrice.services.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -34,10 +31,9 @@ public class ShopController {
     public ShopService serviceShop;
 
 
-    @RequestMapping(method = RequestMethod.GET, value="/x/{x}/y/{y}/nit/{nit}/items")
-    public ResponseEntity<?> loadItems(@PathVariable double x,@PathVariable double y,@PathVariable String nit)  {
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/items")
+    public ResponseEntity<?> loadItems(@PathVariable int id)  {
         try {
-            TiendaId id=new TiendaId(nit,x,y);
             return new ResponseEntity<>(serviceShop.loadItems(id), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, e);
@@ -45,21 +41,19 @@ public class ShopController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/x/{x}/y/{y}/nit/{nit}/item/{idproducto}")
-    public ResponseEntity<?> loadItem(@PathVariable double x,@PathVariable double y,@PathVariable String nit,@PathVariable long idproducto)  {
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/item/{idproducto}")
+    public ResponseEntity<?> loadItem(@PathVariable int id,@PathVariable long idproducto)  {
         try {
-            //TiendaId id=new TiendaId(nit,x,y);
-            return new ResponseEntity<>(serviceShop.loadItem(nit,x,y,idproducto), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(serviceShop.loadItem(id,idproducto), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, e);
             return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
         }
     }
-    @RequestMapping(method = RequestMethod.GET, value = "/x/{x}/y/{y}/nit/{nit}/logo")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/logo")
     @ResponseBody
-    public ResponseEntity<InputStreamResource> getShopLogo(@PathVariable double x,@PathVariable double y,@PathVariable String nit) {
+    public ResponseEntity<InputStreamResource> getShopLogo(@PathVariable int id) {
         try {
-            TiendaId id=new TiendaId(nit,x,y);
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType("image/png"))
                     .body(new InputStreamResource(serviceShop.consultTienda(id).getLogo().getBinaryStream()));
@@ -73,11 +67,10 @@ public class ShopController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.DELETE,value = "/x/{x}/y/{y}/nit/{nit}/item/{idproducto}")
-    public ResponseEntity<?> deleteProduct(@PathVariable double x,@PathVariable double y,@PathVariable String nit,@PathVariable long idproducto){
+    @RequestMapping(method = RequestMethod.DELETE,value = "/{id}/item/{idproducto}")
+    public ResponseEntity<?> deleteProduct(@PathVariable int id,@PathVariable long idproducto){
         ResponseEntity a;
         try {
-            TiendaId id=new TiendaId(nit,x,y);
             serviceShop.deleteProduct(id, idproducto);
             a = new ResponseEntity<>(HttpStatus.ACCEPTED);
             System.out.println("Product eliminada sin error");
@@ -101,11 +94,10 @@ public class ShopController {
         return a;
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/x/{x}/y/{y}/nit/{nit}")
-    public ResponseEntity<?> modifyShop(@PathVariable double x,@PathVariable double y,@PathVariable String nit,@RequestBody Tienda tienda){
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+    public ResponseEntity<?> modifyShop(@PathVariable int id,@RequestBody Tienda tienda){
         ResponseEntity a;
         try {
-            TiendaId id=new TiendaId(nit,x,y);
             serviceShop.modifyTienda(id, tienda);
             a = new ResponseEntity<>(HttpStatus.ACCEPTED);
             System.out.println("Tienda actualizada sin error");
@@ -116,11 +108,10 @@ public class ShopController {
         return a;
     }
 
-    @RequestMapping(method = RequestMethod.PUT,value = "/x/{x}/y/{y}/nit/{nit}/telephone")
-    public ResponseEntity<?> modifyShopTelephone(@PathVariable double x,@PathVariable double y,@PathVariable String nit,@RequestBody String tel){
+    @RequestMapping(method = RequestMethod.PUT,value = "/{id}/telephone")
+    public ResponseEntity<?> modifyShopTelephone(@PathVariable int id,@RequestBody String tel){
         ResponseEntity a;
         try {
-            TiendaId id=new TiendaId(nit,x,y);
             serviceShop.modifyTelephone(id, tel);
             a = new ResponseEntity<>(HttpStatus.ACCEPTED);
             System.out.println("Tienda actualizada sin error");
@@ -131,15 +122,14 @@ public class ShopController {
         return a;
     }
 
-    @RequestMapping(method = RequestMethod.POST,value = "/x/{x}/y/{y}/nit/{nit}/logo")
-    public ResponseEntity uploadLogo(MultipartHttpServletRequest request, @PathVariable double x,@PathVariable double y,@PathVariable String nit ) {
+    @RequestMapping(method = RequestMethod.POST,value = "/{id}/logo")
+    public ResponseEntity uploadLogo(MultipartHttpServletRequest request, @PathVariable int id ) {
         try {
             Iterator<String> itr = request.getFileNames();
 
             while (itr.hasNext()) {
                 String uploadedFile = itr.next();
                 MultipartFile file = request.getFile(uploadedFile);
-                TiendaId id=new TiendaId(nit,x,y);
                 Tienda tienda= serviceShop.consultTienda(id);
                 tienda.setLogo(new SerialBlob(StreamUtils.copyToByteArray(file.getInputStream())));
             }
@@ -150,10 +140,10 @@ public class ShopController {
         return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/x/{x}/y/{y}/nit/{nit}")
-    public ResponseEntity<?> getShop(@PathVariable double x,@PathVariable double y,@PathVariable String nit){
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public ResponseEntity<?> getShop(@PathVariable int id){
         try {
-            return new ResponseEntity<>(serviceShop.consultTienda(new TiendaId(nit,x,y)),HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(serviceShop.consultTienda(id),HttpStatus.ACCEPTED);
         } catch (CheapestPriceException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);

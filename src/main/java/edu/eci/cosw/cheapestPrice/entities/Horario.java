@@ -24,6 +24,7 @@ public class Horario implements Serializable{
     private int minutoFin;
 
     @Id
+    @GeneratedValue
     private int id;
 
     @Column(name="dia", nullable=false)

@@ -47,14 +47,14 @@ public interface UserPersistence {
      * Actualiza a un usuario existente
      * @param usuario
      */
-    public void updateUser(String correo, Usuario usuario)throws CheapestPriceException;
+    public void updateUser(int correo, Usuario usuario)throws CheapestPriceException;
 
     /**
      * Elimina una lista de mercado segun su nombre
-     * @param nombreLista
+     * @param id
      * @throws CheapestPriceException
      */
-    public void deleteShoppingList(String correo,String nombreLista)throws CheapestPriceException;
+    public void deleteShoppingList(int id)throws CheapestPriceException;
 
     /**
      * Pone en favorito un elemento de una lista de mercado de un usuario
@@ -69,7 +69,7 @@ public interface UserPersistence {
      * Elimina un item de la lista de mercado de un usuario
      * @throws CheapestPriceException
      */
-    public void deleteSelectedItem(String correo,String nombreLista,long idProducto,double x,double y,String nit)throws CheapestPriceException;
+    public void deleteSelectedItem(int id)throws CheapestPriceException;
 
     /**
      * Item comprado
@@ -103,4 +103,6 @@ public interface UserPersistence {
      * @param tendero
      */
     void addTendero(Tendero tendero)throws CheapestPriceException;
+
+    List<Tendero> loadAllTenderos();
 }

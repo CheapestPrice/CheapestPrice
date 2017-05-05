@@ -19,7 +19,7 @@ public class ItemLista implements Serializable{
     private boolean favorito;
 
     @Id
-    //@JsonIgnore
+    @GeneratedValue
     private int id;
 
     @OneToOne
@@ -39,7 +39,8 @@ public class ItemLista implements Serializable{
 
     }
 
-    public ItemLista(ItemListaId id, boolean comprado, boolean favorito){
+    public ItemLista(int id, boolean comprado, boolean favorito){
+        this.id=id;
         this.comprado=comprado;
         this.favorito=favorito;
     }

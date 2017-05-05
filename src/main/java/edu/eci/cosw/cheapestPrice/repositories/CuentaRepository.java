@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 /**
  * Created by Paula on 20/03/2017.
  */
-public interface CuentaRepository extends JpaRepository<Cuenta,String> {
+public interface CuentaRepository extends JpaRepository<Cuenta,Integer> {
 
     @Query("select c from Cuenta c where  c.email=:email and c.hash= :hash")
     Cuenta Login(@Param(value = "email")String email,@Param(value = "hash")String hash);

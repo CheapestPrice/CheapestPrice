@@ -50,15 +50,13 @@ public interface UserService {
      * Actualiza a un usuario existente
      * @param usuario
      */
-    public void updateUser(String correo, Usuario usuario)throws CheapestPriceException;
+    public void updateUser(int correo, Usuario usuario)throws CheapestPriceException;
 
     /**
      * Elimina una lista de mercado de un usuario
-     * @param correo
-     * @param nombreLista
      * @throws CheapestPriceException
      */
-    public void deleteShoppingList(String correo, String nombreLista)throws  CheapestPriceException;
+    public void deleteShoppingList(int id)throws  CheapestPriceException;
 
     /**
      * Pone en favorito un item de la lista de mercado de un usuario
@@ -71,12 +69,9 @@ public interface UserService {
 
     /**
      * Elimina un item de la lista de mercado de un usuario
-     * @param correo
-     * @param nombreLista
-     * @param idProducto
      * @throws CheapestPriceException
      */
-    public void deleteSelectedItem(String correo,String nombreLista,long idProducto,double x,double y,String nit)throws CheapestPriceException;
+    public void deleteSelectedItem(int id)throws CheapestPriceException;
 
     /**
      * Marca como comprado un item de la lista de mercado de un usuario
@@ -107,4 +102,6 @@ public interface UserService {
      * @param tendero
      */
     public void  addTendero(Tendero tendero)throws CheapestPriceException;
+
+    List<Tendero> loadAllTenderos();
 }

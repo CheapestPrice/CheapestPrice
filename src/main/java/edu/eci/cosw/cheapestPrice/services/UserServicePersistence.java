@@ -39,13 +39,13 @@ public class UserServicePersistence implements UserService{
     }
 
     @Override
-    public void updateUser(String correo, Usuario usuario) throws CheapestPriceException {
+    public void updateUser(int correo, Usuario usuario) throws CheapestPriceException {
         us.updateUser(correo,usuario);
     }
 
     @Override
-    public void deleteShoppingList(String correo, String nombreLista) throws CheapestPriceException {
-        us.deleteShoppingList(correo,nombreLista);
+    public void deleteShoppingList(int id) throws CheapestPriceException {
+        us.deleteShoppingList(id);
     }
 
     @Override
@@ -54,8 +54,8 @@ public class UserServicePersistence implements UserService{
     }
 
     @Override
-    public void deleteSelectedItem(String correo, String nombreLista, long idProducto, double x, double y, String nit) throws CheapestPriceException {
-        us.deleteSelectedItem(correo,nombreLista,idProducto,x,y,nit);
+    public void deleteSelectedItem(int id) throws CheapestPriceException {
+        us.deleteSelectedItem(id);
     }
 
     @Override
@@ -81,5 +81,10 @@ public class UserServicePersistence implements UserService{
     @Override
     public void addTendero(Tendero tendero)throws CheapestPriceException {
         us.addTendero(tendero);
+    }
+
+    @Override
+    public List<Tendero> loadAllTenderos() {
+        return us.loadAllTenderos();
     }
 }

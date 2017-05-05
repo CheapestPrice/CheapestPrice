@@ -13,6 +13,7 @@ import java.io.Serializable;
 public class Item implements Serializable {
 
     @Id
+    @GeneratedValue
     private int id;
 
     @Column(name="precio")

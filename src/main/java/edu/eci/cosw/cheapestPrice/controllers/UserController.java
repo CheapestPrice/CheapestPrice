@@ -22,6 +22,10 @@ public class UserController {
     public ResponseEntity<?> getUsuarios(){
         return new ResponseEntity<>(uP.loadAllUsuarios(), HttpStatus.ACCEPTED);
     }
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> getTenderos(){
+        return new ResponseEntity<>(uP.loadAllTenderos(), HttpStatus.ACCEPTED);
+    }
     @RequestMapping(value="/{correo:.+}" ,method = RequestMethod.GET)
     public ResponseEntity<?> getUsuarioPorCorreo(@PathVariable String correo){
         try{
@@ -62,8 +66,8 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="/{correo:.+}" ,method = RequestMethod.PUT)
-    public ResponseEntity<?> actualizarUsuario(@PathVariable String correo, Usuario usuario){
+    @RequestMapping(value="/{correo}" ,method = RequestMethod.PUT)
+    public ResponseEntity<?> actualizarUsuario(@PathVariable int correo, Usuario usuario){
         System.out.println(usuario.getCorreo());
         try{
             uP.updateUser(correo, usuario);
@@ -75,9 +79,9 @@ public class UserController {
     }
 
     @RequestMapping(value="/{correo:.+}/{listaNombre}" ,method = RequestMethod.DELETE)
-    public ResponseEntity<?> borrarListaMercado(@PathVariable String correo, @PathVariable String listaNombre){
+    public ResponseEntity<?> borrarListaMercado(@PathVariable int correo, @PathVariable String listaNombre){
         try{
-            uP.deleteShoppingList(correo,listaNombre);
+            uP.deleteShoppingList(correo);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (Exception e){
             e.printStackTrace();
@@ -97,10 +101,10 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="/{correo:.+}/{listaNombre}/{productoId}/{nit}/{x}/{y}" ,method = RequestMethod.DELETE)
-    public ResponseEntity<?> eliminarItemSeleccionado(@PathVariable String correo, @PathVariable String listaNombre,@PathVariable long productoId,@PathVariable String nit,@PathVariable double x,@PathVariable double y){
+    @RequestMapping(value="/{correo}/{listaNombre}/{productoId}/id" ,method = RequestMethod.DELETE)
+    public ResponseEntity<?> eliminarItemSeleccionado(@PathVariable int correo, @PathVariable String listaNombre,@PathVariable long productoId,@PathVariable int id){
         try{
-            uP.deleteSelectedItem(correo,listaNombre,productoId,x,y,nit);
+            uP.deleteSelectedItem(id);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             e.printStackTrace();

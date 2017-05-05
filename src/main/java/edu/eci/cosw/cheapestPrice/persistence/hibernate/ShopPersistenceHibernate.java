@@ -35,21 +35,20 @@ public class ShopPersistenceHibernate implements ShopPersistence {
 
     @Override
     ///actualizo todo lo referente a llave no primaria ni horario ni opiniones
-    public void modifyTienda(TiendaId id, Tienda tienda) throws CheapestPriceException {
+    public void modifyTienda(int id, Tienda tienda) throws CheapestPriceException {
             repositoryshop.modifyLogo(id,tienda.getLogo());
             repositoryshop.modifyTelephone(id,tienda.getTelefono());
     }
 
     @Override
-    public void addProduct(TiendaId id, Producto producto) throws CheapestPriceException {
+    public void addProduct(int id, Producto producto) throws CheapestPriceException {
         productRepository.save(producto);
 
     }
 
     @Override
-    public void deleteProduct(TiendaId id, long idproducto) throws CheapestPriceException {
-        ItemId iditem=new ItemId(idproducto,id.getX(),id.getY(),id.getNit());
-        itemRepository.delete(iditem);
+    public void deleteProduct(int id, long idproducto) throws CheapestPriceException {
+        itemRepository.delete(id);
         productRepository.delete(idproducto);
     }
 
@@ -74,25 +73,24 @@ public class ShopPersistenceHibernate implements ShopPersistence {
 
 
     @Override
-    public void modifyHorary(TiendaId id, String dia, Horario horario) throws CheapestPriceException {
-        HorarioId idHor=new HorarioId(dia,id.getNit(),id.getX(),id.getY());
-        horarioRepository.delete(idHor);
+    public void modifyHorary(int id, String dia, Horario horario) throws CheapestPriceException {
+        horarioRepository.delete(id);
         horarioRepository.save(horario);
     }
 
     @Override
-    public void addOpinion(TiendaId id, Opinion opinion) throws CheapestPriceException {
+    public void addOpinion(int id, Opinion opinion) throws CheapestPriceException {
         opinionRepository.save(opinion);
     }
 
 
     @Override
-    public Opinion consultOpinion(TiendaId id, Opinion opinion) throws CheapestPriceException {
+    public Opinion consultOpinion(int id, Opinion opinion) throws CheapestPriceException {
         return repositoryshop.loadOpinion(id, opinion);
     }
 
     @Override
-    public List<Opinion> consultOpiniones(TiendaId id) throws CheapestPriceException {
+    public List<Opinion> consultOpiniones(int id) throws CheapestPriceException {
         return repositoryshop.loadOpinions(id);
     }
 
@@ -102,34 +100,29 @@ public class ShopPersistenceHibernate implements ShopPersistence {
     }
 
     @Override
-    public void modifyTelephone(TiendaId id, String telefono) throws CheapestPriceException {
+    public void modifyTelephone(int id, String telefono) throws CheapestPriceException {
         repositoryshop.modifyTelephone(id,telefono);
     }
 
     @Override
-    public boolean isOpen(TiendaId id, Timestamp fecha) throws CheapestPriceException {
+    public boolean isOpen(int id, Timestamp fecha) throws CheapestPriceException {
         return repositoryshop.getOne(id).isOpen(fecha);
     }
 
 
     @Override
-    public void modifyLogo(TiendaId id, Blob logo) throws CheapestPriceException {
+    public void modifyLogo(int id, Blob logo) throws CheapestPriceException {
         repositoryshop.modifyLogo(id,logo);
     }
 
     @Override
-    public List<Item> loadItems(TiendaId idtienda) throws CheapestPriceException {
+    public List<Item> loadItems(int idtienda) throws CheapestPriceException {
         return repositoryshop.loadItems(idtienda);
     }
 
     @Override
-    public Item loadItem(TiendaId idtienda, long idproducto) throws CheapestPriceException {
+    public Item loadItem(int idtienda, long idproducto) throws CheapestPriceException {
         return repositoryshop.loadItem(idtienda,idproducto);
-    }
-
-    @Override
-    public Item loadItem(String nit, double x, double y, long idproducto) throws CheapestPriceException {
-        return repositoryshop.loadItem(nit,x,y,idproducto);
     }
 
     @Override
@@ -143,7 +136,7 @@ public class ShopPersistenceHibernate implements ShopPersistence {
     }
 
     @Override
-    public Tienda consultTienda(TiendaId idtienda) throws CheapestPriceException {
+    public Tienda consultTienda(int idtienda) throws CheapestPriceException {
         return repositoryshop.findOne(idtienda);
     }
 }

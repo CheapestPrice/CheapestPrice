@@ -1,9 +1,6 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -13,19 +10,21 @@ import java.io.Serializable;
 @Table(name="USUARIOS_AUTENTICACION")
 public class Cuenta implements Serializable{
 
+    @Id
+    @Column(name = "USUARIOS_id", nullable = false, insertable = false, updatable = false)
+    private int id;
 
+    @Column(name = "hash", nullable = false, insertable = false, updatable = false)
     private String hash;
 
-    private String email;
-
-
+    @Column(name = "rol", nullable = false, insertable = false, updatable = false)
     private String rol;
 
-
+    @Column(name = "habilitado", nullable = false, insertable = false, updatable = false)
     private boolean habilitado;
 
-    public Cuenta(String email, String hash, String rol){
-        this.email=email;
+    public Cuenta(int id,String hash, String rol){
+        this.id=id;
         this.hash=hash;
         this.rol=rol;
         this.habilitado=true;
@@ -33,7 +32,6 @@ public class Cuenta implements Serializable{
 
     public Cuenta(){ this.habilitado=true; }
 
-    @Column(name = "hash", nullable = false)
     public String getHash() {
         return hash;
     }
@@ -42,17 +40,6 @@ public class Cuenta implements Serializable{
         this.hash = hash;
     }
 
-    @Column(name = "USUARIOS_correo", nullable = false, insertable = false, updatable = false)
-    @Id
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Column(name = "habilitado", nullable = false)
     public boolean isHabilitado() {
         return habilitado;
     }
@@ -61,9 +48,15 @@ public class Cuenta implements Serializable{
         this.habilitado = habilitado;
     }
 
-    @Column(name = "rol", nullable = false)
     public String getRol() { return rol;}
 
     public void setRol(String rol) { this.rol = rol;}
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

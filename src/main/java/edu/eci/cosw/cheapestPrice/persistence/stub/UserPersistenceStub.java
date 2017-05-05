@@ -71,7 +71,7 @@ public class UserPersistenceStub implements UserPersistence{
     }
 
     @Override
-    public void updateUser(String oldCorreo, Usuario usuario) throws CheapestPriceException{
+    public void updateUser(int oldCorreo, Usuario usuario) throws CheapestPriceException{
         System.out.println("oldCorreo: "+oldCorreo+" "+"Usuario.correo: "+usuario.getCorreo());
         //if(!usuarios.contains(usuario)) throw new CheapestPriceException("El usuario tiene que existir");
         for(Usuario u:usuarios){
@@ -84,17 +84,17 @@ public class UserPersistenceStub implements UserPersistence{
     }
 
     @Override
-    public void deleteShoppingList(String correo, String nombreLista) throws CheapestPriceException {
-        for(Usuario u:usuarios){
+    public void deleteShoppingList(int id) throws CheapestPriceException {
+        /*for(Usuario u:usuarios){
             if(u.getCorreo().equals(correo)){
                 for(ListaDeMercado lm:u.getListas()){
-                    if(lm.getListaid().getNombre().equals(nombreLista)){
+                    if(lm.getNombre().equals(nombreLista)){
                         u.getListas().remove(lm);
                         break;
                     }
                 }
             }
-        }
+        }*/
     }
 
     @Override
@@ -102,10 +102,10 @@ public class UserPersistenceStub implements UserPersistence{
         for(Usuario u:usuarios){
             if(u.getCorreo().equals(correo)){
                 for(ListaDeMercado lm:u.getListas()){
-                    if(lm.getListaid().getNombre().equals(nombreLista)){
+                    if(lm.getNombre().equals(nombreLista)){
                         for(ItemLista itL:lm.getItems()){
                             Tienda t=itL.getItem().getTienda();
-                            if(itL.getItem().getProducto().getId()==idProducto && t.getId().getX()==x && t.getId().getY()==y && t.getId().getNit().equals(nit)){
+                            if(itL.getItem().getProducto().getId()==idProducto && t.getX()==x && t.getY()==y && t.getNit().equals(nit)){
                                 itL.setFavorito(fav);
                                 break;
                             }
@@ -117,14 +117,14 @@ public class UserPersistenceStub implements UserPersistence{
     }
 
     @Override
-    public void deleteSelectedItem(String correo, String nombreLista, long idProducto, double x,double y, String nit) throws CheapestPriceException {
-        for(Usuario u:usuarios){
+    public void deleteSelectedItem(int id) throws CheapestPriceException {
+        /*for(Usuario u:usuarios){
             if(u.getCorreo().equals(correo)) {
                 for(ListaDeMercado lm:u.getListas()){
-                    if(lm.getListaid().getNombre().equals(nombreLista)){
+                    if(lm.getNombre().equals(nombreLista)){
                         for(ItemLista itL:lm.getItems()){
                             Tienda t=itL.getItem().getTienda();
-                            if(itL.getItem().getProducto().getId()==idProducto && t.getId().getX()==x && t.getId().getY()==y && t.getId().getNit().equals(nit)){
+                            if(itL.getItem().getProducto().getId()==idProducto && t.getX()==x && t.getY()==y && t.getNit().equals(nit)){
                                 lm.getItems().remove(itL);
                                 break;
                             }
@@ -132,7 +132,7 @@ public class UserPersistenceStub implements UserPersistence{
                     }
                 }
             }
-        }
+        }*/
     }
 
     @Override
@@ -140,10 +140,10 @@ public class UserPersistenceStub implements UserPersistence{
         for(Usuario u:usuarios){
             if(u.getCorreo().equals(correo)){
                 for(ListaDeMercado lm:u.getListas()){
-                    if(lm.getListaid().getNombre().equals(nombreLista)){
+                    if(lm.getNombre().equals(nombreLista)){
                         for(ItemLista itL:lm.getItems()){
                             Tienda t=itL.getItem().getTienda();
-                            if(itL.getItem().getProducto().getId()==idProducto && t.getId().getX()==x && t.getId().getY()==y && t.getId().getNit().equals(nit)){
+                            if(itL.getItem().getProducto().getId()==idProducto && t.getX()==x && t.getY()==y && t.getNit().equals(nit)){
                                 itL.setComprado(comp);
                                 break;
                             }
@@ -180,13 +180,16 @@ public class UserPersistenceStub implements UserPersistence{
 
     }
 
+    @Override
+    public List loadAllTenderos() {
+        return null;
+    }
+
     public static void poblarStub(UserPersistenceStub ups){
         Producto p1=new Producto(1,"Queso crema","Alqueria","Queso");
-        TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
-        Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde pepe","6699132",true);
+        Tienda t1= new Tienda("calle 184 #52 A13",1,"Donde pepe","6699132",true,4.7649271,-74.0476042,"1234567-2");
         Producto p2=new Producto(2,"Leche entera","Alqueria","Leche");
-        TiendaId id2=new TiendaId("123456456",4.7498466,-74.0623005);
-        Tienda t2= new Tienda("Cll 167 #58a-20",id,"Surtir","6699132",true);
+        Tienda t2= new Tienda("Cll 167 #58a-20",2,"Surtir","6699132",true,4.7498466,-74.0623005,"123456456");
         Producto p3=new Producto(3,"Papas BBQ","Margarita","Papas");
         Producto p4=new Producto(4,"Coca-Cola","Coca-Cola","Gaseosa");
         Item i1= new Item(p1,t1,3000);
@@ -194,17 +197,14 @@ public class UserPersistenceStub implements UserPersistence{
         Item i3=new Item(p1,t2,3000);
         Item i4=new Item(p3,t2,4500);
         Item i6= new Item(p4,t1,4500);
-        Usuario u1 = new Usuario("name1","email1");
-        ListaMercado_Item lisid1=new ListaMercado_Item("lista1",u1.getNombre());
-        ListaMercado_Item lisid2=new ListaMercado_Item("lista2",u1.getNombre());
-        ListaDeMercado lM1 = new ListaDeMercado(new Date(), false);
-        ListaDeMercado lM2 = new ListaDeMercado(new Date(), false);
-        lM1.setListaid(lisid1); lM2.setListaid(lisid2);
-        ItemLista tL1 = new ItemLista(new ItemListaId(i1,lM1),false,false);
-        ItemLista tL2 = new ItemLista(new ItemListaId(i2,lM1),false,false);
-        ItemLista tL3 = new ItemLista(new ItemListaId(i3,lM1),false,false);
-        ItemLista tL4 = new ItemLista(new ItemListaId(i4,lM1),false,false);
-        ItemLista tL6 = new ItemLista(new ItemListaId(i6,lM2),false,false);
+        Usuario u1 = new Usuario("name1","email1",1);
+        ListaDeMercado lM1 = new ListaDeMercado(new Date(), false,1);
+        ListaDeMercado lM2 = new ListaDeMercado(new Date(), false,2);
+        ItemLista tL1 = new ItemLista(1,false,false);
+        ItemLista tL2 = new ItemLista(2,false,false);
+        ItemLista tL3 = new ItemLista(3,false,false);
+        ItemLista tL4 = new ItemLista(4,false,false);
+        ItemLista tL6 = new ItemLista(5,false,false);
         tL1.setItem(i1);tL2.setItem(i2);tL3.setItem(i3);
         tL4.setItem(i4);tL6.setItem(i6);
         List<ItemLista> lIL1 = new ArrayList<>();

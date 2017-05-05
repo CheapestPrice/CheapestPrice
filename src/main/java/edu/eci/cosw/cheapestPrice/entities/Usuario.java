@@ -10,23 +10,23 @@ import java.util.List;
  */
 @Entity
 @Table(name = "USUARIOS")
-public class Usuario implements Persona,Serializable {
+public class Usuario implements Serializable {
 
     @Column(name = "nombre", nullable = false)
-    protected String nombre;
+    private String nombre;
 
     @Column(name = "correo", nullable = false, insertable = false, updatable = false)
-    protected String correo;
+    private String correo;
 
-    @Column(name = "id", nullable = false, insertable = false, updatable = false)
+    @GeneratedValue
     @Id
-    protected int id;
+    private int id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    protected List<ListaDeMercado> listas;
+    private List<ListaDeMercado> listas;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    protected List<Opinion> opiniones;
+    private List<Opinion> opiniones;
 
     public Usuario() {
     }
@@ -58,7 +58,7 @@ public class Usuario implements Persona,Serializable {
      **/
     public void agregarProducto(ItemLista iT, String nombreLista){
         for(ListaDeMercado lM: listas){
-            if(lM.getListaid().getNombre().equals(nombreLista)){
+            if(lM.getNombre().equals(nombreLista)){
                 lM.agregarProducto(iT);
             }
         }

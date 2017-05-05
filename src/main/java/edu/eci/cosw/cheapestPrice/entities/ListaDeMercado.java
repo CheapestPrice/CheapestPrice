@@ -24,6 +24,7 @@ public class ListaDeMercado implements Serializable {
     private List<ItemLista> items;
 
     @Id
+    @GeneratedValue
     private int id;
 
     @Column(name = "nombre")
@@ -38,9 +39,10 @@ public class ListaDeMercado implements Serializable {
 
     public ListaDeMercado(){}
 
-    public ListaDeMercado(Date fechaCreacion, boolean revisado){
+    public ListaDeMercado(Date fechaCreacion, boolean revisado, int id){
         this.fechaCreacion=fechaCreacion;
         this.revisado=revisado;
+        this.id=id;
         //items=new ArrayList<ItemLista>();
     }
 

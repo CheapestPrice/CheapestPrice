@@ -50,15 +50,14 @@ public class UserPersistenceHibernate implements UserPersistence{
     }
 
     @Override
-    public void updateUser(String oldEmail, Usuario usuario) throws CheapestPriceException {
+    public void updateUser(int oldEmail, Usuario usuario) throws CheapestPriceException {
         us.delete(oldEmail);
         us.save(usuario);
     }
 
     @Override
-    public void deleteShoppingList(String correo, String nombreLista) throws CheapestPriceException {
-        ListaMercado_Item lmI=new ListaMercado_Item(nombreLista,correo);
-        slR.delete(lmI);
+    public void deleteShoppingList(int id) throws CheapestPriceException {
+        slR.delete(id);
     }
 
     @Override
@@ -67,9 +66,8 @@ public class UserPersistenceHibernate implements UserPersistence{
     }
 
     @Override
-    public void deleteSelectedItem(String correo, String nombreLista, long idProducto, double x, double y, String nit) throws CheapestPriceException {
-        ItemListaId iLId = new ItemListaId(correo,nombreLista,nit,x,y,idProducto);
-        ilR.delete(iLId);
+    public void deleteSelectedItem(int id) throws CheapestPriceException {
+        ilR.delete(id);
     }
 
     @Override
@@ -95,5 +93,10 @@ public class UserPersistenceHibernate implements UserPersistence{
     @Override
     public void addTendero(Tendero tendero) {
         tr.save(tendero);
+    }
+
+    @Override
+    public List<Tendero> loadAllTenderos() {
+        return tr.findAll();
     }
 }

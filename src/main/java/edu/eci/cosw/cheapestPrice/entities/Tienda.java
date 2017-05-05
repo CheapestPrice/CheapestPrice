@@ -18,7 +18,7 @@ import javax.persistence.*;
 public class Tienda implements java.io.Serializable {
 
     @Id
-    @Column(name="id", nullable=false)
+    @Column(name="id", nullable=false, insertable=false,updatable=false)
     private int id;
 
     @Column(name="nit", nullable=false, insertable=false,updatable=false)
@@ -42,7 +42,7 @@ public class Tienda implements java.io.Serializable {
     @Column(name="disponible", nullable=false)
     private boolean disponible;
 
-    @Column(name = "logo", nullable=true)
+    @Column(name = "logo")
     @JsonIgnore
     private Blob logo;
 
@@ -230,7 +230,7 @@ public class Tienda implements java.io.Serializable {
         boolean ans=false;
         for (int i = 0; i < horarios.size() && !ans; i++) {
             Horario tmp=horarios.get(i);
-            if(tmp.getHorarioId().getDia().equals(dia)){
+            if(tmp.getDia().equals(dia)){
                 if(tmp.getHoraInicio()<cal.HOUR_OF_DAY && tmp.getHoraFin()>cal.HOUR_OF_DAY && tmp.getMinutosInicio()<cal.MINUTE && tmp.getMinutoFin()>cal.MINUTE){
                     ans=true;
                 }
@@ -246,7 +246,7 @@ public class Tienda implements java.io.Serializable {
      */
     public void modifyHorary(String dia, Horario horario){
         for (int j = 0; j < horarios.size(); j++) {
-            if(horarios.get(j).getHorarioId().getDia().equals(dia)){
+            if(horarios.get(j).getDia().equals(dia)){
                 horarios.remove(j);
                 horarios.add(j,horario);
             }

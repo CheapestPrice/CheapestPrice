@@ -53,17 +53,18 @@ public class ItemPersistenceStub implements ItemPersistence{
     }
 
     @Override
-    public List<Item> loadItemByShop(TiendaId tiendaId) throws CheapestPriceException {
-        if(tiendaId==null || tiendaId.getNit().length()==0){
+    public List<Item> loadItemByShop(int tiendaId) throws CheapestPriceException {
+        /*if(tiendaId<0){
             throw new CheapestPriceException("El identificador debe existir");
         }
         List<Item> shop= new ArrayList<>();
         for (Item i : items){
-            if(i.getTienda().getId().getNit().equals(tiendaId.getNit()) && tiendaId.getX() == i.getTienda().getId().getX() && tiendaId.getY() == i.getTienda().getId().getY()){
+            if(i.getTienda().getNit().equals(tiendaId.getNit()) && tiendaId.getX() == i.getTienda().getId().getX() && tiendaId.getY() == i.getTienda().getId().getY()){
                 shop.add(i);
             }
         }
-        return shop;
+        return shop;*/
+        return null;
     }
 
     @Override
@@ -166,7 +167,7 @@ public class ItemPersistenceStub implements ItemPersistence{
     }
 
     public static void poblarStub(ItemPersistenceStub ips){
-        TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
+        /*TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
         List<Horario> hor=new ArrayList<>();
         Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde pepe","6699132",true);
         hor.add(new Horario(8, 15, 9, 0,t1,"Lunes"));
@@ -208,6 +209,6 @@ public class ItemPersistenceStub implements ItemPersistence{
             ips.addItem(i6);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }

@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Created by Hugo on 01/05/2017.
  */
-public interface TenderoRepository extends JpaRepository<Tendero,String> {
+public interface TenderoRepository extends JpaRepository<Tendero,Integer> {
 
 }

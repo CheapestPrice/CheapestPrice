@@ -2,7 +2,6 @@ package edu.eci.cosw.cheapestPrice.services;
 
 import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
-import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 
 import java.sql.Blob;
@@ -34,7 +33,7 @@ public interface ItemService {
      * @return todos los items registrados a nombre de la tienda solicitada
      * @throws CheapestPriceException si shopName es vacío o de longitud 0
      */
-    public List<Item> loadItemByShop(TiendaId tiendaId) throws CheapestPriceException;
+    public List<Item> loadItemByShop(int tiendaId) throws CheapestPriceException;
 
     /**
      * Carga todos los items con una categoría dada

@@ -32,7 +32,7 @@ public interface ShopPersistence {
      * @param idtienda
      * @throws CheapestPriceException
      */
-    public Tienda consultTienda(TiendaId idtienda) throws CheapestPriceException;
+    public Tienda consultTienda(int idtienda) throws CheapestPriceException;
 
     /**
      * Modificar la tienda
@@ -40,13 +40,13 @@ public interface ShopPersistence {
      * @param tienda
      * @throws CheapestPriceException
      */
-    public void modifyTienda(TiendaId id, Tienda tienda) throws CheapestPriceException;
+    public void modifyTienda(int id, Tienda tienda) throws CheapestPriceException;
 
     /**
      * Carga todos los items registrados en la tienda
      * @return todos los items de la tienda
      */
-    public List<Item> loadItems(TiendaId idtienda) throws CheapestPriceException;
+    public List<Item> loadItems(int idtienda) throws CheapestPriceException;
 
     /**
      * Carga un item de la tienda
@@ -54,31 +54,22 @@ public interface ShopPersistence {
      * @param idtienda
      * @return item
      */
-    public Item loadItem(TiendaId idtienda,long idproducto)throws CheapestPriceException;
+    public Item loadItem(int idtienda,long idproducto)throws CheapestPriceException;
 
-    /**
-     * Carga un item de la tienda
-     * @param idproducto
-     * @param nit
-     * @param x
-     * @param y
-     * @return item
-     */
-    public Item loadItem(String nit,double x,double y,long idproducto)throws CheapestPriceException;
 
     /**
      * Registrar un nuevo producto a la tienda
      * @param producto
      * @throws CheapestPriceException
      */
-    public void addProduct(TiendaId id,Producto producto) throws CheapestPriceException;
+    public void addProduct(int id,Producto producto) throws CheapestPriceException;
 
     /**
      * Eliminar producto registrado en la tienda
      * @param idproducto
      * @throws CheapestPriceException
      */
-    public void deleteProduct(TiendaId id,long idproducto) throws CheapestPriceException;
+    public void deleteProduct(int id,long idproducto) throws CheapestPriceException;
 
     /**
      * Modificar producto registrado en la tienda
@@ -117,49 +108,49 @@ public interface ShopPersistence {
      * @param horario
      * @throws CheapestPriceException
      */
-    public void modifyHorary(TiendaId id,String dia, Horario horario) throws CheapestPriceException;
+    public void modifyHorary(int id,String dia, Horario horario) throws CheapestPriceException;
 
     /**
      * Modificar telefono de la tienda
      * @param telefono
      * @throws CheapestPriceException
      */
-    public void modifyTelephone(TiendaId id,String telefono) throws CheapestPriceException;
+    public void modifyTelephone(int id,String telefono) throws CheapestPriceException;
 
     /**
      *  Verificar si la tienda esta abierta
      *  @param fecha
      *  @throws CheapestPriceException
      */
-    public boolean isOpen(TiendaId id,Timestamp fecha) throws CheapestPriceException;
+    public boolean isOpen(int id,Timestamp fecha) throws CheapestPriceException;
 
     /**
      * Agregar opinion a la tienda
      * @param opinion
      * @throws CheapestPriceException
      */
-    public void addOpinion(TiendaId id,Opinion opinion) throws CheapestPriceException;
+    public void addOpinion(int id,Opinion opinion) throws CheapestPriceException;
 
     /***
      * Modificar el logo de la tienda
      * @param logo
      * @throws CheapestPriceException
      */
-    public void modifyLogo(TiendaId id,Blob logo) throws CheapestPriceException;
+    public void modifyLogo(int id,Blob logo) throws CheapestPriceException;
 
     /**
      * Agregar opinion a la tienda
      * @param opinion
      * @throws CheapestPriceException
      */
-    public Opinion consultOpinion(TiendaId id,Opinion opinion) throws CheapestPriceException;
+    public Opinion consultOpinion(int id,Opinion opinion) throws CheapestPriceException;
 
     /**
      * consultar lista de opiniones de la tienda
      * @return  opiniones
      * @throws CheapestPriceException
      */
-    public List<Opinion> consultOpiniones(TiendaId id) throws CheapestPriceException;
+    public List<Opinion> consultOpiniones(int id) throws CheapestPriceException;
 
     /***
      * Consultar las tiendas

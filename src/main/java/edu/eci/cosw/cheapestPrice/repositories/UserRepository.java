@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Created by 2105403 on 3/16/17.
  */
-public interface UserRepository extends JpaRepository<Usuario,String> {
+public interface UserRepository extends JpaRepository<Usuario,Integer> {
 
     @Query("select u from Usuario u where u.correo = ?1")
     public Usuario loadUserByEmail(String correo);

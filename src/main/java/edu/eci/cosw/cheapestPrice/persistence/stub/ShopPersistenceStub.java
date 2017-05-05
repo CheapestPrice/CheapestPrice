@@ -18,8 +18,107 @@ import java.util.Map;
  */
 //@Service
 public class ShopPersistenceStub implements ShopPersistence {
+    @Override
+    public void addTienda(Tienda tienda) throws CheapestPriceException {
 
-    private List<Tienda> tiendas;
+    }
+
+    @Override
+    public void deleteTienda(Tienda tienda) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public Tienda consultTienda(int idtienda) throws CheapestPriceException {
+        return null;
+    }
+
+    @Override
+    public void modifyTienda(int id, Tienda tienda) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public List<Item> loadItems(int idtienda) throws CheapestPriceException {
+        return null;
+    }
+
+    @Override
+    public Item loadItem(int idtienda, long idproducto) throws CheapestPriceException {
+        return null;
+    }
+
+    @Override
+    public void addProduct(int id, Producto producto) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public void deleteProduct(int id, long idproducto) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public void modifyProductByCategoria(Producto producto, String cambio) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public void modifyProductByMarca(Producto producto, String cambio) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public void modifyProductByImage(Producto producto, Blob cambio) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public void modifyProductByNombre(Producto producto, String cambio) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public void modifyHorary(int id, String dia, Horario horario) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public void modifyTelephone(int id, String telefono) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public boolean isOpen(int id, Timestamp fecha) throws CheapestPriceException {
+        return false;
+    }
+
+    @Override
+    public void addOpinion(int id, Opinion opinion) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public void modifyLogo(int id, Blob logo) throws CheapestPriceException {
+
+    }
+
+    @Override
+    public Opinion consultOpinion(int id, Opinion opinion) throws CheapestPriceException {
+        return null;
+    }
+
+    @Override
+    public List<Opinion> consultOpiniones(int id) throws CheapestPriceException {
+        return null;
+    }
+
+    @Override
+    public List<Tienda> consultShop() throws CheapestPriceException {
+        return null;
+    }
+
+    /*private List<Tienda> tiendas;
     private Map<TiendaId, ArrayList<Item>> items;
 
 
@@ -31,7 +130,7 @@ public class ShopPersistenceStub implements ShopPersistence {
     /**
      * Consultar las tiendas
      * @return tiendas
-     */
+     *
     public List<Tienda> getTiendas() {
         return tiendas;
     }
@@ -39,7 +138,7 @@ public class ShopPersistenceStub implements ShopPersistence {
     /**
      * Registrar tiendas
      * @param tiendas
-     */
+     *
     public void setTiendas(List<Tienda> tiendas) {
         this.tiendas = tiendas;
 
@@ -47,7 +146,7 @@ public class ShopPersistenceStub implements ShopPersistence {
     /**
      * Consultar las tiendas
      * @return items
-     */
+     *
     public Map<TiendaId, ArrayList<Item>> getItems() {
         return items;
     }
@@ -55,7 +154,7 @@ public class ShopPersistenceStub implements ShopPersistence {
     /**
      * Registrar tiendas
      * @param items
-     */
+     *
     public void setTiendas( Map<TiendaId, ArrayList<Item>> items) {
         this.items=items;
     }
@@ -176,7 +275,7 @@ public class ShopPersistenceStub implements ShopPersistence {
                 i.setProducto(producto);
             }
         }
-    }*/
+    }*
 
     @Override
     public void modifyHorary(TiendaId id, String dia, Horario horario) throws CheapestPriceException {
@@ -263,7 +362,7 @@ public class ShopPersistenceStub implements ShopPersistence {
     /**
      *Poblar stub tiendas
      * @param shopPersistence
-     */
+     *
     public static void poblarStub(ShopPersistenceStub shopPersistence){
         TiendaId id=new TiendaId("1234567-2",4.7649271,-74.0476042);
         Tienda t1= new Tienda("calle 184 #52 A13",id,"Donde pepe","6699132",true);
@@ -282,5 +381,5 @@ public class ShopPersistenceStub implements ShopPersistence {
             e.printStackTrace();
         }
 
-    }
+    }*/
 }

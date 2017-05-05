@@ -2,7 +2,6 @@ package edu.eci.cosw.cheapestPrice.services;
 
 import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
-import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ItemPersistence;
 //import edu.eci.cosw.cheapestPrice.repositories.ItemRepository;
@@ -34,7 +33,7 @@ public class ItemServicePersistence implements ItemService{
     }
 
     @Override
-    public List<Item> loadItemByShop(TiendaId tiendaId) throws CheapestPriceException {
+    public List<Item> loadItemByShop(int tiendaId) throws CheapestPriceException {
         return ip.loadItemByShop(tiendaId);
     }
 
