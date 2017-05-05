@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2017-05-03 14:50:04.656
+-- Last modification date: 2017-05-05 19:20:04.999
 
 -- tables
 -- Table: HORARIOS
@@ -106,7 +106,8 @@ CREATE TABLE USUARIOS_AUTENTICACION (
     hash varchar(70) NOT NULL,
     habilitado bool NOT NULL,
     rol varchar(100) NOT NULL,
-    CONSTRAINT USUARIOS_AUTENTICACION_pk PRIMARY KEY (USUARIOS_id)
+    id int NOT NULL AUTO_INCREMENT,
+    CONSTRAINT USUARIOS_AUTENTICACION_pk PRIMARY KEY (id)
 );
 
 -- foreign keys
@@ -155,5 +156,4 @@ ALTER TABLE TENDEROS ADD CONSTRAINT USUARIOS_TENDEROS FOREIGN KEY USUARIOS_TENDE
     REFERENCES USUARIOS (id);
 
 -- End of file.
-
 

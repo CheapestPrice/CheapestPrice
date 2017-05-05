@@ -22,7 +22,7 @@ public class Tendero implements Serializable{
     })
     private Tienda tienda;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Tienda.class)
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Usuario.class)
     @JoinColumns({
             @JoinColumn(name="USUARIOS_id", referencedColumnName="id", nullable=false, insertable=false, updatable=false)
     })
