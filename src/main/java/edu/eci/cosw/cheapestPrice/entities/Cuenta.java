@@ -1,69 +1,36 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
- * Created by Paula on 18/03/2017.
+ * Created by amoto on 5/4/17.
  */
-@Entity
-@Table(name="USUARIOS_AUTENTICACION")
-public class Cuenta implements Serializable{
+public class Cuenta implements Serializable {
 
-
-    private String hash;
-
-    private String email;
-
+    private int id;
 
     private String rol;
 
-
-    private boolean habilitado;
-
-    public Cuenta(String email, String hash, String rol){
-        this.email=email;
-        this.hash=hash;
-        this.rol=rol;
-        this.habilitado=true;
+    public Cuenta(int id, String rol){
+        this.setId(id);
+        this.setRol(rol);
     }
 
-    public Cuenta(){ this.habilitado=true; }
+    public Cuenta(){}
 
-    @Column(name = "hash", nullable = false)
-    public String getHash() {
-        return hash;
+    public int getId() {
+        return id;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    @Column(name = "USUARIOS_correo", nullable = false, insertable = false, updatable = false)
-    @Id
-    public String getEmail() {
-        return email;
+    public String getRol() {
+        return rol;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
-
-    @Column(name = "habilitado", nullable = false)
-    public boolean isHabilitado() {
-        return habilitado;
-    }
-
-    public void setHabilitado(boolean habilitado) {
-        this.habilitado = habilitado;
-    }
-
-    @Column(name = "rol", nullable = false)
-    public String getRol() { return rol;}
-
-    public void setRol(String rol) { this.rol = rol;}
-
 }
