@@ -24,6 +24,8 @@ public interface UserService {
      */
     public List<ListaDeMercado> loadShopListByEmail(String email) throws CheapestPriceException;
 
+    public List<ListaDeMercado> loadShopList(int id) throws CheapestPriceException;
+
     /**
      * Retorna un usuario especifico por su correo
      * @param correo
@@ -31,6 +33,8 @@ public interface UserService {
      * @throws CheapestPriceException
      */
     public Usuario loadUserByEmail(String correo) throws CheapestPriceException;
+
+    public Usuario loadUser(int id) throws CheapestPriceException;
 
     /**
      *
@@ -50,7 +54,7 @@ public interface UserService {
      * Actualiza a un usuario existente
      * @param usuario
      */
-    public void updateUser(int correo, Usuario usuario)throws CheapestPriceException;
+    public void updateUser(int id, Usuario usuario)throws CheapestPriceException;
 
     /**
      * Elimina una lista de mercado de un usuario
@@ -95,4 +99,6 @@ public interface UserService {
     public void  addTendero(Tendero tendero)throws CheapestPriceException;
 
     List<Tendero> loadAllTenderos();
+
+    ListaDeMercado loadListaUsuario(int uId,int lId);
 }

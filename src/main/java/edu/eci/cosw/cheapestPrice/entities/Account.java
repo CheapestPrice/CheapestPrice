@@ -10,6 +10,9 @@ package edu.eci.cosw.cheapestPrice.entities;
  * @author 2105684
  */
 public class Account {
+
+    public static final String TENDERO="Tendero";
+    public static final String CLIENTE="Usuario";
     
     private int id;
     

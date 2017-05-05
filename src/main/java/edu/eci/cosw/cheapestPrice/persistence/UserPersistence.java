@@ -96,4 +96,10 @@ public interface UserPersistence {
     void addTendero(Tendero tendero)throws CheapestPriceException;
 
     List<Tendero> loadAllTenderos();
+
+    Usuario load(int id);
+
+    List<ListaDeMercado> loadShopList(int id);
+
+    ListaDeMercado loadListaUsuario(int uId,int lId);
 }

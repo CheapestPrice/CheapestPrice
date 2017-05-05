@@ -24,4 +24,7 @@ public interface UserRepository extends JpaRepository<Usuario,Integer> {
     @Query("select u from Usuario u")
     public List<Usuario> loadAllUsers();
 
+    @Query("select l from ListaDeMercado where l.id=:lId and l.usuario.id=:uId")
+    public ListaDeMercado loadListaUsuario(int uId,int lId);
+
 }

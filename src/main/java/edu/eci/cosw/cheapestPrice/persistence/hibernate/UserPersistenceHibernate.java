@@ -99,4 +99,19 @@ public class UserPersistenceHibernate implements UserPersistence{
     public List<Tendero> loadAllTenderos() {
         return tr.findAll();
     }
+
+    @Override
+    public Usuario load(int id) {
+        return us.findOne(id);
+    }
+
+    @Override
+    public List<ListaDeMercado> loadShopList(int id) {
+        return us.findOne(id).getListas();
+    }
+
+    @Override
+    public ListaDeMercado loadListaUsuario(int uId, int lId) {
+        return us.loadListaUsuario(uId,lId);
+    }
 }

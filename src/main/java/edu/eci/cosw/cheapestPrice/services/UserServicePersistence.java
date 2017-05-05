@@ -29,8 +29,18 @@ public class UserServicePersistence implements UserService{
     }
 
     @Override
+    public List<ListaDeMercado> loadShopList(int id) throws CheapestPriceException {
+        return us.loadShopList(id);
+    }
+
+    @Override
     public Usuario loadUserByEmail(String correo) throws CheapestPriceException {
         return us.loadUserByEmail(correo);
+    }
+
+    @Override
+    public Usuario loadUser(int id) throws CheapestPriceException {
+        return us.load(id);
     }
 
     @Override
@@ -86,5 +96,10 @@ public class UserServicePersistence implements UserService{
     @Override
     public List<Tendero> loadAllTenderos() {
         return us.loadAllTenderos();
+    }
+
+    @Override
+    public ListaDeMercado loadListaUsuario(int uId, int lId) {
+        return us.loadListaUsuario(uId, lId);
     }
 }
