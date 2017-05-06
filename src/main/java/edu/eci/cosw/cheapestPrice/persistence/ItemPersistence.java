@@ -56,13 +56,6 @@ public interface ItemPersistence {
      * @throws CheapestPriceException si el id es menor a 0
      */
     public Item loadItemById(int id) throws CheapestPriceException;
-    /**
-     * Carga el producto con el id especificado
-     * @param id el id del producto solicitado
-     * @return el producto encontado por el id
-     * @throws CheapestPriceException si el id es menor a 0
-     */
-    public Producto loadProductById(long id) throws CheapestPriceException;
 
     /**
      * Registra un item

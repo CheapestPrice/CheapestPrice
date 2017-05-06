@@ -44,11 +44,6 @@ public class ItemPersistenceHibernate implements ItemPersistence {
     }
 
     @Override
-    public Producto loadProductById(long id) throws CheapestPriceException {
-        return pr.findOne(id);
-    }
-
-    @Override
     public void addItem(Item item) throws CheapestPriceException {
         ir.save(item);
     }

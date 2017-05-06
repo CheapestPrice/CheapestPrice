@@ -48,11 +48,6 @@ public class ItemServicePersistence implements ItemService{
     }
 
     @Override
-    public Producto loadProductById(long id) throws CheapestPriceException {
-        return ip.loadProductById(id);
-    }
-
-    @Override
     public void addItem(Item item) throws CheapestPriceException {
         ip.addItem(item);
     }

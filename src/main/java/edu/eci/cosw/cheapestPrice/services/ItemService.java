@@ -52,14 +52,6 @@ public interface ItemService {
     public Item loadItemById(int id) throws CheapestPriceException;
 
     /**
-     * Carga un producto con el id del producto especifico
-     * @param id el id del producto solicitado
-     * @return el producto encontrado por el id
-     * @throws CheapestPriceException si el id es menor a 0
-     */
-    public Producto loadProductById(long id) throws CheapestPriceException;
-
-    /**
      * Registra un item
      * @param item el item a registrar
      * @throws CheapestPriceException si el item es nulo
