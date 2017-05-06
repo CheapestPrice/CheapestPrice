@@ -55,8 +55,8 @@ public class ItemController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET,value="/{id}/shop/{shop}/item/{item}")
-    public ResponseEntity<?> getItem(@PathVariable int id,@PathVariable int shop,@PathVariable int idItem){
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/shop/{shop}/item/{idItem}")
+    public ResponseEntity<?> getItemShop(@PathVariable int id,@PathVariable int shop,@PathVariable int idItem){
         try {
             //verificar que se esté solicitando con el id de un usuario que exista
             cs.load(id);
@@ -67,7 +67,7 @@ public class ItemController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET,value="{id}/shop/{shop}/items")
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/shop/{shop}/items")
     public ResponseEntity<?> getItemsShop(@PathVariable int id, @PathVariable int shop){
         try {
             //verificar que se esté solicitando con el id de un usuario que exista
@@ -78,73 +78,85 @@ public class ItemController {
             return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/items/category/{category}")
+    public ResponseEntity<?> getItemsCategory(@PathVariable int id, @PathVariable String category){
+        try {
+            cs.load(id);
+            return new ResponseEntity<>(is.loadItemsByCategory(category), HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/items/{idItem}")
+    public ResponseEntity<?> getItemById(@PathVariable int id, @PathVariable int idItem){
+        try {
+            cs.load(id);
+            return new ResponseEntity<>(is.loadItemById(idItem), HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value="/{id}/shop/{shop}/items" ,method = RequestMethod.POST)
+    public ResponseEntity<?> postItem(@RequestBody Item item,@PathVariable int id,@PathVariable int shop){
+        try {
+            int idshop=item.getTienda().getId();
+            int user=item.getTienda().getTendero().getId();
+            Account acc=cs.load(id);
+            if(id==user && idshop==shop) {
+                is.addItem(item);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }else{
+                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
+            }
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value="/{id}/shop/{shop}/item/{idItem}" ,method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteItem(@PathVariable int id,@PathVariable int shop,@PathVariable int idItem){
+        try {
+            Item item=is.loadItemById(idItem);
+            int idshop=item.getTienda().getId();
+            int user=item.getTienda().getTendero().getId();
+            cs.load(id);
+            if(id==user && idshop==shop) {
+                is.deleteItem(shop,id);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }else{
+                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
+            }
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value="/{id}/shop/{shop}/item/{idItem}",method = RequestMethod.PUT)
+    public ResponseEntity<?> updateItem(@RequestBody Item item,@PathVariable int id,@PathVariable int shop){
+        try {
+            int idshop=item.getTienda().getId();
+            int user=item.getTienda().getTendero().getId();
+            cs.load(id);
+            if(id==user && idshop==shop) {
+                is.updateItem(item);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }else{
+                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
+            }
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+///No tocar ... excepto si es Hugo!
     
-    /// voy aqui
-
-    @RequestMapping(method = RequestMethod.GET,value="/category/{category}")
-    public ResponseEntity<?> getItemsCategory(@PathVariable String category){
-        try {
-            return new ResponseEntity<>(is.loadItemByCategory(category), HttpStatus.ACCEPTED);
-        } catch (CheapestPriceException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @RequestMapping(method = RequestMethod.GET,value="/{id}")
-    public ResponseEntity<?> getItemsId(@PathVariable long id){
-        try {
-            return new ResponseEntity<>(is.loadItemById(id), HttpStatus.ACCEPTED);
-        } catch (CheapestPriceException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @RequestMapping(method = RequestMethod.GET,value="/{id}/imagen")
-    public ResponseEntity<?> getPictureById(@PathVariable long id){
-        try {
-            return ResponseEntity.ok()
-                    .contentType(MediaType.parseMediaType("image/png"))
-                    .body(new InputStreamResource(  is.loadProductById(id).getImagen().getBinaryStream()     ));
-        } catch (CheapestPriceException | SQLException | NullPointerException  e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> postItem(@RequestBody Item item){
-        try {
-            is.addItem(item);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        } catch (CheapestPriceException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @RequestMapping(method = RequestMethod.PUT,value="/shop/{oldShop}/id/{oldId}")
-    public ResponseEntity<?> putItem(@RequestBody Item item,@PathVariable long oldId,@PathVariable String oldShop){
-        try {
-            is.updateItem(oldId,oldShop,item);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        } catch (CheapestPriceException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @RequestMapping(method = RequestMethod.DELETE,value="/shop/{shop}/id/{id}")
-    public ResponseEntity<?> deleteItem(@PathVariable String shop,@PathVariable long id){
-        try {
-            is.deleteItem(shop,id);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        } catch (CheapestPriceException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public ResponseEntity uploadFile(@RequestPart(value = "items") Item items,@RequestPart(value = "files", required = false) MultipartFile files) {
 
@@ -165,4 +177,17 @@ public class ItemController {
 
         return new ResponseEntity<>("{}", HttpStatus.OK);
     }
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/imagen")
+    public ResponseEntity<?> getPictureById(@PathVariable int id){
+        try {
+            cs.load(id);
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType("image/png"))
+                    .body(new InputStreamResource(  is.loadProductById(id).getImagen().getBinaryStream()     ));
+        } catch (CheapestPriceException | SQLException | NullPointerException  e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

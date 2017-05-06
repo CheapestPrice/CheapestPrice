@@ -28,21 +28,19 @@ public class ItemPersistenceHibernate implements ItemPersistence {
         return ir.findAll();
     }
 
-
-
     @Override
     public List<Item> loadItemByShop(int tiendaId) throws CheapestPriceException {
         return ir.loadItemsByShop(tiendaId);
     }
 
     @Override
-    public List<Item> loadItemByCategory(String category) throws CheapestPriceException {
-        return null;
+    public List<Item> loadItemsByCategory(String category) throws CheapestPriceException {
+        return ir.loadItemsByCategory(category);
     }
 
     @Override
-    public List<Item> loadItemById(long id) throws CheapestPriceException {
-        return null;
+    public Item loadItemById(int id) throws CheapestPriceException {
+        return ir.findOne(id);
     }
 
     @Override
@@ -56,13 +54,14 @@ public class ItemPersistenceHibernate implements ItemPersistence {
     }
 
     @Override
-    public void deleteItem(String shopName, long id) throws CheapestPriceException {
-
+    public void deleteItem(int idShop,int idItem) throws CheapestPriceException {
+        ir.delete(idItem);
     }
 
     @Override
-    public void updateItem(long oldId, String oldShop, Item item) throws CheapestPriceException {
-
+    public void updateItem(Item item) throws CheapestPriceException {
+        ir.delete(item.getId());
+        ir.save(item);
     }
 
     @Override

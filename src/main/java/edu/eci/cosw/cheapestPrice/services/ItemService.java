@@ -41,7 +41,7 @@ public interface ItemService {
      * @return todos los items con una categoría dada
      * @throws CheapestPriceException si  category es vacío o de longitud 0
      */
-    public List<Item> loadItemByCategory(String category) throws CheapestPriceException;
+    public List<Item> loadItemsByCategory(String category) throws CheapestPriceException;
 
     /**
      * Carga el item con el id especificado
@@ -49,7 +49,7 @@ public interface ItemService {
      * @return todas las apariciones del item deseado
      * @throws CheapestPriceException si el id es menor a 0
      */
-    public List<Item> loadItemById(long id) throws CheapestPriceException;
+    public Item loadItemById(int id) throws CheapestPriceException;
 
     /**
      * Carga un producto con el id del producto especifico
@@ -68,20 +68,18 @@ public interface ItemService {
 
     /**
      * Elimina un item registrado
-     * @param id el id con el que el item se encuentra registrado
-     * @param shopName el nombre de la tienda donde se encuentra registrado el item
+     * @param idItem el id con el que el item se encuentra registrado
+     * @param idShop el nombre de la tienda donde se encuentra registrado el item
      * @throws CheapestPriceException si el item es nulo o los parametros son nulos
      */
-    public void deleteItem(String shopName,long id) throws CheapestPriceException;
+    public void deleteItem(int idShop,int idItem) throws CheapestPriceException;
 
     /**
-     * Actualiza un item dado el id con el que se encuentra registrado
-     * @param oldId el id con el que el item se encuentra registrado
+     * Actualiza un item de la tienda en la que se encuentra registrado
      * @param item el item con los datos actuales
-     * @param oldShop el nombre de la tienda donde se encuentra registrado el item
      * @throws CheapestPriceException si alguno de los parametros es nulo o no hay ningun item registrado con oldId o los nuevos datos de item no son validos
      */
-    public void updateItem(long oldId,String oldShop,Item item) throws CheapestPriceException;
+    public void updateItem(Item item) throws CheapestPriceException;
 
     /**
      * Actualiza la imagen del producto bajo el nombre, la marca y categoria
