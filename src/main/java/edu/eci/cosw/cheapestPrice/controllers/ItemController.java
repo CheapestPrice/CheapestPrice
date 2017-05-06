@@ -1,8 +1,10 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
+import edu.eci.cosw.cheapestPrice.entities.Account;
 import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
+import edu.eci.cosw.cheapestPrice.services.CuentaService;
 import edu.eci.cosw.cheapestPrice.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -21,39 +23,63 @@ import java.sql.SQLException;
  * Created by Julian David Devia Serna on 2/20/17.
  */
 @RestController
-@RequestMapping(value = "/items")
+@RequestMapping("/api/items")
 public class ItemController {
+
     @Autowired
     ItemService is;
+    @Autowired
+    CuentaService cs;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getItems(){
-        return new ResponseEntity<>(is.loadItems(), HttpStatus.ACCEPTED);
-    }
-    @RequestMapping(method = RequestMethod.GET,value="/products" )
-    public ResponseEntity<?> getProducts(){
-        return new ResponseEntity<>(is.getProducts(), HttpStatus.ACCEPTED);
-    }
-
-    @RequestMapping(method = RequestMethod.GET,value="/shop/{shop}/id/{id}")
-    public ResponseEntity<?> getItem(@PathVariable String shop,@PathVariable long id){
+    @RequestMapping(method = RequestMethod.GET,value = "/{id}")
+    public ResponseEntity<?> getItems(@PathVariable int id){
         try {
-            return new ResponseEntity<>(is.loadItem(shop,id),HttpStatus.ACCEPTED);
+            //verificar que se esté solicitando con el id de un usuario que exista
+            cs.load(id);
+            return new ResponseEntity<>(is.loadItems(), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET,value="/shop/{id}")
-    public ResponseEntity<?> getItemsShop(@PathVariable int id){
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/products" )
+    public ResponseEntity<?> getProducts(@PathVariable int id){
         try {
-            return new ResponseEntity<>(is.loadItemByShop(id), HttpStatus.ACCEPTED);
+            //verificar que se esté solicitando con el id de un usuario que exista
+            cs.load(id);
+            return new ResponseEntity<>(is.getProducts(), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/shop/{shop}/item/{item}")
+    public ResponseEntity<?> getItem(@PathVariable int id,@PathVariable int shop,@PathVariable int idItem){
+        try {
+            //verificar que se esté solicitando con el id de un usuario que exista
+            cs.load(id);
+            return new ResponseEntity<>(is.loadItem(shop,idItem), HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET,value="{id}/shop/{shop}/items")
+    public ResponseEntity<?> getItemsShop(@PathVariable int id, @PathVariable int shop){
+        try {
+            //verificar que se esté solicitando con el id de un usuario que exista
+            cs.load(id);
+            return new ResponseEntity<>(is.loadItemByShop(shop), HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    /// voy aqui
 
     @RequestMapping(method = RequestMethod.GET,value="/category/{category}")
     public ResponseEntity<?> getItemsCategory(@PathVariable String category){

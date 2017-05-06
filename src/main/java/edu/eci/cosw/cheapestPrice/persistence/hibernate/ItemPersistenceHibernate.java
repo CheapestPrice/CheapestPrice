@@ -28,10 +28,7 @@ public class ItemPersistenceHibernate implements ItemPersistence {
         return ir.findAll();
     }
 
-    @Override
-    public Item loadItem(String shopName, long id) throws CheapestPriceException {
-        return null;
-    }
+
 
     @Override
     public List<Item> loadItemByShop(int tiendaId) throws CheapestPriceException {
@@ -76,5 +73,10 @@ public class ItemPersistenceHibernate implements ItemPersistence {
     @Override
     public List<Producto> getProducts() {
         return pr.findAll();
+    }
+
+    @Override
+    public Item loadItem(int shop, int idItem) throws CheapestPriceException {
+        return ir.loadItem(shop,idItem);
     }
 }

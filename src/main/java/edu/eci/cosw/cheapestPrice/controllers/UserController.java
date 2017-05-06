@@ -34,7 +34,7 @@ public class UserController {
             return new ResponseEntity<>(uP.loadAllUsuarios(), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(e, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
         }
     }
     @RequestMapping(method = RequestMethod.GET,value="/{id}/tenderos")

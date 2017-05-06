@@ -28,8 +28,8 @@ public class ItemServicePersistence implements ItemService{
     }
 
     @Override
-    public Item loadItem(String shopName, long id) throws CheapestPriceException {
-        return ip.loadItem(shopName,id);
+    public Item loadItem(int shop, int idItem) throws CheapestPriceException {
+        return ip.loadItem(shop,idItem);
     }
 
     @Override

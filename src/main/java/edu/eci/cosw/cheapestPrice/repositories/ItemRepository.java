@@ -13,4 +13,7 @@ import java.util.List;
 public interface ItemRepository extends JpaRepository<Item, Integer> {
     @Query("select i from Item i where i.tienda.id=:id")
     public List<Item> loadItemsByShop(@Param("id") int id);
+
+    @Query("select i from Item i where i.tienda.id=:shop and i.id=:idItem")
+    public Item loadItem(@Param("shop") int shop,@Param("idItem") int idItem);
 }

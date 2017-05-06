@@ -26,12 +26,12 @@ public interface ItemPersistence {
 
     /**
      * Retorna el item deseado
-     * @param shopName el nombre de la tienda relacionada con el item
-     * @param id el id del producto relacionado con el item
+     * @param shop el nombre de la tienda relacionada con el item
+     * @param idItem el id del item a cargar
      * @return el item deseado
      * @throws CheapestPriceException si el item solicitado no existe o los parametros son nulos
      */
-    public Item loadItem(String shopName,long id) throws CheapestPriceException;
+    public Item loadItem(int shop,int idItem) throws CheapestPriceException;
 
     /**
      * Carga todos los items registrados a nombre de una tienda dada
