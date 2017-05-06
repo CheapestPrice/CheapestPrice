@@ -3,7 +3,6 @@ package edu.eci.cosw.cheapestPrice.controllers;
 import edu.eci.cosw.cheapestPrice.entities.Tienda;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.services.CuentaService;
-import edu.eci.cosw.cheapestPrice.services.ItemService;
 import edu.eci.cosw.cheapestPrice.services.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
