@@ -50,11 +50,11 @@ public interface ShopPersistence {
 
     /**
      * Carga un item de la tienda
-     * @param idproducto
+     * @param idItem
      * @param idtienda
      * @return item
      */
-    public Item loadItem(int idtienda,long idproducto)throws CheapestPriceException;
+    public Item loadItem(int idtienda,int idItem)throws CheapestPriceException;
 
 
     /**

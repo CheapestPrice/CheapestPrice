@@ -2,6 +2,8 @@ package edu.eci.cosw.cheapestPrice.controllers;
 
 import edu.eci.cosw.cheapestPrice.entities.Tienda;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
+import edu.eci.cosw.cheapestPrice.services.CuentaService;
+import edu.eci.cosw.cheapestPrice.services.ItemService;
 import edu.eci.cosw.cheapestPrice.services.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -24,16 +26,19 @@ import java.util.logging.Logger;
  * Created by Daniela on 19/02/2017.
  */
 @RestController
-@RequestMapping("/tiendas")
+@RequestMapping("/api/tiendas")
 public class ShopController {
 
     @Autowired
-    public ShopService serviceShop;
+    ShopService serviceShop;
 
+    @Autowired
+    CuentaService cs;
 
     @RequestMapping(method = RequestMethod.GET, value="/{id}/items")
     public ResponseEntity<?> loadItems(@PathVariable int id)  {
         try {
+
             return new ResponseEntity<>(serviceShop.loadItems(id), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, e);
@@ -44,7 +49,7 @@ public class ShopController {
     @RequestMapping(method = RequestMethod.GET, value="/{id}/item/{idproducto}")
     public ResponseEntity<?> loadItem(@PathVariable int id,@PathVariable long idproducto)  {
         try {
-            return new ResponseEntity<>(serviceShop.loadItem(id,idproducto), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(serviceShop.loadItem(id,id), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, e);
             return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);

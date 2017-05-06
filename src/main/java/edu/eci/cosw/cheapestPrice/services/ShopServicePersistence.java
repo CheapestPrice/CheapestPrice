@@ -47,8 +47,8 @@ public class ShopServicePersistence implements ShopService {
     }
 
     @Override
-    public Item loadItem(int id, long idproducto) throws CheapestPriceException {
-        return persistence.loadItem(id,idproducto);
+    public Item loadItem(int id, int idItem) throws CheapestPriceException {
+        return persistence.loadItem(id,idItem);
     }
 
     @Override

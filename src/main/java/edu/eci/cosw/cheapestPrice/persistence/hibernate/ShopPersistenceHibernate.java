@@ -86,12 +86,12 @@ public class ShopPersistenceHibernate implements ShopPersistence {
 
     @Override
     public Opinion consultOpinion(int id, Opinion opinion) throws CheapestPriceException {
-        return repositoryshop.loadOpinion(id, opinion);
+        return opinionRepository.loadOpinion(id, opinion);
     }
 
     @Override
     public List<Opinion> consultOpiniones(int id) throws CheapestPriceException {
-        return repositoryshop.loadOpinions(id);
+        return opinionRepository.loadOpinions(id);
     }
 
     @Override
@@ -117,12 +117,12 @@ public class ShopPersistenceHibernate implements ShopPersistence {
 
     @Override
     public List<Item> loadItems(int idtienda) throws CheapestPriceException {
-        return repositoryshop.loadItems(idtienda);
+        return itemRepository.loadItemsByShop(idtienda);
     }
 
     @Override
-    public Item loadItem(int idtienda, long idproducto) throws CheapestPriceException {
-        return repositoryshop.loadItem(idtienda,idproducto);
+    public Item loadItem(int idShop, int idItem) throws CheapestPriceException {
+        return itemRepository.loadItem(idShop,idItem);
     }
 
     @Override

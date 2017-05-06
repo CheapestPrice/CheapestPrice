@@ -101,24 +101,6 @@ public class ItemController {
         }
     }
 
-    @RequestMapping(value="/{id}/shop/{shop}/items" ,method = RequestMethod.POST)
-    public ResponseEntity<?> postItem(@RequestBody Item item,@PathVariable int id,@PathVariable int shop){
-        try {
-            int idshop=item.getTienda().getId();
-            int user=item.getTienda().getTendero().getId();
-            Account acc=cs.load(id);
-            if(id==user && idshop==shop) {
-                is.addItem(item);
-                return new ResponseEntity<>(HttpStatus.ACCEPTED);
-            }else{
-                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
-            }
-        } catch (CheapestPriceException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
-
     @RequestMapping(value="/{id}/shop/{shop}/item/{idItem}" ,method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteItem(@PathVariable int id,@PathVariable int shop,@PathVariable int idItem){
         try {
@@ -155,39 +137,72 @@ public class ItemController {
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
     }
-///No tocar ... excepto si es Hugo!
-    
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public ResponseEntity uploadFile(@RequestPart(value = "items") Item items,@RequestPart(value = "files", required = false) MultipartFile files) {
 
+    @RequestMapping(value="/{id}/shop/{shop}/items" ,method = RequestMethod.POST)
+    public ResponseEntity<?> postItem(@RequestBody Item item,@PathVariable int id,@PathVariable int shop){
         try {
-            if(files != null){
-                Blob imagen = new SerialBlob(StreamUtils.copyToByteArray(files.getInputStream()));
-                Producto p =items.getProducto();
-                p.setImagen(imagen);
-                items.setProducto(p);
-                is.addItem(items);
+            int idshop=item.getTienda().getId();
+            int user=item.getTienda().getTendero().getId();
+            Account acc=cs.load(id);
+            if(id==user && idshop==shop) {
+                is.addItem(item);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }else{
-                is.addItem(items);
+                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
             }
-        }
-        catch (Exception e) {
-            return new ResponseEntity<>("{}", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return new ResponseEntity<>("{}", HttpStatus.OK);
-    }
-    @RequestMapping(method = RequestMethod.GET,value="/{id}/imagen")
-    public ResponseEntity<?> getPictureById(@PathVariable int id){
-        try {
-            cs.load(id);
-            return ResponseEntity.ok()
-                    .contentType(MediaType.parseMediaType("image/png"))
-                    .body(new InputStreamResource(  is.loadProductById(id).getImagen().getBinaryStream()     ));
-        } catch (CheapestPriceException | SQLException | NullPointerException  e) {
+        } catch (CheapestPriceException e) {
             e.printStackTrace();
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
     }
 
+///No tocar ... excepto si es Hugo!
+
+    @RequestMapping(value = "/{id}/shop/{shop}/item", method = RequestMethod.POST)
+    public ResponseEntity uploadFile(@PathVariable int id,@PathVariable int shop,@RequestPart(value = "items") Item items,@RequestPart(value = "files", required = false) MultipartFile files) {
+        try {
+
+            int idshop=items.getTienda().getId();
+            int user=items.getTienda().getTendero().getId();
+            Account acc=cs.load(id);
+            if(id==user && idshop==shop) {
+                if(files != null){
+                    Blob imagen = new SerialBlob(StreamUtils.copyToByteArray(files.getInputStream()));
+                    Producto p =items.getProducto();
+                    p.setImagen(imagen);
+                    items.setProducto(p);
+                    is.addItem(items);
+                }else{
+                    is.addItem(items);
+                }
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }else{
+                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
+            }
+
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>("{}", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/shop/{shop}/item/{idItem}/imagen")
+    public ResponseEntity<?> getPictureById(@PathVariable int id,@PathVariable int shop,@PathVariable int idItem) {
+        try {
+            Item items = is.loadItemById(idItem);
+            int idshop = items.getTienda().getId();
+            int user = items.getTienda().getTendero().getId();
+            cs.load(id);
+            if (id == user && idshop == shop) {
+                return ResponseEntity.ok()
+                        .contentType(MediaType.parseMediaType("image/png"))
+                        .body(new InputStreamResource(is.loadProductById(id).getImagen().getBinaryStream()));
+            }else{
+                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
+            }
+        } catch (CheapestPriceException | SQLException | NullPointerException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+        }
+    }
 }
