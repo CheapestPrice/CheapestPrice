@@ -6,6 +6,7 @@ import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ public interface UserRepository extends JpaRepository<Usuario,Integer> {
     @Query("select u from Usuario u")
     public List<Usuario> loadAllUsers();
 
-    @Query("select l from ListaDeMercado where l.id=:lId and l.usuario.id=:uId")
-    public ListaDeMercado loadListaUsuario(int uId,int lId);
+    @Query("select l from ListaDeMercado l where l.id=:lId and l.usuario.id=:uId")
+    public ListaDeMercado loadListaUsuario(@Param("uId") int uId, @Param("lId") int lId);
 
 }
