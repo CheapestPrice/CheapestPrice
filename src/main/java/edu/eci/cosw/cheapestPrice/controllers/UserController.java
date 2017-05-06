@@ -4,6 +4,7 @@ import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
 import edu.eci.cosw.cheapestPrice.services.CuentaService;
+import edu.eci.cosw.cheapestPrice.services.ShoppingListService;
 import edu.eci.cosw.cheapestPrice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,9 @@ public class UserController {
     UserService uP;
     @Autowired
     CuentaService cs;
+
+    @Autowired
+    ShoppingListService sls;
 
     @RequestMapping(method = RequestMethod.GET,value = "/{id}")
     public ResponseEntity<?> getUsuarios(@PathVariable int id){
@@ -103,9 +107,13 @@ public class UserController {
             Account acc=cs.load(id);
             ListaDeMercado l=uP.loadListaUsuario(id,listaId);
             if(l!=null) {
-
-                uP.favoriteShoppingListItem(itemListaId,fav);
-                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+                ItemLista il=sls.loadItemListaByLista(listaId,itemListaId);
+                if(il!=null) {
+                    uP.favoriteShoppingListItem(itemListaId, fav);
+                    return new ResponseEntity<>(HttpStatus.ACCEPTED);
+                }else{
+                    return new ResponseEntity<>(new CheapestPriceException("El producto no pertenece a la lista"),HttpStatus.NOT_FOUND);
+                }
             }else{
                 return new ResponseEntity<>(new CheapestPriceException("La lista no pertenece al usuario"),HttpStatus.NOT_FOUND);
             }
