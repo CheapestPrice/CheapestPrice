@@ -180,7 +180,7 @@ public class ItemController {
                         .contentType(MediaType.parseMediaType("image/png"))
                         .body(new InputStreamResource(items.getProducto().getImagen().getBinaryStream()));
             }else{
-                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             }
         } catch (CheapestPriceException | SQLException | NullPointerException e) {
             e.printStackTrace();
