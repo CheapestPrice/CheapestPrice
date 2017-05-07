@@ -9,7 +9,7 @@ angular.module('myApp.login', ['ngRoute'])
   });
 }])
 
-.controller('login', ['$rootScope', '$scope', '$http', '$location', function($rootScope, $scope, $http, $location) {
+.controller('login', ['$rootScope', '$scope', '$http', '$location','getUserEmail', function($rootScope, $scope, $http, $location,getUserEmail) {
 
             $scope.imagePath = 'images/cheapestPrice.jpg';
             var authenticate = function (credentials, callback) {
@@ -17,13 +17,15 @@ angular.module('myApp.login', ['ngRoute'])
                 var headers = credentials ? {authorization: "Basic "
                             + btoa(credentials.username + ":" + credentials.password)
                 } : {};
-
                 $http.get('user', {headers: headers}).then(successCallback, errorCallback);
 
                 function successCallback(data){
-                console.log("success");
-                console.log(data);
+                    console.log("success");
+                    console.log(data);
                     if (data.data.name) {
+                        var user = getUserEmail.get({correo:data.data.name});
+                        console.log(user);
+                        $rootScope.userId=user.id;
                         $rootScope.authenticated = true;
                     }else {
                         $rootScope.authenticated = false;
