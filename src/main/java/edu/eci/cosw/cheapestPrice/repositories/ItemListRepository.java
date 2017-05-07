@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface ItemListRepository extends JpaRepository<ItemLista, Integer> {
     @Modifying
     @Transactional
-    @Query("update ItemLista il set il.comprado=:comp where il.id=:itemListaId ")
+    @Query("update ItemLista il set il.comprado=:comp where il.id=:itemListaId")
     public void sellItemSelected(@Param("itemListaId") int itemListaId,@Param("comp") boolean comp);
 
     @Modifying

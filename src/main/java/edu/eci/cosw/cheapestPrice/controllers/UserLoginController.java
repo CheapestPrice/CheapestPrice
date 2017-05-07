@@ -29,15 +29,5 @@ public class UserLoginController {
         return user;
     }
 
-    @RequestMapping(value="/cuenta",method = RequestMethod.POST)
-    public ResponseEntity<?> agregarCuenta(@RequestBody Cuenta cuenta){
-        try{
-            cs.agregarCuenta(cuenta);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        }catch (CheapestPriceException e){
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
 
 }

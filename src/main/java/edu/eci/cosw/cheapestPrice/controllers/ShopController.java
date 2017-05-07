@@ -52,20 +52,7 @@ public class ShopController {
         }
     }
 
-    @RequestMapping(value ="/{id}" ,method = RequestMethod.POST)
-    public ResponseEntity<?> addShop(@PathVariable int id,@RequestBody Tienda tienda){
-        ResponseEntity a;
-        try {
-            cs.load(id);
-            serviceShop.addTienda(tienda);
-            a = new ResponseEntity<>(HttpStatus.ACCEPTED);
-            System.out.println("Tienda creada sin error");
-        } catch (CheapestPriceException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
-        }
-        return a;
-    }
+
 
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
     public ResponseEntity<?> modifyShop(@PathVariable int id,@RequestBody Tienda tienda){

@@ -3,11 +3,16 @@ package edu.eci.cosw.cheapestPrice.controllers;
 import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.services.CuentaService;
+import edu.eci.cosw.cheapestPrice.services.ShopService;
 import edu.eci.cosw.cheapestPrice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by 2105684 on 5/3/17.
@@ -18,6 +23,9 @@ public class LoginController {
     CuentaService cs;
     @Autowired
     UserService uP;
+    @Autowired
+    ShopService serviceShop;
+
     @RequestMapping(value="/api/login",method = RequestMethod.POST)
     public ResponseEntity<?> agregarCuenta(@RequestBody CuentaPass cuenta){
         try{
@@ -27,10 +35,9 @@ public class LoginController {
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
     }
-    @RequestMapping(method = RequestMethod.POST,value = "/{id}")
-    public ResponseEntity<?> agregarUsuario(@RequestBody Usuario usuario, @PathVariable int id){
+    @RequestMapping(method = RequestMethod.POST,value = "/api/user/reg")
+    public ResponseEntity<?> agregarUsuario(@RequestBody Usuario usuario){
         try{
-            cs.load(id);
             uP.addUser(usuario);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
@@ -38,19 +45,36 @@ public class LoginController {
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
     }
-    @RequestMapping(method = RequestMethod.POST, value = "/{id}/tendero")
-    public ResponseEntity<?> agregarTendero(@RequestBody Tendero tendero, @PathVariable int id){
+    @RequestMapping(method = RequestMethod.POST, value = "/api/tendero/reg")
+    public ResponseEntity<?> agregarTendero(@RequestBody Tendero tendero){
         try{
-            //verificar que se esté solicitando con el id de un usuario que exista y sea un tendero
-            Account acc=cs.load(id);
-            if(acc.getRol().equals(Account.TENDERO)) {
-                uP.addTendero(tendero);
-                return new ResponseEntity<>(HttpStatus.ACCEPTED);
-            }else{
-                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
-            }
+            uP.addTendero(tendero);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }catch (CheapestPriceException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
 
+    @RequestMapping(value ="/api/tienda/reg" ,method = RequestMethod.POST)
+    public ResponseEntity<?> addShop(@RequestBody Tienda tienda){
+        ResponseEntity a;
+        try {
+            serviceShop.addTienda(tienda);
+            a = new ResponseEntity<>(HttpStatus.ACCEPTED);
+            System.out.println("Tienda creada sin error");
+        } catch (CheapestPriceException ex) {
+            ex.printStackTrace();
+            return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
+        }
+        return a;
+    }
 
+    @RequestMapping(value="/api/cuenta/reg",method = RequestMethod.POST)
+    public ResponseEntity<?> agregarCuenta(@RequestBody Cuenta cuenta){
+        try{
+            cs.agregarCuenta(cuenta);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             e.printStackTrace();
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
