@@ -1,9 +1,10 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
+import edu.eci.cosw.cheapestPrice.entities.Account;
 import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
-import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
+import edu.eci.cosw.cheapestPrice.services.CuentaService;
 import edu.eci.cosw.cheapestPrice.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -21,123 +22,195 @@ import java.sql.SQLException;
 /**
  * Created by Julian David Devia Serna on 2/20/17.
  */
+
 @RestController
-@RequestMapping(value = "/items")
+@RequestMapping("/api/items")
 public class ItemController {
+
     @Autowired
     ItemService is;
+    @Autowired
+    CuentaService cs;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getItems(){
-        return new ResponseEntity<>(is.loadItems(), HttpStatus.ACCEPTED);
-    }
-    @RequestMapping(method = RequestMethod.GET,value="/products" )
-    public ResponseEntity<?> getProducts(){
-        return new ResponseEntity<>(is.getProducts(), HttpStatus.ACCEPTED);
-    }
-
-    @RequestMapping(method = RequestMethod.GET,value="/shop/{shop}/id/{id}")
-    public ResponseEntity<?> getItem(@PathVariable String shop,@PathVariable long id){
+    @RequestMapping(method = RequestMethod.GET,value = "/{id}")
+    public ResponseEntity<?> getItems(@PathVariable int id){
         try {
-            return new ResponseEntity<>(is.loadItem(shop,id),HttpStatus.ACCEPTED);
+            //verificar que se esté solicitando con el id de un usuario que exista
+            cs.load(id);
+            return new ResponseEntity<>(is.loadItems(), HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/products" )
+    public ResponseEntity<?> getProducts(@PathVariable int id){
+        try {
+            //verificar que se esté solicitando con el id de un usuario que exista
+            cs.load(id);
+            return new ResponseEntity<>(is.getProducts(), HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/shop/{shop}/item/{idItem}")
+    public ResponseEntity<?> getItemShop(@PathVariable int id,@PathVariable int shop,@PathVariable int idItem){
+        try {
+            //verificar que se esté solicitando con el id de un usuario que exista
+            cs.load(id);
+            return new ResponseEntity<>(is.loadItem(shop,idItem), HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/shop/{shop}/items")
+    public ResponseEntity<?> getItemsShop(@PathVariable int id, @PathVariable int shop){
+        try {
+            //verificar que se esté solicitando con el id de un usuario que exista
+            cs.load(id);
+            return new ResponseEntity<>(is.loadItemByShop(shop), HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/items/category/{category}")
+    public ResponseEntity<?> getItemsCategory(@PathVariable int id, @PathVariable String category){
+        try {
+            cs.load(id);
+            return new ResponseEntity<>(is.loadItemsByCategory(category), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET,value="/shop/x/{x}/y/{y}/nit/{nit}")
-    public ResponseEntity<?> getItemsShop(@PathVariable double x,@PathVariable double y,@PathVariable String nit){
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/items/{idItem}")
+    public ResponseEntity<?> getItemById(@PathVariable int id, @PathVariable int idItem){
         try {
-            return new ResponseEntity<>(is.loadItemByShop(new TiendaId(nit,x,y)), HttpStatus.ACCEPTED);
+            cs.load(id);
+            return new ResponseEntity<>(is.loadItemById(idItem), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
             return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET,value="/category/{category}")
-    public ResponseEntity<?> getItemsCategory(@PathVariable String category){
+    @RequestMapping(value="/{id}/shop/{shop}/item/{idItem}" ,method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteItem(@PathVariable int id,@PathVariable int shop,@PathVariable int idItem){
         try {
-            return new ResponseEntity<>(is.loadItemByCategory(category), HttpStatus.ACCEPTED);
-        } catch (CheapestPriceException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @RequestMapping(method = RequestMethod.GET,value="/{id}")
-    public ResponseEntity<?> getItemsId(@PathVariable long id){
-        try {
-            return new ResponseEntity<>(is.loadItemById(id), HttpStatus.ACCEPTED);
-        } catch (CheapestPriceException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @RequestMapping(method = RequestMethod.GET,value="/{id}/imagen")
-    public ResponseEntity<?> getPictureById(@PathVariable long id){
-        try {
-            return ResponseEntity.ok()
-                    .contentType(MediaType.parseMediaType("image/png"))
-                    .body(new InputStreamResource(  is.loadProductById(id).getImagen().getBinaryStream()     ));
-        } catch (CheapestPriceException | SQLException | NullPointerException  e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> postItem(@RequestBody Item item){
-        try {
-            is.addItem(item);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        } catch (CheapestPriceException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @RequestMapping(method = RequestMethod.PUT,value="/shop/{oldShop}/id/{oldId}")
-    public ResponseEntity<?> putItem(@RequestBody Item item,@PathVariable long oldId,@PathVariable String oldShop){
-        try {
-            is.updateItem(oldId,oldShop,item);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        } catch (CheapestPriceException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @RequestMapping(method = RequestMethod.DELETE,value="/shop/{shop}/id/{id}")
-    public ResponseEntity<?> deleteItem(@PathVariable String shop,@PathVariable long id){
-        try {
-            is.deleteItem(shop,id);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        } catch (CheapestPriceException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
-        }
-    }
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public ResponseEntity uploadFile(@RequestPart(value = "items") Item items,@RequestPart(value = "files", required = false) MultipartFile files) {
-
-        try {
-            if(files != null){
-                Blob imagen = new SerialBlob(StreamUtils.copyToByteArray(files.getInputStream()));
-                Producto p =items.getProducto();
-                p.setImagen(imagen);
-                items.setProducto(p);
-                is.addItem(items);
+            Item item=is.loadItemById(idItem);
+            int idshop=item.getTienda().getId();
+            int user=item.getTienda().getTendero().getId();
+            Account acc=cs.load(id);
+            if(id==user && idshop==shop) {
+                is.deleteItem(shop,id);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }else{
-                is.addItem(items);
+                System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
+                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
             }
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value="/{id}/shop/{shop}/item/{idItem}",method = RequestMethod.PUT)
+    public ResponseEntity<?> updateItem(@RequestBody Item item,@PathVariable int id,@PathVariable int shop){
+        try {
+            int idshop=item.getTienda().getId();
+            int user=item.getTienda().getTendero().getId();
+            Account acc=cs.load(id);
+            if(id==user && idshop==shop) {
+                is.updateItem(item);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }else{
+                System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
+                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
+            }
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+
+///No tocar ... excepto si es Hugo!
+
+    @RequestMapping(value = "/{id}/shop/{shop}/items", method = RequestMethod.POST)
+    public ResponseEntity uploadFile(@PathVariable int id,@PathVariable int shop,@RequestPart(value = "items") Item items,@RequestPart(value = "files", required = false) MultipartFile files) {
+        try {
+
+            int idshop=items.getTienda().getId();
+            int user=items.getTienda().getTendero().getId();
+            Account acc=cs.load(id);
+            if(id==user && idshop==shop) {
+                if(files != null){
+                    Blob imagen = new SerialBlob(StreamUtils.copyToByteArray(files.getInputStream()));
+                    Producto p =items.getProducto();
+                    p.setImagen(imagen);
+                    items.setProducto(p);
+                    is.addItem(items);
+                }else{
+                    is.addItem(items);
+                }
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }else{
+                System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
+                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
+            }
+
         }
         catch (Exception e) {
             return new ResponseEntity<>("{}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        return new ResponseEntity<>("{}", HttpStatus.OK);
     }
+
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/shop/{shop}/item/{idItem}/imagen")
+    public ResponseEntity<?> getPictureById(@PathVariable int id,@PathVariable int shop,@PathVariable int idItem) {
+        try {
+            Item items = is.loadItemById(idItem);
+            int idshop = items.getTienda().getId();
+            int user = items.getTienda().getTendero().getId();
+            Account acc=cs.load(id);
+            if (id == user && idshop == shop) {
+                return ResponseEntity.ok()
+                        .contentType(MediaType.parseMediaType("image/png"))
+                        .body(new InputStreamResource(items.getProducto().getImagen().getBinaryStream()));
+            }else{
+                System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
+                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
+            }
+        } catch (CheapestPriceException | SQLException | NullPointerException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /*
+    Post sin imagen
+    @RequestMapping(value="/{id}/shop/{shop}/items" ,method = RequestMethod.POST)
+    public ResponseEntity<?> postItem(@RequestBody Item item,@PathVariable int id,@PathVariable int shop){
+        try {
+            int idshop=item.getTienda().getId();
+            int user=item.getTienda().getTendero().getId();
+            Account acc=cs.load(id);
+            if(id==user && idshop==shop) {
+                is.addItem(item);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }else{
+                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
+            }
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+        }
+    }
+    */
 }

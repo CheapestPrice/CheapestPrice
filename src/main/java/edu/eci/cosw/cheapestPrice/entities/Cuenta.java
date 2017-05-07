@@ -1,69 +1,80 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Created by Paula on 18/03/2017.
+ * Created by amoto on 5/4/17.
  */
+
 @Entity
 @Table(name="USUARIOS_AUTENTICACION")
 public class Cuenta implements Serializable{
 
+    @Id
+    @Column(name = "USUARIOS_id", nullable = false, insertable = false, updatable = false)
+    private int id;
+    
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Usuario.class)
+    @JoinColumns({
+            @JoinColumn(name="USUARIOS_id", referencedColumnName="id", nullable=false, insertable=false, updatable=false)
+    })
+    private Usuario usuario;
 
+    @Column(name = "rol", nullable = false, insertable = false, updatable = false)
+    private String rol;
+    
+    @Column(name = "hash", nullable = false, insertable = false, updatable = false)
     private String hash;
 
-    private String email;
-
-
-    private String rol;
-
-
-    private boolean habilitado;
-
-    public Cuenta(String email, String hash, String rol){
-        this.email=email;
-        this.hash=hash;
+    public Cuenta(int id,String hash, String rol,Usuario user){
+        this.id=id;
         this.rol=rol;
-        this.habilitado=true;
+        this.hash=hash;
+        this.usuario=user;
     }
 
-    public Cuenta(){ this.habilitado=true; }
+    public Cuenta(){ }
 
-    @Column(name = "hash", nullable = false)
-    public String getHash() {
-        return hash;
+    public int getId() {
+        return id;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    @Column(name = "USUARIOS_correo", nullable = false, insertable = false, updatable = false)
-    @Id
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Column(name = "habilitado", nullable = false)
-    public boolean isHabilitado() {
-        return habilitado;
-    }
-
-    public void setHabilitado(boolean habilitado) {
-        this.habilitado = habilitado;
-    }
-
-    @Column(name = "rol", nullable = false)
     public String getRol() { return rol;}
 
     public void setRol(String rol) { this.rol = rol;}
 
+    /**
+     * @return the hash
+     */
+    public String getHash() {
+        return hash;
+    }
+
+    /**
+     * @param hash the hash to set
+     */
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

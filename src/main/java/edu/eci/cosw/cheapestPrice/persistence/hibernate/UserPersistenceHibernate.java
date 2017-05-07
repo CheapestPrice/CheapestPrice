@@ -50,31 +50,29 @@ public class UserPersistenceHibernate implements UserPersistence{
     }
 
     @Override
-    public void updateUser(String oldEmail, Usuario usuario) throws CheapestPriceException {
+    public void updateUser(int oldEmail, Usuario usuario) throws CheapestPriceException {
         us.delete(oldEmail);
         us.save(usuario);
     }
 
     @Override
-    public void deleteShoppingList(String correo, String nombreLista) throws CheapestPriceException {
-        ListaMercado_Item lmI=new ListaMercado_Item(nombreLista,correo);
-        slR.delete(lmI);
+    public void deleteShoppingList(int id) throws CheapestPriceException {
+        slR.delete(id);
     }
 
     @Override
-    public void favoriteShoppingListItem(String correo, String nombreLista, long idProducto,double x,double y,String nit,boolean fav) throws CheapestPriceException {
-        ilR.favoriteItemSelected(correo,nombreLista,idProducto,x,y,nit,fav);
+    public void favoriteShoppingListItem(int itemListaId ,boolean fav) throws CheapestPriceException {
+        ilR.favoriteItemSelected(itemListaId,fav);
     }
 
     @Override
-    public void deleteSelectedItem(String correo, String nombreLista, long idProducto, double x, double y, String nit) throws CheapestPriceException {
-        ItemListaId iLId = new ItemListaId(correo,nombreLista,nit,x,y,idProducto);
-        ilR.delete(iLId);
+    public void deleteSelectedItem(int id) throws CheapestPriceException {
+        ilR.delete(id);
     }
 
     @Override
-    public void sellSelectedItem(String correo, String nombreLista, long idProducto, double x, double y, String nit, boolean comp) throws CheapestPriceException {
-        ilR.sellItemSelected(correo,nombreLista,idProducto,x,y,nit,comp);
+    public void sellSelectedItem(int itemListaId,boolean comp) throws CheapestPriceException {
+        ilR.sellItemSelected(itemListaId,comp);
     }
 
     @Override
@@ -95,5 +93,25 @@ public class UserPersistenceHibernate implements UserPersistence{
     @Override
     public void addTendero(Tendero tendero) {
         tr.save(tendero);
+    }
+
+    @Override
+    public List<Tendero> loadAllTenderos() {
+        return tr.findAll();
+    }
+
+    @Override
+    public Usuario load(int id) {
+        return us.findOne(id);
+    }
+
+    @Override
+    public List<ListaDeMercado> loadShopList(int id) {
+        return us.findOne(id).getListas();
+    }
+
+    @Override
+    public ListaDeMercado loadListaUsuario(int uId, int lId) {
+        return us.loadListaUsuario(uId,lId);
     }
 }

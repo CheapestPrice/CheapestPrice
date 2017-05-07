@@ -29,8 +29,18 @@ public class UserServicePersistence implements UserService{
     }
 
     @Override
+    public List<ListaDeMercado> loadShopList(int id) throws CheapestPriceException {
+        return us.loadShopList(id);
+    }
+
+    @Override
     public Usuario loadUserByEmail(String correo) throws CheapestPriceException {
         return us.loadUserByEmail(correo);
+    }
+
+    @Override
+    public Usuario loadUser(int id) throws CheapestPriceException {
+        return us.load(id);
     }
 
     @Override
@@ -39,28 +49,28 @@ public class UserServicePersistence implements UserService{
     }
 
     @Override
-    public void updateUser(String correo, Usuario usuario) throws CheapestPriceException {
+    public void updateUser(int correo, Usuario usuario) throws CheapestPriceException {
         us.updateUser(correo,usuario);
     }
 
     @Override
-    public void deleteShoppingList(String correo, String nombreLista) throws CheapestPriceException {
-        us.deleteShoppingList(correo,nombreLista);
+    public void deleteShoppingList(int id) throws CheapestPriceException {
+        us.deleteShoppingList(id);
     }
 
     @Override
-    public void favoriteShoppingListItem(String correo, String nombreLista, long productoId,double x,double y,String nit,boolean fav) throws CheapestPriceException {
-        us.favoriteShoppingListItem(correo,nombreLista,productoId,x,y,nit,fav);
+    public void favoriteShoppingListItem(int itemListaId,boolean fav) throws CheapestPriceException {
+        us.favoriteShoppingListItem(itemListaId,fav);
     }
 
     @Override
-    public void deleteSelectedItem(String correo, String nombreLista, long idProducto, double x, double y, String nit) throws CheapestPriceException {
-        us.deleteSelectedItem(correo,nombreLista,idProducto,x,y,nit);
+    public void deleteSelectedItem(int id) throws CheapestPriceException {
+        us.deleteSelectedItem(id);
     }
 
     @Override
-    public void sellSelectedItem(String correo, String nombreLista, long idProducto, double x, double y, String nit, boolean comp) throws CheapestPriceException {
-        us.sellSelectedItem(correo,nombreLista,idProducto,x,y,nit,comp);
+    public void sellSelectedItem(int itemListaId, boolean comp) throws CheapestPriceException {
+        us.sellSelectedItem(itemListaId,comp);
     }
 
     @Override
@@ -81,5 +91,15 @@ public class UserServicePersistence implements UserService{
     @Override
     public void addTendero(Tendero tendero)throws CheapestPriceException {
         us.addTendero(tendero);
+    }
+
+    @Override
+    public List<Tendero> loadAllTenderos() {
+        return us.loadAllTenderos();
+    }
+
+    @Override
+    public ListaDeMercado loadListaUsuario(int uId, int lId) {
+        return us.loadListaUsuario(uId, lId);
     }
 }

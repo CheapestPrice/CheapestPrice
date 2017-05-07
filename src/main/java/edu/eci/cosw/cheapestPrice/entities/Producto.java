@@ -29,7 +29,7 @@ public class Producto implements Serializable {
     private Blob imagen;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue
     private long id;
 
     public Producto(long id, String nombre,String marca, String categoria){

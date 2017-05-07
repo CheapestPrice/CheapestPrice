@@ -1,18 +1,13 @@
 package edu.eci.cosw.cheapestPrice.entities;
 
 import java.io.Serializable;
-import javax.persistence.AssociationOverride;
-import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -20,63 +15,29 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TENDEROS")
-//@PrimaryKeyJoinColumn(name="USUARIOS_correo",referencedColumnName = "correo")
-//@AttributeOverride(name="correo", column=@Column(name="USUARIOS_correo"))
-public class Tendero implements Serializable, Persona{
-
-    @Column(name = "USUARIOS_correo", nullable = false, insertable = false, updatable = false)
-    @Id
-    protected String correo;
-
-    @Column(name = "nombre", nullable = false)
-    protected String nombre;
-
+public class Tendero implements Serializable{
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Tienda.class)
     @JoinColumns({
-            @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false, insertable=false, updatable=false),
-            @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false, insertable=false, updatable=false),
-            @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false, insertable=false, updatable=false)
+            @JoinColumn(name="TIENDAS_id", referencedColumnName="id", nullable=false, insertable=false, updatable=false)
     })
     private Tienda tienda;
 
-    @Column(name="TIENDAS_nit", nullable=false, insertable=false,updatable=false)
-    private String nit;
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Usuario.class)
+    @JoinColumns({
+            @JoinColumn(name="USUARIOS_id", referencedColumnName="id", nullable=false, insertable=false, updatable=false)
+    })
+    private Usuario usuario;
 
-    @Column(name="TIENDAS_x", nullable=false ,insertable=false,updatable=false)
-    private double x;
-
-    @Column(name="TIENDAS_y", nullable=false ,insertable=false,updatable=false)
-    private double y;
+    @Column(name = "USUARIOS_id", nullable = false, insertable = false, updatable = false)
+    @Id
+    private int id;
 
     public Tendero(){}
 
-    public Tendero(String nombre,String correo, String nit, double x, double y){
-        //super(nombre,correo);
-        this.nombre = nombre;
-        this.correo = correo;
-        this.nit=nit;
-        this.x=x;
-        this.y=y;
-    }
-
-    @Override
-    public String getCorreo(){
-        return correo;
-    }
-
-    @Override
-    public String getNombre(){
-        return nombre;
-    }
-
-    @Override
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    @Override
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public Tendero(Usuario usuario,Tienda tienda,int id){
+        this.setUsuario(usuario);
+        this.setTienda(tienda);
+        this.setId(id);
     }
 
     public Tienda getTienda() {
@@ -87,27 +48,19 @@ public class Tendero implements Serializable, Persona{
         this.tienda = tienda;
     }
 
-    public String getNit() {
-        return nit;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setNit(String nit) {
-        this.nit = nit;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public double getX() {
-        return x;
+    public int getId() {
+        return id;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
+    public void setId(int id) {
+        this.id = id;
     }
 }

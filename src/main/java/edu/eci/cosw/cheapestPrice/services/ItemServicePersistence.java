@@ -2,7 +2,6 @@ package edu.eci.cosw.cheapestPrice.services;
 
 import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
-import edu.eci.cosw.cheapestPrice.entities.TiendaId;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ItemPersistence;
 //import edu.eci.cosw.cheapestPrice.repositories.ItemRepository;
@@ -29,28 +28,23 @@ public class ItemServicePersistence implements ItemService{
     }
 
     @Override
-    public Item loadItem(String shopName, long id) throws CheapestPriceException {
-        return ip.loadItem(shopName,id);
+    public Item loadItem(int shop, int idItem) throws CheapestPriceException {
+        return ip.loadItem(shop,idItem);
     }
 
     @Override
-    public List<Item> loadItemByShop(TiendaId tiendaId) throws CheapestPriceException {
+    public List<Item> loadItemByShop(int tiendaId) throws CheapestPriceException {
         return ip.loadItemByShop(tiendaId);
     }
 
     @Override
-    public List<Item> loadItemByCategory(String category) throws CheapestPriceException {
-        return ip.loadItemByCategory(category);
+    public List<Item> loadItemsByCategory(String category) throws CheapestPriceException {
+        return ip.loadItemsByCategory(category);
     }
 
     @Override
-    public List<Item> loadItemById(long id) throws CheapestPriceException {
+    public Item loadItemById(int id) throws CheapestPriceException {
         return ip.loadItemById(id);
-    }
-
-    @Override
-    public Producto loadProductById(long id) throws CheapestPriceException {
-        return ip.loadProductById(id);
     }
 
     @Override
@@ -59,13 +53,13 @@ public class ItemServicePersistence implements ItemService{
     }
 
     @Override
-    public void deleteItem(String shopName, long id) throws CheapestPriceException {
-        ip.deleteItem(shopName,id);
+    public void deleteItem(int idShop, int idItem) throws CheapestPriceException {
+        ip.deleteItem(idShop,idItem);
     }
 
     @Override
-    public void updateItem(long oldId, String oldShop, Item item) throws CheapestPriceException {
-        ip.updateItem(oldId,oldShop,item);
+    public void updateItem(Item item) throws CheapestPriceException {
+        ip.updateItem(item);
     }
 
     @Override

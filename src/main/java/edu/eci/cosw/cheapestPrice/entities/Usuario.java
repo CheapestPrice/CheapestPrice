@@ -10,41 +10,46 @@ import java.util.List;
  */
 @Entity
 @Table(name = "USUARIOS")
-//@Inheritance(strategy=InheritanceType.JOINED)
-public class Usuario implements Persona,Serializable {
+public class Usuario implements Serializable {
 
     @Column(name = "nombre", nullable = false)
-    protected String nombre;
+    private String nombre;
 
     @Column(name = "correo", nullable = false, insertable = false, updatable = false)
+    private String correo;
+
+    @GeneratedValue
     @Id
-    protected String correo;
+    private int id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    protected List<ListaDeMercado> listas;
+    private List<ListaDeMercado> listas;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    protected List<Opinion> opiniones;
+    private List<Opinion> opiniones;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, String correo, List<ListaDeMercado> listas) {
+    public Usuario(String nombre, String correo, List<ListaDeMercado> listas,int id) {
         this.nombre = nombre;
         this.correo = correo;
         this.listas=new ArrayList<>();
+        this.setId(id);
     }
 
-    public Usuario(String nombre, String correo) {
+    public Usuario(String nombre, String correo,int id) {
         this.nombre = nombre;
         this.correo = correo;
+        this.setId(id);
     }
 
-    public Usuario(String nombre, String correo, List<ListaDeMercado> listas, List<Opinion> opiniones) {
+    public Usuario(String nombre, String correo, List<ListaDeMercado> listas, List<Opinion> opiniones,int id) {
         this.nombre = nombre;
         this.correo = correo;
         this.setListas(listas);
         this.setOpiniones(opiniones);
+        this.setId(id);
     }
 
     /**
@@ -53,7 +58,7 @@ public class Usuario implements Persona,Serializable {
      **/
     public void agregarProducto(ItemLista iT, String nombreLista){
         for(ListaDeMercado lM: listas){
-            if(lM.getListaid().getNombre().equals(nombreLista)){
+            if(lM.getNombre().equals(nombreLista)){
                 lM.agregarProducto(iT);
             }
         }
@@ -91,4 +96,11 @@ public class Usuario implements Persona,Serializable {
         this.opiniones = opiniones;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

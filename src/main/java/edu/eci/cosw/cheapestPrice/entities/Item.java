@@ -12,8 +12,9 @@ import java.io.Serializable;
 @Table(name = "ITEMS")
 public class Item implements Serializable {
 
-    @EmbeddedId
-    private ItemId id;
+    @Id
+    @GeneratedValue
+    private int id;
 
     @Column(name="precio")
     private long precio;
@@ -21,9 +22,7 @@ public class Item implements Serializable {
     //@MapsId("tiendaId")
     @ManyToOne(cascade=CascadeType.ALL,optional=false)
     @JoinColumns({
-            @JoinColumn(name="TIENDAS_x", referencedColumnName="x", nullable=false,insertable=false, updatable=false),
-            @JoinColumn(name="TIENDAS_y", referencedColumnName="y", nullable=false,insertable=false, updatable=false),
-            @JoinColumn(name="TIENDAS_nit", referencedColumnName="nit", nullable=false, insertable=false, updatable=false)
+            @JoinColumn(name="TIENDAS_id", referencedColumnName="id", nullable=false,insertable=false, updatable=false)
     })
     private Tienda tienda;
 
@@ -36,28 +35,28 @@ public class Item implements Serializable {
 
     public Item(){};
 
-    public Item(ItemId id){
+    public Item(int id){
         this.id=id;
     }
 
-    public Item(Producto producto,Tienda tienda,long precio){
+    public Item(Producto producto,Tienda tienda,long precio,int id){
         this.producto=producto;
         this.tienda=tienda;
         this.precio=precio;
-        this.id=new ItemId(producto.getId(),tienda.getId().getX(),tienda.getId().getY(),tienda.getId().getNit());
+        this.id=id;
     }
 
-    public Item(Producto producto,Tienda tienda){
+    public Item(Producto producto,Tienda tienda,int id){
         this.producto=producto;
         this.tienda=tienda;
-        this.id=new ItemId(producto.getId(),tienda.getId().getX(),tienda.getId().getY(),tienda.getId().getNit());
+        this.id=id;
     }
 
-    public ItemId getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(ItemId id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -87,6 +86,6 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return id.getTiendaNit()+ " "+ id.getTiendaX() + " " + id.getTiendaY() + " "+id.getProductoId() +" "+precio;
+        return "["+tienda.getNit()+ " "+ tienda.getX() + " " + tienda.getY() + " "+producto.getId() +" "+precio+"]";
     }
 }

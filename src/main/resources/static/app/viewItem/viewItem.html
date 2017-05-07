@@ -27,7 +27,7 @@
                                     <center><label>{{producto.item.producto.marca}}</label></center>
                                     <center><label><strong>Categoria:</strong></label></center>
                                     <center><label>{{producto.item.producto.categoria}}</label></center>
-                                    <center><img height="100" width="100" ng-src="/items/{{producto.item.producto.id}}/imagen" alt="Imagen del producto"/></center>
+                                    <center><img height="100" width="100" ng-src="/api/items/{{producto.item.tienda.tendero.id}}/shop/{{producto.item.tienda.id}}/item/{{producto.item.id}}/imagen" alt="Imagen del producto"/></center>
                                 </fieldset>
 
                             </td>
@@ -43,7 +43,7 @@
                                     <center><label>{{producto.item.tienda.telefono}}</label></center>
                                     <center><label><strong>Horario:</strong></label></center>
                                     <center><label>Lunes, martes y jueves 7 a 9</label></center>
-                                    <center><img height="100" width="100"  ng-src="/tiendas/x/{{producto.item.tienda.id.x}}/y/{{producto.tienda.id.y}}/nit/{{producto.tienda.id.nit}}/logo" alt="Logo/fotografia tienda"/></center>
+                                    <center><img height="100" width="100"  ng-src="api/tiendas/{{producto.item.tienda.tendero.id}}/shop/{{producto.item.tienda.id}}/logo" alt="Logo/fotografia tienda"/></center>
                                 </fieldset>
                             </td>
 

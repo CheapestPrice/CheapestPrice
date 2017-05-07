@@ -47,42 +47,33 @@ public interface UserPersistence {
      * Actualiza a un usuario existente
      * @param usuario
      */
-    public void updateUser(String correo, Usuario usuario)throws CheapestPriceException;
+    public void updateUser(int correo, Usuario usuario)throws CheapestPriceException;
 
     /**
      * Elimina una lista de mercado segun su nombre
-     * @param nombreLista
+     * @param id
      * @throws CheapestPriceException
      */
-    public void deleteShoppingList(String correo,String nombreLista)throws CheapestPriceException;
+    public void deleteShoppingList(int id)throws CheapestPriceException;
 
     /**
      * Pone en favorito un elemento de una lista de mercado de un usuario
-     * @param correo
-     * @param nombreLista
-     * @param idProducto
      * @throws CheapestPriceException
      */
-    public void favoriteShoppingListItem(String correo,String nombreLista,long idProducto,double x,double y,String nit, boolean fav)throws CheapestPriceException;
+    public void favoriteShoppingListItem(int itemListaId, boolean fav)throws CheapestPriceException;
 
     /**
      * Elimina un item de la lista de mercado de un usuario
      * @throws CheapestPriceException
      */
-    public void deleteSelectedItem(String correo,String nombreLista,long idProducto,double x,double y,String nit)throws CheapestPriceException;
+    public void deleteSelectedItem(int id)throws CheapestPriceException;
 
     /**
      * Item comprado
-     * @param correo
-     * @param nombreLista
-     * @param idProducto
-     * @param x
-     * @param y
-     * @param nit
      * @param comp
      * @throws CheapestPriceException
      */
-    public void sellSelectedItem(String correo,String nombreLista,long idProducto,double x,double y,String nit, boolean comp)throws CheapestPriceException;
+    public void sellSelectedItem(int itemListaId, boolean comp)throws CheapestPriceException;
 
     /**
      * Agrega una lista de mercado
@@ -103,4 +94,12 @@ public interface UserPersistence {
      * @param tendero
      */
     void addTendero(Tendero tendero)throws CheapestPriceException;
+
+    List<Tendero> loadAllTenderos();
+
+    Usuario load(int id);
+
+    List<ListaDeMercado> loadShopList(int id);
+
+    ListaDeMercado loadListaUsuario(int uId,int lId);
 }

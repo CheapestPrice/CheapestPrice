@@ -1,0 +1,14 @@
+Entities:
+	cambiar_Usuario DONE
+	cambiar_Tienda DONE
+	cambiar_Tendero DONE
+	cambiar_Opinion DONE
+	cambiar_Producto DONE
+	cambiar_Item DONE
+	cambiar_Horario DONE
+	cambiar_ListaMercado DONE
+	cambiar_ItemLista DONE
+	cambiar_Cuenta DONE
+	crear_CuentaPass DONE
+	eliminar_*Id
+

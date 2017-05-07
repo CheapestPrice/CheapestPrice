@@ -1,17 +1,101 @@
 'use strict';
+angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
+    .factory('allItems',function($resource) {
+        return $resource('/api/items/:id');
+    })
+    .factory('totalProducts',function($resource) {
+            return $resource('/api/items/:id/products');
+     })
+    .factory('itemByShopAndId',function($resource) {
+        return $resource('/api/items/:id/shop/:shopId/id/:idNum');
+    })
+    .factory('itemsByShop',function($resource) {
+        return $resource('/api/items/:id/shop/:shopId');
+    })
+    .factory('itemsByCategory',function($resource) {
+        return $resource('/api/items/:id/items/category/:categoryName');
+    })
+    .factory('itemsById',function($resource) {
+        return $resource('/api/items/:id/items/:idNum');
+    })
+    .factory('getShop',function($resource) {
+            return $resource('/api/tiendas/:id/shop/:shopId');
+        })
+    .factory('updateItem',function($resource) {
+            return $resource('/api/items/:id/shop/:oldShop/id/:oldId', null,
+                   {
+                       'update': { method:'PUT' }
+                   });
+     })
+     .factory('updateUser',function($resource){
+            return $resource('/api/usuarios/:id', null,
+
+            {
+                'update' : {method:'PUT'}
+            });
+    })
+    .factory('getUserId',function($resource) {
+        return $resource('/api/usuarios/:id');
+    })
+    .factory('deleteShoppingList',function($resource){
+            return $resource('/api/usuarios/:id/lista/:listaId',null,
+                {
+                    'delete' : {method:'DELETE'}
+                });
+        })
+     .factory('favoriteItemList',function($resource){
+            return $resource('/api/usuarios/:id/lista/:listaId/item/:itemId/favorite/:fav',null,
+            {
+                  'update':{method:'PUT'}
+            });
+
+     })
+     .factory('deleteItemSelected',function($resource){
+            return $resource('/api/usuarios/:id/lista/:listaId/item/:itemId',null,
+            {
+                'delete' : {method:'DELETE'}
+            });
+     })
+     .factory('sellItemSelected',function($resource){
+                 return $resource('/api/usuarios/:id/lista/:listaId/item/:itemId/comprado/:comp',null,
+                 {
+                     'update' : {method:'PUT'}
+                 });
+     })
+     .factory('saveItemList',function($resource){
+             return $resource('/api/usuarios/:id/lista/:listaId');
+     })
+     .factory('saveShoppingList',function($resource){
+             return $resource('/api/usuarios/:id/lista');
+      });
+    .factory('registroTi', function($resource) {
+        return $resource('/api/tienda/reg');
+    })
+
+    .factory('registroU', function($resource) {
+        return $resource('/api/cuenta/reg');
+    })
+
+    .factory('registroC', function($resource) {
+        return $resource('/api/user/reg');
+    })
+    .factory('registroTe', function($resource) {
+        return $resource('/api/tendero/reg');
+    })
+
 angular.module('services.listFactory', ['ngRoute', 'ngResource'])
 
 
     .factory('registroT', function($resource) {
-                        return $resource('/tiendas');
+                        return $resource('/api/tienda/reg');
     })
 
     .factory('registroU', function($resource) {
-                    return $resource('/cuenta');
+                    return $resource('/api/cuenta/reg');
                 })
 
     .factory('registroC', function($resource) {
-                        return $resource('/usuarios');
+                        return $resource('/api/user/reg');
                     })
 
     .factory('listasMercadoStubFactory', function () {
@@ -314,85 +398,4 @@ angular.module('services.listFactory', ['ngRoute', 'ngResource'])
             }
         })
 
-angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
-    .factory('allItems',function($resource) {
-        return $resource('/items');
-    })
-    .factory('totalProducts',function($resource) {
-            return $resource('/items/products');
-     })
-    .factory('itemByShopAndId',function($resource) {
-        return $resource('/items/shop/:shopName/id/:idNum');
-    })
-    .factory('itemsByShop',function($resource) {
-        return $resource('/items/shop/x/:x/y/:y/nit/:nit');
-    })
-    .factory('itemsByCategory',function($resource) {
-        return $resource('/items/category/:categoryName');
-    })
-    .factory('itemsById',function($resource) {
-        return $resource('/items/:idNum');
-    })
-    .factory('getShop',function($resource) {
-            return $resource('/tiendas/x/:x/y/:y/nit/:nit');
-        })
-    .factory('updateItem',function($resource) {
-            return $resource('/items/shop/:oldShop/id/:oldId', null,
-                   {
-                       'update': { method:'PUT' }
-                   });
-     })
-     .factory('updateUser',function($resource){
-            return $resource('/usuarios/:correo', null,
 
-            {
-                'update' : {method:'PUT'}
-            });
-    })
-    .factory('getUserEmail',function($resource) {
-        return $resource('/usuarios/:correo');
-    })
-    .factory('deleteShoppingList',function($resource){
-            return $resource('/usuarios/:correo/:nombreLista',null,
-                {
-                    'delete' : {method:'DELETE'}
-                });
-        })
-     .factory('favoriteItemList',function($resource){
-            return $resource('/usuarios/favorito/:correo/:listaNombre/:productoId/:nit/:x/:y/:fav',null,
-            {
-                  'update':{method:'PUT'}
-            });
-
-     })
-     .factory('deleteItemSelected',function($resource){
-            return $resource('/usuarios/:correo/:listaNombre/:productoId/:nit/:x/:y',null,
-            {
-                'delete' : {method:'DELETE'}
-            });
-     })
-     .factory('sellItemSelected',function($resource){
-                 return $resource('/usuarios/:correo/:listaNombre/:productoId/:nit/:x/:y/:comp',null,
-                 {
-                     'update' : {method:'PUT'}
-                 });
-     })
-     .factory('saveItemList',function($resource){
-             return $resource('/usuarios/itemlistamercado');
-          })
-    .factory('registroC', function($resource) {
-        return $resource('/usuarios/cuenta');
-    })
-
-    .factory('registroU', function($resource) {
-        return $resource('/usuarios');
-    })
-    .factory('registroTe', function($resource) {
-        return $resource('/usuarios/tendero');
-    })
-    .factory('registroTi', function($resource) {
-        return $resource('/tiendas');
-    })
-     .factory('saveShoppingList',function($resource){
-        return $resource('/usuarios/listaMercado');
-     });

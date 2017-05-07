@@ -24,6 +24,8 @@ public interface UserService {
      */
     public List<ListaDeMercado> loadShopListByEmail(String email) throws CheapestPriceException;
 
+    public List<ListaDeMercado> loadShopList(int id) throws CheapestPriceException;
+
     /**
      * Retorna un usuario especifico por su correo
      * @param correo
@@ -31,6 +33,8 @@ public interface UserService {
      * @throws CheapestPriceException
      */
     public Usuario loadUserByEmail(String correo) throws CheapestPriceException;
+
+    public Usuario loadUser(int id) throws CheapestPriceException;
 
     /**
      *
@@ -50,45 +54,31 @@ public interface UserService {
      * Actualiza a un usuario existente
      * @param usuario
      */
-    public void updateUser(String correo, Usuario usuario)throws CheapestPriceException;
+    public void updateUser(int id, Usuario usuario)throws CheapestPriceException;
 
     /**
      * Elimina una lista de mercado de un usuario
-     * @param correo
-     * @param nombreLista
      * @throws CheapestPriceException
      */
-    public void deleteShoppingList(String correo, String nombreLista)throws  CheapestPriceException;
+    public void deleteShoppingList(int id)throws  CheapestPriceException;
 
     /**
      * Pone en favorito un item de la lista de mercado de un usuario
-     * @param correo
-     * @param nombreLista
-     * @param productoId
      * @throws CheapestPriceException
      */
-    public void favoriteShoppingListItem(String correo,String nombreLista,long productoId,double x,double y,String nit,boolean fav)throws CheapestPriceException;
+    public void favoriteShoppingListItem(int itemListaId,boolean fav)throws CheapestPriceException;
 
     /**
      * Elimina un item de la lista de mercado de un usuario
-     * @param correo
-     * @param nombreLista
-     * @param idProducto
      * @throws CheapestPriceException
      */
-    public void deleteSelectedItem(String correo,String nombreLista,long idProducto,double x,double y,String nit)throws CheapestPriceException;
+    public void deleteSelectedItem(int id)throws CheapestPriceException;
 
     /**
      * Marca como comprado un item de la lista de mercado de un usuario
-     * @param correo
-     * @param nombreLista
-     * @param idProducto
-     * @param x
-     * @param y
-     * @param nit
      * @throws CheapestPriceException
      */
-    public void sellSelectedItem(String correo,String nombreLista,long idProducto,double x,double y,String nit, boolean comp)throws CheapestPriceException;
+    public void sellSelectedItem(int itemListaId, boolean comp)throws CheapestPriceException;
 
     /**
      * Agrega una lista de mercado
@@ -107,4 +97,8 @@ public interface UserService {
      * @param tendero
      */
     public void  addTendero(Tendero tendero)throws CheapestPriceException;
+
+    List<Tendero> loadAllTenderos();
+
+    ListaDeMercado loadListaUsuario(int uId,int lId);
 }

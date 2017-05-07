@@ -50,7 +50,7 @@ public class CheapestPriceApplication {
                     .httpBasic()
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/**","/app/**","/logout","/login","/vistaPrincipal", "/usuarios/**","/tiendas/**", "/assets/**").permitAll()
+                    .antMatchers("/**","/api/**","/app/**","/logout","/login","/vistaPrincipal", "/usuarios/**","/tiendas/**", "/assets/**").permitAll()
                     .anyRequest().authenticated().and()
                     .logout().logoutSuccessUrl("/")
                     .and().csrf()
@@ -88,6 +88,13 @@ public class CheapestPriceApplication {
             return repository;
         }
     }
+    /*@Configuration
+    public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.csrf().disable();
+        }
+    }*/
 
     public static void main(String[] args) {
 
