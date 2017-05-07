@@ -54,12 +54,12 @@ public class ShopController {
 
 
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
-    public ResponseEntity<?> modifyShop(@PathVariable int id,@RequestBody Tienda tienda){
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}/shop/{shopId}")
+    public ResponseEntity<?> modifyShop(@PathVariable int id,@PathVariable int shopId,@RequestBody Tienda tienda){
         ResponseEntity a;
         try {
             cs.load(id);
-            serviceShop.modifyTienda(id, tienda);
+            serviceShop.modifyTienda(shopId, tienda);
             a = new ResponseEntity<>(HttpStatus.ACCEPTED);
             System.out.println("Tienda actualizada sin error");
         } catch (CheapestPriceException ex) {
@@ -84,7 +84,7 @@ public class ShopController {
         return a;
     }
 
-    @RequestMapping(method = RequestMethod.POST,value = "/{id}/shop/{shop}logo")
+    @RequestMapping(method = RequestMethod.POST,value = "/{id}/shop/{shop}/logo")
     public ResponseEntity uploadLogo(MultipartHttpServletRequest request, @PathVariable int id ,@PathVariable int shop) {
         try {
             cs.load(id);
@@ -103,9 +103,10 @@ public class ShopController {
         return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public ResponseEntity<?> getShop(@PathVariable int id){
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/shop/{shopId}")
+    public ResponseEntity<?> getShop(@PathVariable int id,@PathVariable int shopId){
         try {
+            cs.load(id);
             return new ResponseEntity<>(serviceShop.consultTienda(id),HttpStatus.ACCEPTED);
         } catch (CheapestPriceException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
