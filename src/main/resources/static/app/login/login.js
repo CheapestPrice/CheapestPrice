@@ -20,6 +20,7 @@ angular.module('myApp.login', ['ngRoute'])
                 $http.get('user', {headers: headers}).then(successCallback, errorCallback);
 
                 function successCallback(data){
+                    console.log("success");
                     console.log(data);
                     if (data.data.name) {
                         var user = getUserEmail.get({correo:data.data.name});
@@ -33,6 +34,8 @@ angular.module('myApp.login', ['ngRoute'])
                 }
 
                 function errorCallback(error){
+                    console.log("error");
+                                    console.log(data);
                     $rootScope.authenticated = false;
                      callback && callback();
                 }

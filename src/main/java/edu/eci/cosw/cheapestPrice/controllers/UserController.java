@@ -2,7 +2,6 @@ package edu.eci.cosw.cheapestPrice.controllers;
 
 import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
-import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
 import edu.eci.cosw.cheapestPrice.services.CuentaService;
 import edu.eci.cosw.cheapestPrice.services.ShoppingListService;
 import edu.eci.cosw.cheapestPrice.services.UserService;
