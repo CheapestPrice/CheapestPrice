@@ -9,7 +9,7 @@ angular.module('myApp.login', ['ngRoute'])
   });
 }])
 
-.controller('login', ['$rootScope', '$scope', '$http', '$location','getUserEmail', function($rootScope, $scope, $http, $location,getUserEmail) {
+.controller('login', ['$rootScope', '$scope', '$http', '$location','loginA', function($rootScope, $scope, $http, $location,loginA) {
 
             $scope.imagePath = 'images/cheapestPrice.jpg';
             var authenticate = function (credentials, callback) {
@@ -23,8 +23,12 @@ angular.module('myApp.login', ['ngRoute'])
                     console.log("success");
                     console.log(data);
                     if (data.data.name) {
-                        var user = getUserEmail.get({correo:data.data.name});
-                        console.log(user);
+                        console.log(CryptoJS.SHA1(credentials.password)+" "+credentials.password)
+                        var hash = CryptoJS.SHA1(credentials.password)
+                        console.log(hash.toString())
+                        loginA.save({"email":credentials.username,"hash":hash.toString()},function(data){
+                            console.log(data);
+                        })
                         $rootScope.userId=user.id;
                         $rootScope.authenticated = true;
                     }else {

@@ -67,7 +67,7 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
      })
      .factory('saveShoppingList',function($resource){
              return $resource('/api/usuarios/:id/lista');
-      });
+      })
     .factory('registroTi', function($resource) {
         return $resource('/api/tienda/reg');
     })
@@ -75,13 +75,16 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
     .factory('registroU', function($resource) {
         return $resource('/api/cuenta/reg');
     })
+    .factory('loginA', function($resource) {
+        return $resource('/api/login');
+    })
 
     .factory('registroC', function($resource) {
         return $resource('/api/user/reg');
     })
     .factory('registroTe', function($resource) {
         return $resource('/api/tendero/reg');
-    })
+    });
 
 angular.module('services.listFactory', ['ngRoute', 'ngResource'])
 
