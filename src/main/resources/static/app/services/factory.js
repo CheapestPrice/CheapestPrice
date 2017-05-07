@@ -35,7 +35,7 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
             });
     })
     .factory('getUserId',function($resource) {
-        return $resource('/api/usuarios/:id');
+        return $resource('/api/usuarios/me/:id');
     })
     .factory('deleteShoppingList',function($resource){
             return $resource('/api/usuarios/:id/lista/:listaId',null,

@@ -31,12 +31,14 @@ angular.module('myApp.login', ['ngRoute'])
                             $rootScope.userId=data.id;
                             $rootScope.userRol=data.rol;
                             $rootScope.authenticated = true;
+                            callback && callback();
                         })
 
                     }else {
                         $rootScope.authenticated = false;
-                    }
                         callback && callback();
+                    }
+
                 }
 
                 function errorCallback(error){

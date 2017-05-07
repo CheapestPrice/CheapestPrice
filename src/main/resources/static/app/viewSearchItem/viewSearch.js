@@ -10,9 +10,9 @@ angular.module('myApp.viewSearch', ['ngRoute', 'ngMaterial'])
         });
     }])
 
-    .controller('ViewSearchCtrl', ['$scope', 'placesStubFactory', '$rootScope','saveItemList', 'allItems', '$mdDialog', 'listasMercadoStubFactory','getUserEmail', function ($scope, placesStubFactory, $rootScope,saveItemList, allItems, $mdDialog, listasMercadoStubFactory,getUserEmail) {
+    .controller('ViewSearchCtrl', ['$scope', 'placesStubFactory', '$rootScope','saveItemList', 'allItems', '$mdDialog', 'listasMercadoStubFactory','getUserId', function ($scope, placesStubFactory, $rootScope,saveItemList, allItems, $mdDialog, listasMercadoStubFactory,getUserId) {
         //$scope.items= placesStubFactory.getListado()[0].sedes[0].productos;
-        $scope.items = allItems.query();
+        $scope.items = allItems.query({id:$rootScope.userId});
         $scope.status = '  ';
         $scope.customFullscreen = false;
         $scope.chooseItem = "";
@@ -89,9 +89,9 @@ angular.module('myApp.viewSearch', ['ngRoute', 'ngMaterial'])
                     //listasMercadoStubFactory.agregarProducto($scope.chooseItem, $scope.chooseList);
                 });
         };
-        function DialogController($scope, $mdDialog, listasMercadoStubFactory, getUserEmail, $rootScope, $location) {
+        function DialogController($scope, $mdDialog, listasMercadoStubFactory, getUserId, $rootScope, $location) {
             listasMercadoStubFactory.listaCompleta();
-            $scope.usuario1 = getUserEmail.get({correo:'prueba@prueba.com'});
+            $scope.usuario1 = getUserId.get({id:$rootScope.userId});
 
             $scope.listaMercado = "";
             $scope.hide = function () {
