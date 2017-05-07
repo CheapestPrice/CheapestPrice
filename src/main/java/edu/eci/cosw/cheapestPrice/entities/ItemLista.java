@@ -18,6 +18,12 @@ public class ItemLista implements Serializable{
     @Column(name = "favorito",nullable = false)
     private boolean favorito;
 
+    @Column(name = "LISTAS_MERCADOS_id",nullable = false)
+    private int listaId;
+
+    @Column(name = "ITEMS_id",nullable = false)
+    private int itemId;
+
     @Id
     @GeneratedValue
     private int id;
@@ -91,5 +97,21 @@ public class ItemLista implements Serializable{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getListaId() {
+        return listaId;
+    }
+
+    public void setListaId(int listaId) {
+        this.listaId = listaId;
+    }
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 }

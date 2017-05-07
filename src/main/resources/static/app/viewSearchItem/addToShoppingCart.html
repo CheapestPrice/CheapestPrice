@@ -21,7 +21,7 @@
                 </theader>
                 <tbody>
                 <tr ng-repeat="todo in usuario1.listas | orderBy:propertyName:reverse">
-                    <td><center>{{todo.listaid.nombre}}</center></td>
+                    <td><center>{{todo.nombre}}</center></td>
                     <td><center><button ng-click="ver(todo)">Seleccionar</button></center></td>
                 </tr>
                 </tbody>
