@@ -44,6 +44,7 @@ public class UserController {
             if(acc.getRol().equals(Account.TENDERO)) {
                 return new ResponseEntity<>(uP.loadAllTenderos(), HttpStatus.ACCEPTED);
             }else{
+                System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
                 return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
             }
         } catch (CheapestPriceException e) {
