@@ -28,9 +28,11 @@ angular.module('myApp.login', ['ngRoute'])
                         console.log(hash.toString())
                         loginA.save({"email":credentials.username,"hash":hash.toString()},function(data){
                             console.log(data);
+                            $rootScope.userId=data.id;
+                            $rootScope.userRol=data.rol;
+                            $rootScope.authenticated = true;
                         })
-                        $rootScope.userId=user.id;
-                        $rootScope.authenticated = true;
+
                     }else {
                         $rootScope.authenticated = false;
                     }

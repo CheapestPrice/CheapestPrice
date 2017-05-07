@@ -40,7 +40,7 @@ public class CheapestPriceApplication {
 
         @Override
         protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-            builder.inMemoryAuthentication().withUser("admin@cheapestprice.com").password("password").roles("USER");
+            builder.inMemoryAuthentication().withUser("admin@cheapestprice.com").password("admin").roles("USER");
         }
 
         @Override
@@ -88,13 +88,13 @@ public class CheapestPriceApplication {
             return repository;
         }
     }
-    @Configuration
+    /*@Configuration
     public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.csrf().disable();
         }
-    }
+    }*/
 
     public static void main(String[] args) {
 
