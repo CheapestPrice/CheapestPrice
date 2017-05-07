@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class Cuenta implements Serializable{
 
     @Id
-    @Column(name = "id", nullable = false, insertable = false, updatable = false)
+    @Column(name = "USUARIOS_id", nullable = false, insertable = false, updatable = false)
     private int id;
     
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Usuario.class)
