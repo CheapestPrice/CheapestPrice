@@ -350,7 +350,7 @@ angular.module('services.listFactoryApi', ['ngRoute','ngResource'])
             });
     })
     .factory('getUserEmail',function($resource) {
-        return $resource('/usuarios/:correo');
+        return $resource('/api/usuarios/:correo/me');
     })
     .factory('deleteShoppingList',function($resource){
             return $resource('/usuarios/:correo/:nombreLista',null,
