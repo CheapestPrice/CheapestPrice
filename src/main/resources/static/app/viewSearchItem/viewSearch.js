@@ -12,7 +12,11 @@ angular.module('myApp.viewSearch', ['ngRoute', 'ngMaterial'])
 
     .controller('ViewSearchCtrl', ['$scope', 'placesStubFactory', '$rootScope','saveItemList', 'allItems', '$mdDialog', 'listasMercadoStubFactory','getUserId', function ($scope, placesStubFactory, $rootScope,saveItemList, allItems, $mdDialog, listasMercadoStubFactory,getUserId) {
         //$scope.items= placesStubFactory.getListado()[0].sedes[0].productos;
-        $scope.items = allItems.query({id:$rootScope.userId});
+        $scope.items = allItems.query({id:$rootScope.userId},function(data){
+        console.log($scope.items);
+        console.log(data);
+        });
+
         $scope.status = '  ';
         $scope.customFullscreen = false;
         $scope.chooseItem = "";
@@ -72,20 +76,13 @@ angular.module('myApp.viewSearch', ['ngRoute', 'ngMaterial'])
                 .then(function (list) {
                     console.log("Llego la lista ", list);
                     $scope.il = new ItemLista();
-                    $scope.ilId = new ItemListaId();
-                    $scope.ilId.tiendaNit = item.id.tiendaNit;
-                    $scope.ilId.tiendaX = item.id.tiendaX;
-                    $scope.ilId.tiendaY = item.id.tiendaY;
-                    $scope.ilId.productoId = item.id.productoId;
-                    $scope.ilId.listaNombre = list.listaid.nombre;
-                    $scope.ilId.listaCorreo = list.listaid.usuario;
-                    $scope.il.id = $scope.ilId;
+                    $scope.il.itemId = item.id;
+                    $scope.il.listaId= list.id;
                     $scope.il.comprado = false;
                     $scope.il.favorito = false;
-                    $scope.il.item = item;
                     //list.items.push(item);
-                    $scope.il.lista = list;
-                    saveItemList.save($scope.il);
+                    console.log($scope.il);
+                    saveItemList.save({id:$rootScope.userId,listaId:list.id},$scope.il);
                     //listasMercadoStubFactory.agregarProducto($scope.chooseItem, $scope.chooseList);
                 });
         };

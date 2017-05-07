@@ -49,7 +49,7 @@
                 <div ng-animate="'animate'" ng-repeat="pro in items | filter:search | orderBy:propertyName:false"
                      class="container" style="padding-top: 15px;">
                     <div style="float:left; width: 30%;">
-                        <img ng-src="/items/{{pro.producto.id}}/imagen"
+                        <img ng-src="/api/items/{{userId}}/shop/{{pro.tienda.id}}/item/{{pro.producto.id}}/imagen"
                              style="width: 120px; height: 120px; float:left;" alt=""/>
                         <p class="pname">{{pro.producto.nombre}}</p>
                         <p class="price">{{pro.precio}}</p>

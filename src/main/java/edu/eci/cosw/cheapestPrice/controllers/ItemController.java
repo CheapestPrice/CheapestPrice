@@ -177,19 +177,19 @@ public class ItemController {
         try {
             Item items = is.loadItemById(idItem);
             int idshop = items.getTienda().getId();
-            int user = items.getTienda().getTendero().getId();
             Account acc=cs.load(id);
-            if (id == user && idshop == shop) {
+            if (idshop == shop) {
                 return ResponseEntity.ok()
                         .contentType(MediaType.parseMediaType("image/png"))
                         .body(new InputStreamResource(items.getProducto().getImagen().getBinaryStream()));
             }else{
-                System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
-                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
+                System.out.println("El item "+idItem+" no pertenece a la tienda especificada "+shop+" "+idshop);
+                System.out.println(items+" "+items.getTienda()+" "+items.getTienda().getId());
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (CheapestPriceException | SQLException | NullPointerException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
