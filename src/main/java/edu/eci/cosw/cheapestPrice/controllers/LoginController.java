@@ -38,6 +38,7 @@ public class LoginController {
     @RequestMapping(method = RequestMethod.POST,value = "/api/user/reg")
     public ResponseEntity<?> agregarUsuario(@RequestBody Usuario usuario){
         try{
+            System.out.println("recibido: "+usuario.getId()+" "+usuario.getNombre()+" "+usuario.getCorreo());
             uP.addUser(usuario);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){

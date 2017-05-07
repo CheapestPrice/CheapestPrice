@@ -9,7 +9,7 @@ angular.module('myApp.registro', ['ngRoute'])
   });
 }])
 
-.controller('registro', ['bcrypt','$scope', '$rootScope', 'registroU','registroC','registroTi','registroTe','$mdDialog', function (bcrypt,$scope,$rootScope, registroU, registroC, registroTi,registroTe,$mdDialog)  {
+.controller('registro', ['bcrypt','$scope', '$rootScope', 'registroU','registroC','registroTi','registroTe','$mdDialog','$http', function (bcrypt,$scope,$rootScope, registroU, registroC, registroTi,registroTe,$mdDialog,$http)  {
 
     $scope.validada=false;
     $scope.validada2=false;
@@ -48,10 +48,14 @@ angular.module('myApp.registro', ['ngRoute'])
                 usuario.correo = $scope.email;
                 var cuenta = new Cuenta();
                 cuenta.email = $scope.email;
-                cuenta.hash = $scope.password;
+                cuenta.hash = CryptoJS.SHA1($scope.password).toString();
                 cuenta.rol = 'Usuario';
+                console.log(usuario);
+                console.log(cuenta);
+                //console.log(registroU.save(usuario));
+                $http.post('/api/user/reg', usuario).then(function(data){console.log(data);$http.post('/api/cuenta/reg',cuenta)}, function(data){console.log("error: ");console.log(data)});
 
-                //registroU.save(usuario).$promise.then(registroC.save(cuenta));
+                //registroU.save(usuario).$promise.then(function(data){console.log(data);registroC.save(cuenta)},function(data){console.log("error: ");console.log(data)});
             }
             else{
                 alert("Llena los campos correctamente");

@@ -41,6 +41,12 @@ public class CheapestPriceApplication {
         @Override
         protected void configure(AuthenticationManagerBuilder builder) throws Exception {
             builder.inMemoryAuthentication().withUser("admin@cheapestprice.com").password("admin").roles("USER");
+            builder.inMemoryAuthentication().withUser("prueba@prueba.com").password("prueba").roles("USER");
+            builder.inMemoryAuthentication().withUser("prueba2@prueba.com").password("prueba").roles("USER");
+            builder.inMemoryAuthentication().withUser("prueba3@prueba.com").password("prueba").roles("USER");
+            builder.inMemoryAuthentication().withUser("tendero@tendero.com").password("tendero").roles("USER");
+            builder.inMemoryAuthentication().withUser("tendero2@tendero.com").password("tendero").roles("USER");
+            builder.inMemoryAuthentication().withUser("tendero3@tendero.com").password("tendero").roles("USER");
         }
 
         @Override

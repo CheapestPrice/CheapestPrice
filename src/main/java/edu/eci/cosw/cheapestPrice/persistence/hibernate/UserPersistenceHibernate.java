@@ -46,6 +46,7 @@ public class UserPersistenceHibernate implements UserPersistence{
 
     @Override
     public void addUser(Usuario usuario) throws CheapestPriceException {
+        System.out.println("persistencia: "+usuario.getId()+" "+usuario.getNombre()+" "+usuario.getCorreo());
         us.save(usuario);
     }
 
