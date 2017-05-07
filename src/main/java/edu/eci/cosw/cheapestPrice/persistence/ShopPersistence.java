@@ -159,4 +159,5 @@ public interface ShopPersistence {
      */
     public List<Tienda> consultShop() throws CheapestPriceException;
 
+    Tienda consultTienda(String nit, double x, double y, String direccion, String nombre, String telefono);
 }

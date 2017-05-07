@@ -2,6 +2,7 @@ package edu.eci.cosw.cheapestPrice.services;
 
 import edu.eci.cosw.cheapestPrice.entities.*;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
+import edu.eci.cosw.cheapestPrice.persistence.ShopPersistence;
 import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import java.util.List;
 public class UserServicePersistence implements UserService{
     @Autowired
     UserPersistence us;
+    @Autowired
+    ShopPersistence sp;
 
 
     @Override
@@ -90,6 +93,11 @@ public class UserServicePersistence implements UserService{
 
     @Override
     public void addTendero(Tendero tendero)throws CheapestPriceException {
+        Usuario u = us.loadUserByEmail(tendero.getUsuario().getCorreo());
+        Tienda tmp = tendero.getTienda();
+        Tienda t = sp.consultTienda(tmp.getNit(),tmp.getX(),tmp.getY(),tmp.getDireccion(),tmp.getNombre(),tmp.getTelefono());
+        tendero.setTiendaid(t.getId());
+        tendero.setUsuarioId(u.getId());
         us.addTendero(tendero);
     }
 

@@ -24,4 +24,7 @@ public interface ShopRepository extends JpaRepository<Tienda,Integer>{
     @Query("update Tienda t set t.telefono=:telefono where t.id=:idtienda")
     public void modifyTelephone(@Param("idtienda") int idtienda, @Param("telefono") String telefono);
 
+    @Query("select t from Tienda t where t.nit=:nit and t.direccion=:direccion and t.nombre=:nombre and t.telefono=:telefono")
+    public Tienda findOneByAll(@Param("nit")String nit,@Param("direccion")String direccion,@Param("nombre") String nombre,@Param("telefono") String telefono);
+
 }
