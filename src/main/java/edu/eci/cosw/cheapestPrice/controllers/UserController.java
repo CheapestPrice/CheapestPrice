@@ -60,7 +60,14 @@ public class UserController {
         }
     }
 
-
+    @RequestMapping(value="/{id}/me" ,method = RequestMethod.GET)
+    public ResponseEntity<?> getUsuario(@PathVariable int id){
+        try{
+            return new ResponseEntity<>(uP.loadUser(id),HttpStatus.ACCEPTED);
+        }catch (CheapestPriceException e){
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+        }
+    }
 
     @RequestMapping(value="/{id}" ,method = RequestMethod.PUT)
     public ResponseEntity<?> actualizarUsuario(@PathVariable int id, Usuario usuario){
