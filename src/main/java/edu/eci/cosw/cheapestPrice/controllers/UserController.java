@@ -80,6 +80,7 @@ public class UserController {
                 uP.updateUser(id, usuario);
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }else{
+                System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
                 return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
             }
         }catch (CheapestPriceException e){
@@ -98,7 +99,8 @@ public class UserController {
                 uP.deleteShoppingList(listaId);
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }else{
-                return new ResponseEntity<>(new CheapestPriceException("La lista no pertenece al usuario"),HttpStatus.NOT_FOUND);
+                System.out.println(new CheapestPriceException("La lista no pertenece al usuario"));
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -118,10 +120,12 @@ public class UserController {
                     uP.favoriteShoppingListItem(itemListaId, fav);
                     return new ResponseEntity<>(HttpStatus.ACCEPTED);
                 }else{
-                    return new ResponseEntity<>(new CheapestPriceException("El producto no pertenece a la lista"),HttpStatus.NOT_FOUND);
+                    System.out.println(new CheapestPriceException("El producto no pertenece a la lista"));
+                    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
                 }
             }else{
-                return new ResponseEntity<>(new CheapestPriceException("La lista no pertenece al usuario"),HttpStatus.NOT_FOUND);
+                System.out.println(new CheapestPriceException("La lista no pertenece al usuario"));
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }catch (CheapestPriceException e){
             e.printStackTrace();
@@ -140,10 +144,12 @@ public class UserController {
                     uP.deleteSelectedItem(idItem);
                     return new ResponseEntity<>(HttpStatus.ACCEPTED);
                 } else {
-                    return new ResponseEntity<>(new CheapestPriceException("El producto no pertenece a la lista"), HttpStatus.NOT_FOUND);
+                    System.out.println(new CheapestPriceException("El producto no pertenece a la lista"));
+                    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
                 }
             }else{
-                return new ResponseEntity<>(new CheapestPriceException("La lista no pertenece al usuario"),HttpStatus.NOT_FOUND);
+                System.out.println(new CheapestPriceException("La lista no pertenece al usuario"));
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }catch (CheapestPriceException e){
             e.printStackTrace();
@@ -162,10 +168,12 @@ public class UserController {
                     uP.sellSelectedItem(ILId,com);
                     return new ResponseEntity<>(HttpStatus.ACCEPTED);
                 }else{
-                    return new ResponseEntity<>(new CheapestPriceException("El producto no pertenece a la lista"),HttpStatus.NOT_FOUND);
+                    System.out.println(new CheapestPriceException("El producto no pertenece a la lista"));
+                    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
                 }
             }else{
-                return new ResponseEntity<>(new CheapestPriceException("La lista no pertenece al usuario"),HttpStatus.NOT_FOUND);
+                System.out.println(new CheapestPriceException("La lista no pertenece al usuario"));
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }catch (CheapestPriceException e){
             e.printStackTrace();
@@ -173,18 +181,20 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="/{id}/lista/{idLista}" ,method = RequestMethod.POST)
-    public ResponseEntity<?> agregarListaMercado(@RequestBody ListaDeMercado listaDeMercado){
+    @RequestMapping(value="/{id}/lista" ,method = RequestMethod.POST)
+    public ResponseEntity<?> agregarListaMercado(@RequestBody ListaDeMercado listaDeMercado, @PathVariable int id){
         try{
-            int id=listaDeMercado.getUsuario().getId();
+            cs.load(id);
+            int user=listaDeMercado.getUsuario().getId();
             int lId=listaDeMercado.getId();
             Account acc=cs.load(id);
-            ListaDeMercado l=uP.loadListaUsuario(id,lId);
-            if(l!=null) {
+            ListaDeMercado l=uP.loadListaUsuario(user,lId);
+            if(user==id && l!=null) {
                 uP.addShoppingList(listaDeMercado);
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }else{
-                return new ResponseEntity<>(new CheapestPriceException("La lista no pertenece al usuario"),HttpStatus.NOT_FOUND);
+                System.out.println(new CheapestPriceException("La lista no pertenece al usuario"));
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
 
         }catch (Exception e){
@@ -205,7 +215,8 @@ public class UserController {
                 uP.addItemListaMercado(itemLista);
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }else{
-                return new ResponseEntity<>(new CheapestPriceException("La lista no pertenece al usuario"),HttpStatus.NOT_FOUND);
+                System.out.println(new CheapestPriceException("La lista no pertenece al usuario"));
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }catch (Exception e){
             e.printStackTrace();

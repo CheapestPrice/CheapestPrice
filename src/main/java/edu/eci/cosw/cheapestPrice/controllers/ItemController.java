@@ -108,11 +108,12 @@ public class ItemController {
             Item item=is.loadItemById(idItem);
             int idshop=item.getTienda().getId();
             int user=item.getTienda().getTendero().getId();
-            cs.load(id);
+            Account acc=cs.load(id);
             if(id==user && idshop==shop) {
                 is.deleteItem(shop,id);
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }else{
+                System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
                 return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
             }
         } catch (CheapestPriceException e) {
@@ -126,11 +127,12 @@ public class ItemController {
         try {
             int idshop=item.getTienda().getId();
             int user=item.getTienda().getTendero().getId();
-            cs.load(id);
+            Account acc=cs.load(id);
             if(id==user && idshop==shop) {
                 is.updateItem(item);
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }else{
+                System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
                 return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
             }
         } catch (CheapestPriceException e) {
@@ -160,6 +162,7 @@ public class ItemController {
                 }
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }else{
+                System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
                 return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
             }
 
@@ -175,13 +178,14 @@ public class ItemController {
             Item items = is.loadItemById(idItem);
             int idshop = items.getTienda().getId();
             int user = items.getTienda().getTendero().getId();
-            cs.load(id);
+            Account acc=cs.load(id);
             if (id == user && idshop == shop) {
                 return ResponseEntity.ok()
                         .contentType(MediaType.parseMediaType("image/png"))
                         .body(new InputStreamResource(items.getProducto().getImagen().getBinaryStream()));
             }else{
-                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+                System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
+                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
             }
         } catch (CheapestPriceException | SQLException | NullPointerException e) {
             e.printStackTrace();
