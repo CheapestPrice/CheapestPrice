@@ -94,9 +94,10 @@ function Usuario(nombre, correo){
     this.listas = [];
     this.opiniones = [];
 }
-function Cuenta(email, hash, rol, habilitado){
+function Cuenta(email, hash, rol, habilitado, usuario){
     this.email = email;
     this.hash = hash;
     this.rol = rol;
     this.habilitado = habilitado;
+    this.usuario;
 }

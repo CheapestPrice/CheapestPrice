@@ -115,4 +115,14 @@ public class UserPersistenceHibernate implements UserPersistence{
     public ListaDeMercado loadListaUsuario(int uId, int lId) {
         return us.loadListaUsuario(uId,lId);
     }
+
+    @Override
+    public Cuenta login(String correo, String hash) {
+        return cr.Login(correo,hash);
+    }
+
+    @Override
+    public Cuenta loadCuenta(int id) {
+        return cr.findOne(id);
+    }
 }

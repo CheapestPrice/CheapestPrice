@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class Cuenta implements Serializable{
 
     @Id
-    @Column(name = "USUARIOS_id", nullable = false, insertable = false, updatable = false)
+    @Column(name = "USUARIOS_id", nullable = false)
     private int id;
     
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Usuario.class)
@@ -22,17 +22,21 @@ public class Cuenta implements Serializable{
     })
     private Usuario usuario;
 
-    @Column(name = "rol", nullable = false, insertable = false, updatable = false)
+    @Column(name = "rol", nullable = false)
     private String rol;
-    
-    @Column(name = "hash", nullable = false, insertable = false, updatable = false)
+
+    @Column(name = "hash", nullable = false)
     private String hash;
 
-    public Cuenta(int id,String hash, String rol,Usuario user){
+    @Column(name = "habilitado", nullable = false,insertable = false,updatable = false)
+    private boolean habilitado;
+
+    public Cuenta(int id,String hash, String rol,Usuario user, boolean habilitado){
         this.id=id;
         this.rol=rol;
         this.hash=hash;
         this.usuario=user;
+        this.habilitado=habilitado;
     }
 
     public Cuenta(){ }
@@ -76,5 +80,13 @@ public class Cuenta implements Serializable{
      */
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public boolean isHabilitado() {
+        return habilitado;
+    }
+
+    public void setHabilitado(boolean habilitado) {
+        this.habilitado = habilitado;
     }
 }

@@ -50,6 +50,7 @@ angular.module('myApp.registro', ['ngRoute'])
                 cuenta.email = $scope.email;
                 cuenta.hash = CryptoJS.SHA1($scope.password).toString();
                 cuenta.rol = 'Usuario';
+                cuenta.usuario=usuario;
                 console.log(usuario);
                 console.log(cuenta);
                 //console.log(registroU.save(usuario));

@@ -3,7 +3,9 @@ package edu.eci.cosw.cheapestPrice.services;
 import edu.eci.cosw.cheapestPrice.entities.Account;
 import edu.eci.cosw.cheapestPrice.entities.Cuenta;
 import edu.eci.cosw.cheapestPrice.entities.CuentaPass;
+import edu.eci.cosw.cheapestPrice.entities.Usuario;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
+import edu.eci.cosw.cheapestPrice.persistence.UserPersistence;
 import edu.eci.cosw.cheapestPrice.repositories.CuentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,16 +18,19 @@ public class CuentaServicePersistence implements CuentaService{
 
 
     @Autowired
-    CuentaRepository cr;
+    UserPersistence cr;
 
     @Override
     public void agregarCuenta(Cuenta cuenta) throws CheapestPriceException {
-        cr.save(cuenta);
+        Usuario u = cr.loadUserByEmail(cuenta.getUsuario().getCorreo());
+        cuenta.setId(u.getId());
+        cuenta.setUsuario(null);
+        cr.addCuenta(cuenta);
     }
 
     @Override
     public Account login(CuentaPass cuenta) throws CheapestPriceException {
-        Cuenta acc=cr.Login(cuenta.getEmail(),cuenta.getHash());
+        Cuenta acc=cr.login(cuenta.getEmail(),cuenta.getHash());
         if(acc==null){
             throw new  CheapestPriceException("El usuario o la contraseña son incorrectos");
         }
@@ -34,7 +39,7 @@ public class CuentaServicePersistence implements CuentaService{
 
     @Override
     public Account load(int id) throws CheapestPriceException {
-        Cuenta acc=cr.findOne(id);
+        Cuenta acc=cr.loadCuenta(id);
         if(acc==null){
             throw new  CheapestPriceException("El usuario no se encuentra registrado");
         }

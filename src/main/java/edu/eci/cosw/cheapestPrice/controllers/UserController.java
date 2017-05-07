@@ -52,14 +52,14 @@ public class UserController {
             return new ResponseEntity<>(e, HttpStatus.ACCEPTED);
         }
     }
-    @RequestMapping(value="/{correo:.+}/me" ,method = RequestMethod.GET)
+    /*@RequestMapping(value="/{correo:.+}/me" ,method = RequestMethod.GET)
     public ResponseEntity<?> getUsuarioPorCorreo(@PathVariable String correo){
         try{
             return new ResponseEntity<>(uP.loadUserByEmail(correo),HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
         }
-    }
+    }*/
 
     @RequestMapping(value="/me/{id}" ,method = RequestMethod.GET)
     public ResponseEntity<?> getUsuario(@PathVariable int id){

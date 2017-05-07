@@ -102,4 +102,7 @@ public interface UserPersistence {
     List<ListaDeMercado> loadShopList(int id);
 
     ListaDeMercado loadListaUsuario(int uId,int lId);
+
+    Cuenta login(String correo, String hash);
+    Cuenta loadCuenta(int id);
 }

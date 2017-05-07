@@ -15,7 +15,7 @@ public class Usuario implements Serializable {
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column(name = "correo", nullable = false, insertable = false, updatable = false)
+    @Column(name = "correo", nullable = false)
     private String correo;
 
     @GeneratedValue
