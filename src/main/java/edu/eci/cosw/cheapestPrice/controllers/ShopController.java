@@ -1,5 +1,6 @@
 package edu.eci.cosw.cheapestPrice.controllers;
 
+import edu.eci.cosw.cheapestPrice.entities.Account;
 import edu.eci.cosw.cheapestPrice.entities.Tienda;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.services.CuentaService;
@@ -64,7 +65,8 @@ public class ShopController {
             System.out.println("Tienda actualizada sin error");
         } catch (CheapestPriceException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
+            System.out.println(new CheapestPriceException("OOPS! Error al actualizar tienda"));
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return a;
     }
@@ -79,7 +81,8 @@ public class ShopController {
             System.out.println("Tienda actualizada sin error");
         } catch (CheapestPriceException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
+            System.out.println(new CheapestPriceException("OOPS! Error al actualizar el numero de telefono de la tienda"));
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return a;
     }
@@ -105,12 +108,15 @@ public class ShopController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}/shop/{shopId}")
     public ResponseEntity<?> getShop(@PathVariable int id,@PathVariable int shopId){
+        int ids=0;
         try {
-            cs.load(id);
+            Account acc=cs.load(id);
+            ids=acc.getId();
             return new ResponseEntity<>(serviceShop.consultTienda(id),HttpStatus.ACCEPTED);
         } catch (CheapestPriceException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Oops! Un error a ocurrido!",HttpStatus.NOT_ACCEPTABLE);
+            System.out.println(new CheapestPriceException("Error autenticando el usuario: "+ids));
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
