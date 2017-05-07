@@ -204,14 +204,14 @@ public class UserController {
     }
 
     @RequestMapping(value="{id}/lista/{lId}" ,method = RequestMethod.POST)
-    public ResponseEntity<?> agregarItemListaMercado(@RequestBody ItemLista itemLista){
+    public ResponseEntity<?> agregarItemListaMercado(@RequestBody ItemLista itemLista, @PathVariable int id,@PathVariable int lId){
         try{
-            int id=itemLista.getLista().getUsuario().getId();
-            int lId=itemLista.getLista().getId();
+            int user=itemLista.getLista().getUsuario().getId();
+            int listaId=itemLista.getLista().getId();
             int itemId=itemLista.getItem().getId();
             Account acc=cs.load(id);
             ListaDeMercado l=uP.loadListaUsuario(id,lId);
-            if(l!=null) {
+            if(user==id && listaId==lId && l!=null) {
                 uP.addItemListaMercado(itemLista);
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }else{
