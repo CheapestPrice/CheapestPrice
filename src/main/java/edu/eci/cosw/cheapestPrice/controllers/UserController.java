@@ -203,17 +203,11 @@ public class UserController {
     public ResponseEntity<?> agregarListaMercado(@RequestBody ListaDeMercado listaDeMercado, @PathVariable int id){
         try{
             cs.load(id);
-            int user=listaDeMercado.getUsuario().getId();
-            int lId=listaDeMercado.getId();
             Account acc=cs.load(id);
-            ListaDeMercado l=uP.loadListaUsuario(user,lId);
-            if(user==id && l!=null) {
-                uP.addShoppingList(listaDeMercado);
-                return new ResponseEntity<>(HttpStatus.ACCEPTED);
-            }else{
-                System.out.println(new CheapestPriceException("La lista no pertenece al usuario"));
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+            listaDeMercado.setUsuario(uP.loadUser(id));
+            uP.addShoppingList(listaDeMercado);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+
 
         }catch (Exception e){
             e.printStackTrace();
