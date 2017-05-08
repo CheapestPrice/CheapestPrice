@@ -93,6 +93,7 @@ public class UserController {
     public ResponseEntity<?> borrarListaMercado(@PathVariable int id, @PathVariable int listaId){
         try{
             //verificar que se esté solicitando con el id de un usuario que exista y sea el dueño de la lista
+            System.out.println("------->>>>>Entro al delete: "+id+" "+listaId);
             Account acc=cs.load(id);
             ListaDeMercado l=uP.loadListaUsuario(id, listaId);
             if(l!=null) {
