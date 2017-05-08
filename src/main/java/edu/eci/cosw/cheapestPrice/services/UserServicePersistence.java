@@ -99,6 +99,8 @@ public class UserServicePersistence implements UserService{
         Tienda t = sp.consultTienda(tmp.getNit(),tmp.getX(),tmp.getY(),tmp.getDireccion(),tmp.getNombre(),tmp.getTelefono());
         tendero.setTiendaid(t.getId());
         tendero.setUsuarioId(u.getId());
+        tendero.setTienda(null);
+        tendero.setUsuario(null);
         us.addTendero(tendero);
     }
 

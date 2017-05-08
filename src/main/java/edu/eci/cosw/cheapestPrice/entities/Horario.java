@@ -30,7 +30,7 @@ public class Horario implements Serializable{
     @Column(name="dia", nullable=false)
     private String dia;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne()
     @JoinColumns({
             @JoinColumn(name="TIENDAS_id", referencedColumnName="id", nullable=false, insertable=false, updatable=false)
     })

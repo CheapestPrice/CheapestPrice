@@ -16,7 +16,7 @@ public class Cuenta implements Serializable{
     @Column(name = "USUARIOS_id", nullable = false)
     private int id;
     
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Usuario.class)
+    @OneToOne(targetEntity = Usuario.class)
     @JoinColumns({
             @JoinColumn(name="USUARIOS_id", referencedColumnName="id", nullable=false, insertable=false, updatable=false)
     })

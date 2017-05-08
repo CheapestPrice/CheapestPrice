@@ -16,13 +16,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TENDEROS")
 public class Tendero implements Serializable{
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Tienda.class)
+    @OneToOne(targetEntity = Tienda.class)
     @JoinColumns({
             @JoinColumn(name="TIENDAS_id", referencedColumnName="id", nullable=false, insertable=false, updatable=false)
     })
     private Tienda tienda;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Usuario.class)
+    @OneToOne(targetEntity = Usuario.class)
     @JoinColumns({
             @JoinColumn(name="USUARIOS_id", referencedColumnName="id", nullable=false, insertable=false, updatable=false)
     })
