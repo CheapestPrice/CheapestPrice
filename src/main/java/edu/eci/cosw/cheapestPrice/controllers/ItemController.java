@@ -122,7 +122,7 @@ public class ItemController {
             int user=item.getTienda().getTendero().getUsuarioId();
             Account acc=cs.load(id);
             if(id==user && idshop==shop) {
-                is.deleteItem(shop,id);
+                is.deleteItem(shop,idItem);
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }else{
                 System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
