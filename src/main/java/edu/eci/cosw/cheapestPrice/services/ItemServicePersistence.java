@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Blob;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Julian David Devia Serna on 2/20/17.
@@ -70,5 +72,12 @@ public class ItemServicePersistence implements ItemService{
     @Override
     public List<Producto> getProducts() {
         return ip.getProducts();
+    }
+
+    @Override
+    public Set<String> loadCategories() {
+        List<String> cat = ip.loadCategories();
+        Set<String> scat = new HashSet<>(cat);
+        return scat;
     }
 }

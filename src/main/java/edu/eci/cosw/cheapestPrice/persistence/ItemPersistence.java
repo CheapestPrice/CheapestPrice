@@ -6,6 +6,7 @@ import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 
 import java.sql.Blob;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Julian David Devia Serna on 2/19/17.
@@ -88,4 +89,6 @@ public interface ItemPersistence {
      * @throws CheapestPriceException si alguno de los parametros es nulo o no hay ningun producto registrado
      */
     public void updateProductImage(Blob imagen, String nombre, String marca, String categoria) throws CheapestPriceException;
+
+    List<String> loadCategories();
 }

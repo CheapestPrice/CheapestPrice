@@ -6,6 +6,7 @@ import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 
 import java.sql.Blob;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Julian David Devia Serna on 2/20/17.
@@ -88,4 +89,6 @@ public interface ItemService {
      * @return todos los productos registrados
      */
     public List<Producto> getProducts();
+
+    Set<String> loadCategories();
 }

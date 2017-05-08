@@ -20,4 +20,6 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
     @Query("select i from Item i where i.producto.categoria=:category")
     public List<Item> loadItemsByCategory(@Param("category") String category);
 
+    @Query("select i.producto.categoria from Item i")
+    public List<String> loadCategories();
 }

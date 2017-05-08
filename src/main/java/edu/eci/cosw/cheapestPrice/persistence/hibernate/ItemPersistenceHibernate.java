@@ -73,4 +73,9 @@ public class ItemPersistenceHibernate implements ItemPersistence {
     public Item loadItem(int shop, int idItem) throws CheapestPriceException {
         return ir.loadItem(shop,idItem);
     }
+
+    @Override
+    public List<String> loadCategories() {
+        return ir.loadCategories();
+    }
 }

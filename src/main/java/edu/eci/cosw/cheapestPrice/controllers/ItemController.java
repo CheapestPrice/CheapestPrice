@@ -56,6 +56,18 @@ public class ItemController {
         }
     }
 
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/categories" )
+    public ResponseEntity<?> getCategories(@PathVariable int id){
+        try {
+            //verificar que se esté solicitando con el id de un usuario que exista
+            cs.load(id);
+            return new ResponseEntity<>(is.loadCategories(), HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(method = RequestMethod.GET,value="/{id}/shop/{shop}/item/{idItem}")
     public ResponseEntity<?> getItemShop(@PathVariable int id,@PathVariable int shop,@PathVariable int idItem){
         try {
