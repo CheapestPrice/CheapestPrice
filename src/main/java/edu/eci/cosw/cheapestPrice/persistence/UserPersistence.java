@@ -105,4 +105,6 @@ public interface UserPersistence {
 
     Cuenta login(String correo, String hash);
     Cuenta loadCuenta(int id);
+
+    Tendero loadTendero(int userId);
 }

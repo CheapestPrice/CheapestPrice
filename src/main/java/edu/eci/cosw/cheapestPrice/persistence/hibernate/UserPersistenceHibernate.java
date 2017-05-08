@@ -126,4 +126,9 @@ public class UserPersistenceHibernate implements UserPersistence{
     public Cuenta loadCuenta(int id) {
         return cr.findOne(id);
     }
+
+    @Override
+    public Tendero loadTendero(int userId) {
+        return tr.findOne(userId);
+    }
 }

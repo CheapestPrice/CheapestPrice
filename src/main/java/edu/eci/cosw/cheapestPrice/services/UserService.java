@@ -101,4 +101,6 @@ public interface UserService {
     List<Tendero> loadAllTenderos();
 
     ListaDeMercado loadListaUsuario(int uId,int lId);
+
+    Tendero loadTendero(int userId);
 }

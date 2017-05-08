@@ -33,7 +33,7 @@ public class UserController {
             return new ResponseEntity<>(uP.loadAllUsuarios(), HttpStatus.ACCEPTED);
         } catch (CheapestPriceException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
     @RequestMapping(method = RequestMethod.GET,value="/{id}/tenderos")
@@ -45,11 +45,27 @@ public class UserController {
                 return new ResponseEntity<>(uP.loadAllTenderos(), HttpStatus.ACCEPTED);
             }else{
                 System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
-                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             }
         } catch (CheapestPriceException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(e, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        }
+    }
+    @RequestMapping(method = RequestMethod.GET,value="/{id}/tendero/{userId}")
+    public ResponseEntity<?> getTenderos(@PathVariable int id,@PathVariable int userId){
+        try {
+            //verificar que se esté solicitando con el id de un usuario que exista y sea un tendero
+            Account acc=cs.load(id);
+            if(acc.getRol().equals(Account.TENDERO)) {
+                return new ResponseEntity<>(uP.loadTendero(userId), HttpStatus.ACCEPTED);
+            }else{
+                System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+        } catch (CheapestPriceException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
     }
     /*@RequestMapping(value="/{correo:.+}/me" ,method = RequestMethod.GET)
@@ -66,7 +82,7 @@ public class UserController {
         try{
             return new ResponseEntity<>(uP.loadUser(id),HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
-            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -81,11 +97,11 @@ public class UserController {
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }else{
                 System.out.println("Acceso denegado id:"+acc.getId()+" rol: "+acc.getRol());
-                return new ResponseEntity<>(new CheapestPriceException("Acceso denegado"),HttpStatus.FORBIDDEN);
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             }
         }catch (CheapestPriceException e){
             e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -106,7 +122,7 @@ public class UserController {
             }
         }catch (Exception e){
             e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -131,7 +147,7 @@ public class UserController {
             }
         }catch (CheapestPriceException e){
             e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -155,7 +171,7 @@ public class UserController {
             }
         }catch (CheapestPriceException e){
             e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -179,7 +195,7 @@ public class UserController {
             }
         }catch (CheapestPriceException e){
             e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -201,7 +217,7 @@ public class UserController {
 
         }catch (Exception e){
             e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -219,7 +235,7 @@ public class UserController {
             }
         }catch (Exception e){
             e.printStackTrace();
-            return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }

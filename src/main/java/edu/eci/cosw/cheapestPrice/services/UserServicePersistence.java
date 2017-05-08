@@ -111,4 +111,9 @@ public class UserServicePersistence implements UserService{
     public ListaDeMercado loadListaUsuario(int uId, int lId) {
         return us.loadListaUsuario(uId, lId);
     }
+
+    @Override
+    public Tendero loadTendero(int userId) {
+        return us.loadTendero(userId);
+    }
 }
