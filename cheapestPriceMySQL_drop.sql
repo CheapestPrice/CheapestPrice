@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2017-03-29 03:45:11.745
+-- Last modification date: 2017-05-08 04:31:43.022
 
 -- foreign keys
 ALTER TABLE HORARIOS
@@ -57,5 +57,4 @@ DROP TABLE USUARIOS;
 DROP TABLE USUARIOS_AUTENTICACION;
 
 -- End of file.
-
 

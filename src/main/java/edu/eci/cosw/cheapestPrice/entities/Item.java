@@ -20,14 +20,14 @@ public class Item implements Serializable {
     private long precio;
 
     //@MapsId("tiendaId")
-    @ManyToOne(cascade=CascadeType.ALL,optional=false)
+    @ManyToOne(optional=false)
     @JoinColumns({
             @JoinColumn(name="TIENDAS_id", referencedColumnName="id", nullable=false,insertable=false, updatable=false)
     })
     private Tienda tienda;
 
     //@MapsId("productoId")
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne()
     @JoinColumns({
             @JoinColumn(name="PRODUCTOS_id", referencedColumnName="id", nullable=false, insertable=false,updatable=false)
     })

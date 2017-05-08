@@ -58,6 +58,7 @@ public class UserServicePersistence implements UserService{
 
     @Override
     public void deleteShoppingList(int id) throws CheapestPriceException {
+        System.out.println("servicio: "+id);
         us.deleteShoppingList(id);
     }
 

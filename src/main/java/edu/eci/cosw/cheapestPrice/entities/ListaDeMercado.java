@@ -20,7 +20,7 @@ public class ListaDeMercado implements Serializable {
     @Column(name = "realizado", nullable = false)
     private boolean revisado;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "lista")
+    @OneToMany(mappedBy = "lista")
     private List<ItemLista> items;
 
     @Id
@@ -30,7 +30,7 @@ public class ListaDeMercado implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumns({
             @JoinColumn(name="USUARIOS_id",referencedColumnName = "id", nullable = false,insertable=false, updatable=false)
     })

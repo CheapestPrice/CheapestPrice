@@ -22,10 +22,10 @@ public class Usuario implements Serializable {
     @Id
     private int id;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario")
     private List<ListaDeMercado> listas;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario")
     private List<Opinion> opiniones;
 
     public Usuario() {

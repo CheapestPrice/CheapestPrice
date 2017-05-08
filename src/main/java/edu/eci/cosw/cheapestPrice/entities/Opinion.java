@@ -27,14 +27,14 @@ public class Opinion implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumns({
             @JoinColumn(name="USUARIOS_id",referencedColumnName = "id", nullable = false,insertable=false, updatable=false)
     })
     @JsonIgnore
     private Usuario usuario;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne()
     @JoinColumns({
             @JoinColumn(name="TIENDAS_id", referencedColumnName="id", nullable=false, insertable=false, updatable=false)
     })

@@ -97,6 +97,7 @@ public class UserController {
             Account acc=cs.load(id);
             ListaDeMercado l=uP.loadListaUsuario(id, listaId);
             if(l!=null) {
+                System.out.println("lista no nula");
                 uP.deleteShoppingList(listaId);
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }else{

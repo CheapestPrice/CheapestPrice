@@ -46,20 +46,20 @@ public class Tienda implements java.io.Serializable {
     @JsonIgnore
     private Blob logo;
 
-    @OneToMany(cascade=CascadeType.ALL,mappedBy = "tienda")
+    @OneToMany(mappedBy = "tienda")
     private List<Horario> horarios;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "tienda")
+    @OneToOne(mappedBy = "tienda")
     @JoinColumns({
             @JoinColumn(name="id", referencedColumnName="TIENDAS_id", nullable=false, insertable=false, updatable=false)
     })
     @JsonIgnore
     private Tendero tendero;
 
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="tienda")
+    @OneToMany(mappedBy="tienda")
     private List<Opinion> opiniones;
 
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="tienda")
+    @OneToMany(mappedBy="tienda")
     @JsonIgnore
     private List<Item> items;
 

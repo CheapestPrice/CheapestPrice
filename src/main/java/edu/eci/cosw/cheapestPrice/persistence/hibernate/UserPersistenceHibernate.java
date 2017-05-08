@@ -58,6 +58,7 @@ public class UserPersistenceHibernate implements UserPersistence{
 
     @Override
     public void deleteShoppingList(int id) throws CheapestPriceException {
+        System.out.println("persistence: "+id);
         slR.delete(id);
     }
 
