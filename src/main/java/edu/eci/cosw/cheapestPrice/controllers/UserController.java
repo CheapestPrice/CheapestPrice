@@ -188,6 +188,7 @@ public class UserController {
         try{
             cs.load(id);
             Account acc=cs.load(id);
+            listaDeMercado.setUsuario(uP.loadUser(id));
             uP.addShoppingList(listaDeMercado);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
