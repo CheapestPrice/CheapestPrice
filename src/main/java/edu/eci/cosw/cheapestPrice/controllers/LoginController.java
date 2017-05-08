@@ -29,6 +29,7 @@ public class LoginController {
     @RequestMapping(value="/api/login",method = RequestMethod.POST)
     public ResponseEntity<?> agregarCuenta(@RequestBody CuentaPass cuenta){
         try{
+            System.out.println("intento: "+cuenta.getEmail());
             return new ResponseEntity<>(cs.login(cuenta),HttpStatus.ACCEPTED);
         }catch (CheapestPriceException e){
             e.printStackTrace();

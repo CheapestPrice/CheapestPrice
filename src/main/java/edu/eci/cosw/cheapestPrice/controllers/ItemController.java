@@ -185,7 +185,7 @@ public class ItemController {
             }else{
                 System.out.println("El item "+idItem+" no pertenece a la tienda especificada "+shop+" "+idshop);
                 System.out.println(items+" "+items.getTienda()+" "+items.getTienda().getId());
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
             }
         } catch (CheapestPriceException | SQLException | NullPointerException e) {
             e.printStackTrace();
