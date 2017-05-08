@@ -139,4 +139,8 @@ public class ShopPersistenceHibernate implements ShopPersistence {
     public Tienda consultTienda(int idtienda) throws CheapestPriceException {
         return repositoryshop.findOne(idtienda);
     }
+    @Override
+    public Tienda consultTienda(String nit, double x, double y, String direccion, String nombre, String telefono){
+        return repositoryshop.findOneByAll(nit, direccion, nombre, telefono);
+    }
 }

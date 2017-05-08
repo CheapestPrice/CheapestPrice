@@ -21,13 +21,13 @@ public class Tienda implements java.io.Serializable {
     @Column(name="id", nullable=false, insertable=false,updatable=false)
     private int id;
 
-    @Column(name="nit", nullable=false, insertable=false,updatable=false)
+    @Column(name="nit", nullable=false)
     private String nit;
 
-    @Column(name="x", nullable=false ,insertable=false,updatable=false)
+    @Column(name="x", nullable=false)
     private double x;
 
-    @Column(name="y", nullable=false ,insertable=false,updatable=false)
+    @Column(name="y", nullable=false)
     private double y;
 
     @Column(name="direccion", nullable=false)

@@ -107,7 +107,7 @@ public class ItemController {
         try {
             Item item=is.loadItemById(idItem);
             int idshop=item.getTienda().getId();
-            int user=item.getTienda().getTendero().getId();
+            int user=item.getTienda().getTendero().getUsuarioId();
             Account acc=cs.load(id);
             if(id==user && idshop==shop) {
                 is.deleteItem(shop,id);
@@ -126,7 +126,7 @@ public class ItemController {
     public ResponseEntity<?> updateItem(@RequestBody Item item,@PathVariable int id,@PathVariable int shop){
         try {
             int idshop=item.getTienda().getId();
-            int user=item.getTienda().getTendero().getId();
+            int user=item.getTienda().getTendero().getUsuarioId();
             Account acc=cs.load(id);
             if(id==user && idshop==shop) {
                 is.updateItem(item);
@@ -148,7 +148,7 @@ public class ItemController {
         try {
 
             int idshop=items.getTienda().getId();
-            int user=items.getTienda().getTendero().getId();
+            int user=items.getTienda().getTendero().getUsuarioId();
             Account acc=cs.load(id);
             if(id==user && idshop==shop) {
                 if(files != null){

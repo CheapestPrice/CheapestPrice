@@ -55,7 +55,7 @@ angular.module('myApp.registro', ['ngRoute'])
                 console.log(cuenta);
                 //console.log(registroU.save(usuario));
                 $http.post('/api/user/reg', usuario).then(function(data){console.log(data);$http.post('/api/cuenta/reg',cuenta)}, function(data){console.log("error: ");console.log(data)});
-
+                //$http.post('/api/cuenta/reg',cuenta);
                 //registroU.save(usuario).$promise.then(function(data){console.log(data);registroC.save(cuenta)},function(data){console.log("error: ");console.log(data)});
             }
             else{
@@ -80,15 +80,39 @@ angular.module('myApp.registro', ['ngRoute'])
               console.log('2. La longitud es: ' + $scope.longitud + ', la latitud es: ' + $scope.latitud);
               var cuenta = new Cuenta();
               cuenta.email = $scope.email;
-              cuenta.hash = $scope.password;
+              cuenta.hash = CryptoJS.SHA1($scope.password).toString();
               cuenta.rol = 'Tendero';
               var usuario = new Usuario();
               usuario.nombre = $scope.nameU;
               usuario.correo = $scope.email;
+              cuenta.usuario=usuario;
               var tiendaId = new TiendaId($scope.nitTienda, $scope.longitud, $scope.latitud);
-              var tienda = new Tienda(tiendaId, $scope.dirTienda, $scope.nomTienda, $scope.telTienda, true);
-              var tendero = new Tendero($scope.email, $scope.nameU, $scope.nitTienda, $scope.longitud, $scope.latitud);
-              registroU.save(usuario).$promise.then(registroTi.save(tienda).$promise.then(registroTe.save(tendero).$promise.then(registroC.save(cuenta))));
+              var tienda = new Tienda();//tiendaId, $scope.dirTienda, $scope.nomTienda, $scope.telTienda, true);
+              tienda.nit=$scope.nitTienda;
+              tienda.x=$scope.longitud;
+              tienda.y=$scope.latitud;
+              tienda.direccion=$scope.dirTienda;
+              tienda.nombre=$scope.nomTienda;
+              tienda.telefono=$scope.telTienda;
+              tienda.disponible = true;
+              var tendero = new Tendero();//$scope.email, $scope.nameU, $scope.nitTienda, $scope.longitud, $scope.latitud);
+              tendero.tienda=tienda;
+              tendero.usuario=usuario;
+              $http.post('/api/user/reg', usuario).then(function(data){
+                console.log(data);
+                $http.post('/api/cuenta/reg',cuenta).then(function(data){
+
+                    $http.post('/api/tienda/reg',tienda).then(function(data){
+                        $http.post('/api/tendero/reg',tendero);
+                    },function(data){
+                    });
+                },function(data){
+                });
+               }, function(data){
+                console.log("error: ");
+                console.log(data)}
+               );
+              //registroU.save(usuario).$promise.then(registroTi.save(tienda).$promise.then(registroTe.save(tendero).$promise.then(registroC.save(cuenta))));
               //$scope.status = 'You said the information was "' + answer + '".';
             }, function() {
             alert("Bueno jodase");

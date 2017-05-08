@@ -28,16 +28,20 @@ public class Tendero implements Serializable{
     })
     private Usuario usuario;
 
-    @Column(name = "USUARIOS_id", nullable = false, insertable = false, updatable = false)
+    @Column(name = "USUARIOS_id", nullable = false)
     @Id
-    private int id;
+    private int usuarioId;
+
+    @Column(name = "TIENDAS_id", nullable = false)
+    private int tiendaid;
 
     public Tendero(){}
 
-    public Tendero(Usuario usuario,Tienda tienda,int id){
+    public Tendero(Usuario usuario,Tienda tienda,int usuarioId, int tiendaid){
         this.setUsuario(usuario);
         this.setTienda(tienda);
-        this.setId(id);
+        this.setUsuarioId(usuarioId);
+        this.setTiendaid(tiendaid);
     }
 
     public Tienda getTienda() {
@@ -56,11 +60,19 @@ public class Tendero implements Serializable{
         this.usuario = usuario;
     }
 
-    public int getId() {
-        return id;
+    public int getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public int getTiendaid() {
+        return tiendaid;
+    }
+
+    public void setTiendaid(int tiendaid) {
+        this.tiendaid = tiendaid;
     }
 }

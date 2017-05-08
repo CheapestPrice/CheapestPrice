@@ -20,12 +20,9 @@ function Producto(id, nombre, marca, categoria){
     this.categoria = categoria
 }
 
-function Tendero(correo, nombre, nit, x, y){
-    this.correo = correo;
-    this.nombre = nombre;
-    this.nit = nit;
-    this.x=x;
-    this.y=y;
+function Tendero(tienda,usuario){
+    this.tienda=tienda;
+    this.usuario=usuario;
 }
 
 function TiendaId(nit, x, y){
@@ -34,12 +31,15 @@ function TiendaId(nit, x, y){
     this.y = y;
 }
 
-function Tienda(id, direccion, nombre, telefono, disponible){
-    this.id = id;
+function Tienda(direccion, nombre, telefono, disponible, nit,x,y){
+    //this.id = id;
     this.direccion = direccion;
     this.nombre = nombre;
     this.telefono = telefono;
     this.disponible = disponible;
+    this.nit=nit;
+    this.x=x;
+    this.y=y;
     this.horarios = [];
     this.opiniones = [];
     this.items = [];
