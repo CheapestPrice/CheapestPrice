@@ -37,6 +37,9 @@ public class ListaDeMercado implements Serializable {
     @JsonIgnore
     private Usuario usuario;
 
+    @Column(name = "USUARIOS_id")
+    private int idUsuario;
+
     public ListaDeMercado(){}
 
     public ListaDeMercado(Date fechaCreacion, boolean revisado, int id){
@@ -134,5 +137,13 @@ public class ListaDeMercado implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }
