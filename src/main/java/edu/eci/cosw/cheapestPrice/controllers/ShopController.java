@@ -54,6 +54,22 @@ public class ShopController {
     }
 
 
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/shop/{shop}/opiniones")
+    @ResponseBody
+    public ResponseEntity<?> getOpiniones(@PathVariable int id,@PathVariable int shop) {
+        int ids=0;
+        try {
+            Account acc=cs.load(id);
+            ids=acc.getId();
+            return new ResponseEntity <>(serviceShop.consultOpiniones(shop),HttpStatus.ACCEPTED);
+        } catch (CheapestPriceException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(new CheapestPriceException("Error autenticando el usuario: "+ids));
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}/shop/{shopId}")
     public ResponseEntity<?> modifyShop(@PathVariable int id,@PathVariable int shopId,@RequestBody Tienda tienda){
