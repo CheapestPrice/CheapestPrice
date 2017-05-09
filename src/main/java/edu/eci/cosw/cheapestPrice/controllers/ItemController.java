@@ -205,6 +205,19 @@ public class ItemController {
         }
     }
 
+    @RequestMapping(method = RequestMethod.GET,value="/{idItem}/imagen")
+    public ResponseEntity<?> getPictureById(@PathVariable int idItem) {
+        try {
+            Item items = is.loadItemById(idItem);
+            return ResponseEntity.ok()
+                        .contentType(MediaType.parseMediaType("image/png"))
+                        .body(new InputStreamResource(items.getProducto().getImagen().getBinaryStream()));
+        }catch (CheapestPriceException | SQLException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     /*
     Post sin imagen
     @RequestMapping(value="/{id}/shop/{shop}/items" ,method = RequestMethod.POST)
