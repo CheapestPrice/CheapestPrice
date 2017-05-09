@@ -91,4 +91,6 @@ public interface ItemService {
     public List<Producto> getProducts();
 
     Set<String> loadCategories();
+
+    Producto loadProductById(long idProducto) throws CheapestPriceException;
 }

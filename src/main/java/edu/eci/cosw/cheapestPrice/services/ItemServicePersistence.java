@@ -80,4 +80,9 @@ public class ItemServicePersistence implements ItemService{
         Set<String> scat = new HashSet<>(cat);
         return scat;
     }
+
+    @Override
+    public Producto loadProductById(long idProducto) throws CheapestPriceException {
+        return ip.loadProductById(idProducto);
+    }
 }

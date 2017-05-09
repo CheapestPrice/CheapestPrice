@@ -78,4 +78,9 @@ public class ItemPersistenceHibernate implements ItemPersistence {
     public List<String> loadCategories() {
         return ir.loadCategories();
     }
+
+    @Override
+    public Producto loadProductById(long idProducto) {
+        return pr.findOne(idProducto);
+    }
 }

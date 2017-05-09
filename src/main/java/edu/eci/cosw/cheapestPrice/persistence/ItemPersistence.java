@@ -91,4 +91,6 @@ public interface ItemPersistence {
     public void updateProductImage(Blob imagen, String nombre, String marca, String categoria) throws CheapestPriceException;
 
     List<String> loadCategories();
+
+    Producto loadProductById(long idProducto);
 }
