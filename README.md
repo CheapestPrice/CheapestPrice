@@ -20,3 +20,7 @@ https://circleci.com/gh/CheapestPrice/CheapestPrice
 ## Heroku
 
 http://cheapestprice.herokuapp.com/
+
+## Amazon
+
+ec2-35-164-220-111.us-west-2.compute.amazonaws.com
