@@ -52,7 +52,7 @@ public class ItemPersistenceHibernate implements ItemPersistence {
             p=item.getProducto();
             p.setId(1);
             System.out.println("------------------------>"+item.getProducto()+" "+p);
-            pr.save(p);
+            pr.saveAndFlush(p);
         }
         ir.save(item);
     }
