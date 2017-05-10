@@ -45,6 +45,9 @@ public class ItemPersistenceHibernate implements ItemPersistence {
 
     @Override
     public void addItem(Item item) throws CheapestPriceException {
+        Producto p= (Producto) pr.loadProduct(item.getProducto().getNombre(),item.getProducto().getMarca(),item.getProducto().getCategoria());
+        if(p==null)
+            pr.save(p);
         ir.save(item);
     }
 

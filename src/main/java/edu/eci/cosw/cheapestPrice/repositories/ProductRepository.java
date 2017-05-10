@@ -25,6 +25,10 @@ public interface ProductRepository extends JpaRepository<Producto, Long> {
     public List<Producto> loadProductsByCategoria(@Param("categoria") String categoria);
     @Query("select p from Producto p where p.marca=:marca")
     public List<Producto> loadProductsByMarca(@Param("marca") String marca);
+
+    @Query("select p from Producto p where p.nombre=:nombre and p.marca=:marca and p.categoria=:categoria")
+    public List<Producto> loadProduct(@Param("nombre") String nombre,@Param("marca") String marca,@Param("categoria") String categoria);
+
     @Query("update Producto p set p.nombre=:nombre where p.id=:#{#producto.id}")
     public void updateByName(@Param("producto") Producto producto, @Param("nombre") String nombre);
     @Query("update Producto p set p.marca=:marca where p.id=:#{#producto.id}")
