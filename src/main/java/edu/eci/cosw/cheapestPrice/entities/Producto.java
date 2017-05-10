@@ -90,6 +90,6 @@ public class Producto implements Serializable {
     }
     @Override
     public String toString(){
-        return "id: "+id+" categoria: "+categoria+" nombre: "+nombre+" marca: "+marca;
+        return "(id: "+id+" categoria: "+categoria+" nombre: "+nombre+" marca: "+marca+")";
     }
 }
