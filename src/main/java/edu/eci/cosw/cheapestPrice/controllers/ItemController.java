@@ -224,9 +224,8 @@ public class ItemController {
     public ResponseEntity<?> postItem(@RequestBody Item item,@PathVariable int id,@PathVariable int shop){
         try {
             int idshop=item.getTienda().getId();
-            int user=item.getTienda().getTendero().getUsuarioId();
             Account acc=cs.load(id);
-            if(id==user && idshop==shop) {
+            if(idshop==shop) {
                 is.addItem(item);
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }else{
