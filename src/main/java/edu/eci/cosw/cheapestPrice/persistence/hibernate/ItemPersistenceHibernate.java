@@ -50,7 +50,8 @@ public class ItemPersistenceHibernate implements ItemPersistence {
 
         if(p==null) {
             p=item.getProducto();
-            p.setId(1);
+            p.setId(pr.countProductos()+1);
+            item.setProducto(p);
             System.out.println("------------------------>"+item.getProducto()+" "+p);
             pr.saveAndFlush(p);
         }
