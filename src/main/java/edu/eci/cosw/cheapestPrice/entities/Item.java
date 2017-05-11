@@ -19,6 +19,12 @@ public class Item implements Serializable {
     @Column(name="precio")
     private long precio;
 
+    @Column(name="PRODUCTOS_id")
+    private long productId;
+
+    @Column(name="TIENDAS_id")
+    private int tiendaId;
+
     //@MapsId("tiendaId")
     @ManyToOne(optional=false)
     @JoinColumns({
@@ -84,8 +90,19 @@ public class Item implements Serializable {
         this.producto = producto;
     }
 
-    @Override
-    public String toString() {
-        return "["+tienda.getNit()+ " "+ tienda.getX() + " " + tienda.getY() + " "+producto.getId() +" "+precio+"]";
+    public long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(long productId) {
+        this.productId = productId;
+    }
+
+    public int getTiendaId() {
+        return tiendaId;
+    }
+
+    public void setTiendaId(int tiendaId) {
+        this.tiendaId = tiendaId;
     }
 }

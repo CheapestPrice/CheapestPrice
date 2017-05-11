@@ -2,10 +2,12 @@ package edu.eci.cosw.cheapestPrice.persistence.hibernate;
 
 import edu.eci.cosw.cheapestPrice.entities.Item;
 import edu.eci.cosw.cheapestPrice.entities.Producto;
+import edu.eci.cosw.cheapestPrice.entities.Tienda;
 import edu.eci.cosw.cheapestPrice.exception.CheapestPriceException;
 import edu.eci.cosw.cheapestPrice.persistence.ItemPersistence;
 import edu.eci.cosw.cheapestPrice.repositories.ItemRepository;
 import edu.eci.cosw.cheapestPrice.repositories.ProductRepository;
+import edu.eci.cosw.cheapestPrice.repositories.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,8 @@ public class ItemPersistenceHibernate implements ItemPersistence {
     private ItemRepository ir;
     @Autowired
     private ProductRepository pr;
+    @Autowired
+    private ShopRepository sr;
 
     @Override
     public List<Item> loadItems() {
@@ -45,16 +49,25 @@ public class ItemPersistenceHibernate implements ItemPersistence {
 
     @Override
     public void addItem(Item item) throws CheapestPriceException {
-        Producto p= pr.loadProduct(item.getProducto().getNombre(),item.getProducto().getMarca(),item.getProducto().getCategoria());
+        Producto pt = item.getProducto();
+        Tienda tt = item.getTienda();
+        Producto p= pr.loadProduct(pt.getNombre(),pt.getMarca(),pt.getCategoria());
+        Tienda t = sr.findOneByAll(tt.getNit(),tt.getDireccion(),tt.getNombre(),tt.getTelefono());
         //item.getProducto().setId(1);
-
+        item.setTiendaId(tt.getId());
         if(p==null) {
             p=item.getProducto();
-            p.setId(pr.countProductos()+1);
-            item.setProducto(p);
-            System.out.println("------------------------>"+item.getProducto()+" "+p);
+            //p.setId(pr.countProductos()+1);
+            //item.setProducto(p);
+            //System.out.println("------------------------>"+item.getProducto()+" "+p);
             pr.saveAndFlush(p);
+            p = pr.loadProduct(p.getNombre(),p.getMarca(),p.getCategoria());
+            item.setProductId(p.getId());
+
+        }else{
+            item.setProductId(p.getId());
         }
+
         ir.save(item);
     }
 
